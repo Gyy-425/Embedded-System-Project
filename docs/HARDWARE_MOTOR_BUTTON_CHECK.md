@@ -1,5 +1,7 @@
 # One motor-button check with the application stopped
 
+**Completed user result,7 November2026:** coordinator reports all four hardware motor buttons clearly rotate motors and stop on release. Basic hardware-button response passes; do not repeat this procedure. [Result and limits](../testing/integration/logs/2026-11-07-hardware-buttons-user-result.md). This does not validate the still-unresolved software25%/50% PWM path. The procedure below is preserved as history.
+
 ## Why this check is now needed
 
 The normal25% and50% software runs complete their reported400ms cutoffs, but no clear wheel rotation is observed. At50%, each selected motor/polarity produces just one encoder change. Pin/address correctness and host tests do not prove the actual bridge/motor power path. Stop further GP20 requests and firmware-duty increases until a different boundary is checked.

@@ -1,0 +1,34 @@
+# Remaining project work
+
+Status snapshot:7 November2026. Follow the professor-confirmed revised scope: two IR AO/ADC sensors; report successive tape colours while moving; receive a target colour over Wi-Fi and follow its path; five selected colours plus black/white; readable command-prompt output. Existing software/submission requirements remain applicable. This is a work checklist, not evidence that pending behaviour has passed.
+
+## Completed foundation
+
+- [x] Personal GitHub repository, course starter, Ubuntu toolchain and normal/TEST baseline builds.
+- [x] Reported wiring map checked against component/board references; no pin remap currently needed.
+- [x] Both raw IR channels respond; basic manual encoder input/IRQ capture supported by supplied logs.
+- [x] Captured motor-start HardFault and three GPIO definitions corrected, with regression/build evidence.
+- [x] All four hardware motor buttons reportedly produce clear movement and stopping on release: basic hardware-button response passes.
+- [x] Laptop MQTT broker/client loopback preparation and motor-inactive network image prepared. Actual Pico Wi-Fi/MQTT connection is still pending.
+
+## Remaining work in practical order
+
+1. [ ] **Actual Wi-Fi/MQTT transport — immediate communication priority.** Confirm a usable robot/laptop network, recheck laptop broker address and run the prepared no-drive transport stage. Demonstrate actual Pico IP, broker connection, publish/receive and recovery after broker/network interruption. RADIO_READY or localhost success is not sufficient. Refresh the network image/version as appropriate with current source before issuing a new artifact; preserve private credentials.
+2. [ ] **Reliable program-controlled motor motion — can progress alongside networking.** Investigate the verified PWM off-state difference from the manufacturer example and obtain actual output evidence; avoid further blind duty increases. Verify both wheels/directions, controlled starting/running, STOP/expiry and encoder response during real powered motion. Establish physical forward signs and calibrate counts/distance or speed where used; add speed balancing/control as needed for stable tracking. Hardware buttons do not pass this item.
+3. [ ] **Robot MQTT protocol and readable laptop client.** Define topics, compact binary target-colour/run/stop/mode/status messages, validation, acknowledgements and stale/duplicate command handling. Add the application interface to the single network-service owner. Implement a small laptop command-line sender/decoder that displays readable colour names/status; a dashboard/onboard display is unnecessary.
+4. [ ] **Actual tapes, track and acceptance conditions.** Obtain/use the actual five chosen colours plus black/white, cardboard/background and fixed sensor mounting. Set track width/curves/start positions and layouts for both required demonstrations. Choose achievable speed, shortest segment and accuracy/lighting conditions from measurements;5cm remains a proposal, not a confirmed requirement. Check seven classes are separable in IR ADC data before committing to a tape set.
+5. [ ] **Colour calibration and recognition.** Record labelled readings from each sensor at installed height, derive/store calibration and implement seven-class plus unknown/uncertain handling. Validate stationary and moving classification, transitions and short segments; avoid filtering/debounce that erases brief colours. Report actual accuracy against known tape sequences, not guessed RGB colour recognition.
+6. [ ] **Colour reporting while moving.** Combine reliable motion and colour recognition to travel the demonstration path and print successive detected colours cleanly. Coordinate sensor placement/line-position estimation so tracking and colour capture work together. Define behaviour at background, gaps, lost line and track end.
+7. [ ] **Wi-Fi-selected target-colour following.** Accept a valid selected colour, acquire/follow that path within the chosen layout, and handle bends, lost target/wrong colour and target changes consistently. Define valid starting positions and any acquisition behaviour so no unimplemented junction-search behaviour is assumed.
+8. [ ] **Integrated RTOS/controller behaviour.** Replace the diagnostic-only app with normal robot operation combining IR, Motion and Communications. Define ready/run/stopped/fault/finish behaviour as needed; enforce one motor writer, fresh sensor/control data, deterministic STOP, safe link-loss/reconnect handling and safe mode transitions. Measure actual sampling/control timing with Wi-Fi active; verify priorities/stack use for the final task set.
+9. [ ] **Minimum-bit representation and Week13 evidence — design during coding.** Specify ranges, signedness, resolution, invalid values, overflow and timestamp-wrap rules. Pack application states/flags/samples/messages safely across tasks/ISRs, with explicit binary MQTT serialization and validated decoding. Maintain equivalent functionality for before/after RAM and message-size comparisons; template-versus-new-app sizes are not valid representation savings. Provide the field/bit table and correctness/timing evidence.
+10. [ ] **Final integrated acceptance runs.** Exercise both demonstrations repeatedly at stated speed/segment length/lighting; test run/stop, invalid/stale commands, connection interruption, line/target loss and clean restart. Validate the combined motor/IR/Wi-Fi setup on the intended bank-powered demo arrangement, capture resets/faults and investigate any instability. Save actual console records, metrics and demonstration evidence.
+11. [ ] **Submission and reproducibility.** Review application C for BARR-C, document retained shared-source changes, update architecture/pin/protocol/calibration/build/run instructions and required reports/declarations. Complete representation/RAM/message/performance evidence in GitHub, tidy remaining template placeholders, preserve truthful historical results/ownership, and package/tag the final reproducible source and firmware. Keep credentials out of commits and prepare/test the demo network and fallback arrangement.
+
+Networking does not need to wait for every motion qualification test. Calibration/recognition work needs actual tapes; a final movement/recognition pass cannot be established from host tests alone. Diagnostic versions need not be replayed as separate mandatory robot features.
+
+## Outside the confirmed core scope
+
+Barcode decoding/directed junction manoeuvres, ultrasonic/servo obstacle profiling/avoidance and hump-height measurement are omitted under the professor's confirmed revision. IMU is optional and should only be reconsidered after the required colour/motion/communication application works. No dashboard is required.
+
+Current next actions: actual no-drive Wi-Fi/MQTT transport, focused PWM correction/investigation, and collection of the real tape set in parallel.

@@ -1,5 +1,7 @@
 # Motor starting test v0.3.2:50% duty,400ms maximum
 
+**Latest user result:** the50% run completed all four cutoffs with continuous reporting, but no clear wheel rotation; one encoder edge appeared per selected motor/polarity. Physical operation is NOT PASSED. Pause this GP20 procedure; follow [the dedicated hardware-button check](HARDWARE_MOTOR_BUTTON_CHECK.md). That check intentionally uses one full-speed hardware-button tap with the application stopped in cold BOOTSEL, rather than changing this firmware or its duty again. Original preparation/upload instructions below remain historical evidence.
+
 ## Purpose and verified preparation
 
 The coordinator authorised the three register-macro corrections and the next motor diagnostic. The earlier25% run completed all four software cutoffs without freezing, but showed no encoder edges or clear wheel movement.50% is an assistant-selected diagnostic setting to test insufficient starting torque as one hypothesis; it is not a measured motor rating or a demonstrated cure.

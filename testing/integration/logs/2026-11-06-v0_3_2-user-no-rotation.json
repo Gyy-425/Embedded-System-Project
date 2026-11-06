@@ -1,0 +1,89 @@
+{
+  "records": 60,
+  "first_t_ms": 47840,
+  "last_t_ms": 63180,
+  "report_spacing_ms": 260,
+  "requests": [
+    {
+      "motor": 1,
+      "direction": 1,
+      "duty_percent": 50,
+      "reported_elapsed_us": 400012
+    },
+    {
+      "motor": 1,
+      "direction": 2,
+      "duty_percent": 50,
+      "reported_elapsed_us": 400006
+    },
+    {
+      "motor": 2,
+      "direction": 1,
+      "duty_percent": 50,
+      "reported_elapsed_us": 400005
+    },
+    {
+      "motor": 2,
+      "direction": 2,
+      "duty_percent": 50,
+      "reported_elapsed_us": 400007
+    }
+  ],
+  "encoder_changes": [
+    {
+      "t_ms": 49920,
+      "left_before": -1,
+      "left_after": 0,
+      "right_before": 0,
+      "right_after": 0,
+      "irq_before": 1,
+      "irq_after": 2,
+      "phase": "PULSE",
+      "motor": 1,
+      "direction": 1
+    },
+    {
+      "t_ms": 53040,
+      "left_before": 0,
+      "left_after": -1,
+      "right_before": 0,
+      "right_after": 0,
+      "irq_before": 2,
+      "irq_after": 3,
+      "phase": "PULSE",
+      "motor": 1,
+      "direction": 2
+    },
+    {
+      "t_ms": 55640,
+      "left_before": -1,
+      "left_after": -1,
+      "right_before": 0,
+      "right_after": 1,
+      "irq_before": 3,
+      "irq_after": 4,
+      "phase": "PULSE",
+      "motor": 2,
+      "direction": 1
+    },
+    {
+      "t_ms": 59020,
+      "left_before": -1,
+      "left_after": -1,
+      "right_before": 1,
+      "right_after": 0,
+      "irq_before": 4,
+      "irq_after": 5,
+      "phase": "PULSE",
+      "motor": 2,
+      "direction": 2
+    }
+  ],
+  "initial_encoder_irq_count": 1,
+  "final_encoder_irq_count": 5,
+  "errors_invalid_overrun": "all zero in excerpt",
+  "final_phase": "DONE",
+  "user_observation": "Heard sound but motor did not visibly move",
+  "physical_setup": "Instructions specified raised wheels and bank VIN/Pico USB; not separately reconfirmed for this attachment",
+  "conclusion": "Software-reported pulses/cutoffs completed. One count/IRQ transition per requested motor/polarity is insufficient evidence of sustained rotation; possible nudge/backlash or electrical disturbance. Motor operation NOT PASSED. Do not increase firmware duty again without isolation evidence."
+}

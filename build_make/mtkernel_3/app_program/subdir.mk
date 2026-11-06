@@ -10,6 +10,11 @@ TEMP_DEPS = $(TEMP_SRCS:.c=.d)
 OBJS += $(subst ../, ./mtkernel_3/, $(TEMP_OBJS))
 C_DEPS += $(subst ../, ./mtkernel_3/, $(TEMP_DEPS))
 
+# New communication modules use strict diagnostics without reformatting the
+# inherited RTOS/SDK implementation.
+mtkernel_3/app_program/subsystem3/comm_protocol.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/mqtt_app.o: CFLAGS += -Wall -Wextra -Werror -Wshadow -Wstrict-prototypes
+
 mtkernel_3/app_program/%.o: ../app_program/%.c
 	@echo 'Building file: $<'
 	@mkdir -p $(dir $@)

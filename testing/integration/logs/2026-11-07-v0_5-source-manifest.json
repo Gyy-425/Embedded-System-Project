@@ -1,0 +1,75 @@
+{
+  "scope": "communication-only v0.5",
+  "functional_tests": "DEFERRED_AT_USER_REQUEST",
+  "hardware_tests": "NOT RUN",
+  "sources": [
+    {
+      "path": "app_program/app.h",
+      "sha256": "87be0a97cab9f4805781ceda88aa25e1515bb1063429e0abf29206f309d34f7b"
+    },
+    {
+      "path": "app_program/app_main.c",
+      "sha256": "fcdda557df1a27b3f019c7d21b3006facb74edf2fcd783eeeccadf9e382a24f0"
+    },
+    {
+      "path": "app_program/subsystem3/subsystem3.c",
+      "sha256": "1b4a46136d882012d3481a87cca7414c937553f3f20c9ba98ef69507878b6285"
+    },
+    {
+      "path": "app_program/subsystem3/comm_protocol.c",
+      "sha256": "fd7169c1b1975d6ff51409f7429191c0eed3564a74a294869cb02cec6885f124"
+    },
+    {
+      "path": "app_program/subsystem3/comm_protocol.h",
+      "sha256": "0b5cfd301cc6e4da2c253111cab3170ed5eed8a04c777ef3ae8f008a92e0c476"
+    },
+    {
+      "path": "app_program/subsystem3/mqtt_app.c",
+      "sha256": "7511817481b400beda9dc56d60f47ac600cb6de908f5d20c3d659ca443e850a5"
+    },
+    {
+      "path": "config/comm_config.h",
+      "sha256": "ae9aac6407c8ec632cd30e5bc65e88499b723e43ecbd8d62d5356a84f2d4c683"
+    },
+    {
+      "path": "lib/liblwip/sysdepend/pico_rp2040/mqtt_utk.c",
+      "sha256": "0d3ef525ee83bf84a8a97781db17b414020409690a2e671e4654c5df445cb1c3"
+    },
+    {
+      "path": "lib/liblwip/sysdepend/pico_rp2040/mqtt_utk.h",
+      "sha256": "e96d75ef18f5cd79526db785c64a57a7ea99edfc83c64ce2e36828f11ba191df"
+    },
+    {
+      "path": "lib/libwifi/sysdepend/pico_rp2040/cyw43_utk.c",
+      "sha256": "01de469045138ab5c01e748bf9984b8da20fae83a7c20f22b9b42e1c5fc52b14"
+    },
+    {
+      "path": "build_make/pico_rp2040.mk",
+      "sha256": "2412e682cc1d15248d96a6e1d8ad0ce840ba9f7c40e9d73bbdcb89522b8cb92e"
+    },
+    {
+      "path": "build_make/mtkernel_3/app_program/subdir.mk",
+      "sha256": "ca49997a0da205a2268d22c6cc429b81dfdfb3c1661e1e50b32f2ba1e1edabe2"
+    },
+    {
+      "path": "tools/build_wsl.py",
+      "sha256": "28e4c850ece7890dbddb6421a6b70e3a1081ada2fd13dae54ca569ebdf951fa4"
+    },
+    {
+      "path": "tools/mqtt/robot_codec.py",
+      "sha256": "2b923f02c1deb056a8b9beda5849c2beb0677b6b433b30d91386134272b21028"
+    },
+    {
+      "path": "tools/mqtt/robot_cli.py",
+      "sha256": "3304c3826017c2565da27456920627ddd7290e5a18b9263558cbb131bfda773d"
+    },
+    {
+      "path": "testing/host/test_comm_protocol.c",
+      "sha256": "2430dd614b04bf429f75048f8093be03c311e48f09c6e0475f72c56fa4d80b3b"
+    },
+    {
+      "path": "testing/host/test_comm_cli.py",
+      "sha256": "92ade6b28b55cb3a79a848d6b2a20a0b367b51635a9c9826135b23e12bd950d1"
+    }
+  ]
+}

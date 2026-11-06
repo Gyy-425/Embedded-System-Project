@@ -9,6 +9,14 @@
 #include "subsystem2/encoder_capture.h"
 #include "subsystem2/motor_test.h"
 
+#ifndef AAI05_COMMS_APP
+#define AAI05_COMMS_APP 0
+#endif
+
+#if AAI05_COMMS_APP && (!MOTOR_TEST_PROBE || !TM_NET_LWIP || !TM_MQTT)
+#error Communication application requires no-drive, lwIP and MQTT profiles
+#endif
+
 #define TASK_STACK_SIZE 2048
 #define APP_PRI_MOTION  12
 #define APP_PRI_IR      14

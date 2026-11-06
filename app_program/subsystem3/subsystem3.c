@@ -42,7 +42,11 @@ static void report_task(INT start_code, void *extra)
                       "MOTOR[phase=%s next=%u M=%u D=%u pct=%u us=%u cutoff=%u stop=%u err=%d] "
                       "DRIVE=%s RADIO_READY=%u"
 #if TM_NET_LWIP
+#if AAI05_COMMS_APP
+                      " NETWORK_MODE=COMMS_APP WIFI_LINK=%d WIFI_IP=%u.%u.%u.%u"
+#else
                       " NETWORK_MODE=TRANSPORT_PROBE WIFI_LINK=%d WIFI_IP=%u.%u.%u.%u"
+#endif
 #endif
                       "\n",
                       (UINT)now, (UINT)ir.left_raw, (UINT)ir.right_raw,

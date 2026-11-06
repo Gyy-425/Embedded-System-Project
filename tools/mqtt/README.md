@@ -1,5 +1,7 @@
 # Laptop MQTT broker
 
+The latest application client is `robot_cli.py`: `watch`, `status`, `target` and `clear`. It uses Python3.10+ with these existing Mosquitto tools and installs no Python dependencies. See [the v0.5 procedure](../../docs/COMMS_TEST_V0_5.md) and [binary protocol](../../docs/COMM_PROTOCOL_V1.md). The text heartbeat examples below describe the older v0.4 transport image; v0.5 uses separate binary topics and does not emit that heartbeat. Actual Pico tests remain pending.
+
 Official Eclipse Mosquitto 2.1.2 Windows files are unpacked locally in .runtime/mosquitto-2.1.2. They were not installed as a Windows service. No Docker daemon is needed. The runtime, installer and active machine settings are ignored by Git; they remain inside this workspace.
 
 From a PowerShell terminal in this firmware checkout:

@@ -21,6 +21,7 @@
 #include "wifi_secrets.h"
 #include "mqtt_utk.h"
 #include <tm/tmonitor.h>
+#include <string.h>
 
 #define MQTT_UTK_HEARTBEAT_MS   5000
 #define MQTT_UTK_KEEPALIVE_S    60
@@ -43,7 +44,15 @@ static UB		rx_data[MQTT_UTK_RX_DATA_MAX];
 static u16_t		rx_len;
 static u8_t		rx_truncated;
 
+#if AAI05_COMMS_APP
+static uint32_t g_rx_expected;
+static bool g_is_app_ready;
+static bool g_is_sub_pending;
+static void mqtt_app_subscribe(void);
+static void app_subscribe_retry(void *p_argument);
+#else
 static void heartbeat_timeout(void *arg);
+#endif
 
 /* mqtt.c NUL-terminates the topic before handing it over, but it is only
  * valid for the duration of this call -- copy it out. */
@@ -61,14 +70,49 @@ static void incoming_publish_cb(void *arg, const char *topic, u32_t tot_len)
 
 	rx_len = 0;
 	rx_truncated = 0;
+#if AAI05_COMMS_APP
+    g_rx_expected = tot_len;
+    if (('\0' != topic[i]) || (tot_len > MQTT_UTK_RX_DATA_MAX))
+    {
+        rx_truncated = 1U;
+    }
+#endif
 }
 
 static void incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t flags)
 {
+#if !AAI05_COMMS_APP
 	u16_t	i;
+#endif
 
 	(void)arg;
 
+#if AAI05_COMMS_APP
+    for (uint16_t index = 0U; index < len; ++index)
+    {
+        if (rx_len < MQTT_UTK_RX_DATA_MAX)
+        {
+            rx_data[rx_len] = data[index];
+            ++rx_len;
+        }
+        else
+        {
+            rx_truncated = 1U;
+        }
+    }
+    if (((flags & MQTT_DATA_FLAG_LAST) != 0U) && g_is_app_ready &&
+        (0 == strcmp(rx_topic, mqtt_app_command_topic())))
+    {
+        if ((0U == rx_truncated) && (rx_len == g_rx_expected))
+        {
+            mqtt_app_receive(rx_data, rx_len);
+        }
+        else
+        {
+            mqtt_app_receive(NULL, 0U);
+        }
+    }
+#else
 	for(i = 0; i < len; i++) {
 		if(rx_len < (MQTT_UTK_RX_DATA_MAX - 1)) {
 			/* The console is a terminal -- keep raw bytes from a
@@ -85,8 +129,10 @@ static void incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t flags)
 		tm_printf((UB*)"mqtt: RX [%s] \"%s\"%s\n", rx_topic, rx_data,
 			  rx_truncated? " (truncated)": "");
 	}
+#endif
 }
 
+#if !AAI05_COMMS_APP
 static void subscribe_done_cb(void *arg, err_t result)
 {
 	(void)arg;
@@ -96,6 +142,7 @@ static void subscribe_done_cb(void *arg, err_t result)
 		tm_printf((UB*)"mqtt: subscribe failed, err=%d\n", (int)result);
 	}
 }
+#endif
 
 static void publish_done_cb(void *arg, err_t result)
 {
@@ -105,6 +152,7 @@ static void publish_done_cb(void *arg, err_t result)
 	}
 }
 
+#if !AAI05_COMMS_APP
 static void heartbeat_timeout(void *arg)
 {
 	static unsigned int	count = 0;
@@ -126,6 +174,80 @@ static void heartbeat_timeout(void *arg)
 	 * ACCEPTED, so there is exactly one heartbeat chain alive at a time. */
 	sys_timeout(MQTT_UTK_HEARTBEAT_MS, heartbeat_timeout, NULL);
 }
+#endif
+
+#if AAI05_COMMS_APP
+static void app_subscribe_done(void *p_argument, err_t result)
+{
+    (void)p_argument;
+    g_is_sub_pending = false;
+    if ((ERR_OK == result) && mqtt_client_is_connected(client))
+    {
+        g_is_app_ready = true;
+        sys_untimeout(app_subscribe_retry, NULL);
+        mqtt_app_link_changed(true);
+        tm_printf((UB *)"mqtt: command subscription ready\n");
+    }
+    else if (mqtt_client_is_connected(client))
+    {
+        sys_untimeout(app_subscribe_retry, NULL);
+        sys_timeout(MQTT_UTK_RETRY_MS, app_subscribe_retry, NULL);
+    }
+}
+
+static void mqtt_app_subscribe(void)
+{
+    err_t result;
+
+    if (!mqtt_client_is_connected(client) || g_is_app_ready ||
+        g_is_sub_pending)
+    {
+        return;
+    }
+    g_is_sub_pending = true;
+    result = mqtt_subscribe(client, mqtt_app_command_topic(), 1U,
+                            app_subscribe_done, NULL);
+    if (ERR_OK != result)
+    {
+        g_is_sub_pending = false;
+        sys_untimeout(app_subscribe_retry, NULL);
+        sys_timeout(MQTT_UTK_RETRY_MS, app_subscribe_retry, NULL);
+    }
+}
+
+static void app_subscribe_retry(void *p_argument)
+{
+    (void)p_argument;
+    mqtt_app_subscribe();
+}
+
+int32_t mqtt_utk_publish_binary(const char *p_topic, const uint8_t *p_data,
+                                uint16_t length, bool is_reliable)
+{
+    if ((NULL == client) || !g_is_app_ready ||
+        !mqtt_client_is_connected(client))
+    {
+        return ERR_CONN;
+    }
+    if ((NULL == p_topic) || (NULL == p_data) || (0U == length) ||
+        (length > MQTT_UTK_RX_DATA_MAX))
+    {
+        return ERR_ARG;
+    }
+    return mqtt_publish(client, p_topic, p_data, length,
+                         (u8_t)(is_reliable ? 1U : 0U), 0U,
+                         publish_done_cb, NULL);
+}
+
+void mqtt_utk_service(void)
+{
+    if ((NULL != client) && g_is_app_ready &&
+        mqtt_client_is_connected(client))
+    {
+        mqtt_app_poll();
+    }
+}
+#endif
 
 static void retry_timeout(void *arg)
 {
@@ -139,14 +261,23 @@ static void connection_cb(mqtt_client_t *c, void *arg, mqtt_connection_status_t 
 	(void)c;
 	(void)arg;
 
+#if AAI05_COMMS_APP
+    g_is_app_ready = false;
+    g_is_sub_pending = false;
+    sys_untimeout(app_subscribe_retry, NULL);
+    mqtt_app_link_changed(false);
+#endif
 	if(status == MQTT_CONNECT_ACCEPTED) {
+#if !AAI05_COMMS_APP
 		err_t	err;
+#endif
 
 		/* No longer *connecting* -- clear the guard so that if this
 		 * connection later drops, the poll loop's mqtt_utk_start() call
 		 * is allowed to reconnect. Leaving it set would wedge the client
 		 * permanently after the first disconnect. */
 		connecting = 0;
+		sys_untimeout(retry_timeout, NULL);
 
 		tm_printf((UB*)"mqtt: connected to " MQTT_BROKER_IP "\n");
 
@@ -159,6 +290,9 @@ static void connection_cb(mqtt_client_t *c, void *arg, mqtt_connection_status_t 
 		mqtt_set_inpub_callback(client, incoming_publish_cb,
 					incoming_data_cb, NULL);
 
+#if AAI05_COMMS_APP
+        mqtt_app_subscribe();
+#else
 		err = mqtt_subscribe(client, MQTT_TOPIC, 0 /* qos */,
 				     subscribe_done_cb, NULL);
 		if(err != ERR_OK) {
@@ -172,6 +306,7 @@ static void connection_cb(mqtt_client_t *c, void *arg, mqtt_connection_status_t 
 		 * MEMP_SYS_TIMEOUT slot until the pool is exhausted. */
 		sys_untimeout(heartbeat_timeout, NULL);
 		sys_timeout(MQTT_UTK_HEARTBEAT_MS, heartbeat_timeout, NULL);
+#endif
 	} else {
 		/* mqtt_client_connect() reconnects on its own for a dropped
 		 * keepalive; a rejected/never-established connection does not
@@ -180,6 +315,8 @@ static void connection_cb(mqtt_client_t *c, void *arg, mqtt_connection_status_t 
 		 * into a tight reconnect loop. */
 		tm_printf((UB*)"mqtt: connection status %d, retrying in %ds\n",
 			  (int)status, MQTT_UTK_RETRY_MS / 1000);
+        connecting = 1U;
+        sys_untimeout(retry_timeout, NULL);
 		sys_timeout(MQTT_UTK_RETRY_MS, retry_timeout, NULL);
 	}
 }
@@ -215,6 +352,8 @@ void mqtt_utk_start(void)
 				  connection_cb, NULL, &client_info);
 	if(err != ERR_OK) {
 		tm_printf((UB*)"mqtt: mqtt_client_connect() failed, err=%d\n", (int)err);
-		connecting = 0;
+        connecting = 1U;
+        sys_untimeout(retry_timeout, NULL);
+        sys_timeout(MQTT_UTK_RETRY_MS, retry_timeout, NULL);
 	}
 }

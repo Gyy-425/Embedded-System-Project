@@ -1,5 +1,7 @@
 # Motor-inactive Wi-Fi/MQTT transport probe v0.4
 
+The v0.5 target-selection/ACK/raw-IR application supersedes this v0.4 text-heartbeat procedure for the next session. Follow [COMMS_TEST_V0_5.md](COMMS_TEST_V0_5.md); retain this guide as transport-preparation history. No actual Pico Wi-Fi/MQTT pass has been recorded.
+
 This milestone is prioritised before later colour following. The coordinator now selects CONNECTED_MOTOR_TEST_V0_3.md as the next motor check; the winding-disconnected method is an alternative. Motor winding wires may remain connected for networking, using only the v0.4 NO_DRIVE profile, which retains both force-high motor overrides in software. It uses the existing course network/MQTT implementation unchanged.
 
 ## What this stage demonstrates

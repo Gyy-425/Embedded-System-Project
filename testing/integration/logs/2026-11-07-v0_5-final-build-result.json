@@ -1,0 +1,396 @@
+{
+  "baseline_commit": "c3b09544cb1fd6dac6ad4b8f523be0af59b44482",
+  "source_commit": "9a9aeb9cb466e55b82dbdf073a6ecc219ba72154",
+  "source_dirty": true,
+  "application_version": "0.5",
+  "motor_pulse_duty_percent": 50,
+  "motor_pulse_duration_ms": 400,
+  "motor_mode": "NO_DRIVE_PROBE",
+  "network_mode": "BINARY_COMMS_APP",
+  "functional_tests": "DEFERRED_AT_USER_REQUEST",
+  "sdk": "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "label": "host-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05_encoder_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-encoder",
+      "command": [
+        "/tmp/aai05_encoder_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-register-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "testing/host/test_rp2040_registers.c",
+        "-o",
+        "/tmp/aai05_rp2040_register_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-register",
+      "command": [
+        "/tmp/aai05_rp2040_register_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-motor-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_startup.c",
+        "app_program/subsystem2/drv_motor.c",
+        "-o",
+        "/tmp/aai05_motor_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-motor-startup",
+      "command": [
+        "/tmp/aai05_motor_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder_capture.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05_capture_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-capture",
+      "command": [
+        "/tmp/aai05_capture_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder_startup.c",
+        "-o",
+        "/tmp/aai05_capture_startup_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-startup",
+      "command": [
+        "/tmp/aai05_capture_startup_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_control.c",
+        "app_program/subsystem2/motor_test.c",
+        "-o",
+        "/tmp/aai05_motor_control_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-control",
+      "command": [
+        "/tmp/aai05_motor_control_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-pulse-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05_motor_pulse_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-pulse",
+      "command": [
+        "/tmp/aai05_motor_pulse_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-probe-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-DMOTOR_TEST_PROBE=1",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05_motor_probe_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-probe",
+      "command": [
+        "/tmp/aai05_motor_probe_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-network-config",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "testing/host",
+        "-p",
+        "test_network_config.py"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "comm-static-compile",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05_comm_protocol.o"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_5-final-comm-static-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "comm-checks-static-compile",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-Iapp_program/subsystem3",
+        "-c",
+        "testing/host/test_comm_protocol.c",
+        "-o",
+        "/tmp/aai05_comm_checks.o"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_5-final-comm-checks-static-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "cli-syntax-compile",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "py_compile",
+        "tools/mqtt/robot_codec.py",
+        "tools/mqtt/robot_cli.py",
+        "testing/host/test_comm_cli.py"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_5-final-cli-syntax-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-comm-compile",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem3",
+        "testing/host/test_comm_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05_comm_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-comm",
+      "command": [
+        "/tmp/aai05_comm_test"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "host-comm-cli",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "testing/host",
+        "-p",
+        "test_comm_cli.py"
+      ],
+      "exit_code": null,
+      "status": "DEFERRED",
+      "warnings": []
+    },
+    {
+      "label": "firmware-test0",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=lwip",
+        "MQTT=1",
+        "CRASH_REPORT=0",
+        "MOTOR_PROBE=1",
+        "COMM_APP=1",
+        "TEST=0"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_5-final-firmware-test0.log",
+      "warnings": [],
+      "uf2": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "67e97ef38a396a087b382852037a648274e8aa1a4c0fc987d9a667494af024f0",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 337544\t    100\t  82376\t 420020\t  668b4\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/build_make/mtk3pico_smp1_usb_cdc_wifi_lwip_mqtt_probe_comm.elf"
+    },
+    {
+      "label": "firmware-test1",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=lwip",
+        "MQTT=1",
+        "CRASH_REPORT=0",
+        "MOTOR_PROBE=1",
+        "COMM_APP=1",
+        "TEST=1"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_5-final-firmware-test1.log",
+      "warnings": [],
+      "uf2": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "2191644fa13d43d01001152f8d092c908bdaeb160f663e889c8e93dfad3e2766",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 338100\t    100\t  82376\t 420576\t  66ae0\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/build_make/mtk3pico_smp1_usb_cdc_wifi_lwip_mqtt_probe_comm_test.elf"
+    }
+  ],
+  "compiler": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009"
+}

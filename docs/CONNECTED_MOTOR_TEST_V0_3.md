@@ -1,5 +1,7 @@
 # Connected-motor test with USB and power-bank VIN
 
+**Paused after user-run repeat stall on 2026-11-06:** reporting stopped again and no wheel motion was visible. The user switched off power. Do not repeat this procedure unchanged. Follow DEBUG_PROBE_SETUP.md for connection-only preparation; no fault cause or motor pass is established.
+
 The coordinator requests connected-motor testing and proposes adding the existing power bank while retaining laptop USB. This replaces the winding-disconnected check as the next requested procedure; that alternative remains available if needed. Keep all motor/encoder wiring connected for this test. The earlier USB-only serial stall remains unresolved, and no powered motor pass is claimed yet.
 
 ## Verified power arrangement

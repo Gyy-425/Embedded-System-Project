@@ -1,0 +1,6 @@
+Symbol "motor_pulse_start" is a function at address 0x1000badc.
+warning: could not convert 'pulse' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+Symbol "pulse" is static storage at address 0x20005ffc.
+Symbol "capture" is static storage at address 0x20005fd0.
+Symbol "knl_fault_frame" is static storage at address 0x20005fa8.

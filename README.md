@@ -6,6 +6,8 @@ Latest result: the user-run coast-only M1 D2 request completed, with both wheels
 
 Latest coordinator steering: keep the motor wiring connected and try [the connected test with bank VIN plus laptop USB](docs/CONNECTED_MOTOR_TEST_V0_3.md). Cytron documents simultaneous USB/VIN operation; source selection is automatic, not isolated motor/logic power. Start with one observed bounded request and continue only after a clean result. The winding-disconnected procedure is now an alternative, not the required next step.
 
+Latest outcome: the user reports the same reporting stall/no wheel movement in that connected trial and switched power off. Connected retries are paused. [Connect the available Debug Probe](docs/DEBUG_PROBE_SETUP.md) with the car unpowered so execution-state diagnosis can follow; no CPU failure cause is yet established.
+
 Start with [the current bring-up guide](docs/BRINGUP.md) and [module ownership](TEAM.md). The application now uses three modules. The original course-template reference below describes its earlier examples.
 
 ---

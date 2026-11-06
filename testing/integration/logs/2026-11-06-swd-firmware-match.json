@@ -1,0 +1,9 @@
+{
+  "scope": "read-only live SWD, no halt/reset/flash/motor request",
+  "bytes_read": 281344,
+  "compared_uf2_blocks": 1099,
+  "mismatching_blocks": 0,
+  "firmware_matches_preserved_normal_v0_3": true,
+  "uf2_sha256": "4a1af5d9b09026536aa1239bfb2ce1b7c5d3a6897837919c0c09a48aef4002e0",
+  "private_flash_copy": "tools/debug/.runtime/idle-flash.bin (Git ignored)"
+}

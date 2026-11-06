@@ -1,0 +1,1 @@
+aai05_gpio_macro_red: testing/host/test_motor_pulse.c:96: write_register: Assertion `owned' failed.

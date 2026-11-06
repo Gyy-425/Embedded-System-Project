@@ -1,0 +1,7 @@
+Open On-Chip Debugger 0.12.0+dev (2026-07-03-16:10)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+shutdown command invoked
+PASS: OpenOCD Jim Tcl stop ordering/failure cases; no target connected
+PASS: capture driver Tcl completeness

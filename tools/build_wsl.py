@@ -18,7 +18,7 @@ parser.add_argument('--network-probe', action='store_true', help='Wi-Fi/MQTT tra
 args = parser.parse_args()
 args.motor_probe = args.motor_probe or args.network_probe
 args.label = args.label or ('2026-11-06-v0_4' if args.network_probe else
-                           '2026-11-06-v0_3p' if args.motor_probe else '2026-11-06-v0_3')
+                           '2026-11-06-v0_3p' if args.motor_probe else '2026-11-06-v0_3_1')
 if re.fullmatch(r'[A-Za-z0-9_-]+', args.label) is None:
     parser.error('--label must contain only letters, digits, underscores or hyphens')
 if not args.sdk:
@@ -55,7 +55,7 @@ host_binary = Path('/tmp/aai05_encoder_test')
 summary = {'baseline_commit': 'c3b09544cb1fd6dac6ad4b8f523be0af59b44482',
            'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
            'source_dirty': bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()),
-           'application_version': '0.4' if args.network_probe else '0.3p' if args.motor_probe else '0.3',
+           'application_version': '0.4' if args.network_probe else '0.3p' if args.motor_probe else '0.3.1',
            'motor_mode': 'NO_DRIVE_PROBE' if args.motor_probe else 'BUTTON_TRIGGERED_DRIVE',
            'network_mode': 'WIFI_MQTT_TRANSPORT_PROBE' if args.network_probe else 'RADIO_ONLY',
            'sdk': str(sdk), 'hardware_tests': 'NOT RUN', 'results': []}
@@ -117,7 +117,7 @@ profile = ['SMP=1', 'CONSOLE=usb_cdc', 'WIFI=cyw43',
            'MQTT=1' if args.network_probe else 'MQTT=0', 'CRASH_REPORT=0',
            f'MOTOR_PROBE={int(args.motor_probe)}']
 artifact_base = ('AAI05_Network_Probe_v0_4_NO_DRIVE' if args.network_probe else
-                 'AAI05_Motor_Probe_v0_3p_NO_DRIVE' if args.motor_probe else 'AAI05_Motor_Test_v0_3')
+                 'AAI05_Motor_Probe_v0_3p_NO_DRIVE' if args.motor_probe else 'AAI05_Motor_Test_v0_3_1')
 for test in [0, 1]:
     run(['make', '-j8', *profile, f'TEST={test}'], f'firmware-test{test}', repo / 'build_make')
     stem = ('mtk3pico_smp1_usb_cdc_wifi' + ('_lwip_mqtt' if args.network_probe else '') +

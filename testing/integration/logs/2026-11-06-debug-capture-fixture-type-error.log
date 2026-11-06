@@ -1,0 +1,14 @@
+..E
+======================================================================
+ERROR: test_stop_attempt_precedes_halt_and_both_cores_stay_halted (test_debug_capture.CaptureStopTests.test_stop_attempt_precedes_halt_and_both_cores_stay_halted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 57, in test_stop_attempt_precedes_halt_and_both_cores_stay_halted
+    self.assertEqual(int(interp.eval('set memory(0x40014044)')), 0x305)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '0x00000305'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.016s
+
+FAILED (errors=1)

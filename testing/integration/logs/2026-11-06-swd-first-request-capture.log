@@ -1,0 +1,811 @@
+Open On-Chip Debugger 0.12.0+dev (2026-07-03-16:10)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : [rp2040.core0] Hardware thread awareness created
+Info : [rp2040.core1] Hardware thread awareness created
+Info : Using CMSIS-DAPv2 interface with VID:PID=0x2e8a:0x000c, serial=E663AC91D3327835
+Warn : ***
+Warn : *** Old Raspberry Pi Debugprobe firmware detected (1.0.1)
+Warn : *** Using low-performance workaround
+Warn : *** Please update to the latest release at:
+Warn : *** https://github.com/raspberrypi/debugprobe/releases/latest
+Warn : ***
+Info : CMSIS-DAP: SWD supported
+Info : CMSIS-DAP: Atomic commands supported
+Info : CMSIS-DAP: Test domain timer supported
+Info : CMSIS-DAP: FW Version = 2.0.0
+Info : CMSIS-DAP: Interface Initialised (SWD)
+Info : SWCLK/TCK = 0 SWDIO/TMS = 0 TDI = 0 TDO = 0 nTRST = 0 nRESET = 0
+Info : CMSIS-DAP: Interface ready
+Info : clock speed 1000 kHz
+Info : SWD DPIDR 0x0bc12477, DLPIDR 0x00000001
+Info : SWD DPIDR 0x0bc12477, DLPIDR 0x10000001
+Info : [rp2040.core0] Cortex-M0+ r0p1 processor detected
+Info : [rp2040.core0] target has 4 breakpoints, 2 watchpoints
+Info : [rp2040.core0] Examination succeed
+Info : [rp2040.core1] Cortex-M0+ r0p1 processor detected
+Info : [rp2040.core1] target has 4 breakpoints, 2 watchpoints
+Info : [rp2040.core1] Examination succeed
+Info : [rp2040.core0] gdb port disabled
+Info : [rp2040.core1] gdb port disabled
+AAI05 CAPTURE ARMED: wait for the assistant's instruction, then GP20 ONCE
+GP20 LOW observed; firmware acceptance/motion not yet established
+State before output removal for rp2040.core0: running
+State before output removal for rp2040.core1: running
+[rp2040.core0] halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0x1000ae6c msp: 0x20009698
+[rp2040.core1] halted due to debug-request, current mode: Thread 
+xPSR: 0x61000000 pc: 0x10003410 msp: 0x20002170
+Both cores halted and motor GPIO8-11 read back high/coast; no resume
+CAPTURE REGISTERS rp2040.core0
+===== arm v7m registers
+(0) r0 (/32): 0x00000041
+(1) r1 (/32): 0x00000000
+(2) r2 (/32): 0x20003e9c
+(3) r3 (/32): 0x1000ae6d
+(4) r4 (/32): 0x40014005
+(5) r5 (/32): 0x00061a80
+(6) r6 (/32): 0x200022d4
+(7) r7 (/32): 0x200022d4
+(8) r8 (/32): 0x2000191c
+(9) r9 (/32): 0x00000001
+(10) r10 (/32): 0x4001400d
+(11) r11 (/32): 0x4001404c
+(12) r12 (/32): 0x20003e8c
+(13) sp (/32): 0x20009698
+(14) lr (/32): 0x10002ea7
+(15) pc (/32): 0x1000ae6c
+(16) xpsr (/32): 0x21000003
+(17) msp (/32): 0x20009698
+(18) psp (/32): 0xfffffffc
+(20) primask (/1): 0x01
+(21) basepri (/8): 0x00
+(22) faultmask (/1): 0x00
+(23) control (/3): 0x00
+===== Cortex-M DWT registers
+(60) dwt_ctrl (/32)
+(61) dwt_cyccnt (/32)
+(62) dwt_0_comp (/32)
+(63) dwt_0_mask (/4)
+(64) dwt_0_function (/32)
+(65) dwt_1_comp (/32)
+(66) dwt_1_mask (/4)
+(67) dwt_1_function (/32)
+CAPTURE REGISTERS rp2040.core1
+===== arm v7m registers
+(0) r0 (/32): 0x00000001
+(1) r1 (/32): 0x00000001
+(2) r2 (/32): 0x00000000
+(3) r3 (/32): 0x00001a98
+(4) r4 (/32): 0x00000004
+(5) r5 (/32): 0x20003e10
+(6) r6 (/32): 0x20003e08
+(7) r7 (/32): 0x20003d9c
+(8) r8 (/32): 0x1d1e1d1e
+(9) r9 (/32): 0x1d1e1d1e
+(10) r10 (/32): 0x1d1e1d1e
+(11) r11 (/32): 0x1d1e1d1e
+(12) r12 (/32): 0x1d1e1d1e
+(13) sp (/32): 0x20002170
+(14) lr (/32): 0x10003411
+(15) pc (/32): 0x10003410
+(16) xpsr (/32): 0x61000000
+(17) msp (/32): 0x20002170
+(18) psp (/32): 0xfffffffc
+(20) primask (/1): 0x00
+(21) basepri (/8): 0x00
+(22) faultmask (/1): 0x00
+(23) control (/3): 0x00
+===== Cortex-M DWT registers
+(60) dwt_ctrl (/32)
+(61) dwt_cyccnt (/32)
+(62) dwt_0_comp (/32)
+(63) dwt_0_mask (/4)
+(64) dwt_0_function (/32)
+(65) dwt_1_comp (/32)
+(66) dwt_1_mask (/4)
+(67) dwt_1_function (/32)
+PULSE_STATUS @0x20005ffc: 00000000 00000000 00000000 01190101 00000001
+PULSE_STARTED_US @0x20005ff8: 691acacd
+CAPTURE_STATE @0x20005fd0: 00000000 00000000 00000000 00000000 00000000 00000001 00000000 00000000 00000000
+CAPTURE_LOCK @0x20005ff4: 00000000
+PULSE_LOCK @0x20006010: 00000001
+PRINTF_LOCK @0x20003d94: 00000000
+KERNEL_LOCK @0x20003dd8: 00000000
+KERNEL_DEPTH @0x20003dd0: 00000000 00000000
+KERNEL_PRIMASK @0x20003dc8: 00000001 00000001
+TASK_INDEPENDENT @0x20005fa0: 00000000 00000000
+FAULT_FRAME_POINTER @0x20005fa8: 200096b8
+HARDFAULT_FRAME @0x200096b8: 4001400d 4001400d 00000004 00061a80 40014005 1000bb91 1000bc10 21000000
+PWM4_CSR @0x40050050: 00000001
+PWM5_CSR @0x40050064: 00000000
+TIMER_ARMED @0x40054020: 00000000
+TIMER_RAW @0x40054028: 69240d1d
+TIMER_DBGPAUSE @0x4005402c: 00000007
+TIMER_IRQ @0x40054034: 00000001 00000001 00000000 00000001
+NVIC_PENDING @0xe000e200: 00010041
+HW_SPINLOCK_STATUS @0xd000005c: 00000000
+CAPTURE COMPLETE: motor GPIO controls were changed by debugger; SWITCH CAR OFF NOW
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 100ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 100ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 700ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 700ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 1500ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 1500ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 3100ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 3100ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap1
+Error: [rp2040.core1] Examination failed
+Error: [rp2040.core1] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap0
+Error: [rp2040.core0] Polling failed, trying to reexamine
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Warn : Too long SWD WAIT, issuing DAPABORT
+Error: Failed to connect multidrop rp2040.dap0
+Error: [rp2040.core0] Examination failed
+Error: [rp2040.core0] Examination failed, GDB will be halted. Polling again in 6300ms
+Error: Failed to select multidrop rp2040.dap1
+Error: [rp2040.core1] Polling failed, trying to reexamine

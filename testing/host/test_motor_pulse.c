@@ -7,27 +7,11 @@
 #include "motor_io.h"
 #define AAI05_APP_H
 #define TK_SUPPORT_SMP 0
-#define CLK_PLL_SYS_FREQ 125000000U
-#define IO_BANK0_BASE UINT32_C(0x40014000)
-#define GPIO_CTRL(pin) (IO_BANK0_BASE + 4U + ((pin) * 8U))
-#define GPIO_CTRL_FUNCSEL_SIO 5U
-#define GPIO_CTRL_FUNCSEL_PWM 4U
-#define GPIO_OUT_SET UINT32_C(0xD0000014)
-#define PWM_BASE UINT32_C(0x40050000)
-#define TIMER_BASE UINT32_C(0x40054000)
-#define TIMER_ALARM0 (TIMER_BASE + 0x10U)
-#define TIMER_ARMED (TIMER_BASE + 0x20U)
-#define TIMER_TIMERAWL (TIMER_BASE + 0x28U)
-#define TIMER_INTR (TIMER_BASE + 0x34U)
-#define TIMER_INTE (TIMER_BASE + 0x38U)
-#define TIMER_INTF (TIMER_BASE + 0x3CU)
-#define TIMER_INTS (TIMER_BASE + 0x40U)
-#define RESETS_BASE UINT32_C(0x4000C000)
-#define RESETS_RESET RESETS_BASE
-#define RESETS_RESET_DONE (RESETS_BASE + 8U)
-#define RESETS_RESET_PWM UINT32_C(0x4000)
-#define RESETS_RESET_TIMER UINT32_C(0x200000)
-#define TIMER_PAUSE (TIMER_BASE + 0x30U)
+/* Skip machine/config selection only; use the REAL device register macros.
+   A safer hand-written GPIO_CTRL fake masked a target precedence fault. */
+#define __SYS_MACHINE_H__
+#include "../../include/sys/sysdepend/cpu/rp2040/sysdef.h"
+#define CLK_PLL_SYS_FREQ 125000000U /* Fake clock configuration, not register mapping. */
 #define TEST_WATCHDOG_TICK UINT32_C(0x4005802C)
 #define TEST_REF_CTRL UINT32_C(0x40008030)
 #define TEST_REF_DIV UINT32_C(0x40008034)
@@ -91,6 +75,7 @@ static void assert_output_policy(void)
 }
 static uint32_t read_register(uint32_t address)
 {
+    assert((address & 3U) == 0U);
     if (address == TIMER_TIMERAWL) {
         if (timer_advances_on_read && (*reg(TEST_WATCHDOG_TICK) & 0x3FFU) == 0x20CU &&
             (*reg(TIMER_PAUSE) & 1U) == 0U && (*reg(RESETS_RESET) & RESETS_RESET_TIMER) == 0U) ++now_us;
@@ -102,6 +87,14 @@ static uint32_t read_register(uint32_t address)
 }
 static void write_register(uint32_t address, uint32_t value)
 {
+    assert((address & 3U) == 0U);
+    if (address >= IO_BANK0_BASE && address < IO_BANK0_BASE + 0xF0U) {
+        bool owned = false;
+        for (unsigned int pin = 8U; pin <= 11U; ++pin) {
+            if (address == (uint32_t)GPIO_CTRL(pin)) owned = true;
+        }
+        assert(owned); /* No GPIO1 write from a malformed conditional macro. */
+    }
     assert(address != TIMER_BASE && address != TIMER_BASE + 4U && address != TIMER_TIMERAWL);
     if (address == RESETS_RESET + 0x3000U) {
         *reg(RESETS_RESET) &= ~value;

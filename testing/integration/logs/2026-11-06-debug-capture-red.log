@@ -1,0 +1,38 @@
+EEE
+======================================================================
+ERROR: test_failed_halt_still_attempts_coast_but_does_not_claim_capture_ready (test_debug_capture.CaptureStopTests.test_failed_halt_still_attempts_coast_but_does_not_claim_capture_ready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 59, in test_failed_halt_still_attempts_coast_but_does_not_claim_capture_ready
+    interp = self.target()
+             ^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 45, in target
+    interp.call('source', str(CORE))
+_tkinter.TclError: couldn't read file "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\debug\capture_core.tcl": no such file or directory
+
+======================================================================
+ERROR: test_failed_output_writes_do_not_claim_stop_success (test_debug_capture.CaptureStopTests.test_failed_output_writes_do_not_claim_stop_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 65, in test_failed_output_writes_do_not_claim_stop_success
+    interp = self.target()
+             ^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 45, in target
+    interp.call('source', str(CORE))
+_tkinter.TclError: couldn't read file "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\debug\capture_core.tcl": no such file or directory
+
+======================================================================
+ERROR: test_stop_attempt_precedes_halt_and_both_cores_stay_halted (test_debug_capture.CaptureStopTests.test_stop_attempt_precedes_halt_and_both_cores_stay_halted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 49, in test_stop_attempt_precedes_halt_and_both_cores_stay_halted
+    interp = self.target()
+             ^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 45, in target
+    interp.call('source', str(CORE))
+_tkinter.TclError: couldn't read file "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\debug\capture_core.tcl": no such file or directory
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.017s
+
+FAILED (errors=3)

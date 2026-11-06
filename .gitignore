@@ -19,6 +19,14 @@ config/wifi_secrets.h
 tools/mqtt/.runtime/
 __pycache__/
 
+# The original Debug build-directory rule also matches this source folder
+# on Windows. Track only the debugger scripts; keep all raw target data local.
+!tools/debug/
+tools/debug/*
+!tools/debug/*.cfg
+!tools/debug/*.tcl
+tools/debug/.runtime/
+
 # Videos are shared as unlisted YouTube links (videos/README.md), never committed
 *.mp4
 *.mov

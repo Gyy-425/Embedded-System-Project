@@ -1,0 +1,30 @@
+E..EF.
+======================================================================
+ERROR: test_armed_transport_error_attempts_stop_and_reports_power_off (test_debug_capture.CaptureStopTests.test_armed_transport_error_attempts_stop_and_reports_power_off)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 125, in test_armed_transport_error_attempts_stop_and_reports_power_off
+    interp.eval(source)
+_tkinter.TclError: synthetic armed read error
+
+======================================================================
+ERROR: test_selection_and_state_errors_still_attempt_output_removal (test_debug_capture.CaptureStopTests.test_selection_and_state_errors_still_attempt_output_removal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 81, in test_selection_and_state_errors_still_attempt_output_removal
+    self.assertEqual(int(interp.call('aai05_stop_for_capture')), 0)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: selection
+
+======================================================================
+FAIL: test_shared_output_removal_uses_an_available_debug_path (test_debug_capture.CaptureStopTests.test_shared_output_removal_uses_an_available_debug_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_debug_capture.py", line 88, in test_shared_output_removal_uses_an_available_debug_path
+    self.assertEqual(int(interp.call('aai05_stop_for_capture')), 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.046s
+
+FAILED (failures=1, errors=2)

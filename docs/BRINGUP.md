@@ -2,7 +2,7 @@
 
 ## Current milestone
 
-Current deliverable is **AAI05_Motor_Test_v0_3.uf2**, a motion-enabled, button-triggered raised-wheel test. Follow docs/MOTOR_TEST_V0_3.md. GP20 requests one fixed 25%/400 ms pulse; GP21 latches STOP. The six host executables and normal/TEST builds pass in testing/integration/logs/2026-11-06-v0_3-final-build-result.json; actual motor direction, powered encoder behaviour, power stability and observed pulse duration remain pending.
+Current deliverable is **AAI05_Motor_Probe_v0_3p_NO_DRIVE.uf2**. Follow docs/MOTOR_PROBE_V0_3P.md. The coordinator reported healthy v0.3 idle output followed by stopped serial reporting on the first GP20 press, without visible wheel movement, using laptop USB only. Powered v0.3 testing is paused. This probe keeps motor inputs in coast while exercising the same PWM/alarm start and cutoff path; it is instrumentation, not a demonstrated fix. See testing/integration/logs/2026-11-06-v0_3-gp20-freeze.md for supplied evidence and limits.
 
 The v0.2 procedure below is preserved for the no-drive diagnostic and its user-run results; it is not the v0.3 motor-test procedure.
 

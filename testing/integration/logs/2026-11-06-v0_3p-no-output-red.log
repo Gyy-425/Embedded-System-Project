@@ -1,0 +1,2 @@
+aai05_no_output_red: testing/host/test_motor_pulse.c:87: assert_output_policy: Assertion `pair == 3U' failed.
+Aborted (core dumped)

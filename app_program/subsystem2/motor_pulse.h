@@ -3,6 +3,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/* Diagnostic profile: exercise PWM/alarm setup while forcing both inputs high. */
+#ifndef MOTOR_TEST_PROBE
+#define MOTOR_TEST_PROBE 0
+#endif
+#if (MOTOR_TEST_PROBE != 0) && (MOTOR_TEST_PROBE != 1)
+#error MOTOR_TEST_PROBE must be 0 or 1
+#endif
+
 #define MOTOR_PULSE_MAX_DUTY 25U
 #define MOTOR_PULSE_MS 400U
 #define MOTOR_PULSE_US (MOTOR_PULSE_MS * 1000U)

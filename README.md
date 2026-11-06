@@ -1,6 +1,6 @@
 # AAI05 diagnostic firmware
 
-Current image: **v0.3 motor test, motion enabled only by a fresh GP20 press**. Follow [the raised-wheel motor-test guide](docs/MOTOR_TEST_V0_3.md); GP21 latches STOP until reset. The preserved v0.2 image is the no-drive encoder diagnostic. No physical v0.3 result is claimed yet.
+Current diagnostic: **v0.3p NO_DRIVE probe**, following a user-reported freeze at the first GP20 request in the v0.3 motor test. Use [the no-output isolation procedure](docs/MOTOR_PROBE_V0_3P.md). It exercises PWM/alarm setup while retaining coast on both motor inputs. The cause is unconfirmed; powered v0.3 testing is paused. The preserved v0.2 image is the no-drive encoder diagnostic.
 
 Start with [the current bring-up guide](docs/BRINGUP.md) and [module ownership](TEAM.md). The application now uses three modules. The original course-template reference below describes its earlier examples.
 

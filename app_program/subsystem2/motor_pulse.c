@@ -208,8 +208,11 @@ int32_t motor_pulse_start(uint8_t wheel, uint8_t direction, uint8_t duty, uint32
             error = E_TMOUT;
         } else {
             /* Do not release the coast overrides if setup already missed cutoff. */
+#if !MOTOR_TEST_PROBE
             out_w(GPIO_CTRL(direction == 1U ? pin_a : pin_b), GPIO_CTRL_FUNCSEL_PWM);
             out_w(GPIO_CTRL(direction == 1U ? pin_b : pin_a), GPIO_CTRL_FUNCSEL_PWM);
+#endif
+            /* Probe retains both force-high overrides, including if execution stalls. */
             if ((uint32_t)in_w(TIMER_TIMERAWL) - pulse_started_us >= duration_ms * 1000U) {
                 stop_locked();
                 error = E_TMOUT;

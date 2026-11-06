@@ -80,7 +80,7 @@ static void assert_output_policy(void)
     for (unsigned int wheel = 1U; wheel <= 2U; ++wheel) {
         unsigned int pin = wheel == 1U ? 8U : 10U;
         unsigned int pair = pin_level(pin) | (pin_level(pin + 1U) << 1U);
-        if (forbid_drive || wheel != expected_wheel) {
+        if (MOTOR_TEST_PROBE || forbid_drive || wheel != expected_wheel) {
             assert(pair == 3U);
         } else {
             unsigned int drive = expected_direction == 1U ? 1U : 2U;
@@ -244,7 +244,11 @@ static void test_polarity_and_independent_cutoff(void)
             uint32_t slice = wheel == 1U ? 4U : 5U;
             *reg(PWM_BASE + slice * 0x14U + 8U) = 11000U;
             assert_output_policy();
-            assert(pin_level(wheel == 1U ? 8U : 10U) != pin_level(wheel == 1U ? 9U : 11U));
+            if (MOTOR_TEST_PROBE) {
+                assert(pin_level(wheel == 1U ? 8U : 10U) == 1U && pin_level(wheel == 1U ? 9U : 11U) == 1U);
+            } else {
+                assert(pin_level(wheel == 1U ? 8U : 10U) != pin_level(wheel == 1U ? 9U : 11U));
+            }
             /* No application task runs while the hardware deadline expires. */
             now_us += MOTOR_PULSE_US + 1U;
             *reg(TIMER_ARMED) &= ~1U; *reg(TIMER_INTR) |= 1U;
@@ -301,6 +305,8 @@ int main(int argc, char **argv)
     test_cold_pwm_reset();
     test_unprepared_timer_rejected();
     test_early_timebase_setup_without_counter_reset();
-    puts("PASS: pulse polarity/coast, independent timer cutoff, caps/conflicts/failure and wrap");
+    puts(MOTOR_TEST_PROBE ?
+         "PASS: PROBE always coast, virtual pulse/alarm, caps/conflicts/failure and wrap" :
+         "PASS: pulse polarity/coast, independent timer cutoff, caps/conflicts/failure and wrap");
     return 0;
 }

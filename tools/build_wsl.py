@@ -11,8 +11,10 @@ import sys
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--sdk', default=os.environ.get('PICO_SDK_PATH'))
-parser.add_argument('--label', default='2026-11-06-v0_3', help='unique prefix for evidence logs')
+parser.add_argument('--label', help='unique prefix for evidence logs')
+parser.add_argument('--motor-probe', action='store_true', help='coast-only PWM/timer diagnostic; no motor drive')
 args = parser.parse_args()
+args.label = args.label or ('2026-11-06-v0_3p' if args.motor_probe else '2026-11-06-v0_3')
 if re.fullmatch(r'[A-Za-z0-9_-]+', args.label) is None:
     parser.error('--label must contain only letters, digits, underscores or hyphens')
 if not args.sdk:
@@ -40,7 +42,8 @@ host_binary = Path('/tmp/aai05_encoder_test')
 summary = {'baseline_commit': 'c3b09544cb1fd6dac6ad4b8f523be0af59b44482',
            'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
            'source_dirty': bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()),
-           'application_version': '0.3',
+           'application_version': '0.3p' if args.motor_probe else '0.3',
+           'motor_mode': 'NO_DRIVE_PROBE' if args.motor_probe else 'BUTTON_TRIGGERED_DRIVE',
            'sdk': str(sdk), 'hardware_tests': 'NOT RUN', 'results': []}
 
 def run(command, label, cwd=repo):
@@ -88,12 +91,19 @@ run(['gcc', '-std=c11', '-Wall', '-Wextra', '-Werror', '-fsanitize=undefined,add
      '-Iapp_program/subsystem2', 'testing/host/test_motor_pulse.c',
      '-o', str(pulse_binary)], 'host-pulse-compile')
 run([str(pulse_binary)], 'host-pulse')
-profile = ['SMP=1', 'CONSOLE=usb_cdc', 'WIFI=cyw43', 'NET=none', 'MQTT=0', 'CRASH_REPORT=0']
+probe_binary = Path('/tmp/aai05_motor_probe_test')
+run(['gcc', '-std=c11', '-Wall', '-Wextra', '-Werror', '-fsanitize=undefined,address',
+     '-DMOTOR_TEST_PROBE=1', '-Iapp_program/subsystem2', 'testing/host/test_motor_pulse.c',
+     '-o', str(probe_binary)], 'host-probe-compile')
+run([str(probe_binary)], 'host-probe')
+profile = ['SMP=1', 'CONSOLE=usb_cdc', 'WIFI=cyw43', 'NET=none', 'MQTT=0', 'CRASH_REPORT=0',
+           f'MOTOR_PROBE={int(args.motor_probe)}']
+artifact_base = 'AAI05_Motor_Probe_v0_3p_NO_DRIVE' if args.motor_probe else 'AAI05_Motor_Test_v0_3'
 for test in [0, 1]:
     run(['make', '-j8', *profile, f'TEST={test}'], f'firmware-test{test}', repo / 'build_make')
-    stem = 'mtk3pico_smp1_usb_cdc_wifi' + ('_test' if test else '')
+    stem = 'mtk3pico_smp1_usb_cdc_wifi' + ('_probe' if args.motor_probe else '') + ('_test' if test else '')
     source = repo / 'build_make' / (stem + '.uf2')
-    name = 'AAI05_Motor_Test_v0_3' + ('_TEST' if test else '')
+    name = artifact_base + ('_TEST' if test else '')
     for extension in ['uf2', 'elf', 'map']:
         shutil.copy2(repo / 'build_make' / f'{stem}.{extension}', artifacts / f'{name}.{extension}')
     summary['results'][-1]['uf2'] = str((artifacts / f'{name}.uf2').relative_to(repo))
@@ -102,5 +112,5 @@ for test in [0, 1]:
         ['arm-none-eabi-size', str(repo / 'build_make' / f'{stem}.elf')], text=True).strip()
 summary['compiler'] = subprocess.check_output(['arm-none-eabi-gcc', '--version'], text=True).splitlines()[0]
 (logs / f'{args.label}-build-result.json').write_text(json.dumps(summary, indent=2))
-print(f'Builds complete. Button-triggered motor-test image: {artifacts / "AAI05_Motor_Test_v0_3.uf2"}', flush=True)
+print(f'Builds complete. {summary["motor_mode"]} image: {artifacts / (artifact_base + ".uf2")}', flush=True)
 print('On-target tests remain pending; no firmware was flashed.', flush=True)

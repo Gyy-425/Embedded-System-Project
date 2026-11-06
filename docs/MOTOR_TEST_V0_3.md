@@ -1,5 +1,7 @@
 # Raised-wheel motor direction test v0.3
 
+**Testing paused on 2026-11-06:** the coordinator reports serial output stopping at the first GP20 press, with no visible wheel movement. Use [the v0.3p no-output probe](MOTOR_PROBE_V0_3P.md) before retrying this powered procedure. The original procedure below is retained for reference; motor operation has not passed.
+
 This image can drive one wheel only after an explicit onboard GP20 press. It is different from no-drive v0.2. It requests 25% PWM for 400 ms, then removes drive and coasts. A wheel may keep rolling briefly after drive is removed. No floor driving, line following, automatic duty increase or MQTT command exists in this image.
 
 ## Controls and sequence

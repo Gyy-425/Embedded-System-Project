@@ -1,0 +1,249 @@
+{
+  "baseline_commit": "c3b09544cb1fd6dac6ad4b8f523be0af59b44482",
+  "source_commit": "4ece3e5b5f5568e30a62fb33b395c92a073b5c64",
+  "source_dirty": true,
+  "application_version": "0.3p",
+  "motor_mode": "NO_DRIVE_PROBE",
+  "sdk": "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "label": "host-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05_encoder_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-encoder",
+      "command": [
+        "/tmp/aai05_encoder_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-encoder.log",
+      "warnings": []
+    },
+    {
+      "label": "host-motor-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_startup.c",
+        "app_program/subsystem2/drv_motor.c",
+        "-o",
+        "/tmp/aai05_motor_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-motor-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-motor-startup",
+      "command": [
+        "/tmp/aai05_motor_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-motor-startup.log",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder_capture.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05_capture_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-capture-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-capture",
+      "command": [
+        "/tmp/aai05_capture_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-capture.log",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder_startup.c",
+        "-o",
+        "/tmp/aai05_capture_startup_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-capture-startup-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-startup",
+      "command": [
+        "/tmp/aai05_capture_startup_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-capture-startup.log",
+      "warnings": []
+    },
+    {
+      "label": "host-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_control.c",
+        "app_program/subsystem2/motor_test.c",
+        "-o",
+        "/tmp/aai05_motor_control_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-control-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-control",
+      "command": [
+        "/tmp/aai05_motor_control_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-control.log",
+      "warnings": []
+    },
+    {
+      "label": "host-pulse-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05_motor_pulse_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-pulse-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-pulse",
+      "command": [
+        "/tmp/aai05_motor_pulse_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-pulse.log",
+      "warnings": []
+    },
+    {
+      "label": "host-probe-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-DMOTOR_TEST_PROBE=1",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05_motor_probe_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-probe-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-probe",
+      "command": [
+        "/tmp/aai05_motor_probe_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-host-probe.log",
+      "warnings": []
+    },
+    {
+      "label": "firmware-test0",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=none",
+        "MQTT=0",
+        "CRASH_REPORT=0",
+        "MOTOR_PROBE=1",
+        "TEST=0"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-firmware-test0.log",
+      "warnings": [],
+      "uf2": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE.uf2",
+      "sha256": "9f700750bfeabaedfe66cdc5ee74a8e402543e1edf52b1ce476b64b8f0eb3e04",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 281088\t     92\t  24576\t 305756\t  4aa5c\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/build_make/mtk3pico_smp1_usb_cdc_wifi_probe.elf"
+    },
+    {
+      "label": "firmware-test1",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=none",
+        "MQTT=0",
+        "CRASH_REPORT=0",
+        "MOTOR_PROBE=1",
+        "TEST=1"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_3p-final-firmware-test1.log",
+      "warnings": [],
+      "uf2": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE_TEST.uf2",
+      "sha256": "878f7b0168081bfac13af2599093f9d890c20a23248e02e810a640b8d64a603a",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 281644\t     92\t  24576\t 306312\t  4ac88\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/build_make/mtk3pico_smp1_usb_cdc_wifi_probe_test.elf"
+    }
+  ],
+  "compiler": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009"
+}

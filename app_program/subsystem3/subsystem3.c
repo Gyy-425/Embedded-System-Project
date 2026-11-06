@@ -40,7 +40,11 @@ static void report_task(INT start_code, void *extra)
                       "MOTOR_MODE=PROBE "
 #endif
                       "MOTOR[phase=%s next=%u M=%u D=%u pct=%u us=%u cutoff=%u stop=%u err=%d] "
-                      "DRIVE=%s RADIO_READY=%u\n",
+                      "DRIVE=%s RADIO_READY=%u"
+#if TM_NET_LWIP
+                      " NETWORK_MODE=TRANSPORT_PROBE WIFI_LINK=%d WIFI_IP=%u.%u.%u.%u"
+#endif
+                      "\n",
                       (UINT)now, (UINT)ir.left_raw, (UINT)ir.right_raw,
                       (UINT)(ir.valid && (ir.sequence != 0U) && (ir_age <= 100U)),
                       (INT)ir.error, (UINT)ir_age,
@@ -56,7 +60,14 @@ static void report_task(INT start_code, void *extra)
                       (UINT)motion.motor.duty, (UINT)motion.motor.elapsed_us,
                       (UINT)motion.motor.cutoff_count, (UINT)motion.motor_stop_reason,
                       (INT)motion.motor.error,
-                      (!MOTOR_TEST_PROBE && motion.motor.active) ? "ON" : "OFF", radio_ready);
+                      (!MOTOR_TEST_PROBE && motion.motor.active) ? "ON" : "OFF", radio_ready
+#if TM_NET_LWIP
+                      , (INT)radio.link_status, (UINT)(radio.ip_addr & 0xFFU),
+                      (UINT)((radio.ip_addr >> 8U) & 0xFFU),
+                      (UINT)((radio.ip_addr >> 16U) & 0xFFU),
+                      (UINT)((radio.ip_addr >> 24U) & 0xFFU)
+#endif
+                      );
         } else {
             tm_printf((UB *)
 #if MOTOR_TEST_PROBE

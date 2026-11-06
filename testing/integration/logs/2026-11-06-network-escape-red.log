@@ -1,0 +1,29 @@
+.FFF..
+======================================================================
+FAIL: test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\ud800')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_network_config.py", line 46, in test_json_only_escapes_do_not_reach_c_compiler
+    with self.subTest(escape=escape), self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\u0041')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_network_config.py", line 46, in test_json_only_escapes_do_not_reach_c_compiler
+    with self.subTest(escape=escape), self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\/')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_network_config.py", line 46, in test_json_only_escapes_do_not_reach_c_compiler
+    with self.subTest(escape=escape), self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.014s
+
+FAILED (failures=3)

@@ -1,0 +1,11 @@
+{
+  "test": "INT-108",
+  "scope": "laptop loopback only; Pico NOT TESTED",
+  "protocol": "MQTT3.1.1",
+  "address": "127.0.0.1:1883",
+  "topic": "aai05/bringup/hostcheck",
+  "status": "FAIL",
+  "broker_sha256": "daa688dbc3685890999084da72f98ea0fae9557f7544a2cb96b44ef46563f2a2",
+  "error": "Broker did not become ready within five seconds",
+  "test_broker_stopped": true
+}

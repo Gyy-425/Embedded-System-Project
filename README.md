@@ -2,6 +2,8 @@
 
 Current diagnostic: **v0.3p NO_DRIVE probe**, following a user-reported freeze at the first GP20 request in the v0.3 motor test. Use [the no-output isolation procedure](docs/MOTOR_PROBE_V0_3P.md). It exercises PWM/alarm setup while retaining coast on both motor inputs. The cause is unconfirmed; powered v0.3 testing is paused. The preserved v0.2 image is the no-drive encoder diagnostic.
 
+Latest result: the user-run coast-only M1 D2 request completed, with both wheels still. Next is [one normal-output check with winding leads disconnected](docs/MOTOR_OUTPUT_ISOLATION.md). Communication is then prioritised through [the motor-inactive Wi-Fi/MQTT transport probe](docs/NETWORK_BRINGUP.md), using the workspace-local laptop broker. The original connected-motor stall remains unresolved.
+
 Start with [the current bring-up guide](docs/BRINGUP.md) and [module ownership](TEAM.md). The application now uses three modules. The original course-template reference below describes its earlier examples.
 
 ---

@@ -1,0 +1,12 @@
+{
+  "test": "INT-108",
+  "scope": "laptop loopback only; Pico NOT TESTED",
+  "protocol": "MQTT3.1.1",
+  "address": "127.0.0.1:1883",
+  "topic": "aai05/bringup/hostcheck",
+  "status": "PASS",
+  "broker_sha256": "daa688dbc3685890999084da72f98ea0fae9557f7544a2cb96b44ef46563f2a2",
+  "received": "aai05/bringup/hostcheck aai05-local-7fa336af7ab04e7bba34c1b56439e1bb",
+  "retained_test_message": "received and then cleared; not a robot command",
+  "test_broker_stopped": true
+}

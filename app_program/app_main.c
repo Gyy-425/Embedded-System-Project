@@ -55,14 +55,21 @@ EXPORT INT usermain(void)
     halt_on_error(subsystem2_init(), "motion init");
     halt_on_error(subsystem1_init(), "IR init");
     halt_on_error(subsystem3_init(), "report init");
-#if MOTOR_TEST_PROBE
+#if TM_NET_LWIP && MOTOR_TEST_PROBE
+    tm_printf((UB *)"\n=== AAI05 NETWORK PROBE v0.4: NO MOTOR OUTPUT ===\n");
+#elif MOTOR_TEST_PROBE
     tm_printf((UB *)"\n=== AAI05 MOTOR PROBE v0.3p: NO MOTOR OUTPUT ===\n");
 #else
     tm_printf((UB *)"\n=== AAI05 MOTOR TEST v0.3: BUTTON-TRIGGERED ===\n");
 #endif
     tm_printf((UB *)"IR: L=GP26 R=GP27; encoders: L=GP4/5 R=GP16/17\n");
     tm_printf((UB *)"Encoder IRQ capture: core 0; counts are edges, not distance.\n");
+#if TM_NET_LWIP
+    tm_printf((UB *)"Network probe: association/IP and template MQTT heartbeat/received text.\n");
+    tm_printf((UB *)"No colour calibration, app command handling or sensor MQTT telemetry yet.\n");
+#else
     tm_printf((UB *)"No tape calibration, colour classification or MQTT session yet.\n");
+#endif
     tm_printf((UB *)"GP20 NEXT: M1 D1, M1 D2, M2 D1, M2 D2. GP21 STOP latches until reset.\n");
 #if MOTOR_TEST_PROBE
     tm_printf((UB *)"PROBE: 400 ms virtual pulse; both inputs remain high/coast. DRIVE stays OFF.\n");

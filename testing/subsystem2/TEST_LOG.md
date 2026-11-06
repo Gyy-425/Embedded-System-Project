@@ -13,6 +13,7 @@ Original template cases S2-U01 and S2-U02 referred to removed producer/pool exam
 | S2-M105 | v0.3 boot idle and GP21 STOP latch | Raised-wheel guide before first pulse | No boot movement, STOP ignores NEXT until reset | PENDING coordinator run |
 | S2-M106 | v0.3 selected motor/polarity and cutoff | Four separate GP20 requests, labelled physical observation plus log | Only selected wheel, opposite physical directions per pair, approximately 400 ms drive removal, healthy captured counts | PENDING coordinator run |
 | S2-M107 | v0.3p coast-only GP20 isolation | docs/MOTOR_PROBE_V0_3P.md, single fresh press | Output continues through virtual cutoff/cooldown, DRIVE=OFF, no wheel driven | PENDING coordinator run |
+| S2-M108 | Normal PWM output with motor windings disconnected | docs/MOTOR_OUTPUT_ISOLATION.md; one original normal v0.3 GP20 request | Record whether reporting/start/cutoff progress with all four winding leads removed; interpret either outcome without claiming powered qualification | PENDING coordinator run |
 
 The host counterparts cover five groups: forward/reverse cycles, bounce/no-change, diagonal rejection/resynchronisation, signed/invalid-counter saturation and independent wheels. They have been executed on Ubuntu with ASan/UBSan; see testing/integration/logs/2026-11-05-host-encoder.log and the build-result JSON. Host passes are not physical encoder or target passes. Slow polling is not qualified for motor-speed feedback.
 

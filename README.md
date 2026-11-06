@@ -1,12 +1,10 @@
 # AAI05 diagnostic firmware
 
-Current diagnostic: **v0.3p NO_DRIVE probe**, following a user-reported freeze at the first GP20 request in the v0.3 motor test. Use [the no-output isolation procedure](docs/MOTOR_PROBE_V0_3P.md). It exercises PWM/alarm setup while retaining coast on both motor inputs. The cause is unconfirmed; powered v0.3 testing is paused. The preserved v0.2 image is the no-drive encoder diagnostic.
+Current diagnostic: **v0.3.1 motor test**. SWD captured the original v0.3 crash: a conditional argument to the board's GPIO_CTRL macro generated an unaligned register write. The corrected call site and actual-board-macro regression are saved; shared BSP/kernel sources are unchanged. See [the captured evidence](testing/integration/logs/2026-11-06-swd-gpio-hardfault-analysis.md).
 
-Latest result: the user-run coast-only M1 D2 request completed, with both wheels still. Next is [one normal-output check with winding leads disconnected](docs/MOTOR_OUTPUT_ISOLATION.md). Communication is then prioritised through [the motor-inactive Wi-Fi/MQTT transport probe](docs/NETWORK_BRINGUP.md), using the workspace-local laptop broker. The original connected-motor stall remains unresolved.
+The corrected ELF was programmed and verified through the Debug Probe. Independent flash readback matches all ELF load bytes. After a physical power cycle, the target reports motor ready=1/error=0, encoder capture enabled and motor outputs in coast. Post-fix physical movement/direction/cutoff remain pending. Follow [the v0.3.1 retest](docs/MOTOR_RETEST_V0_3_1.md); keep the original v0.3 images only as historical evidence.
 
-Latest coordinator steering: keep the motor wiring connected and try [the connected test with bank VIN plus laptop USB](docs/CONNECTED_MOTOR_TEST_V0_3.md). Cytron documents simultaneous USB/VIN operation; source selection is automatic, not isolated motor/logic power. Start with one observed bounded request and continue only after a clean result. The winding-disconnected procedure is now an alternative, not the required next step.
-
-Latest outcome: the user reports the same reporting stall/no wheel movement in that connected trial and switched power off. Connected retries are paused. [Connect the available Debug Probe](docs/DEBUG_PROBE_SETUP.md) with the car unpowered so execution-state diagnosis can follow; no CPU failure cause is yet established.
+After the motor result, prioritise [Wi-Fi/MQTT transport testing](docs/NETWORK_BRINGUP.md). The distinct NO_DRIVE network image and laptop broker are prepared; actual Pico association and MQTT communication remain pending. No further basic IR or manual encoder test is needed now.
 
 Start with [the current bring-up guide](docs/BRINGUP.md) and [module ownership](TEAM.md). The application now uses three modules. The original course-template reference below describes its earlier examples.
 

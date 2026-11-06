@@ -1,5 +1,7 @@
 # Diagnostic integration test log
 
+Latest update, 2026-11-06: the captured original-v0.3 first-request failure is a confirmed unaligned GPIO_CTRL write, corrected in v0.3.1. See logs/2026-11-06-swd-gpio-hardfault-analysis.md. Programming/verification and independent flash readback passed for all ELF load bytes (logs/2026-11-06-v0_3_1-swd-postflash-match.json); 96 bytes beyond the ELF image differ only in UF2 padding. OpenOCD reset-init reported a CX argument error and initial startup was incomplete. After a physical power cycle, ready=1/error=0/inactive, encoder IRQ masks and idle coast/PWM-off were read from the actual target (logs/2026-11-06-v0_3_1-swd-coldboot-idle.log). This passes installation/cold-boot readiness only. Physical pulse/reversal/encoder/cutoff and Pico Wi-Fi/MQTT remain pending. Do not treat earlier unresolved-cause statements as the current state.
+
 Template cases INT-01 and INT-02 for producer/consumer/monitor examples are retired, not reused. The old YYYY-MM-DD/abc1234 row was an unfilled placeholder.
 
 | ID | Check | Method | Result/evidence |

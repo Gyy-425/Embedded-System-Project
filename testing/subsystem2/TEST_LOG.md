@@ -1,5 +1,7 @@
 # Motion diagnostic test log
 
+Latest update, 2026-11-06: SWD captured the original v0.3 GPIO_CTRL conditional-argument HardFault. The v0.3.1 call-site repair passes the actual-board-macro host regression and all 17 build/check steps (integration/logs/2026-11-06-v0_3_1-fixed-final-build-result.json). SWD programming and independent ELF-load-byte readback passed. After a physical bank power cycle, motor status is ready=1/error=0/inactive, encoder interrupt masks are enabled and GPIO8..11 are high/coast with PWM disabled (integration/logs/2026-11-06-v0_3_1-swd-coldboot-idle.log). Post-fix movement, direction and cutoff remain PENDING; follow docs/MOTOR_RETEST_V0_3_1.md. Earlier statuses below are historical, not the current diagnosis. The OpenOCD reset-init error and incomplete warm-start state are preserved separately in the upload/postflash logs.
+
 Original template cases S2-U01 and S2-U02 referred to removed producer/pool examples and are retired, not reused. The original YYYY-MM-DD/abc1234 row was an unfilled template, not a real result.
 
 | ID | Check | Method | Expected | Status |

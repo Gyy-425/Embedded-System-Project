@@ -1,5 +1,7 @@
 # Raised-wheel motor direction test v0.3
 
+**Historical image, superseded:** use [MOTOR_RETEST_V0_3_1.md](MOTOR_RETEST_V0_3_1.md). The original v0.3 GPIO_CTRL argument bug was captured by SWD and corrected in v0.3.1. Do not reload this original image for motor testing.
+
 **Testing paused on 2026-11-06:** the coordinator reports serial output stopping at the first GP20 press, with no visible wheel movement. Use [the v0.3p no-output probe](MOTOR_PROBE_V0_3P.md) before retrying this powered procedure. The original procedure below is retained for reference; motor operation has not passed.
 
 **Subsequent steering:** the coast-only probe completed, and the coordinator now requests connected-motor testing with bank VIN plus laptop USB. Follow [that current controlled procedure](CONNECTED_MOTOR_TEST_V0_3.md), including immediate physical power-off on another reporting stall. No fault correction or connected-motor pass has been established.

@@ -2,6 +2,8 @@
 
 ## Current milestone
 
+**Superseding update, 2026-11-06:** the original motor-start HardFault was captured and its GPIO_CTRL conditional-argument bug corrected. v0.3.1 is programmed, flash-verified and ready at a clean bank-only boot. Use [MOTOR_RETEST_V0_3_1.md](MOTOR_RETEST_V0_3_1.md) next; physical motor behaviour remains pending. Earlier milestone descriptions below are historical. Actual Wi-Fi/MQTT testing remains the next communication milestone.
+
 Latest next steps: the user-run v0.3p virtual M1 D2 request passed with both wheels still. Follow MOTOR_OUTPUT_ISOLATION.md for one normal v0.3 request with all four motor winding leads removed, then prioritise NETWORK_BRINGUP.md. The distinct v0.4 motor-inactive network image is built using locally entered settings; localhost MQTT passed, actual Pico association/LAN/MQTT remains pending. The older milestone description below records preparation of the v0.3p probe, not a request to repeat its passed check.
 
 Current deliverable is **AAI05_Motor_Probe_v0_3p_NO_DRIVE.uf2**. Follow docs/MOTOR_PROBE_V0_3P.md. The coordinator reported healthy v0.3 idle output followed by stopped serial reporting on the first GP20 press, without visible wheel movement, using laptop USB only. Powered v0.3 testing is paused. This probe keeps motor inputs in coast while exercising the same PWM/alarm start and cutoff path; it is instrumentation, not a demonstrated fix. See testing/integration/logs/2026-11-06-v0_3-gp20-freeze.md for supplied evidence and limits.

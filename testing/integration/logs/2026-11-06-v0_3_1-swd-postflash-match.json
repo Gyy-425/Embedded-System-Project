@@ -1,0 +1,30 @@
+{
+  "version": "v0.3.1",
+  "uf2_sha256": "30abbae451e37d54b6734c802a2ada3c38902ec979d5d3816ab15b01f288c9a1",
+  "elf_sha256": "a4e2169ae1c6c21d2270a61a25b0f48d58be9c423e4769ec3bbc2162aca798cd",
+  "uf2_blocks": 1099,
+  "flash_bytes_read": 281344,
+  "elf_flash_segments": [
+    {
+      "flash_address": "0x10000000",
+      "bytes": 281156,
+      "match": true
+    },
+    {
+      "flash_address": "0x10044a44",
+      "bytes": 92,
+      "match": true
+    }
+  ],
+  "all_elf_flash_load_bytes_match": true,
+  "uf2_padding_difference": {
+    "start": "0x10044aa0",
+    "end_exclusive": "0x10044b00",
+    "bytes": 96,
+    "uf2_value": 0,
+    "flash_value": 255,
+    "explanation": "Beyond final ELF load byte; ELF programming fills erased tail with FF, UF2 carries zero padding."
+  },
+  "scope": "ELF flash load bytes verified. Clean power-cycle readiness subsequently verified separately; physical motor retest pending.",
+  "cold_boot_evidence": "2026-11-06-v0_3_1-swd-coldboot-idle.log"
+}

@@ -1,0 +1,51 @@
+Open On-Chip Debugger 0.12.0+dev (2026-07-03-16:10)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : [rp2040.core0] Hardware thread awareness created
+Info : [rp2040.core1] Hardware thread awareness created
+Info : Using CMSIS-DAPv2 interface with VID:PID=0x2e8a:0x000c, serial=E663AC91D3327835
+Warn : ***
+Warn : *** Old Raspberry Pi Debugprobe firmware detected (1.0.1)
+Warn : *** Using low-performance workaround
+Warn : *** Please update to the latest release at:
+Warn : *** https://github.com/raspberrypi/debugprobe/releases/latest
+Warn : ***
+Info : CMSIS-DAP: SWD supported
+Info : CMSIS-DAP: Atomic commands supported
+Info : CMSIS-DAP: Test domain timer supported
+Info : CMSIS-DAP: FW Version = 2.0.0
+Info : CMSIS-DAP: Interface Initialised (SWD)
+Info : SWCLK/TCK = 0 SWDIO/TMS = 0 TDI = 0 TDO = 0 nTRST = 0 nRESET = 0
+Info : CMSIS-DAP: Interface ready
+Info : clock speed 1000 kHz
+Info : SWD DPIDR 0x0bc12477, DLPIDR 0x00000001
+Info : SWD DPIDR 0x0bc12477, DLPIDR 0x10000001
+Info : [rp2040.core0] Cortex-M0+ r0p1 processor detected
+Info : [rp2040.core0] target has 4 breakpoints, 2 watchpoints
+Info : [rp2040.core0] Examination succeed
+Info : [rp2040.core1] Cortex-M0+ r0p1 processor detected
+Info : [rp2040.core1] target has 4 breakpoints, 2 watchpoints
+Info : [rp2040.core1] Examination succeed
+Info : [rp2040.core0] gdb port disabled
+Info : [rp2040.core1] gdb port disabled
+    TargetName         Type       Endian TapName            State       
+--  ------------------ ---------- ------ ------------------ ------------
+ 0* rp2040.core0       cortex_m   little rp2040.cpu         unknown
+ 1  rp2040.core1       cortex_m   little rp2040.cpu         unknown
+AAI05 IDLE CHECK: SIO output then GPIO8/9/10/11 function controls
+SIO_OUT 0xd0000010: 0x02800f00
+GPIO8_CTRL 0x40014044: 0x00000005
+GPIO9_CTRL 0x4001404c: 0x00000005
+GPIO10_CTRL 0x40014054: 0x00000005
+GPIO11_CTRL 0x4001405c: 0x00000005
+AAI05 IDLE CHECK: PWM4/PWM5 CSR then timer alarm0 enable/armed
+PWM4_CSR 0x40050050: 0x00000000
+PWM5_CSR 0x40050064: 0x00000000
+TIMER_INTE 0x40054038: 0x00000000
+TIMER_ARMED 0x40054020: 0x00000000
+AAI05 IDLE CHECK: encoder left/right bank interrupt enables
+ENCODER_LEFT_INTE 0x40014100: 0x00000000
+ENCODER_RIGHT_INTE 0x40014108: 0x00000000
+PULSE_STATUS: 00000000 00000000 00000000 00000000 00000000
+shutdown command invoked

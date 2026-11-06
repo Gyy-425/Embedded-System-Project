@@ -1,35 +1,63 @@
-/*
- *	subsystem1.c
- *	Subsystem 1 -- LED heartbeat: creates its objects and starts its task.
- *
- *	APIs shown: tk_cre_cyc, tk_sta_cyc
- */
-
 #include "subsystem1.h"
+#include "drv_ir.h"
 
-EXPORT ID	tid_led;	/* IF-05, see subsystem1.h */
-EXPORT ID	cyc_led;
+static ID snapshot_mutex;
+static ir_snapshot_t latest;
+
+static void ir_task(INT start_code, void *extra)
+{
+    ir_snapshot_t next = {0};
+    bool opened = false;
+    ER error;
+    (void)start_code;
+    (void)extra;
+    for (;;) {
+        if (!opened) {
+            error = drv_ir_open();
+            opened = (error == E_OK);
+        } else {
+            error = E_OK;
+        }
+        next.valid = false;
+        if (opened) {
+            error = drv_ir_read(&next.left_raw, &next.right_raw);
+            next.valid = (error == E_OK);
+        }
+        next.error = error;
+        next.sampled_ms = app_now_ms();
+        ++next.sequence;
+        if (tk_loc_mtx(snapshot_mutex, TMO_FEVR) == E_OK) {
+            latest = next;
+            (void)tk_unl_mtx(snapshot_mutex);
+        }
+        (void)tk_dly_tsk(opened ? 10 : 100);
+    }
+}
 
 EXPORT ER subsystem1_init(void)
 {
-	T_CCYC	ccyc = {0};
-
-	/* Cyclic handler: once started, the kernel calls led_cyclic_handler
-	   every S1_TICK_MS.  Without TA_STA it is created stopped; it is
-	   started in subsystem1_start(), once the task it wakes exists. */
-	ccyc.cycatr = TA_HLNG;
-	ccyc.cychdr = (FP)led_cyclic_handler;
-	ccyc.cyctim = S1_TICK_MS;	/* period, ms */
-	ccyc.cycphs = S1_TICK_MS;	/* delay before the first call, ms */
-	cyc_led = tk_cre_cyc(&ccyc);
-	return (cyc_led < E_OK) ? cyc_led : E_OK;
+    T_CMTX attributes = {0};
+    attributes.mtxatr = TA_INHERIT;
+    snapshot_mutex = tk_cre_mtx(&attributes);
+    return (snapshot_mutex < E_OK) ? snapshot_mutex : E_OK;
 }
 
 EXPORT ER subsystem1_start(void)
 {
-	tid_led = app_start_task(led_task, S1_PRI_LED, 0, "led_task");
-	if (tid_led < E_OK) {
-		return tid_led;
-	}
-	return tk_sta_cyc(cyc_led);	/* start the cyclic handler now */
+    ID task = app_start_task((FP)ir_task, APP_PRI_IR, 0U, "ir");
+    return (task < E_OK) ? task : E_OK;
+}
+
+EXPORT ER subsystem1_get_snapshot(ir_snapshot_t *snapshot)
+{
+    ER error;
+    if (snapshot == NULL) {
+        return E_PAR;
+    }
+    error = tk_loc_mtx(snapshot_mutex, TMO_POL);
+    if (error == E_OK) {
+        *snapshot = latest;
+        (void)tk_unl_mtx(snapshot_mutex);
+    }
+    return error;
 }

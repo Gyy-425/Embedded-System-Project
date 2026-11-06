@@ -1,45 +1,83 @@
-/*
- *	subsystem2.c
- *	Subsystem 2 -- Producer: creates its objects and starts its task.
- *
- *	APIs shown: tk_cre_sem, tk_cre_mpf
- */
-
 #include "subsystem2.h"
+#include "motor_io.h"
 
-EXPORT ID	sem_slots;	/* IF-02, see subsystem2.h */
-EXPORT ID	mpf_samples;
+static ID snapshot_mutex;
+static encoder_state_t left_encoder;
+static encoder_state_t right_encoder;
+static motion_snapshot_t latest;
+
+static uint8_t ab_state(UW levels, UINT pin_a, UINT pin_b)
+{
+    return (uint8_t)((((levels >> pin_a) & 1U) << 1U) |
+                     ((levels >> pin_b) & 1U));
+}
+
+static void motion_task(INT start_code, void *extra)
+{
+    motion_snapshot_t next = {0};
+    UW levels;
+    (void)start_code;
+    (void)extra;
+    for (;;) {
+        levels = in_w(GPIO_IN);
+        encoder_update(&left_encoder, ab_state(levels, APP_ENCODER_LEFT_A, APP_ENCODER_LEFT_B));
+        encoder_update(&right_encoder, ab_state(levels, APP_ENCODER_RIGHT_A, APP_ENCODER_RIGHT_B));
+        next.left_count = left_encoder.count;
+        next.right_count = right_encoder.count;
+        next.left_invalid = left_encoder.invalid_transitions;
+        next.right_invalid = right_encoder.invalid_transitions;
+        next.left_ab = left_encoder.ab;
+        next.right_ab = right_encoder.ab;
+        next.count_saturated = left_encoder.count_saturated || right_encoder.count_saturated;
+        next.sampled_ms = app_now_ms();
+        ++next.sequence;
+        if (tk_loc_mtx(snapshot_mutex, TMO_FEVR) == E_OK) {
+            latest = next;
+            (void)tk_unl_mtx(snapshot_mutex);
+        }
+        /* Wiring diagnostic only: slowly rotate wheels by hand, not at motor speed. */
+        (void)tk_dly_tsk(1);
+    }
+}
 
 EXPORT ER subsystem2_init(void)
 {
-	T_CSEM	csem = {0};
-	T_CMPF	cmpf = {0};
-
-	/* Semaphore: a counter of free "slots".  The producer takes one
-	   (tk_wai_sem) before each sample; the consumer gives one back
-	   (tk_sig_sem).  It never exceeds the number of memory blocks, so
-	   the producer can never run out of memory. */
-	csem.sematr  = TA_TFIFO;	/* waiting tasks queue in FIFO order */
-	csem.isemcnt = S2_POOL_COUNT;	/* initial count */
-	csem.maxsem  = S2_POOL_COUNT;	/* maximum count */
-	sem_slots = tk_cre_sem(&csem);
-	if (sem_slots < E_OK) {
-		return sem_slots;
-	}
-
-	/* Fixed-size memory pool: S2_POOL_COUNT blocks, each exactly one
-	   SAMPLE_MSG.  Faster and more predictable than malloc(). */
-	cmpf.mpfatr = TA_TFIFO | TA_RNG3;
-	cmpf.mpfcnt = S2_POOL_COUNT;		/* number of blocks */
-	cmpf.blfsz  = sizeof(SAMPLE_MSG);	/* size of one block */
-	mpf_samples = tk_cre_mpf(&cmpf);
-	return (mpf_samples < E_OK) ? mpf_samples : E_OK;
+    T_CMTX attributes = {0};
+    const UINT encoder_pins[] = {APP_ENCODER_LEFT_A, APP_ENCODER_LEFT_B,
+                                APP_ENCODER_RIGHT_A, APP_ENCODER_RIGHT_B};
+    UW levels;
+    ER error;
+    drv_motor_coast_init();
+    for (UINT i = 0U; i < 4U; ++i) {
+        error = gpio_set_pin(encoder_pins[i], GPIO_MODE_IN);
+        if (error < E_OK) {
+            return error;
+        }
+    }
+    levels = in_w(GPIO_IN);
+    encoder_init(&left_encoder, ab_state(levels, APP_ENCODER_LEFT_A, APP_ENCODER_LEFT_B));
+    encoder_init(&right_encoder, ab_state(levels, APP_ENCODER_RIGHT_A, APP_ENCODER_RIGHT_B));
+    attributes.mtxatr = TA_INHERIT;
+    snapshot_mutex = tk_cre_mtx(&attributes);
+    return (snapshot_mutex < E_OK) ? snapshot_mutex : E_OK;
 }
 
 EXPORT ER subsystem2_start(void)
 {
-	/* Pinned to core 1 (TP_PRC2): samples cross to subsystem 3 on core 0 */
-	ID tid = app_start_task(producer_task, S2_PRI_PRODUCER, TP_PRC2,
-				"producer_task");
-	return (tid < E_OK) ? tid : E_OK;
+    ID task = app_start_task((FP)motion_task, APP_PRI_MOTION, 0U, "motion diagnostics");
+    return (task < E_OK) ? task : E_OK;
+}
+
+EXPORT ER subsystem2_get_snapshot(motion_snapshot_t *snapshot)
+{
+    ER error;
+    if (snapshot == NULL) {
+        return E_PAR;
+    }
+    error = tk_loc_mtx(snapshot_mutex, TMO_POL);
+    if (error == E_OK) {
+        *snapshot = latest;
+        (void)tk_unl_mtx(snapshot_mutex);
+    }
+    return error;
 }

@@ -1,24 +1,10 @@
-# Subsystem 3 — test log
+# Communication diagnostic test log
 
-**Subsystem:** Consumer (example)  ·  **Student ID:** <student ID>  ·  **Code:** `app_program/subsystem3/`
+Original consumer/statistics example cases are retired. Module 3 currently reports copied module snapshots and radio-driver readiness only.
 
-See `testing/README.md` for how to run tests and record results.
+| ID | Check | Method | Expected | Status |
+|---|---|---|---|---|
+| S3-M101 | Readable USB report | Open actual Pico COM port at 115200 | Repeating complete records, no ambiguous measured-colour claims | PENDING hardware |
+| S3-M102 | Radio readiness | Observe RADIO_READY and boot diagnostics | Driver state is visible; no assertion of network/MQTT connectivity | PENDING hardware |
 
-## Test cases
-
-Define a test here before running it. Test IDs never change.
-
-| ID | What is tested | Requirement / interface | Method | Steps / how | Expected result |
-|---|---|---|---|---|---|
-| S3-U01 | statistics self-consistent (min ≤ max, 0..100) | | auto | `subsystem3_test.c` | `[TEST] S3-U01 PASS` |
-
-*Method:* **auto** = `TEST_CHECK` in code, result printed on the console;
-**manual** = a person observes the result (LED, scope, meter, phone app…).
-
-## Results
-
-Add a new row for every run. Never edit or delete old rows.
-
-| Date | Test ID | Commit | Tester | Result | Log / evidence | Notes |
-|---|---|---|---|---|---|---|
-| YYYY-MM-DD | S3-U01 | `abc1234` | | PASS / FAIL | `logs/YYYY-MM-DD_….txt` | |
+MQTT and command validation are later milestones, not claimed results of this diagnostic build.

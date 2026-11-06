@@ -1,25 +1,11 @@
-# Integration — test log
+# Diagnostic integration test log
 
-Tests that two or more subsystems work together. There is one test (or more) for every interface listed in TEAM.md section 5. Both owners agree on the test and sign off the result.
+Template cases INT-01 and INT-02 for producer/consumer/monitor examples are retired, not reused. The old YYYY-MM-DD/abc1234 row was an unfilled placeholder.
 
-See `testing/README.md` for how to run tests and record results.
+| ID | Check | Method | Result/evidence |
+|---|---|---|---|
+| INT-101 | Normal and TEST=1 firmware compile/link | tools/build_wsl.py | Actual per-command exit status, compiler output and UF2 hashes in logs/2026-11-05-build-result.json |
+| INT-102 | USB boot and repeating reports | Upload named normal diagnostic UF2, open actual Pico COM port | PENDING hardware; no flash performed by agent |
+| INT-103 | Combined slow encoder and IR activity | Observe real console while moving a surface and one wheel | PENDING hardware; save real console log |
 
-## Test cases
-
-Define a test here before running it. Test IDs never change.
-
-| ID | What is tested | Requirement / interface | Method | Steps / how | Expected result |
-|---|---|---|---|---|---|
-| INT-01 | samples flow from S2 to S3 (≥ 5 in 2 s) | IF-01, IF-02 | auto | `subsystem3_test.c` | `[TEST] INT-01 PASS` |
-| INT-02 | summary lines flow from S3 to S4 (≥ 2 in 3.5 s) | IF-03 | auto | `subsystem4_test.c` | `[TEST] INT-02 PASS` |
-
-*Method:* **auto** = `TEST_CHECK` in code, result printed on the console;
-**manual** = a person observes the result (LED, scope, meter, phone app…).
-
-## Results
-
-Add a new row for every run. Never edit or delete old rows.
-
-| Date | Test ID | Commit | Tester | Result | Log / evidence | Notes |
-|---|---|---|---|---|---|---|
-| YYYY-MM-DD | INT-01 | `abc1234` | | PASS / FAIL | `logs/YYYY-MM-DD_….txt` | |
+Host encoder test results are in logs/2026-11-05-host-encoder.log. A TEST=1 build pass means the target test image compiled; it does not mean the on-target assertions ran. Build memory sizes are static sections, not measured whole-system RAM consumption or compact-representation savings.

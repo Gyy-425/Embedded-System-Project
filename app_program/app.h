@@ -1,71 +1,57 @@
-/*
- *	app.h
- *	Definitions shared by the whole team.  Changed only by team agreement.
- *
- *	Anything that belongs to ONE subsystem goes in that subsystem's own
- *	header instead (app_program/subsystemN/subsystemN.h).
- */
+#ifndef AAI05_APP_H
+#define AAI05_APP_H
 
-#ifndef APP_H
-#define APP_H
+#include <stdint.h>
+#include <stdbool.h>
+#include <tk/tkernel.h>
+#include <tm/tmonitor.h>
+#include <bsp/libbsp.h>
 
-#include <tk/tkernel.h>		/* micro T-Kernel API (tk_xxx_yyy) */
-#include <tm/tmonitor.h>	/* T-Monitor API: tm_printf() console output */
-#include <bsp/libbsp.h>		/* Board helpers: gpio_set_pin/val, pwm_... */
+#define TASK_STACK_SIZE 2048
+#define APP_PRI_MOTION  12
+#define APP_PRI_IR      14
+#define APP_PRI_REPORT  16
+#define APP_IR_LEFT_PIN 26U
+#define APP_IR_RIGHT_PIN 27U
+#define APP_ENCODER_LEFT_A 4U
+#define APP_ENCODER_LEFT_B 5U
+#define APP_ENCODER_RIGHT_A 16U
+#define APP_ENCODER_RIGHT_B 17U
+#define APP_MOTOR_FIRST_PIN 8U
+#define APP_MOTOR_LAST_PIN 11U
 
-/* ---------------------------------------------------------------------
- *  Pins: free for projects are GP0..GP22 and GP26..GP28.  GP0/GP1 are
- *  taken by UART0 when built with "make CRASH_REPORT=1" (see README).
- *  Never use GP23/24/25/29: they are wired to the Pico W radio.
- *  Claim every pin in TEAM.md section 2 before using it.
- * --------------------------------------------------------------------- */
+typedef struct {
+    uint32_t sequence;
+    uint32_t sampled_ms;
+    uint16_t left_raw;
+    uint16_t right_raw;
+    ER error;
+    bool valid;
+} ir_snapshot_t;
 
-/* ---------------------------------------------------------------------
- *  Task priorities: 1 is the highest; the kernel's USB console (3) and
- *  WiFi (4) tasks sit above every application task.  Each subsystem
- *  has its own band (TEAM.md section 4), defined in its own header.
- * --------------------------------------------------------------------- */
-#define TASK_STACK_SIZE		2048	/* bytes; tm_printf needs ~1 KB */
+typedef struct {
+    uint32_t sequence;
+    uint32_t sampled_ms;
+    int32_t left_count;
+    int32_t right_count;
+    uint32_t left_invalid;
+    uint32_t right_invalid;
+    uint8_t left_ab;
+    uint8_t right_ab;
+    bool count_saturated;
+} motion_snapshot_t;
 
-/* Create and start a task.  prc = TP_PRC1 (core 0), TP_PRC2 (core 1), or
-   0 for "any core".  Defined in app_main.c. */
-IMPORT ID app_start_task(FP entry, PRI pri, UW prc, const char *name);
-
-/* ---------------------------------------------------------------------
- *  Every subsystem provides these.  usermain() calls ALL the _init()
- *  functions first and only then ALL the _start() functions, so every
- *  kernel object exists before any task can use it.
- *    subsystemN_init()   create this subsystem's kernel objects
- *    subsystemN_start()  create and start this subsystem's tasks
- *    subsystemN_test()   on-target tests, only in test builds (make TEST=1)
- * --------------------------------------------------------------------- */
+IMPORT ID app_start_task(FP entry, PRI priority, UW processor, const char *name);
+IMPORT uint32_t app_now_ms(void);
 IMPORT ER subsystem1_init(void);
-IMPORT ER subsystem2_init(void);
-IMPORT ER subsystem3_init(void);
-IMPORT ER subsystem4_init(void);
-IMPORT ER subsystem5_init(void);
-
 IMPORT ER subsystem1_start(void);
+IMPORT ER subsystem1_get_snapshot(ir_snapshot_t *snapshot);
+IMPORT ER subsystem2_init(void);
 IMPORT ER subsystem2_start(void);
+IMPORT ER subsystem2_get_snapshot(motion_snapshot_t *snapshot);
+IMPORT ER subsystem3_init(void);
 IMPORT ER subsystem3_start(void);
-IMPORT ER subsystem4_start(void);
-IMPORT ER subsystem5_start(void);
-
 #if APP_TEST
-IMPORT void subsystem1_test(void);
 IMPORT void subsystem2_test(void);
-IMPORT void subsystem3_test(void);
-IMPORT void subsystem4_test(void);
-IMPORT void subsystem5_test(void);
 #endif
-
-/* Print a readable message if a kernel call failed (negative error code) */
-#define CHECK(er, what)							\
-	do {								\
-		INT check_er_ = (INT)(er);	/* evaluate once */	\
-		if (check_er_ < E_OK) {					\
-			tm_printf((UB*)"ERROR %s: %d\n", (what), check_er_); \
-		}							\
-	} while (0)
-
-#endif /* APP_H */
+#endif

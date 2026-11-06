@@ -1,26 +1,10 @@
-# Subsystem 1 — test log
+# IR diagnostic test log
 
-**Subsystem:** LED heartbeat (example)  ·  **Student ID:** <student ID>  ·  **Code:** `app_program/subsystem1/`
+Original template cases S1-U01, S1-U02 and S1-U03 referred to the removed GP19 LED example and are retired, not reused. Its YYYY-MM-DD/abc1234 row was an unfilled example, not a real result.
 
-See `testing/README.md` for how to run tests and record results.
+| ID | Check | Method | Expected | Status |
+|---|---|---|---|---|
+| S1-M101 | Left/right AO routing | Move light/dark material under each sensor individually | Correct raw channel responds; record actual values | PENDING hardware |
+| S1-M102 | Complete recent pair | Inspect real console over multiple seconds | valid=1, err=0 and recent age for successful pairs | PENDING hardware |
 
-## Test cases
-
-Define a test here before running it. Test IDs never change.
-
-| ID | What is tested | Requirement / interface | Method | Steps / how | Expected result |
-|---|---|---|---|---|---|
-| S1-U01 | cyclic handler is running | | auto | `subsystem1_test.c` | `[TEST] S1-U01 PASS` |
-| S1-U02 | LED task sleeps between ticks (not busy) | | auto | `subsystem1_test.c` | `[TEST] S1-U02 PASS` |
-| S1-U03 | LED on GP19 toggles every 250 ms | | manual | 1. Flash normal image. 2. Watch LED / measure with scope. | 2 Hz blink, 50 % duty |
-
-*Method:* **auto** = `TEST_CHECK` in code, result printed on the console;
-**manual** = a person observes the result (LED, scope, meter, phone app…).
-
-## Results
-
-Add a new row for every run. Never edit or delete old rows.
-
-| Date | Test ID | Commit | Tester | Result | Log / evidence | Notes |
-|---|---|---|---|---|---|---|
-| YYYY-MM-DD | S1-U01 | `abc1234` | | PASS / FAIL | `logs/YYYY-MM-DD_….txt` | |
+No physical IR results or seven-colour accuracy measurements have been recorded. Raw ADC responsiveness alone is not colour classification.

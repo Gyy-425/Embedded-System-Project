@@ -1,3 +1,9 @@
+# AAI05 diagnostic firmware
+
+Start with [the current bring-up guide](docs/BRINGUP.md) and [module ownership](TEAM.md). The application now uses three modules. The original course-template reference below describes its earlier examples.
+
+---
+
 # micro T-Kernel 3.0 project for Raspberry Pi Pico W
 
 A starting point for your project: micro T-Kernel 3.0 running on **both cores**

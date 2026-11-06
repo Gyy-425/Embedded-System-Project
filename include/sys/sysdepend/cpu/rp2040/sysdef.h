@@ -208,7 +208,7 @@
 #define	GPIO_NUM		30
 
 #define IO_BANK0_BASE		0x40014000
-#define	GPIO_CTRL(n)		(IO_BANK0_BASE+0x04+(n*8))
+#define	GPIO_CTRL(n)		(IO_BANK0_BASE+0x04+((n)*8))
 
 #define	GPIO_CTRL_FUNCSEL_XIP	0
 #define	GPIO_CTRL_FUNCSEL_SPI	1
@@ -225,7 +225,7 @@
 #define	IO_QSPI_BASE		0x40018000
 
 #define PADS_BANK0_BASE		0x4001c000
-#define	GPIO(n)			(PADS_BANK0_BASE+0x4+(n*4))
+#define	GPIO(n)			(PADS_BANK0_BASE+0x4+((n)*4))
 
 #define	GPIO_OD			(1<<7)
 #define	GPIO_IE			(1<<6)
@@ -271,7 +271,7 @@
 
 #define	GPIO_IN			(SIO_BASE+0x004)
 
-#define	GPIO_OUT		(SIO_BASE+0x008)
+#define	GPIO_OUT		(SIO_BASE+0x010)
 #define GPIO_OUT_SET		(SIO_BASE+0x014)
 #define GPIO_OUT_CLR		(SIO_BASE+0x018)
 #define GPIO_OUT_XOR		(SIO_BASE+0x01C)

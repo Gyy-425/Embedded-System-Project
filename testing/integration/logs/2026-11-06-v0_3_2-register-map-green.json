@@ -1,0 +1,8 @@
+{
+  "sdk_version": "2.3.0",
+  "registers_compared": 66,
+  "mismatches": 0,
+  "GPIO_OUT": "0xd0000010",
+  "production_register_macros": "real sysdef.h",
+  "target_hardware_accessed": false
+}

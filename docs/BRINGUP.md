@@ -2,6 +2,8 @@
 
 ## Current milestone
 
+**Latest deliverable:** v0.3.2 applies all three audited register-macro corrections and requests50% duty, still one wheel/400ms with explicit GP20 and unchanged STOP/expiry. All19 runner checks and10 Python helpers passed; independent review has no Critical/Important findings. Use [MOTOR_START_TEST_V0_3_2.md](MOTOR_START_TEST_V0_3_2.md) for one first request. No upload/movement result is claimed; the earlier25% run completed cutoffs without clear motion. Wi-Fi/MQTT follows the motor result.
+
 **Superseding update, 2026-11-06:** the original motor-start HardFault was captured and its GPIO_CTRL conditional-argument bug corrected. v0.3.1 is programmed, flash-verified and ready at a clean bank-only boot. Use [MOTOR_RETEST_V0_3_1.md](MOTOR_RETEST_V0_3_1.md) next; physical motor behaviour remains pending. Earlier milestone descriptions below are historical. Actual Wi-Fi/MQTT testing remains the next communication milestone.
 
 Latest next steps: the user-run v0.3p virtual M1 D2 request passed with both wheels still. Follow MOTOR_OUTPUT_ISOLATION.md for one normal v0.3 request with all four motor winding leads removed, then prioritise NETWORK_BRINGUP.md. The distinct v0.4 motor-inactive network image is built using locally entered settings; localhost MQTT passed, actual Pico association/LAN/MQTT remains pending. The older milestone description below records preparation of the v0.3p probe, not a request to repeat its passed check.

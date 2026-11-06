@@ -231,10 +231,22 @@ static void test_polarity_and_independent_cutoff(void)
     for (uint8_t wheel = 1U; wheel <= 2U; ++wheel) {
         for (uint8_t direction = 1U; direction <= 2U; ++direction) {
             expected_wheel = wheel; expected_direction = direction;
-            assert(motor_pulse_start(wheel, direction, 25U, 400U) == E_OK);
+            assert(motor_pulse_start(wheel, direction, 50U, 400U) == E_OK);
             motor_pulse_read(&status);
             assert(status.active && status.ready);
+            assert(status.duty == 50U);
             uint32_t slice = wheel == 1U ? 4U : 5U;
+            /* Independent new-profile expectation: half-period drive/coast. */
+            if (!MOTOR_TEST_PROBE) {
+                unsigned int drive_samples = 0U;
+                unsigned int base_pin = wheel == 1U ? 8U : 10U;
+                for (uint32_t counter = 0U; counter < 12500U; counter += 125U) {
+                    *reg(PWM_BASE + slice * 0x14U + 8U) = counter;
+                    assert_output_policy();
+                    if (pin_level(base_pin) != pin_level(base_pin + 1U)) ++drive_samples;
+                }
+                assert(drive_samples == 50U);
+            }
             *reg(PWM_BASE + slice * 0x14U + 8U) = 11000U;
             assert_output_policy();
             if (MOTOR_TEST_PROBE) {
@@ -263,7 +275,7 @@ static void test_limits_conflicts_failure_and_wrap(void)
     reset_hardware(); assert(motor_pulse_init() == E_OK);
     assert(motor_pulse_start(0U, 1U, 25U, 400U) == E_PAR);
     assert(motor_pulse_start(1U, 3U, 25U, 400U) == E_PAR);
-    assert(motor_pulse_start(1U, 1U, 26U, 400U) == E_PAR);
+    assert(motor_pulse_start(1U, 1U, 51U, 400U) == E_PAR);
     assert(motor_pulse_start(1U, 1U, 25U, 401U) == E_PAR);
     expected_wheel = expected_direction = 1U;
     now_us = UINT32_MAX - 200000U;

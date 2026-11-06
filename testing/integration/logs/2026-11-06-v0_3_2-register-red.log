@@ -1,0 +1,7 @@
+GPIO_OUT: got 0xd0000008, expected 0xd0000010
+GPIO_CTRL conditional true: got 0x4001400c, expected 0x40014044
+GPIO_CTRL addition: got 0x40014013, expected 0x40014044
+GPIO_CTRL subtraction: got 0x40014006, expected 0x4001404c
+GPIO pad conditional true: got 0x4001c01e, expected 0x4001c06c
+GPIO pad addition: got 0x4001c021, expected 0x4001c06c
+GPIO pad subtraction: got 0x4001c01c, expected 0x4001c070

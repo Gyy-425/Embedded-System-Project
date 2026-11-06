@@ -1,0 +1,53 @@
+{
+  "base_commit": "143975d0447185cf721a01393f7ca2054cd2ab2f",
+  "source_sha256": {
+    "app_program/app_main.c": "6e64e97b3fae6fded42484801740a766c90aeca4845542bf118413ce7fa5135f",
+    "app_program/subsystem2/motor_pulse.h": "b8c76684f5986bac87503d347211c7221a84dbb875694aafd04cc32e1675ae12",
+    "app_program/subsystem2/motor_pulse.c": "6f3c6444dfc45c5e8f866f448eccb24185bcee79040051114e0e23d6db89875d",
+    "include/sys/sysdepend/cpu/rp2040/sysdef.h": "11eb4f0b83a0d4581668ebb6e02bfde67901ecfabb4f0c83578ea3f9704ecc74",
+    "tools/build_wsl.py": "091234535932cd74c4e8e58958a5278859aaf4e14183067242d0d3d5ad86265f",
+    "testing/host/test_motor_pulse.c": "3d6f9acb0d1b3bca129629167c1d64b1bf0bf7bc0c33248680618fffbaf12d21",
+    "testing/host/test_rp2040_registers.c": "56873da0e076c660e9071a9f47d5db6cf5f627332413466624708b0a2f454286"
+  },
+  "build_and_host_steps": 19,
+  "all_steps_exit_zero": true,
+  "reported_compiler_warnings": 0,
+  "python_helpers": {
+    "tests": 10,
+    "result": "OK",
+    "initial_sandbox_temp_permission_failure_preserved": true
+  },
+  "independent_sdk_registers": {
+    "compared": 66,
+    "mismatches": 0
+  },
+  "old_artifacts_preserved": [
+    {
+      "file": "output\\firmware\\AAI05_Motor_Test_v0_3_1.uf2",
+      "sha256": "30abbae451e37d54b6734c802a2ada3c38902ec979d5d3816ab15b01f288c9a1"
+    },
+    {
+      "file": "output\\firmware\\AAI05_Motor_Test_v0_3_1_TEST.uf2",
+      "sha256": "1c1e4d1318d990ef8a06ee67c27ecca6bfb7c5df98eb5b6889c02412da33f76d"
+    },
+    {
+      "file": "output\\firmware\\AAI05_Motor_Probe_v0_3p_NO_DRIVE.uf2",
+      "sha256": "ddaca6a73eac1ced8e80ba64c2808c55a3d84b84d9e39b06e370c2cbb4f1d805"
+    },
+    {
+      "file": "output\\firmware\\AAI05_Motor_Probe_v0_3p_NO_DRIVE_TEST.uf2",
+      "sha256": "906fdb154eebe99c82ba3c95ad0e7ea9808f7b8f92ccc5639eb60e36491f2fac"
+    },
+    {
+      "file": "output\\firmware\\AAI05_Network_Probe_v0_4_NO_DRIVE.uf2",
+      "sha256": "e9427de33eb385c6b9d49a86647022126bd9be49bfdf30ee507737ee735abe99"
+    },
+    {
+      "file": "output\\firmware\\AAI05_Network_Probe_v0_4_NO_DRIVE_TEST.uf2",
+      "sha256": "bde20006b0da9ac28d54380debdec1beb7fce91965c0df255c638b030f63c49d"
+    }
+  ],
+  "review": "No Critical/Important findings; reviewer inspected primary-run evidence, own WSL rerun access-denied.",
+  "new_target_upload": "NOT PERFORMED",
+  "new_physical_motor_test": "PENDING"
+}

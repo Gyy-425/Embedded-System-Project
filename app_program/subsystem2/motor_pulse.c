@@ -209,7 +209,7 @@ int32_t motor_pulse_start(uint8_t wheel, uint8_t direction, uint8_t duty, uint32
         } else {
             /* Do not release the coast overrides if setup already missed cutoff. */
 #if !MOTOR_TEST_PROBE
-            /* BSP GPIO_CTRL(n) does not parenthesise n: pass simple pin values. */
+            /* Keep the selected GPIOs explicit before changing motor muxes. */
             UINT constant_pin = direction == 1U ? pin_a : pin_b;
             UINT variable_pin = direction == 1U ? pin_b : pin_a;
             out_w(GPIO_CTRL(constant_pin), GPIO_CTRL_FUNCSEL_PWM);

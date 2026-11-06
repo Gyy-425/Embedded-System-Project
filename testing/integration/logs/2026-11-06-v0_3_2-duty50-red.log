@@ -1,0 +1,1 @@
+aai05_v032_red_duty50: testing/host/test_motor_pulse.c:234: test_polarity_and_independent_cutoff: Assertion `motor_pulse_start(wheel, direction, 50U, 400U) == E_OK' failed.

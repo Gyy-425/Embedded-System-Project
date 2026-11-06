@@ -60,7 +60,7 @@ EXPORT INT usermain(void)
 #elif MOTOR_TEST_PROBE
     tm_printf((UB *)"\n=== AAI05 MOTOR PROBE v0.3p: NO MOTOR OUTPUT ===\n");
 #else
-    tm_printf((UB *)"\n=== AAI05 MOTOR TEST v0.3.1: BUTTON-TRIGGERED ===\n");
+    tm_printf((UB *)"\n=== AAI05 MOTOR TEST v0.3.2: 50 PERCENT START CHECK ===\n");
 #endif
     tm_printf((UB *)"IR: L=GP26 R=GP27; encoders: L=GP4/5 R=GP16/17\n");
     tm_printf((UB *)"Encoder IRQ capture: core 0; counts are edges, not distance.\n");
@@ -74,7 +74,8 @@ EXPORT INT usermain(void)
 #if MOTOR_TEST_PROBE
     tm_printf((UB *)"PROBE: 400 ms virtual pulse; both inputs remain high/coast. DRIVE stays OFF.\n");
 #else
-    tm_printf((UB *)"One wheel, 25 percent, 400 ms timer cutoff; wait for IDLE before each fresh press.\n");
+    tm_printf((UB *)"One wheel, %u percent duty, 400 ms timer cutoff; wait for IDLE before each fresh press.\n",
+              (UINT)MOTOR_PULSE_MAX_DUTY);
 #endif
     tm_printf((UB *)"WHEELS RAISED. No drive on boot. Never use the M1/M2 hardware test buttons.\n");
 #if APP_TEST

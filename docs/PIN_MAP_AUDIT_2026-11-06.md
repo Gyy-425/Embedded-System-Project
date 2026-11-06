@@ -1,5 +1,7 @@
 # Wiring and register mapping review, 6 November 2026
 
+**Subsequent authorised correction:** all three recommendations below are implemented for v0.3.2. Independent register/conditional-expression tests pass and the full SDK comparison is now66/66 matches. See [the new test image and procedure](MOTOR_START_TEST_V0_3_2.md). The original review-only findings/evidence below are preserved as history, not a statement that the defects remain in current source. No wiring reassignment was made.
+
 ## Verdict and scope
 
 The current two-IR wiring allocation matches the application and Robo Pico's documented connections. No rewiring is indicated by this review. The captured v0.3 HardFault was caused by a C macro argument expansion, not by needing a different motor GPIO allocation. The v0.3.1 call-site repair is present and its four wheel/direction cases pass the focused host driver test.

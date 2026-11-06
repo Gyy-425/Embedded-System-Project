@@ -9,7 +9,7 @@ Original template cases S2-U01 and S2-U02 referred to removed producer/pool exam
 | S2-U103 | Signed overflow | TEST=1 portable on-target assertion | Saturation flag set, no overflow | PENDING target execution |
 | S2-M101 | Left/right encoder routing | Gently turn one raised wheel slowly at a time | Correct counter/A-B states change; reverse changes sign | 2026-11-06: right-first/left-second channel response confirmed by supplied records and coordinator; labelled direction-sign convention remains pending |
 | S2-M102 | No drive at startup | Observe raised wheels during normal boot | No commanded wheel movement | PENDING hardware |
-| S2-M104 | v0.2 stationary/slow/faster IRQ capture | docs/ENCODER_RETEST_V0_2.md | Ready=1, correct wheel responds, stable stationary counts, no growth in bad/over during accepted trial | PENDING v0.2 coordinator run |
+| S2-M104 | v0.2 stationary/slow/faster IRQ capture | docs/ENCODER_RETEST_V0_2.md | Ready=1, correct wheel responds, stable stationary counts, no growth in bad/over during accepted trial | Basic manual response supported in 211 supplied v0.2 records, bad=0/0 and over=0/0 throughout; first left-only log leaves R=0. Exact speed, angle, stationary duration and reversal labels were not supplied; full qualification remains pending |
 
 The host counterparts cover five groups: forward/reverse cycles, bounce/no-change, diagonal rejection/resynchronisation, signed/invalid-counter saturation and independent wheels. They have been executed on Ubuntu with ASan/UBSan; see testing/integration/logs/2026-11-05-host-encoder.log and the build-result JSON. Host passes are not physical encoder or target passes. Slow polling is not qualified for motor-speed feedback.
 

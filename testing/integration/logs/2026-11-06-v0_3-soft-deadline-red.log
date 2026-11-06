@@ -1,0 +1,2 @@
+aai05_motor_control_deadline_red: testing/host/test_motor_control.c:106: test_fallback_does_not_preempt_hardware_deadline: Assertion `motor_test_update(&test, 500U, true, false, true, true) == MOTOR_TEST_NONE' failed.
+Aborted (core dumped)

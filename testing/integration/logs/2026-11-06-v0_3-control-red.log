@@ -1,0 +1,2 @@
+aai05_motor_control_red: testing/host/test_motor_control.c:33: test_explicit_press_and_held_boot: Assertion `press_button(&test, 5060U) == MOTOR_TEST_START' failed.
+Aborted (core dumped)

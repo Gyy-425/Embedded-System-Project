@@ -1,0 +1,2 @@
+aai05_motor_cold_red: testing/host/test_motor_pulse.c:180: test_cold_pwm_reset: Assertion `(*reg(RESETS_RESET) & RESETS_RESET_PWM) == 0U' failed.
+Aborted (core dumped)

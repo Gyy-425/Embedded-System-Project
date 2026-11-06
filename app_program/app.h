@@ -7,6 +7,7 @@
 #include <tm/tmonitor.h>
 #include <bsp/libbsp.h>
 #include "subsystem2/encoder_capture.h"
+#include "subsystem2/motor_test.h"
 
 #define TASK_STACK_SIZE 2048
 #define APP_PRI_MOTION  12
@@ -41,6 +42,10 @@ typedef struct {
     uint8_t right_ab;
     bool count_saturated;
     bool capture_ready;
+    motor_pulse_status_t motor;
+    uint8_t motor_phase;
+    uint8_t motor_step;
+    uint8_t motor_stop_reason;
 } motion_snapshot_t;
 
 IMPORT ID app_start_task(FP entry, PRI priority, UW processor, const char *name);

@@ -4,7 +4,7 @@
 EXPORT uint32_t app_now_ms(void)
 {
     SYSTIM now;
-    (void)tk_get_tim(&now);
+    (void)tk_get_otm(&now);
     return (uint32_t)now.lo;
 }
 
@@ -55,10 +55,13 @@ EXPORT INT usermain(void)
     halt_on_error(subsystem2_init(), "motion init");
     halt_on_error(subsystem1_init(), "IR init");
     halt_on_error(subsystem3_init(), "report init");
-    tm_printf((UB *)"\n=== AAI05 DIAGNOSTICS v0.2: NO MOTOR DRIVE ===\n");
+    tm_printf((UB *)"\n=== AAI05 MOTOR TEST v0.3: BUTTON-TRIGGERED ===\n");
     tm_printf((UB *)"IR: L=GP26 R=GP27; encoders: L=GP4/5 R=GP16/17\n");
     tm_printf((UB *)"Encoder IRQ capture: core 0; counts are edges, not distance.\n");
     tm_printf((UB *)"No tape calibration, colour classification or MQTT session yet.\n");
+    tm_printf((UB *)"GP20 NEXT: M1 D1, M1 D2, M2 D1, M2 D2. GP21 STOP latches until reset.\n");
+    tm_printf((UB *)"One wheel, 25 percent, 400 ms timer cutoff; wait for IDLE before each fresh press.\n");
+    tm_printf((UB *)"WHEELS RAISED. No drive on boot. Never use the M1/M2 hardware test buttons.\n");
 #if APP_TEST
     subsystem2_test();
 #endif

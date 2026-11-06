@@ -4,10 +4,13 @@ Template cases INT-01 and INT-02 for producer/consumer/monitor examples are reti
 
 | ID | Check | Method | Result/evidence |
 |---|---|---|---|
-| INT-101 | Normal and TEST=1 firmware compile/link | tools/build_wsl.py | v0.1 evidence: logs/2026-11-05-build-result.json; final v0.2: logs/2026-11-06-v0_2-final-build-result.json, both build exits 0 and no reported warnings |
+| INT-101 | Normal and TEST=1 firmware compile/link | tools/build_wsl.py | v0.1 evidence: logs/2026-11-05-build-result.json; final v0.2 and v0.3: logs/2026-11-06-v0_2-final-build-result.json and logs/2026-11-06-v0_3-final-build-result.json, build exits 0 with no reported warnings |
 | INT-102 | v0.1 USB boot and repeating reports | Upload named normal diagnostic UF2, open actual Pico COM port | PASS in coordinator-supplied 2026-11-06 v0.1 console records; reports are spaced 260 ms; no flash performed by agent |
 | INT-103 | Combined slow encoder and IR activity | Observe real console while moving a surface and one wheel | PARTIAL 2026-11-06 user-run evidence: IR reads stay valid during wheel tests and both encoder channels respond; accumulated bad=66/60 means accurate counting is not passed |
 | INT-104 | v0.2 IRQ readiness and wheel response | docs/ENCODER_RETEST_V0_2.md | PASS for basic manual response in two coordinator-supplied logs: 211 records, ready=1/err=0, bad=0/0 and over=0/0 throughout; intentional forward/backward rotation confirmed. Physical forward-sign convention, speed/angle-labelled qualification remain pending |
+| INT-105 | v0.3 idle/STOP latch and four bounded motor pulses | docs/MOTOR_TEST_V0_3.md | PENDING coordinator run; no powered movement or physical timing pass claimed |
+
+v0.3 software evidence: six host executables (existing decoder/startup/capture/startup plus motor controller and real pulse-driver boundary model), ASan/UBSan and strict warnings; both SMP firmware variants retain the radio driver. Fourteen compile/execution/build steps passed. Expected-failure logs include initial no-drive adapters, premature task deadline, expired setup, PWM held in reset and an unprepared timer clock; see the motor-pulse plan for interpretation.
 
 Preserved v0.1 user evidence: logs/2026-11-06-manual-wheel-v0_1.log and logs/2026-11-06-v0_1-hardware-evidence.md. Final v0.2 software checks consist of four host executables and two firmware variants; host success is not board acceptance. Review fixes and expected failing regressions are documented in docs/superpowers/plans/2026-11-06-encoder-capture.md.
 

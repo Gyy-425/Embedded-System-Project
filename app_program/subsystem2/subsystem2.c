@@ -4,16 +4,67 @@
 static ID snapshot_mutex;
 static motion_snapshot_t latest;
 
+static ER configure_test_buttons(void)
+{
+    const UINT pins[] = {MOTOR_NEXT_PIN, MOTOR_STOP_PIN};
+    for (UINT i = 0U; i < 2U; ++i) {
+        ER error = gpio_set_pin(pins[i], GPIO_MODE_IN);
+        if (error < E_OK) {
+            return error;
+        }
+        clr_w(GPIO(pins[i]), GPIO_PDE);
+        set_w(GPIO(pins[i]), GPIO_PUE);
+    }
+    return E_OK;
+}
+
 static void motion_task(INT start_code, void *extra)
 {
     motion_snapshot_t next = {0};
     encoder_capture_t capture = {0};
+    motor_test_t test;
+    motor_pulse_status_t motor;
+    ER buttons_error;
+    ER motor_error;
     (void)start_code;
     (void)extra;
     next.capture_error = (ER)encoder_capture_start();
     next.capture_ready = (next.capture_error == E_OK);
+    buttons_error = configure_test_buttons();
+    motor_error = (ER)motor_pulse_init();
+    motor_test_init(&test, app_now_ms());
     for (;;) {
         if (next.capture_ready) encoder_capture_read(&capture);
+        motor_pulse_read(&motor);
+        uint32_t now = app_now_ms();
+        UW buttons = in_w(GPIO_IN);
+        bool healthy = next.capture_ready && motor.ready && (motor.error == E_OK) &&
+                       (buttons_error == E_OK) && (motor_error == E_OK) &&
+                       (capture.left.invalid_transitions == 0U) && (capture.right.invalid_transitions == 0U) &&
+                       (capture.left_overrun == 0U) && (capture.right_overrun == 0U) &&
+                       !capture.left.count_saturated && !capture.right.count_saturated;
+        uint8_t action = motor_test_update(&test, now,
+                            (buttons & (1U << MOTOR_NEXT_PIN)) == 0U,
+                            (buttons & (1U << MOTOR_STOP_PIN)) == 0U,
+                            healthy, motor.active);
+        if (action == MOTOR_TEST_START) {
+            uint8_t wheel = test.step < 2U ? 1U : 2U;
+            uint8_t direction = (uint8_t)((test.step % 2U) + 1U);
+            ER error = (ER)motor_pulse_start(wheel, direction, MOTOR_PULSE_MAX_DUTY, MOTOR_PULSE_MS);
+            if (error < E_OK) {
+                motor_test_abort(&test, MOTOR_STOP_DRIVER);
+                motor_pulse_stop();
+            }
+        } else if (action == MOTOR_TEST_STOP) {
+            motor_pulse_stop();
+        }
+        motor_pulse_read(&next.motor);
+        if (buttons_error < E_OK || motor_error < E_OK) {
+            next.motor.error = buttons_error < E_OK ? buttons_error : motor_error;
+        }
+        next.motor_phase = test.phase;
+        next.motor_step = test.step;
+        next.motor_stop_reason = test.stop_reason;
         next.left_count = capture.left.count;
         next.right_count = capture.right.count;
         next.left_invalid = capture.left.invalid_transitions;
@@ -24,7 +75,7 @@ static void motion_task(INT start_code, void *extra)
         next.irq_count = capture.irq_count;
         next.left_overrun = capture.left_overrun;
         next.right_overrun = capture.right_overrun;
-        next.sampled_ms = app_now_ms();
+        next.sampled_ms = now;
         ++next.sequence;
         if (tk_loc_mtx(snapshot_mutex, TMO_FEVR) == E_OK) {
             latest = next;
@@ -39,6 +90,10 @@ EXPORT ER subsystem2_init(void)
 {
     T_CMTX attributes = {0};
     drv_motor_coast_init();
+    ER timer_error = (ER)motor_timebase_init();
+    if (timer_error < E_OK) {
+        return timer_error;
+    }
     attributes.mtxatr = TA_INHERIT;
     snapshot_mutex = tk_cre_mtx(&attributes);
     return (snapshot_mutex < E_OK) ? snapshot_mutex : E_OK;

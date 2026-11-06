@@ -1,0 +1,2 @@
+aai05_motor_cold_red: testing/host/test_motor_pulse.c:194: test_unprepared_timer_rejected: Assertion `motor_pulse_init() == E_CTX' failed.
+Aborted (core dumped)

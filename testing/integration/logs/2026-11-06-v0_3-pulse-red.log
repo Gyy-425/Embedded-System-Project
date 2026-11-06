@@ -1,0 +1,2 @@
+aai05_motor_pulse_red: testing/host/test_motor_pulse.c:153: test_polarity_and_independent_cutoff: Assertion `motor_pulse_init() == E_OK' failed.
+Aborted (core dumped)

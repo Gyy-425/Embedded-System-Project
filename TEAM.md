@@ -26,10 +26,11 @@ Drivers live with their owning module. The kernel, BSP and built-in radio stack 
 | GP0/GP1 | Unused in current profile | Reserved if UART/crash console is selected later |
 | GP2/GP3, GP6, GP28 | Unused by current application | IMU, barcode and third IR omitted |
 | GP12-15 | Unused by current application | Servo header disconnected |
-| GP18, GP20, GP21, GP22 | Carrier facilities, unused | RGB LED, buttons and buzzer |
+| GP20 / GP21 | Motion | Programmable NEXT / latched STOP buttons, input pull-ups |
+| GP18, GP22 | Carrier facilities, unused | RGB LED and buzzer |
 | GP19 | Unused | Original example LED removed |
 
-IR task alone opens/reads the existing adca device. The kernel driver implements ADC conversion and interrupts; no other application task uses the ADC. Motion owns motor outputs and the encoder dispatcher. Both bridges stay in coast (11) in v0.2; no PWM or movement command exists. Encoder edges are decoded in one IO_BANK0 handler, not sampled by the Motion task.
+IR task alone opens/reads the existing adca device. The kernel driver implements ADC conversion and interrupts; no other application task uses the ADC. Motion owns motor outputs, button control and the encoder dispatcher. v0.3 starts in coast (11), then permits one wheel at fixed 25% PWM/400 ms per fresh GP20 press. Four electrical-polarity steps finish at DONE; GP21 and dependency/driver faults latch STOP until reset. Encoder edges remain decoded in one IO_BANK0 handler, not sampled by the Motion task.
 
 ## Tasks and objects
 
@@ -37,7 +38,7 @@ IR task alone opens/reads the existing adca device. The kernel driver implements
 |---|---|---|---|
 | Kernel USB service | 3 | Existing port configuration | USB CDC |
 | Kernel Wi-Fi service | 4 | Existing port configuration | Radio polling |
-| Motion diagnostics | 12 | Processor 1 / core 0 | Publish capture snapshot, then requested 10 ms delay |
+| Motion diagnostics | 12 | Processor 1 / core 0 | Handle buttons/faults and motor controller, publish snapshot, then requested 10 ms delay |
 | IR acquisition | 14 | Any | Paired ADC read, then 10 ms delay |
 | Report | 16 | Any | Status line, then requested 250 ms delay |
 
@@ -48,6 +49,7 @@ These are configured priorities and requested delays, not measured deadlines or 
 | IR snapshot | IR | Report; later Motion | IR-owned priority-inheritance mutex; copied snapshot |
 | Motion snapshot | Motion | Report | Motion-owned priority-inheritance mutex; copied snapshot |
 | Encoder capture | GPIO IRQ dispatcher | Motion | Interrupt-preserving SMP spinlock; copied state, no blocking mutex or console in ISR |
+| Motor pulse status | Motion-owned driver and alarm0 IRQ0 | Motion, then Report through copied snapshot | Separate interrupt-preserving SMP lock; sole runtime motor output writer |
 | Radio status | Kernel service | Report | cyw43_utk_get_status safe accessor |
 
 Readers use TMO_POL and explicitly report a failed snapshot acquisition. No console output or ADC operation occurs while holding a snapshot mutex. All objects are created before application tasks start. Timestamp ages use unsigned 32-bit subtraction, valid for diagnostic ages across a timer wrap. Counters are signed 32-bit and saturate with a sticky flag; invalid-transition counters also saturate.
@@ -55,6 +57,8 @@ Readers use TMO_POL and explicitly report a failed snapshot acquisition. No cons
 ## Network and future phases
 
 Current profile: SMP=1 CONSOLE=usb_cdc WIFI=cyw43 NET=none MQTT=0 TEST=0 CRASH_REPORT=0. RADIO_READY indicates driver state only. No association, broker connection, command processing or MQTT publishing is implemented yet.
+
+v0.3 reserves PWM slices 4/5 (configured 10 kHz) and timer alarm0/IRQ0 (external priority 1, core 0). GPIO encoder IRQ13 remains external priority 2. The initial priority-1 task validates the 12 MHz reference/divider and establishes the watchdog-derived 1 MHz timer tick before yielding to the core-0 USB/radio tasks. It never resets the shared timer counter. Motor initialization deasserts only PWM reset with a bounded RESET_DONE check and refuses conflicting alarm/PWM resources. A 400 ms timer cutoff is independent of task publication; a 500 ms task fallback latches a driver fault if it remains active. Actual interrupt latency and pulse timing remain board-validation work. All shared kernel/BSP/radio sources are retained.
 
 Only cyw43_utk_task owns cyw43/lwIP/MQTT calls. Future module3 commands and telemetry must cross through kernel objects into that service. Any shared-library extension must follow the course template's instructor-agreement procedure; this diagnostic milestone changes no shared library code.
 

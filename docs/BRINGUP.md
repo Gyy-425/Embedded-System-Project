@@ -2,6 +2,10 @@
 
 ## Current milestone
 
+Current deliverable is **AAI05_Motor_Test_v0_3.uf2**, a motion-enabled, button-triggered raised-wheel test. Follow docs/MOTOR_TEST_V0_3.md. GP20 requests one fixed 25%/400 ms pulse; GP21 latches STOP. The six host executables and normal/TEST builds pass in testing/integration/logs/2026-11-06-v0_3-final-build-result.json; actual motor direction, powered encoder behaviour, power stability and observed pulse duration remain pending.
+
+The v0.2 procedure below is preserved for the no-drive diagnostic and its user-run results; it is not the v0.3 motor-test procedure.
+
 The application now has three modules: IR, Motion and Communications. The coordinator handles all three as a solo development workflow. The course kernel/library implementation is retained.
 
 Version 0.2 prints raw GP26/GP27 ADC readings, interrupt-captured encoder counts/A-B levels, capture readiness/IRQ/overrun diagnostics, sample ages/errors and radio-driver readiness. It never commands motor drive. Coast (both inputs high) permits manual wheel checks. The onboard motor-test buttons bypass the program and run motors at full speed; do not use them for this diagnostic. Follow docs/ENCODER_RETEST_V0_2.md for the new image and retest.

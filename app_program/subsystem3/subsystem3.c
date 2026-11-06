@@ -3,6 +3,12 @@
 #include "cyw43_utk.h"
 #endif
 
+static const char *motor_phase_name(uint8_t phase)
+{
+    static const char *const names[] = {"IDLE", "PULSE", "COOLDOWN", "DONE", "STOPPED"};
+    return phase < 5U ? names[phase] : "INVALID";
+}
+
 static void report_task(INT start_code, void *extra)
 {
     ir_snapshot_t ir;
@@ -29,7 +35,9 @@ static void report_task(INT start_code, void *extra)
 #endif
             tm_printf((UB *)"t=%u IR[L=%u R=%u valid=%u err=%d age=%u] "
                       "ENC[L=%d R=%d AB=%u/%u bad=%u/%u sat=%u age=%u] "
-                      "ENC_READY=%u err=%d irq=%u over=%u/%u DRIVE=OFF RADIO_READY=%u\n",
+                      "ENC_READY=%u err=%d irq=%u over=%u/%u "
+                      "MOTOR[phase=%s next=%u M=%u D=%u pct=%u us=%u cutoff=%u stop=%u err=%d] "
+                      "DRIVE=%s RADIO_READY=%u\n",
                       (UINT)now, (UINT)ir.left_raw, (UINT)ir.right_raw,
                       (UINT)(ir.valid && (ir.sequence != 0U) && (ir_age <= 100U)),
                       (INT)ir.error, (UINT)ir_age,
@@ -39,7 +47,12 @@ static void report_task(INT start_code, void *extra)
                       (UINT)motion.count_saturated, (UINT)motion_age,
                       (UINT)motion.capture_ready, (INT)motion.capture_error,
                       (UINT)motion.irq_count, (UINT)motion.left_overrun,
-                      (UINT)motion.right_overrun, radio_ready);
+                      (UINT)motion.right_overrun, motor_phase_name(motion.motor_phase),
+                      (UINT)(motion.motor_step < 4U ? motion.motor_step + 1U : 0U),
+                      (UINT)motion.motor.wheel, (UINT)motion.motor.direction,
+                      (UINT)motion.motor.duty, (UINT)motion.motor.elapsed_us,
+                      (UINT)motion.motor.cutoff_count, (UINT)motion.motor_stop_reason,
+                      (INT)motion.motor.error, motion.motor.active ? "ON" : "OFF", radio_ready);
         } else {
             tm_printf((UB *)"DIAG snapshot busy/error: IR=%d motion=%d\n",
                       (INT)ir_error, (INT)motion_error);

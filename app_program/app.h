@@ -6,6 +6,7 @@
 #include <tk/tkernel.h>
 #include <tm/tmonitor.h>
 #include <bsp/libbsp.h>
+#include "subsystem2/encoder_capture.h"
 
 #define TASK_STACK_SIZE 2048
 #define APP_PRI_MOTION  12
@@ -13,10 +14,6 @@
 #define APP_PRI_REPORT  16
 #define APP_IR_LEFT_PIN 26U
 #define APP_IR_RIGHT_PIN 27U
-#define APP_ENCODER_LEFT_A 4U
-#define APP_ENCODER_LEFT_B 5U
-#define APP_ENCODER_RIGHT_A 16U
-#define APP_ENCODER_RIGHT_B 17U
 #define APP_MOTOR_FIRST_PIN 8U
 #define APP_MOTOR_LAST_PIN 11U
 
@@ -36,9 +33,14 @@ typedef struct {
     int32_t right_count;
     uint32_t left_invalid;
     uint32_t right_invalid;
+    uint32_t irq_count;
+    uint32_t left_overrun;
+    uint32_t right_overrun;
+    ER capture_error;
     uint8_t left_ab;
     uint8_t right_ab;
     bool count_saturated;
+    bool capture_ready;
 } motion_snapshot_t;
 
 IMPORT ID app_start_task(FP entry, PRI priority, UW processor, const char *name);

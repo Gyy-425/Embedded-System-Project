@@ -29,14 +29,17 @@ static void report_task(INT start_code, void *extra)
 #endif
             tm_printf((UB *)"t=%u IR[L=%u R=%u valid=%u err=%d age=%u] "
                       "ENC[L=%d R=%d AB=%u/%u bad=%u/%u sat=%u age=%u] "
-                      "DRIVE=OFF RADIO_READY=%u\n",
+                      "ENC_READY=%u err=%d irq=%u over=%u/%u DRIVE=OFF RADIO_READY=%u\n",
                       (UINT)now, (UINT)ir.left_raw, (UINT)ir.right_raw,
                       (UINT)(ir.valid && (ir.sequence != 0U) && (ir_age <= 100U)),
                       (INT)ir.error, (UINT)ir_age,
                       (INT)motion.left_count, (INT)motion.right_count,
                       (UINT)motion.left_ab, (UINT)motion.right_ab,
                       (UINT)motion.left_invalid, (UINT)motion.right_invalid,
-                      (UINT)motion.count_saturated, (UINT)motion_age, radio_ready);
+                      (UINT)motion.count_saturated, (UINT)motion_age,
+                      (UINT)motion.capture_ready, (INT)motion.capture_error,
+                      (UINT)motion.irq_count, (UINT)motion.left_overrun,
+                      (UINT)motion.right_overrun, radio_ready);
         } else {
             tm_printf((UB *)"DIAG snapshot busy/error: IR=%d motion=%d\n",
                       (INT)ir_error, (INT)motion_error);

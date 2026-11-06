@@ -55,9 +55,9 @@ EXPORT INT usermain(void)
     halt_on_error(subsystem2_init(), "motion init");
     halt_on_error(subsystem1_init(), "IR init");
     halt_on_error(subsystem3_init(), "report init");
-    tm_printf((UB *)"\n=== AAI05 DIAGNOSTICS v0.1: NO MOTOR DRIVE ===\n");
+    tm_printf((UB *)"\n=== AAI05 DIAGNOSTICS v0.2: NO MOTOR DRIVE ===\n");
     tm_printf((UB *)"IR: L=GP26 R=GP27; encoders: L=GP4/5 R=GP16/17\n");
-    tm_printf((UB *)"Encoder counts are slow manual-check edges, not distance.\n");
+    tm_printf((UB *)"Encoder IRQ capture: core 0; counts are edges, not distance.\n");
     tm_printf((UB *)"No tape calibration, colour classification or MQTT session yet.\n");
 #if APP_TEST
     subsystem2_test();

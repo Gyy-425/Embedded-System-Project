@@ -1,0 +1,2 @@
+aai05_capture_startup_red: testing/host/test_encoder_startup.c:86: main: Assertion `encoder_capture_start() == E_BUSY' failed.
+Aborted (core dumped)

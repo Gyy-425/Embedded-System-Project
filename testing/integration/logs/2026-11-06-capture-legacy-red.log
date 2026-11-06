@@ -1,0 +1,2 @@
+aai05_capture_legacy: testing/host/test_encoder_capture.c:99: test_cycles_between_task_reads: Assertion `result.left.count == 4000' failed.
+Aborted (core dumped)

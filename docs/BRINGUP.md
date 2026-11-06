@@ -4,9 +4,9 @@
 
 The application now has three modules: IR, Motion and Communications. The coordinator handles all three as a solo development workflow. The course kernel/library implementation is retained.
 
-Version 0.1 prints raw GP26/GP27 ADC readings, manual encoder counts/A-B levels, sample ages/errors and radio-driver readiness. It never commands motor drive. Coast (both inputs high) permits manual wheel checks. The onboard motor-test buttons bypass the program and run motors at full speed; do not use them for this diagnostic.
+Version 0.2 prints raw GP26/GP27 ADC readings, interrupt-captured encoder counts/A-B levels, capture readiness/IRQ/overrun diagnostics, sample ages/errors and radio-driver readiness. It never commands motor drive. Coast (both inputs high) permits manual wheel checks. The onboard motor-test buttons bypass the program and run motors at full speed; do not use them for this diagnostic. Follow docs/ENCODER_RETEST_V0_2.md for the new image and retest.
 
-The first encoder implementation is nominal 1 ms polling for slow manual wiring checks, not a qualified high-speed encoder driver. No wheel circumference, gear ratio, counts/revolution or colour calibration is assumed. Colour following, target commands and MQTT remain later milestones.
+The preserved v0.1 image requested tk_dly_tsk(1) between samples, resulting in nominal approximately 20 ms polling under this port's 10 ms tick and relative-wait rounding. v0.2 moves acquisition to one core-0 GPIO dispatcher; the Motion task only publishes snapshots. New pending flags during sampling or multiple latched edges are flagged as ambiguous and resynchronised without guessed counts. Actual maximum reliable rate remains unmeasured. No wheel circumference, gear ratio, counts/revolution or colour calibration is assumed. Colour following, target commands and MQTT remain later milestones.
 
 ## Baseline evidence
 
@@ -19,37 +19,39 @@ Full baseline evidence is in the parent workspace at tmp/aai05_baseline_2026-11-
 From the firmware repository in Ubuntu:
 
 ```sh
-python3 tools/build_wsl.py --sdk "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0"
+python3 tools/build_wsl.py --sdk "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0" --label 2026-11-06-v0_2-rebuild
 ```
 
-The script uses a temporary SDK symlink to avoid spaces in Make's SDK include paths. It does not modify the SDK, write credentials, connect a broker, or flash the car. It runs host encoder tests, builds normal/test images and saves actual command results in testing/integration/logs/2026-11-05-build-result.json.
+The script uses a temporary SDK symlink to avoid spaces in Make's SDK include paths. It does not modify the SDK, write credentials, connect a broker, or flash the car. It runs four host executables and builds normal/test images. Use a fresh --label for separate evidence. Final v0.2 results are in testing/integration/logs/2026-11-06-v0_2-final-build-result.json; v0.1 logs and artifacts remain preserved.
 
-First-upload image: output/firmware/AAI05_Diagnostics_v0_1.uf2. The _TEST variant additionally runs portable decoder assertions on the target. Compiling that variant is not the same as running it on the Pico.
+First-upload image: output/firmware/AAI05_Diagnostics_v0_2.uf2. The _TEST variant additionally runs portable decoder assertions on the target. Compiling that variant is not the same as running it on the Pico.
 
 ## First upload and console
 
 1. Disconnect the power bank before changing cables. Support the car with drive wheels clear of the surface for initial firmware checks.
 2. Use a USB DATA cable directly from the computer to the Pico W USB socket. The Debug Probe is not required for UF2 upload. Use this one power source for the first upload.
 3. Set the Robo Pico switch ON. Hold Pico W BOOTSEL while connecting USB, then release BOOTSEL. Windows should show the RPI-RP2 drive.
-4. Copy AAI05_Diagnostics_v0_1.uf2 to RPI-RP2. Automatic drive disappearance/reboot is expected after the copy.
+4. Copy AAI05_Diagnostics_v0_2.uf2 to RPI-RP2. Automatic drive disappearance/reboot is expected after the copy.
 5. Open the Pico's new COM port using VS Code Serial Monitor or PuTTY at 115200, 8 data bits, no parity, 1 stop bit, no flow control. The device must use the Pico USB connection, not the Debug Probe UART port.
-6. Look for the AAI05 DIAGNOSTICS v0.1 banner and repeating DRIVE=OFF records. If the banner was sent before the terminal opened, press the carrier RESET button once; repeating records should still appear.
+6. Look for the AAI05 DIAGNOSTICS v0.2 banner and repeating DRIVE=OFF records. If the banner was sent before the terminal opened, repeating records still identify the version through new ENC_READY/irq/over fields.
 
 Output format only, not measured results:
 
 ```text
-t=... IR[L=... R=... valid=... err=... age=...] ENC[L=... R=... AB=.../... bad=.../... sat=... age=...] DRIVE=OFF RADIO_READY=...
+t=... IR[L=... R=... valid=... err=... age=...] ENC[L=... R=... AB=.../... bad=.../... sat=... age=...] ENC_READY=... err=... irq=... over=.../... DRIVE=OFF RADIO_READY=...
 ```
 
 ## Manual checks and interpretation
 
 - IR: move light/dark material beneath one sensor at a time and identify which raw channel responds. valid=1 requires a complete, recent read; err=0 alone is insufficient. A stuck 0/4095 or identical channels needs investigation, not a claimed colour result.
 - Encoders: gently rotate only one raised wheel slowly. Its counter and A/B level should change; reversing rotation should reverse count direction. Counts are edge counts, not millimetres. If the wheel cannot turn freely, do not force the gearbox.
-- bad counts indicate diagonal transitions, which can result from missed samples or wiring/noise. Even bad=0 does not prove that fast cycles were not missed.
+- bad counts indicate diagonal transitions, which can result from missed samples or wiring/noise. over counts ambiguous edge batches which were discarded and resynchronised. Even bad=0 and over=0 do not prove that unlimited fast cycles can be captured.
 - Sample ages are milliseconds. IR data older than 100 ms is displayed invalid. Radio readiness is initialization state, not a connected Wi-Fi or MQTT session.
 - DRIVE=OFF reports this firmware's intended mode. Confirm physically that it does not drive the wheels. Unexpected motion requires disconnecting power and investigating the flashed image and wiring.
 
-Save 10-20 real console lines and record the surface/wheel action used. No on-car result has been recorded by the development agent. The professor's reported approval to proceed without a multimeter is retained; no rail voltage or electrical specification is represented as measured.
+Save 10-20 real console lines and record the surface/wheel action used. On 6 November the coordinator supplied real initial, IR and manual-wheel records: valid responsive raw IR channels and both encoder input responses were observed in those records. Physical right-wheel then left-wheel actions match the reported R then L channels. The coordinator subsequently confirmed both individual IR sensors work, so that basic check need not be repeated. Surface-labelled numerical calibration, colour polarity and seven-tape classification remain pending.
+
+Invalid transitions accumulated to bad=66/60, so accurate encoder counting is not passed. The wheel attachment contains 143 records over 36.92 seconds at 260 ms record spacing, consistent with the report task's requested 250 ms delay plus the port's timer rule. Latest wording clarifies that faster manual rotation can produce frozen/inconsistent counts, while careful slow rotation produces steady changes. This supersedes the earlier mechanical interpretation of 'skewed'; no misalignment, stiffness or repair is established by that wording. Improve capture before relying on encoder feedback; unusually precise hand rotation is not an eventual driver requirement. No powered motor-drive test or agent-observed physical test is claimed. The professor's reported approval to proceed without a multimeter is retained; no rail voltage or electrical specification is represented as measured.
 
 ## Startup regression check
 

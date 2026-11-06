@@ -1,0 +1,2 @@
+aai05_capture_race_red: testing/host/test_encoder_capture.c:191: test_edges_after_ack_do_not_invent_reverse_motion: Assertion `result.left.count == 1' failed.
+Aborted (core dumped)

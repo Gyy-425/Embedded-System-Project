@@ -13,7 +13,7 @@ Spec: ../../../../docs/aai05/confirmed-scope-2026-11-02.md and ../../../../docs/
 - Two IR AO inputs only: left GP26/ADC0 and right GP27/ADC1. Preserve all 12 ADC bits in uint16_t; validity is separate.
 - Left encoder A/B on GP4/GP5; right on GP16/GP17. Counts are quadrature edges, not distance, until wheel scale is measured.
 - Winding contact 5 to M1B/M2B and contact 6 to M1A/M2A. No motor drive or PWM commands in this milestone; keep the bridge in coast (11) so manual wheel checks are possible.
-- The initial encoder diagnostic samples A/B nominally every 1 ms for slow manual wheel checks. It is not a qualified full-speed decoder and must be replaced/qualified before motor speed control.
+- The initial encoder diagnostic requests a 1 ms delay between samples for slow manual wheel checks. Follow-up on 6 November found that the current 10 ms kernel tick and relative-wait rounding yield a nominal approximately 20 ms polling interval. User-supplied wheel records show invalid transitions reaching 66/60; accurate counting is not passed. It is not a qualified full-speed decoder and must be replaced/qualified before motor speed control.
 - Module snapshots use priority-inheritance mutexes. No report prints while holding a module mutex. A failed sample is explicitly invalid.
 - Keep default SMP=1, CONSOLE=usb_cdc, WIFI=cyw43, NET=none, MQTT=0, CRASH_REPORT=0. This tests the built-in radio driver, not Wi-Fi association or MQTT.
 - No fabricated on-target tests, tape calibration, classifications or contribution evidence. The template baseline is not the Week 13 functionally equivalent representation comparison.

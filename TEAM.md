@@ -29,7 +29,7 @@ Drivers live with their owning module. The kernel, BSP and built-in radio stack 
 | GP18, GP20, GP21, GP22 | Carrier facilities, unused | RGB LED, buttons and buzzer |
 | GP19 | Unused | Original example LED removed |
 
-IR task alone opens/reads the existing adca device. The kernel driver implements ADC conversion and interrupts; no other application task uses the ADC. Motion task alone changes motor outputs or samples encoders. Both bridges stay in coast (11) in v0.1; no PWM or movement command exists.
+IR task alone opens/reads the existing adca device. The kernel driver implements ADC conversion and interrupts; no other application task uses the ADC. Motion owns motor outputs and the encoder dispatcher. Both bridges stay in coast (11) in v0.2; no PWM or movement command exists. Encoder edges are decoded in one IO_BANK0 handler, not sampled by the Motion task.
 
 ## Tasks and objects
 
@@ -37,16 +37,17 @@ IR task alone opens/reads the existing adca device. The kernel driver implements
 |---|---|---|---|
 | Kernel USB service | 3 | Existing port configuration | USB CDC |
 | Kernel Wi-Fi service | 4 | Existing port configuration | Radio polling |
-| Motion diagnostics | 12 | Any | Manual encoder sample every 1 ms |
+| Motion diagnostics | 12 | Processor 1 / core 0 | Publish capture snapshot, then requested 10 ms delay |
 | IR acquisition | 14 | Any | Paired ADC read, then 10 ms delay |
-| Report | 16 | Any | Status line every 250 ms |
+| Report | 16 | Any | Status line, then requested 250 ms delay |
 
-These are configured priorities and delays, not measured deadlines or WCET. The encoder polling diagnostic is for slow manual movement only; qualify an IRQ/PIO decoder before motor-speed control. Each task currently requests 2048 stack bytes; stack high-water measurements are pending.
+These are configured priorities and requested delays, not measured deadlines or WCET. Motion's requested 10 ms delay normally yields approximately 20 ms between snapshot publications, and the 250 ms report delay yields approximately 260 ms. v0.1's task-side polling was too coarse for faster hand rotation; its user-run records reached bad=66/60. v0.2 capture runs independently in GPIO IRQ13 at external interrupt priority 2 on core 0 (not task priority 2). The shared port vector table requires rejecting any pre-existing GPIO event owner on either core. Each task requests 2048 stack bytes; stack high-water and maximum encoder edge-rate measurements remain pending.
 
 | Interface | Producer/owner | Consumer | Kernel object/rule |
 |---|---|---|---|
 | IR snapshot | IR | Report; later Motion | IR-owned priority-inheritance mutex; copied snapshot |
 | Motion snapshot | Motion | Report | Motion-owned priority-inheritance mutex; copied snapshot |
+| Encoder capture | GPIO IRQ dispatcher | Motion | Interrupt-preserving SMP spinlock; copied state, no blocking mutex or console in ISR |
 | Radio status | Kernel service | Report | cyw43_utk_get_status safe accessor |
 
 Readers use TMO_POL and explicitly report a failed snapshot acquisition. No console output or ADC operation occurs while holding a snapshot mutex. All objects are created before application tasks start. Timestamp ages use unsigned 32-bit subtraction, valid for diagnostic ages across a timer wrap. Counters are signed 32-bit and saturate with a sticky flag; invalid-transition counters also saturate.

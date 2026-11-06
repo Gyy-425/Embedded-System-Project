@@ -1,0 +1,163 @@
+{
+  "baseline_commit": "c3b09544cb1fd6dac6ad4b8f523be0af59b44482",
+  "source_commit": "288d1a2729e0edebbe6a1699faeec2d083498c0c",
+  "source_dirty": true,
+  "application_version": "0.2",
+  "sdk": "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "label": "host-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05_encoder_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-host-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-encoder",
+      "command": [
+        "/tmp/aai05_encoder_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-host-encoder.log",
+      "warnings": []
+    },
+    {
+      "label": "host-motor-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_startup.c",
+        "app_program/subsystem2/drv_motor.c",
+        "-o",
+        "/tmp/aai05_motor_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-host-motor-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-motor-startup",
+      "command": [
+        "/tmp/aai05_motor_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-host-motor-startup.log",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder_capture.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05_capture_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-host-capture-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-capture",
+      "command": [
+        "/tmp/aai05_capture_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-host-capture.log",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder_startup.c",
+        "-o",
+        "/tmp/aai05_capture_startup_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-host-capture-startup-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-startup",
+      "command": [
+        "/tmp/aai05_capture_startup_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-host-capture-startup.log",
+      "warnings": []
+    },
+    {
+      "label": "firmware-test0",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=none",
+        "MQTT=0",
+        "CRASH_REPORT=0",
+        "TEST=0"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-firmware-test0.log",
+      "warnings": [],
+      "uf2": "output/firmware/AAI05_Diagnostics_v0_2.uf2",
+      "sha256": "c662dc2f4159267287bba2170baf5244ff7241fb743a3fa59ab1824c25d81c51",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 278704\t     92\t  24524\t 303320\t  4a0d8\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/build_make/mtk3pico_smp1_usb_cdc_wifi.elf"
+    },
+    {
+      "label": "firmware-test1",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=none",
+        "MQTT=0",
+        "CRASH_REPORT=0",
+        "TEST=1"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-06-v0_2-final-firmware-test1.log",
+      "warnings": [],
+      "uf2": "output/firmware/AAI05_Diagnostics_v0_2_TEST.uf2",
+      "sha256": "b332da2a6a76c683dc59268c8bb09a7e54cea1ccceadfc53012d5378459e1c35",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 279260\t     92\t  24524\t 303876\t  4a304\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/build_make/mtk3pico_smp1_usb_cdc_wifi_test.elf"
+    }
+  ],
+  "compiler": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009"
+}

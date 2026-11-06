@@ -1,0 +1,41 @@
+{
+  "source": "Coordinator-supplied attachment, saved byte-for-byte",
+  "records": 73,
+  "first_t_ms": 71500,
+  "last_t_ms": 90220,
+  "report_spacing_ms": 260,
+  "completed_requests": [
+    {
+      "motor": 1,
+      "direction": 1,
+      "duty_percent": 25,
+      "reported_elapsed_us": 400012
+    },
+    {
+      "motor": 1,
+      "direction": 2,
+      "duty_percent": 25,
+      "reported_elapsed_us": 400006
+    },
+    {
+      "motor": 2,
+      "direction": 1,
+      "duty_percent": 25,
+      "reported_elapsed_us": 400006
+    },
+    {
+      "motor": 2,
+      "direction": 2,
+      "duty_percent": 25,
+      "reported_elapsed_us": 400005
+    }
+  ],
+  "final_phase": "DONE",
+  "encoder_counts": "L=0,R=0 throughout",
+  "encoder_irq_count": 0,
+  "invalid_transitions": "0/0",
+  "overruns": "0/0",
+  "user_observation": "Did not notice wheel motion; heard a beep-like sound on GP20",
+  "power_and_wheel_clearance": "Coordinator confirms both wheels raised; bank VIN plus Pico USB connected.",
+  "conclusion": "Original GP20 reporting freeze did not recur in four requests. Software-reported cutoff completed; physical motor operation is NOT PASSED. No measured PWM waveform, output voltage, startup torque or sound source established."
+}

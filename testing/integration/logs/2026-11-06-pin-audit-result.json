@@ -1,0 +1,211 @@
+{
+  "scope": "Current v0.3.1 application GPIO/ADC/PWM/timer address and pin review; no hardware action",
+  "sdk_version": "2.3.0 local RP2040 register headers",
+  "register_values_compared": 66,
+  "matching_register_values": 65,
+  "mismatches": [
+    {
+      "register": "GPIO_OUT",
+      "bsp": "0xd0000008",
+      "sdk": "0xd0000010",
+      "current_motor_path_uses_it": false
+    }
+  ],
+  "register_values": {
+    "CTRL4": "0x40014024",
+    "PAD4": "0x4001c014",
+    "CTRL5": "0x4001402c",
+    "PAD5": "0x4001c018",
+    "CTRL8": "0x40014044",
+    "PAD8": "0x4001c024",
+    "CTRL9": "0x4001404c",
+    "PAD9": "0x4001c028",
+    "CTRL10": "0x40014054",
+    "PAD10": "0x4001c02c",
+    "CTRL11": "0x4001405c",
+    "PAD11": "0x4001c030",
+    "CTRL16": "0x40014084",
+    "PAD16": "0x4001c044",
+    "CTRL17": "0x4001408c",
+    "PAD17": "0x4001c048",
+    "CTRL20": "0x400140a4",
+    "PAD20": "0x4001c054",
+    "CTRL21": "0x400140ac",
+    "PAD21": "0x4001c058",
+    "CTRL26": "0x400140d4",
+    "PAD26": "0x4001c06c",
+    "CTRL27": "0x400140dc",
+    "PAD27": "0x4001c070",
+    "GPIO_IN": "0xd0000004",
+    "GPIO_OUT": "0xd0000008",
+    "GPIO_OUT_SET": "0xd0000014",
+    "GPIO_OUT_CLR": "0xd0000018",
+    "GPIO_OE": "0xd0000020",
+    "GPIO_OE_SET": "0xd0000024",
+    "GPIO_OE_CLR": "0xd0000028",
+    "PWM4_CSR": "0x40050050",
+    "PWM4_DIV": "0x40050054",
+    "PWM4_CTR": "0x40050058",
+    "PWM4_CC": "0x4005005c",
+    "PWM4_TOP": "0x40050060",
+    "PWM5_CSR": "0x40050064",
+    "PWM5_DIV": "0x40050068",
+    "PWM5_CTR": "0x4005006c",
+    "PWM5_CC": "0x40050070",
+    "PWM5_TOP": "0x40050074",
+    "TIMER_ALARM0": "0x40054010",
+    "TIMER_ARMED": "0x40054020",
+    "TIMER_TIMERAWL": "0x40054028",
+    "TIMER_PAUSE": "0x40054030",
+    "TIMER_INTR": "0x40054034",
+    "TIMER_INTE": "0x40054038",
+    "TIMER_INTS": "0x40054040",
+    "ADC_CS": "0x4004c000",
+    "ADC_RESULT": "0x4004c004",
+    "ADC_FCS": "0x4004c008",
+    "ADC_FIFO": "0x4004c00c",
+    "ADC_DIV": "0x4004c010",
+    "ADC_INTE": "0x4004c018",
+    "ADC_INTR": "0x4004c014",
+    "ADC_INTS": "0x4004c020",
+    "INTR0": "0x400140f0",
+    "PROC0_INTE0": "0x40014100",
+    "PROC0_INTS0": "0x40014120",
+    "PROC1_INTE0": "0x40014130",
+    "PROC1_INTF0": "0x40014140",
+    "INTR2": "0x400140f8",
+    "PROC0_INTE2": "0x40014108",
+    "PROC0_INTS2": "0x40014128",
+    "PROC1_INTE2": "0x40014138",
+    "PROC1_INTF2": "0x40014148"
+  },
+  "active_application_gpio_calls": [
+    {
+      "file": "app_program/subsystem1/drv_ir.c",
+      "macro": "GPIO_CTRL",
+      "argument": "APP_IR_LEFT_PIN"
+    },
+    {
+      "file": "app_program/subsystem1/drv_ir.c",
+      "macro": "GPIO",
+      "argument": "APP_IR_LEFT_PIN"
+    },
+    {
+      "file": "app_program/subsystem1/drv_ir.c",
+      "macro": "GPIO_CTRL",
+      "argument": "APP_IR_RIGHT_PIN"
+    },
+    {
+      "file": "app_program/subsystem1/drv_ir.c",
+      "macro": "GPIO",
+      "argument": "APP_IR_RIGHT_PIN"
+    },
+    {
+      "file": "app_program/subsystem2/motor_io_rp2040.c",
+      "macro": "GPIO",
+      "argument": "pin"
+    },
+    {
+      "file": "app_program/subsystem2/motor_io_rp2040.c",
+      "macro": "GPIO_CTRL",
+      "argument": "pin"
+    },
+    {
+      "file": "app_program/subsystem2/motor_pulse.c",
+      "macro": "GPIO_CTRL",
+      "argument": "pin"
+    },
+    {
+      "file": "app_program/subsystem2/motor_pulse.c",
+      "macro": "GPIO_CTRL",
+      "argument": "pin_a"
+    },
+    {
+      "file": "app_program/subsystem2/motor_pulse.c",
+      "macro": "GPIO_CTRL",
+      "argument": "pin_b"
+    },
+    {
+      "file": "app_program/subsystem2/motor_pulse.c",
+      "macro": "GPIO_CTRL",
+      "argument": "constant_pin"
+    },
+    {
+      "file": "app_program/subsystem2/motor_pulse.c",
+      "macro": "GPIO_CTRL",
+      "argument": "variable_pin"
+    },
+    {
+      "file": "app_program/subsystem2/subsystem2.c",
+      "macro": "GPIO",
+      "argument": "pins[i]"
+    },
+    {
+      "file": "app_program/subsystem2/subsystem2.c",
+      "macro": "GPIO",
+      "argument": "pins[i]"
+    }
+  ],
+  "steps": [
+    {
+      "name": "register-compile",
+      "exit_code": 0
+    },
+    {
+      "name": "register-values",
+      "exit_code": 0
+    },
+    {
+      "name": "pulse-compile",
+      "exit_code": 0
+    },
+    {
+      "name": "pulse",
+      "exit_code": 0
+    },
+    {
+      "name": "probe-compile",
+      "exit_code": 0
+    },
+    {
+      "name": "probe",
+      "exit_code": 0
+    },
+    {
+      "name": "encoder-startup-compile",
+      "exit_code": 0
+    },
+    {
+      "name": "encoder-startup",
+      "exit_code": 0
+    },
+    {
+      "name": "motor-startup-compile",
+      "exit_code": 0
+    },
+    {
+      "name": "motor-startup",
+      "exit_code": 0
+    }
+  ],
+  "production_source_changed": false,
+  "firmware_flashed": false,
+  "physical_motor_movement": "NOT PASSED in supplied four-pulse run",
+  "source_sha256": {
+    "app_program\\app.h": "ce0761589d7720c13e40a447905ea90217b0868202c76833f6cf2f3e8e536a7a",
+    "app_program\\subsystem1\\drv_ir.c": "5e7e02d36da71d8d0e6a42f4b8ff51c2ff8220750fc0e87ddbe184d6bc159055",
+    "app_program\\subsystem2\\encoder_capture.h": "2aeaaa8d1c8c090494581e078b0794ef911520625c5e902747362975311b6426",
+    "app_program\\subsystem2\\encoder_capture_rp2040.c": "ded7729df421912ad255362808f5098bb40f08bff6c77b243bd2bd99854a06d3",
+    "app_program\\subsystem2\\motor_io_rp2040.c": "9ad3df2ff579599f6d70c8eef792a6c7da37c952c4c277417107a15f941f560d",
+    "app_program\\subsystem2\\motor_pulse.c": "d29b2e9a128dd9c247c82e43395b5aee437e855182073f151ad154824c942ae5",
+    "include\\sys\\sysdepend\\cpu\\rp2040\\sysdef.h": "6ade6d453e6ea8975b16817368ca0776968e69b455290403364b33479d8475ef"
+  },
+  "verified_deployed_build_flags": {
+    "-DTM_CONSOLE_UART=0": true,
+    "-DBOARD_UART0_FREE=1": true,
+    "-DTM_CONSOLE_USB_CDC=1": true,
+    "-DMOTOR_TEST_PROBE=0": true
+  },
+  "normal_uf2_sha256": "30abbae451e37d54b6734c802a2ada3c38902ec979d5d3816ab15b01f288c9a1",
+  "sdk_expected_values": "2026-11-06-pin-audit-sdk-expected.json"
+}

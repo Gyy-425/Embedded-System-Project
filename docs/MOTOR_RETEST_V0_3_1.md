@@ -1,5 +1,7 @@
 # Raised-wheel retest after the captured HardFault correction
 
+**Latest user result:** all four25% requests completed their reported cutoffs with continuous logging, but no movement was noticed and encoder IRQ/counts remained0. Physical motor operation is NOT PASSED. Pause further unchanged pulses; see [the result and unpowered checks](../testing/integration/logs/2026-11-06-v0_3_1-user-no-visible-motion.md). The procedure below records the completed run, not a request to repeat it.
+
 ## Verified state
 
 Normal v0.3.1 is already installed through SWD. No UF2 copy is needed for this retest. Image: output/firmware/AAI05_Motor_Test_v0_3_1.uf2, SHA256 `30abbae451e37d54b6734c802a2ada3c38902ec979d5d3816ab15b01f288c9a1`. Original v0.3 is preserved for fault evidence; do not reload it.

@@ -24,6 +24,6 @@ Implementation method: inline on the established dedicated aai05/bring-up checko
 - [x] Implement standard-library Python codec/CLI using mosquitto_pub/sub binary input/hex output; bounded request retries, GET baseline sync, clean shutdown and readable UNKNOWN/no-motion output.
 - [x] Compile application C with strict warnings, compile normal/TEST communication firmware without running tests; Python syntax/static checks. Preserve no-hardware/no-functional-validation labels and old artifact hashes.
 - [x] Fresh-context read-only review, fix material findings and write tomorrow's exact procedure. Functional Pico/Wi-Fi/MQTT/packet tests remain PENDING. Prepared C/Python boundary and cross-language tests are unexecuted.
-- [ ] Save/push the feature branch after final source/evidence checks.
+- [x] Save/push the feature branch after final source/evidence checks. Implementation/evidence commit `eebdfbd7fc129a498f384c2e782980103cbff9e2` is pushed to `aai05/bring-up`; local/remote hashes matched. Functional tests and hardware validation remain pending.
 
 Do not infer colour calibration, seven-tape separability, real motor output, correct demo network authentication or whole-project minimum-bit compliance from this implementation. This case packs communication payloads; whole-application representation and measured savings remain later work.

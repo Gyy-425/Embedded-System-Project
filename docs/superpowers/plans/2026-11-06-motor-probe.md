@@ -13,7 +13,7 @@ Record the user's actual first-press stall and distinguish a start/timer-path sy
 - [x] Label banner and reports PROBE, DRIVE=OFF, describing PULSE as virtual activity.
 - [x] Review once using a fresh read-only reviewer: no blocking defect or confirmed freeze cause found. Address its minor missing probe marker in snapshot-error reports.
 - [x] Build/hash checks: all 16 steps pass without reported warnings; both UF2 hashes match JSON and original powered UF2 is unchanged. Reviewed no-output image is prepared locally; feature branch save follows.
-- [ ] Coordinator executes the one-press procedure; collect output and physical observations before any further change or powered retry.
+- [x] Coordinator supplied a continuous M1 D2 virtual request/cutoff/cooldown log and confirmed both wheels stayed still. PASS this captured request; original powered cause remains unresolved. Evidence: testing/integration/logs/2026-11-06-v0_3p-user-results.md.
 
 Build evidence: testing/integration/logs/2026-11-06-v0_3p-reviewed-build-result.json. Seven host programs include original powered-policy and probe-policy pulse fixtures, plus decoder, startup, capture, capture-startup and controller. Two probe firmware variants retain SMP and the radio driver. No shared kernel/BSP/radio source was altered. Host tests use boundary fakes and cannot qualify real SMP lock/interrupt delivery or establish the on-board cause.
 

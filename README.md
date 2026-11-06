@@ -4,6 +4,8 @@ Current diagnostic: **v0.3p NO_DRIVE probe**, following a user-reported freeze a
 
 Latest result: the user-run coast-only M1 D2 request completed, with both wheels still. Next is [one normal-output check with winding leads disconnected](docs/MOTOR_OUTPUT_ISOLATION.md). Communication is then prioritised through [the motor-inactive Wi-Fi/MQTT transport probe](docs/NETWORK_BRINGUP.md), using the workspace-local laptop broker. The original connected-motor stall remains unresolved.
 
+Latest coordinator steering: keep the motor wiring connected and try [the connected test with bank VIN plus laptop USB](docs/CONNECTED_MOTOR_TEST_V0_3.md). Cytron documents simultaneous USB/VIN operation; source selection is automatic, not isolated motor/logic power. Start with one observed bounded request and continue only after a clean result. The winding-disconnected procedure is now an alternative, not the required next step.
+
 Start with [the current bring-up guide](docs/BRINGUP.md) and [module ownership](TEAM.md). The application now uses three modules. The original course-template reference below describes its earlier examples.
 
 ---

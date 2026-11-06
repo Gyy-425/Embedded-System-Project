@@ -1,5 +1,7 @@
 # Normal-output check with motor windings disconnected
 
+The coordinator subsequently chose [connected testing with bank VIN and laptop USB](CONNECTED_MOTOR_TEST_V0_3.md). This unloaded method remains an alternative, not a required step before networking or that connected test.
+
 Purpose: the v0.3p coast-only request completed. Now separate normal GPIO/PWM output release from connected motor load and rotation-triggered encoder activity. Use the preserved normal v0.3 image only with all four winding leads disconnected below. This is not a retry of the original connected-motor test and does not prove a particular cause in advance.
 
 ## Disconnect with all power removed

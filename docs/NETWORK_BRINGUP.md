@@ -1,6 +1,6 @@
 # Motor-inactive Wi-Fi/MQTT transport probe v0.4
 
-This milestone is prioritised before later powered motion/colour following. First run the single unloaded-output check in MOTOR_OUTPUT_ISOLATION.md, then leave all four motor winding leads disconnected while bringing up communication. The v0.4 profile also retains both force-high motor overrides in software. It uses the existing course network/MQTT implementation unchanged.
+This milestone is prioritised before later colour following. The coordinator now selects CONNECTED_MOTOR_TEST_V0_3.md as the next motor check; the winding-disconnected method is an alternative. Motor winding wires may remain connected for networking, using only the v0.4 NO_DRIVE profile, which retains both force-high motor overrides in software. It uses the existing course network/MQTT implementation unchanged.
 
 ## What this stage demonstrates
 
@@ -39,7 +39,7 @@ Open another PowerShell terminal and subscribe:
 
 ## Flash and inspect
 
-1. Keep bank disconnected and winding leads isolated. Close Serial Monitor; unplug the Pico USB.
+1. Keep bank disconnected for upload, wheels raised and motor wires secure. Winding leads may remain connected. Close Serial Monitor; switch OFF and unplug the Pico USB.
 2. Hold BOOTSEL while reconnecting the laptop USB data cable, then release when RPI-RP2 appears. Copy **output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE.uf2**, normal without _TEST, onto the drive.
 3. Open the actual Pico COM port at115200, 8N1, no flow control. Do not press GP20; no motor action is required for this network test.
 4. Confirm the AAI05 NETWORK PROBE v0.4 banner, MOTOR_MODE=PROBE, NETWORK_MODE=TRANSPORT_PROBE and DRIVE=OFF. Look for `wifi: link up, ip=...`, then `mqtt: connected`, `mqtt: subscribed` and matching heartbeat TX/RX every approximately5 seconds. The repeating WIFI_LINK/WIFI_IP fields are snapshots; use actual link and MQTT event logs together.

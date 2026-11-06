@@ -2,6 +2,8 @@
 
 **Testing paused on 2026-11-06:** the coordinator reports serial output stopping at the first GP20 press, with no visible wheel movement. Use [the v0.3p no-output probe](MOTOR_PROBE_V0_3P.md) before retrying this powered procedure. The original procedure below is retained for reference; motor operation has not passed.
 
+**Subsequent steering:** the coast-only probe completed, and the coordinator now requests connected-motor testing with bank VIN plus laptop USB. Follow [that current controlled procedure](CONNECTED_MOTOR_TEST_V0_3.md), including immediate physical power-off on another reporting stall. No fault correction or connected-motor pass has been established.
+
 This image can drive one wheel only after an explicit onboard GP20 press. It is different from no-drive v0.2. It requests 25% PWM for 400 ms, then removes drive and coasts. A wheel may keep rolling briefly after drive is removed. No floor driving, line following, automatic duty increase or MQTT command exists in this image.
 
 ## Controls and sequence

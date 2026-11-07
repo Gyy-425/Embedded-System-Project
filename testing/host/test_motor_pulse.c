@@ -36,6 +36,12 @@ static bool expire_on_enable;
 static bool forbid_drive;
 static bool pwm_reset_stuck;
 static bool timer_advances_on_read;
+static bool is_pair_test;
+static int8_t expected_pair[2];
+static int8_t previous_pair[2];
+static bool pair_coasted[2];
+static uint32_t gpio_write_count;
+static bool expire_before_renew_clear;
 static void (*alarm_handler)(UINT);
 
 static uint32_t *reg(uint32_t address)
@@ -64,6 +70,19 @@ static void assert_output_policy(void)
     for (unsigned int wheel = 1U; wheel <= 2U; ++wheel) {
         unsigned int pin = wheel == 1U ? 8U : 10U;
         unsigned int pair = pin_level(pin) | (pin_level(pin + 1U) << 1U);
+        if (is_pair_test && !MOTOR_TEST_PROBE && !forbid_drive) {
+            unsigned int index = wheel - 1U;
+            int8_t requested = expected_pair[index];
+            int8_t previous = previous_pair[index];
+            if (pair == 3U) { pair_coasted[index] = true; continue; }
+            if (!pair_coasted[index] && previous != 0) {
+                assert(pair == 0U || pair == (previous > 0 ? 1U : 2U));
+            } else {
+                assert(requested != 0);
+                assert(pair == 0U || pair == (requested > 0 ? 1U : 2U));
+            }
+            continue;
+        }
         if (MOTOR_TEST_PROBE || forbid_drive || wheel != expected_wheel) {
             assert(pair == 3U);
         } else {
@@ -89,7 +108,14 @@ static uint32_t read_register(uint32_t address)
 static void write_register(uint32_t address, uint32_t value)
 {
     assert((address & 3U) == 0U);
+    if (expire_before_renew_clear && address == TIMER_INTR) {
+        now_us += 20U;
+        *reg(TIMER_ARMED) &= ~1U;
+        *reg(TIMER_INTR) |= 1U;
+        expire_before_renew_clear = false;
+    }
     if (address >= IO_BANK0_BASE && address < IO_BANK0_BASE + 0xF0U) {
+        ++gpio_write_count;
         bool owned = false;
         for (unsigned int pin = 8U; pin <= 11U; ++pin) {
             if (address == (uint32_t)GPIO_CTRL(pin)) owned = true;
@@ -163,6 +189,12 @@ static void reset_hardware(void)
     memset(addresses, 0, sizeof(addresses)); memset(values, 0, sizeof(values));
     register_count = 0U; now_us = 1000U; expected_wheel = expected_direction = 0U;
     definition_error = 0; alarm_handler = NULL; expire_on_enable = false; forbid_drive = false; pwm_reset_stuck = false; timer_advances_on_read = false;
+    is_pair_test = false;
+    memset(expected_pair, 0, sizeof(expected_pair));
+    memset(previous_pair, 0, sizeof(previous_pair));
+    memset(pair_coasted, 0, sizeof(pair_coasted));
+    gpio_write_count = 0U;
+    expire_before_renew_clear = false;
     *reg(TEST_WATCHDOG_TICK) = 0x20CU;
     *reg(TEST_REF_CTRL) = 2U;
     *reg(TEST_REF_DIV) = 0x100U;
@@ -321,11 +353,131 @@ static void test_limits_conflicts_failure_and_wrap(void)
     expected_wheel = 0U; motor_pulse_read(&status); assert(!status.active);
 }
 
+static void expect_pair(int8_t left_pct, int8_t right_pct)
+{
+    is_pair_test = true;
+    memcpy(previous_pair, expected_pair, sizeof(previous_pair));
+    expected_pair[0] = left_pct;
+    expected_pair[1] = right_pct;
+    memset(pair_coasted, 0, sizeof(pair_coasted));
+}
+
+static void test_paired_drive_and_lease(void)
+{
+    const int8_t duties[] = {-50, 0, 50};
+    motor_pulse_status_t status;
+
+    for (unsigned int left = 0U; left < 3U; ++left) {
+        for (unsigned int right = 0U; right < 3U; ++right) {
+            reset_hardware();
+            assert(motor_pulse_init() == E_OK);
+            expect_pair(duties[left], duties[right]);
+            assert(motor_drive_set(duties[left], duties[right], 100U) == E_OK);
+            motor_pulse_read(&status);
+            assert(status.active == (duties[left] != 0 || duties[right] != 0));
+            if (!status.active) continue;
+            uint32_t writes = gpio_write_count;
+            now_us += 20000U;
+            assert(motor_drive_set(duties[left], duties[right], 100U) == E_OK);
+            assert(gpio_write_count == writes);
+            assert(*reg(TIMER_ALARM0) == now_us + 100000U);
+            for (unsigned int wheel = 0U; wheel < 2U; ++wheel) {
+                unsigned int pin = 8U + wheel * 2U;
+                unsigned int pair = pin_level(pin) | (pin_level(pin + 1U) << 1U);
+                assert(pair == (MOTOR_TEST_PROBE || expected_pair[wheel] == 0 ?
+                                3U : expected_pair[wheel] > 0 ? 1U : 2U));
+            }
+            *reg(PWM_BASE + 4U * 0x14U + 8U) = 11000U;
+            *reg(PWM_BASE + 5U * 0x14U + 8U) = 11000U;
+            assert_output_policy();
+            now_us += 100000U;
+            *reg(TIMER_ARMED) &= ~1U;
+            *reg(TIMER_INTR) |= 1U;
+            alarm_handler(0U);
+            motor_pulse_read(&status);
+            assert(!status.active && status.cutoff_count == 1U);
+            assert(pin_level(8U) && pin_level(9U));
+            assert(pin_level(10U) && pin_level(11U));
+        }
+    }
+
+    reset_hardware();
+    assert(motor_pulse_init() == E_OK);
+    expect_pair(50, -50);
+    assert(motor_drive_set(50, -50, 100U) == E_OK);
+    expect_pair(-35, 40);
+    assert(motor_drive_set(-35, 40, 80U) == E_OK);
+    assert(*reg(PWM_BASE + 4U * 0x14U + 0xCU) == (4375U << 16U));
+    assert(*reg(PWM_BASE + 5U * 0x14U + 0xCU) == 5000U);
+    motor_pulse_stop();
+    assert(pin_level(8U) && pin_level(9U) && pin_level(10U) && pin_level(11U));
+
+    reset_hardware();
+    assert(motor_pulse_init() == E_OK);
+    expect_pair(50, -50);
+    now_us = UINT32_MAX - 50000U;
+    assert(motor_drive_set(50, -50, 100U) == E_OK);
+    now_us += 100000U;
+    assert(motor_drive_set(50, -50, 100U) == E_TMOUT);
+    motor_pulse_read(&status);
+    assert(!status.active); /* Expired lease cannot be renewed before IRQ runs. */
+
+    reset_hardware();
+    assert(motor_pulse_init() == E_OK);
+    expect_pair(50, 50);
+    expire_on_enable = true;
+    assert(motor_drive_set(50, 50, 100U) == E_TMOUT);
+    motor_pulse_read(&status);
+    assert(!status.active);
+    reset_hardware();
+    assert(motor_pulse_init() == E_OK);
+    assert(motor_drive_set(INT8_MIN, 0, 100U) == E_PAR);
+    assert(motor_drive_set(0, 51, 100U) == E_PAR);
+    assert(motor_drive_set(0, 0, 0U) == E_PAR);
+    assert(motor_drive_set(0, 0, 101U) == E_PAR);
+}
+
+static void test_pair_expiry_cannot_restart(void)
+{
+    motor_pulse_status_t status;
+
+    reset_hardware();
+    assert(motor_pulse_init() == E_OK);
+    expect_pair(50, -50);
+    assert(motor_drive_set(50, -50, 100U) == E_OK);
+    now_us += 100000U;
+    *reg(TIMER_ARMED) &= ~1U;
+    *reg(TIMER_INTR) |= 1U;
+    alarm_handler(0U);
+    /* Caller may still hold an older active=true snapshot from before IRQ. */
+    assert(motor_drive_set(50, -50, 100U) == E_TMOUT);
+    motor_pulse_read(&status);
+    assert(!status.active && status.cutoff_count == 1U);
+}
+
+static void test_pair_expiry_during_renewal(void)
+{
+    motor_pulse_status_t status;
+
+    reset_hardware();
+    assert(motor_pulse_init() == E_OK);
+    expect_pair(50, -50);
+    assert(motor_drive_set(50, -50, 100U) == E_OK);
+    now_us += 99990U;
+    expire_before_renew_clear = true;
+    assert(motor_drive_set(50, -50, 100U) == E_TMOUT);
+    motor_pulse_read(&status);
+    assert(!status.active);
+    assert(motor_drive_set(50, -50, 100U) == E_TMOUT);
+}
+
 int main(int argc, char **argv)
 {
     reset_hardware();
     if (argc == 2) {
-        if (strcmp(argv[1], "reset") == 0) test_cold_pwm_reset();
+        if (strcmp(argv[1], "drive-after-irq") == 0) test_pair_expiry_cannot_restart();
+        else if (strcmp(argv[1], "renewal-race") == 0) test_pair_expiry_during_renewal();
+        else if (strcmp(argv[1], "reset") == 0) test_cold_pwm_reset();
         else test_unprepared_timer_rejected();
         return 0;
     }
@@ -338,8 +490,11 @@ int main(int argc, char **argv)
     test_cold_pwm_reset();
     test_unprepared_timer_rejected();
     test_early_timebase_setup_without_counter_reset();
+    test_paired_drive_and_lease();
+    test_pair_expiry_cannot_restart();
+    test_pair_expiry_during_renewal();
     puts(MOTOR_TEST_PROBE ?
-         "PASS: PROBE always coast, virtual pulse/alarm, caps/conflicts/failure and wrap" :
-         "PASS: direct PWM/brake, coast stop in both phases, cutoff, limits and wrap");
+         "PASS: PROBE always coast for pulse/pair, lease, caps/conflicts and wrap" :
+         "PASS: pulse/pair PWM, ordered coast, lease renewal/cutoff and wrap");
     return 0;
 }

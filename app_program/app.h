@@ -8,9 +8,17 @@
 #include <bsp/libbsp.h>
 #include "subsystem2/encoder_capture.h"
 #include "subsystem2/motor_test.h"
+#include "subsystem2/motion_control.h"
 
 #ifndef AAI05_COMMS_APP
 #define AAI05_COMMS_APP 0
+#endif
+#ifndef AAI05_MOTION_APP
+#define AAI05_MOTION_APP 0
+#endif
+
+#if AAI05_MOTION_APP && (MOTOR_TEST_PROBE || TM_NET_LWIP || AAI05_COMMS_APP)
+#error Local Motion profile requires motor output and no network application
 #endif
 
 #if AAI05_COMMS_APP && (!MOTOR_TEST_PROBE || !TM_NET_LWIP || !TM_MQTT)
@@ -54,6 +62,7 @@ typedef struct {
     uint8_t motor_phase;
     uint8_t motor_step;
     uint8_t motor_stop_reason;
+    motion_status_t motion;
 } motion_snapshot_t;
 
 IMPORT ID app_start_task(FP entry, PRI priority, UW processor, const char *name);

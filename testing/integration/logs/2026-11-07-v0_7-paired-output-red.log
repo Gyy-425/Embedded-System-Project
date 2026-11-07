@@ -1,0 +1,1 @@
+aai05_pair_test: testing/host/test_motor_pulse.c:367: test_paired_drive_and_lease: Assertion `motor_drive_set(duties[left], duties[right], 100U) == E_OK' failed.

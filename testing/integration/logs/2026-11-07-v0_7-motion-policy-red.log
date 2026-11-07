@@ -1,0 +1,1 @@
+aai05_motion_test: testing/host/test_motion_control.c:16: test_start_refresh_and_expiry: Assertion `motion_control_submit(&control, &command, 1010U) == MOTION_ACCEPTED' failed.

@@ -1,0 +1,1 @@
+aai05_motion_test: testing/host/test_motion_control.c:134: test_late_fresh_request_cannot_hide_expiry: Assertion `motion_control_submit(&control, &command, 100U) == MOTION_LATCHED' failed.

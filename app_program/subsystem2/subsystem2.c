@@ -22,7 +22,9 @@ static void motion_task(INT start_code, void *extra)
 {
     motion_snapshot_t next = {0};
     encoder_capture_t capture = {0};
+#if !AAI05_MOTION_APP
     motor_test_t test;
+#endif
     motor_pulse_status_t motor;
     ER buttons_error;
     ER motor_error;
@@ -32,7 +34,9 @@ static void motion_task(INT start_code, void *extra)
     next.capture_ready = (next.capture_error == E_OK);
     buttons_error = configure_test_buttons();
     motor_error = (ER)motor_pulse_init();
+#if !AAI05_MOTION_APP
     motor_test_init(&test, app_now_ms());
+#endif
     for (;;) {
         if (next.capture_ready) encoder_capture_read(&capture);
         motor_pulse_read(&motor);
@@ -40,6 +44,10 @@ static void motion_task(INT start_code, void *extra)
         UW buttons = in_w(GPIO_IN);
         bool healthy = motor_test_inputs_ready(&capture, &motor,
                             next.capture_ready, buttons_error, motor_error);
+#if AAI05_MOTION_APP
+        motion_runtime_step(now, (uint32_t)buttons, healthy, motor.active,
+                              &next.motion);
+#else
         uint8_t action = motor_test_update(&test, now,
                             (buttons & (1U << MOTOR_NEXT_PIN)) == 0U,
                             (buttons & (1U << MOTOR_STOP_PIN)) == 0U,
@@ -55,13 +63,16 @@ static void motion_task(INT start_code, void *extra)
         } else if (action == MOTOR_TEST_STOP) {
             motor_pulse_stop();
         }
+#endif
         motor_pulse_read(&next.motor);
         if (buttons_error < E_OK || motor_error < E_OK) {
             next.motor.error = buttons_error < E_OK ? buttons_error : motor_error;
         }
+#if !AAI05_MOTION_APP
         next.motor_phase = test.phase;
         next.motor_step = test.step;
         next.motor_stop_reason = test.stop_reason;
+#endif
         next.left_count = capture.left.count;
         next.right_count = capture.right.count;
         next.left_invalid = capture.left.invalid_transitions;
@@ -90,6 +101,10 @@ EXPORT ER subsystem2_init(void)
     ER timer_error = (ER)motor_timebase_init();
     if (timer_error < E_OK) {
         return timer_error;
+    }
+    ER runtime_error = (ER)motion_runtime_init();
+    if (runtime_error < E_OK) {
+        return runtime_error;
     }
     attributes.mtxatr = TA_INHERIT;
     snapshot_mutex = tk_cre_mtx(&attributes);

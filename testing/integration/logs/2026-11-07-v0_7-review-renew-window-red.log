@@ -1,0 +1,1 @@
+aai05_pair_review_test: testing/host/test_motor_pulse.c:466: test_pair_expiry_during_renewal: Assertion `motor_drive_set(50, -50, 100U) == E_TMOUT' failed.

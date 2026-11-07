@@ -1,0 +1,1 @@
+aai05_motion_test: testing/host/test_motion_control.c:138: test_local_producer_is_finite_and_requires_release: Assertion `motion_button_update(&button, base + 200U, true, true, &command)' failed.

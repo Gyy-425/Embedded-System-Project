@@ -5,8 +5,13 @@
 
 static const char *motor_phase_name(uint8_t phase)
 {
+#if AAI05_MOTION_APP
+    static const char *const names[] = {"READY", "RUNNING", "STOPPED", "FAULT"};
+    return phase < 4U ? names[phase] : "INVALID";
+#else
     static const char *const names[] = {"IDLE", "PULSE", "COOLDOWN", "DONE", "STOPPED"};
     return phase < 5U ? names[phase] : "INVALID";
+#endif
 }
 
 static void report_task(INT start_code, void *extra)
@@ -40,7 +45,12 @@ static void report_task(INT start_code, void *extra)
 #if MOTOR_TEST_PROBE
                       "MOTOR_MODE=PROBE "
 #endif
+#if AAI05_MOTION_APP
+                      "MOTION[state=%s L=%d R=%d lease=%u seq=%u "
+                      "reason=%u cutoff=%u err=%d] "
+#else
                       "MOTOR[phase=%s next=%u M=%u D=%u pct=%u us=%u cutoff=%u stop=%u err=%d] "
+#endif
                       "DRIVE=%s RADIO_READY=%u"
 #if TM_NET_LWIP
 #if AAI05_COMMS_APP
@@ -66,12 +76,20 @@ static void report_task(INT start_code, void *extra)
                              (motion.right_overrun != 0U) ||
                              motion.count_saturated ||
                              !motion.capture_ready),
+#if AAI05_MOTION_APP
+                      motor_phase_name(motion.motion.phase),
+                      (INT)motion.motion.left_pct, (INT)motion.motion.right_pct,
+                      (UINT)motion.motion.lease_ms, (UINT)motion.motion.sequence,
+                      (UINT)motion.motion.reason,
+                      (UINT)motion.motor.cutoff_count, (INT)motion.motor.error,
+#else
                       motor_phase_name(motion.motor_phase),
                       (UINT)(motion.motor_step < 4U ? motion.motor_step + 1U : 0U),
                       (UINT)motion.motor.wheel, (UINT)motion.motor.direction,
                       (UINT)motion.motor.duty, (UINT)motion.motor.elapsed_us,
                       (UINT)motion.motor.cutoff_count, (UINT)motion.motor_stop_reason,
                       (INT)motion.motor.error,
+#endif
                       (!MOTOR_TEST_PROBE && motion.motor.active) ? "ON" : "OFF", radio_ready
 #if TM_NET_LWIP
                       , (INT)radio.link_status, (UINT)(radio.ip_addr & 0xFFU),

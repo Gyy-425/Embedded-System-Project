@@ -55,7 +55,9 @@ EXPORT INT usermain(void)
     halt_on_error(subsystem2_init(), "motion init");
     halt_on_error(subsystem1_init(), "IR init");
     halt_on_error(subsystem3_init(), "report init");
-#if AAI05_COMMS_APP
+#if AAI05_MOTION_APP
+    tm_printf((UB *)"\n=== AAI05 MOTION v0.7: LOCAL OPEN-LOOP EXERCISE ===\n");
+#elif AAI05_COMMS_APP
     tm_printf((UB *)"\n=== AAI05 COMMS v0.5: NO MOTOR OUTPUT ===\n");
 #elif TM_NET_LWIP && MOTOR_TEST_PROBE
     tm_printf((UB *)"\n=== AAI05 NETWORK PROBE v0.4: NO MOTOR OUTPUT ===\n");
@@ -79,12 +81,21 @@ EXPORT INT usermain(void)
 #else
     tm_printf((UB *)"Motor image: USB diagnostics; MQTT disabled in this build.\n");
 #endif
+#if AAI05_MOTION_APP
+    tm_printf((UB *)"GP20: one fresh press renews left D1/50%% commands "
+                       "for 2 seconds; right wheel coasts.\n");
+    tm_printf((UB *)"100 ms command/hardware lease. GP21 or expiry latches "
+                       "STOPPED until reset. No automatic restart.\n");
+    tm_printf((UB *)"Encoder warnings remain diagnostic; no speed feedback "
+                       "or calibrated physical-forward convention.\n");
+#else
     tm_printf((UB *)"GP20 NEXT: M1 D1, M1 D2, M2 D1, M2 D2. GP21 STOP latches until reset.\n");
 #if MOTOR_TEST_PROBE
     tm_printf((UB *)"PROBE: 400 ms virtual pulse; both inputs remain high/coast. DRIVE stays OFF.\n");
 #else
     tm_printf((UB *)"One wheel, %u percent duty, 400 ms timer cutoff; wait for IDLE before each fresh press.\n",
               (UINT)MOTOR_PULSE_MAX_DUTY);
+#endif
 #endif
     tm_printf((UB *)"WHEELS RAISED. No drive on boot. Never use the M1/M2 hardware test buttons.\n");
 #if APP_TEST

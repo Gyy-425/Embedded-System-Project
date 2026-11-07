@@ -17,6 +17,7 @@
 #define MOTOR_PWM_PERIOD 12500U
 #define MOTOR_NEXT_PIN 20U
 #define MOTOR_STOP_PIN 21U
+#define MOTOR_DRIVE_MAX_LEASE_MS 100U
 
 typedef struct
 {
@@ -38,4 +39,7 @@ int32_t motor_pulse_start(uint8_t wheel, uint8_t direction, uint8_t duty,
                          uint32_t duration_ms);
 void motor_pulse_stop(void);
 void motor_pulse_read(motor_pulse_status_t *p_status);
+/* Motion-owner only. Signed electrical duty, zero=coast, lease1..100ms.
+ * Same-duty updates renew the alarm without interrupting PWM. */
+int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms);
 #endif

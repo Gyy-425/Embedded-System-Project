@@ -28,6 +28,10 @@ _Static_assert(CLK_PLL_SYS_FREQ == 125000000U,
 
 static motor_pulse_status_t g_motor_pulse_status;
 static uint32_t g_motor_pulse_started_us;
+static int8_t g_motor_drive_duty[2];
+static bool g_motor_drive_is_continuous;
+static bool g_motor_drive_expired;
+static uint32_t g_motor_drive_lease_us;
 
 static bool motor_pulse_timebase_valid(void)
 {
@@ -99,16 +103,24 @@ static void motor_pulse_stop_locked(void)
     out_w(GPIO_OUT_SET, MOTOR_OUTPUT_MASK);
     if (g_motor_pulse_status.active)
     {
-        uint32_t pin_a = (g_motor_pulse_status.wheel == 1U) ? 8U : 10U;
-        uint32_t pwm_pin = (g_motor_pulse_status.direction == 1U) ?
-                           pin_a : pin_a + 1U;
-        uint32_t low_pin = (g_motor_pulse_status.direction == 1U) ?
-                           pin_a + 1U : pin_a;
         g_motor_pulse_status.elapsed_us =
             (uint32_t)in_w(TIMER_TIMERAWL) - g_motor_pulse_started_us;
-        /* Raise the PWM leg first: 00 -> requested drive -> 11, no reverse. */
-        out_w(GPIO_CTRL(pwm_pin), GPIO_CTRL_FUNCSEL_PWM | PULSE_OUT_HIGH);
-        out_w(GPIO_CTRL(low_pin), GPIO_CTRL_FUNCSEL_PWM | PULSE_OUT_HIGH);
+        for (uint32_t wheel = 0U; wheel < 2U; ++wheel)
+        {
+            if (g_motor_drive_duty[wheel] != 0)
+            {
+                uint32_t pin_a = 8U + wheel * 2U;
+                uint32_t pwm_pin = (g_motor_drive_duty[wheel] > 0) ?
+                                   pin_a : pin_a + 1U;
+                uint32_t low_pin = (g_motor_drive_duty[wheel] > 0) ?
+                                   pin_a + 1U : pin_a;
+                /* Raise PWM first: 00 -> requested drive -> 11, no reverse. */
+                out_w(GPIO_CTRL(pwm_pin),
+                      GPIO_CTRL_FUNCSEL_PWM | PULSE_OUT_HIGH);
+                out_w(GPIO_CTRL(low_pin),
+                      GPIO_CTRL_FUNCSEL_PWM | PULSE_OUT_HIGH);
+            }
+        }
     }
     /* Both bridges are now coasted before SIO handoff or PWM disable. */
     for (uint32_t pin = 8U; pin <= 11U; ++pin)
@@ -121,6 +133,9 @@ static void motor_pulse_stop_locked(void)
     out_w(TIMER_ARMED, 1U);
     out_w(TIMER_INTR, 1U);
     g_motor_pulse_status.active = false;
+    g_motor_drive_duty[0] = 0;
+    g_motor_drive_duty[1] = 0;
+    g_motor_drive_is_continuous = false;
 }
 
 static void motor_pulse_irq(UINT intno)
@@ -129,6 +144,10 @@ static void motor_pulse_irq(UINT intno)
     (void)intno;
     if ((in_w(TIMER_INTS) & 1U) != 0U)
     {
+        if (g_motor_pulse_status.active && g_motor_drive_is_continuous)
+        {
+            g_motor_drive_expired = true;
+        }
         if (g_motor_pulse_status.active &&
             (g_motor_pulse_status.cutoff_count < UINT32_MAX))
         {
@@ -156,6 +175,10 @@ int32_t motor_pulse_init(void)
     }
 #endif
     g_motor_pulse_status = (motor_pulse_status_t){0};
+    g_motor_drive_expired = false;
+    g_motor_drive_duty[0] = 0;
+    g_motor_drive_duty[1] = 0;
+    g_motor_drive_is_continuous = false;
     if (!motor_pulse_timebase_valid())
     {
         g_motor_pulse_status.error = E_CTX;
@@ -228,6 +251,8 @@ static ER motor_pulse_start_locked(uint8_t wheel, uint8_t direction,
     g_motor_pulse_status.wheel = wheel;
     g_motor_pulse_status.direction = direction;
     g_motor_pulse_status.duty = duty;
+    g_motor_drive_duty[wheel - 1U] = (int8_t)(
+        (direction == 1U) ? (int32_t)duty : -(int32_t)duty);
     g_motor_pulse_status.elapsed_us = 0U;
     g_motor_pulse_status.active = true;
     out_w(TIMER_INTR, 1U);
@@ -300,4 +325,174 @@ void motor_pulse_read(motor_pulse_status_t *p_status)
     UINT saved = motor_pulse_lock();
     *p_status = g_motor_pulse_status;
     motor_pulse_unlock(saved);
+}
+
+static uint32_t motor_drive_magnitude(int8_t duty)
+{
+    return (uint32_t)((duty < 0) ? -(int32_t)duty : (int32_t)duty);
+}
+
+static void motor_drive_configure_wheel(uint32_t wheel, int8_t duty)
+{
+    if (duty != 0)
+    {
+        uint32_t base = PULSE_PWM_BASE(wheel + 4U);
+        uint32_t pin_a = 8U + wheel * 2U;
+        uint32_t cc = MOTOR_PWM_PERIOD * motor_drive_magnitude(duty) / 100U;
+        uint32_t cc_pair = (duty > 0) ? cc : cc << 16U;
+
+        out_w(base + 4U, 16U);
+        out_w(base + 8U, 0U);
+        out_w(base + 0x10U, MOTOR_PWM_PERIOD - 1U);
+        out_w(base + 0xCU, cc_pair);
+        out_w(GPIO_CTRL(pin_a), GPIO_CTRL_FUNCSEL_PWM | PULSE_OUT_HIGH);
+        out_w(GPIO_CTRL(pin_a + 1U), GPIO_CTRL_FUNCSEL_PWM | PULSE_OUT_HIGH);
+    }
+}
+
+static void motor_drive_release_wheel(uint32_t wheel, int8_t duty)
+{
+#if !MOTOR_TEST_PROBE
+    if (duty != 0)
+    {
+        uint32_t pin_a = 8U + wheel * 2U;
+        uint32_t pwm_pin = (duty > 0) ? pin_a : pin_a + 1U;
+        uint32_t low_pin = (duty > 0) ? pin_a + 1U : pin_a;
+        out_w(GPIO_CTRL(low_pin), GPIO_CTRL_FUNCSEL_PWM);
+        out_w(GPIO_CTRL(pwm_pin), GPIO_CTRL_FUNCSEL_PWM);
+    }
+#else
+    (void)wheel;
+    (void)duty;
+#endif
+}
+
+static ER motor_drive_start_locked(int8_t left_pct, int8_t right_pct,
+                                    uint32_t lease_us)
+{
+    uint32_t started_us = (uint32_t)in_w(TIMER_TIMERAWL);
+    motor_pulse_stop_locked();
+    motor_drive_configure_wheel(0U, left_pct);
+    motor_drive_configure_wheel(1U, right_pct);
+    g_motor_drive_duty[0] = left_pct;
+    g_motor_drive_duty[1] = right_pct;
+    g_motor_drive_is_continuous = true;
+    g_motor_drive_lease_us = lease_us;
+    g_motor_pulse_started_us = started_us;
+    g_motor_pulse_status.wheel = 0U;
+    g_motor_pulse_status.direction = 0U;
+    g_motor_pulse_status.duty = (uint8_t)(
+        motor_drive_magnitude(left_pct) > motor_drive_magnitude(right_pct) ?
+        motor_drive_magnitude(left_pct) : motor_drive_magnitude(right_pct));
+    g_motor_pulse_status.elapsed_us = 0U;
+    g_motor_pulse_status.active = true;
+    out_w(TIMER_INTR, 1U);
+    out_w(TIMER_ALARM0, g_motor_pulse_started_us + lease_us);
+    out_w(PULSE_TIMER_SET, 1U);
+    if (left_pct != 0)
+    {
+        out_w(PULSE_PWM_BASE(4U), 1U);
+    }
+    if (right_pct != 0)
+    {
+        out_w(PULSE_PWM_BASE(5U), 1U);
+    }
+    if (motor_pulse_missed_deadline(lease_us))
+    {
+        g_motor_drive_expired = true;
+        motor_pulse_stop_locked();
+        return E_TMOUT;
+    }
+    motor_drive_release_wheel(0U, left_pct);
+    motor_drive_release_wheel(1U, right_pct);
+    if (motor_pulse_missed_deadline(lease_us))
+    {
+        g_motor_drive_expired = true;
+        motor_pulse_stop_locked();
+        return E_TMOUT;
+    }
+    return E_OK;
+}
+
+static ER motor_drive_renew_locked(uint32_t lease_us)
+{
+    uint32_t previous_started_us = g_motor_pulse_started_us;
+    uint32_t previous_lease_us = g_motor_drive_lease_us;
+    uint32_t renewed_us = (uint32_t)in_w(TIMER_TIMERAWL);
+
+    if (((uint32_t)(renewed_us - previous_started_us) >= previous_lease_us) ||
+        ((in_w(TIMER_ARMED) & 1U) == 0U))
+    {
+        g_motor_drive_expired = true;
+        motor_pulse_stop_locked();
+        return E_TMOUT;
+    }
+    g_motor_pulse_started_us = renewed_us;
+    g_motor_drive_lease_us = lease_us;
+    out_w(TIMER_INTR, 1U);
+    out_w(TIMER_ALARM0, renewed_us + lease_us);
+    /* IRQs are masked here. Do not erase expiry that crossed during rearm. */
+    if (((uint32_t)((uint32_t)in_w(TIMER_TIMERAWL) - previous_started_us) >=
+         previous_lease_us) || motor_pulse_missed_deadline(lease_us))
+    {
+        g_motor_drive_expired = true;
+        motor_pulse_stop_locked();
+        return E_TMOUT;
+    }
+    return E_OK;
+}
+
+int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms)
+{
+    UINT saved = motor_pulse_lock();
+    ER error = E_OK;
+
+    if (!g_motor_pulse_status.ready)
+    {
+        error = E_CTX;
+    }
+    else if (g_motor_drive_expired)
+    {
+        /* Only startup initialization clears the continuous-output latch. */
+        motor_pulse_stop_locked();
+        error = E_TMOUT;
+    }
+    else if (g_motor_pulse_status.active && !g_motor_drive_is_continuous)
+    {
+        error = E_BUSY;
+    }
+    else if ((left_pct < -(int32_t)MOTOR_PULSE_MAX_DUTY) ||
+             (left_pct > (int32_t)MOTOR_PULSE_MAX_DUTY) ||
+             (right_pct < -(int32_t)MOTOR_PULSE_MAX_DUTY) ||
+             (right_pct > (int32_t)MOTOR_PULSE_MAX_DUTY) ||
+             (lease_ms == 0U) || (lease_ms > MOTOR_DRIVE_MAX_LEASE_MS))
+    {
+        motor_pulse_stop_locked();
+        error = E_PAR;
+    }
+    else if (g_motor_pulse_status.active &&
+             motor_pulse_missed_deadline(g_motor_drive_lease_us))
+    {
+        /* Do not renew an expired alarm while its IRQ is pending/masked. */
+        g_motor_drive_expired = true;
+        motor_pulse_stop_locked();
+        error = E_TMOUT;
+    }
+    else if ((left_pct == 0) && (right_pct == 0))
+    {
+        motor_pulse_stop_locked();
+    }
+    else if (g_motor_pulse_status.active &&
+             (left_pct == g_motor_drive_duty[0]) &&
+             (right_pct == g_motor_drive_duty[1]))
+    {
+        error = motor_drive_renew_locked(lease_ms * 1000U);
+    }
+    else
+    {
+        error = motor_drive_start_locked(left_pct, right_pct, lease_ms * 1000U);
+    }
+    g_motor_pulse_status.error = error;
+    motor_pulse_unlock(saved);
+    return error;
 }

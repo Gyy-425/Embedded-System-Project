@@ -16,14 +16,18 @@ parser.add_argument('--label', help='unique prefix for evidence logs')
 parser.add_argument('--motor-probe', action='store_true', help='coast-only PWM/timer diagnostic; no motor drive')
 parser.add_argument('--network-probe', action='store_true', help='Wi-Fi/MQTT transport probe; forces coast-only motor mode')
 parser.add_argument('--comms-app', action='store_true', help='binary target/ACK/raw-IR application; no motor output')
+parser.add_argument('--motion-app', action='store_true', help='Motion interface with bounded local exercise; no MQTT actuation')
 parser.add_argument('--build-only', action='store_true', help='compile/static checks only; defer executable functional tests')
 parser.add_argument('--motor-focused', action='store_true', help='run only affected controller/PWM/probe checks and motor builds')
 args = parser.parse_args()
+if args.motion_app and (args.comms_app or args.network_probe or args.motor_probe):
+    parser.error('--motion-app cannot be combined with no-drive/network profiles')
 args.network_probe = args.network_probe or args.comms_app
 args.motor_probe = args.motor_probe or args.network_probe
 if args.motor_focused and args.motor_probe:
     parser.error('--motor-focused uses the normal motor-output profile')
-args.label = args.label or ('2026-11-07-v0_5' if args.comms_app else
+args.label = args.label or ('2026-11-07-v0_7-motion' if args.motion_app else
+                           '2026-11-07-v0_5' if args.comms_app else
                            '2026-11-06-v0_4' if args.network_probe else
                            '2026-11-06-v0_3p' if args.motor_probe else '2026-11-07-v0_6_1')
 if re.fullmatch(r'[A-Za-z0-9_-]+', args.label) is None:
@@ -62,9 +66,10 @@ host_binary = Path('/tmp/aai05_encoder_test')
 summary = {'baseline_commit': 'c3b09544cb1fd6dac6ad4b8f523be0af59b44482',
            'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
            'source_dirty': bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()),
-           'application_version': '0.5' if args.comms_app else '0.4' if args.network_probe else '0.3p' if args.motor_probe else '0.6.1',
+           'application_version': '0.7' if args.motion_app else '0.5' if args.comms_app else '0.4' if args.network_probe else '0.3p' if args.motor_probe else '0.6.1',
            'motor_pulse_duty_percent': 50, 'motor_pulse_duration_ms': 400,
-           'motor_mode': 'NO_DRIVE_PROBE' if args.motor_probe else 'BUTTON_TRIGGERED_DRIVE',
+           'motor_mode': 'LOCAL_LEASED_MOTION' if args.motion_app else 'NO_DRIVE_PROBE' if args.motor_probe else 'BUTTON_TRIGGERED_DRIVE',
+           'motion_command_ttl_ms': 100 if args.motion_app else None,
            'network_mode': 'BINARY_COMMS_APP' if args.comms_app else 'WIFI_MQTT_TRANSPORT_PROBE' if args.network_probe else 'RADIO_ONLY',
            'functional_tests': 'DEFERRED_AT_USER_REQUEST' if args.build_only else 'HOST_ONLY',
            'test_scope': 'AFFECTED_MOTOR_CONTROLLER_PWM_AND_PROBE' if args.motor_focused else 'ALL',
@@ -75,6 +80,8 @@ summary = {'baseline_commit': 'c3b09544cb1fd6dac6ad4b8f523be0af59b44482',
 def run(command, label, cwd=repo):
     log = logs / f'{args.label}-{label}.log'
     motor_checks = {'host-control-compile', 'host-control',
+                    'host-motion-compile', 'host-motion',
+                    'host-motion-runtime-compile', 'host-motion-runtime',
                     'host-pulse-compile', 'host-pulse',
                     'host-probe-compile', 'host-probe'}
     if args.motor_focused and label.startswith('host-') and label not in motor_checks:
@@ -133,6 +140,23 @@ run(['gcc', '-std=c11', '-Wall', '-Wextra', '-Werror', '-fsanitize=undefined,add
      '-Iapp_program/subsystem2', 'testing/host/test_motor_control.c',
      'app_program/subsystem2/motor_test.c', '-o', str(control_binary)], 'host-control-compile')
 run([str(control_binary)], 'host-control')
+motion_binary = Path('/tmp/aai05_motion_test')
+run(['gcc', '-std=c11', '-Wall', '-Wextra', '-Werror', '-Wconversion',
+     '-Wshadow', '-Wstrict-prototypes', '-fsanitize=undefined,address',
+     '-Iapp_program/subsystem2', 'testing/host/test_motion_control.c',
+     'app_program/subsystem2/motion_control.c',
+     'app_program/subsystem2/motion_button.c', '-o', str(motion_binary)],
+    'host-motion-compile')
+run([str(motion_binary)], 'host-motion')
+runtime_binary = Path('/tmp/aai05_motion_runtime_test')
+run(['gcc', '-std=c11', '-Wall', '-Wextra', '-Werror', '-Wconversion',
+     '-Wshadow', '-Wstrict-prototypes', '-fsanitize=undefined,address',
+     '-pthread', '-Iapp_program/subsystem2', '-Iinclude',
+     'testing/host/test_motion_runtime.c',
+     'app_program/subsystem2/motion_control.c',
+     'app_program/subsystem2/motion_button.c', '-o', str(runtime_binary)],
+    'host-motion-runtime-compile')
+run([str(runtime_binary)], 'host-motion-runtime')
 pulse_binary = Path('/tmp/aai05_motor_pulse_test')
 run(['gcc', '-std=c11', '-Wall', '-Wextra', '-Werror', '-fsanitize=undefined,address',
      '-Iapp_program/subsystem2', 'testing/host/test_motor_pulse.c',
@@ -169,15 +193,18 @@ if args.comms_app:
 profile = ['SMP=1', 'CONSOLE=usb_cdc', 'WIFI=cyw43',
            'NET=lwip' if args.network_probe else 'NET=none',
            'MQTT=1' if args.network_probe else 'MQTT=0', 'CRASH_REPORT=0',
-           f'MOTOR_PROBE={int(args.motor_probe)}', f'COMM_APP={int(args.comms_app)}']
-artifact_base = ('AAI05_Comms_v0_5_NO_DRIVE' if args.comms_app else
+           f'MOTOR_PROBE={int(args.motor_probe)}', f'COMM_APP={int(args.comms_app)}',
+           f'MOTION_APP={int(args.motion_app)}']
+artifact_base = ('AAI05_Motion_v0_7_LOCAL' if args.motion_app else
+                 'AAI05_Comms_v0_5_NO_DRIVE' if args.comms_app else
                  'AAI05_Network_Probe_v0_4_NO_DRIVE' if args.network_probe else
                  'AAI05_Motor_Probe_v0_3p_NO_DRIVE' if args.motor_probe else 'AAI05_Motor_PWM_v0_6_1')
 for test in [0, 1]:
     run(['make', '-j8', *profile, f'TEST={test}'], f'firmware-test{test}', repo / 'build_make')
     stem = ('mtk3pico_smp1_usb_cdc_wifi' + ('_lwip_mqtt' if args.network_probe else '') +
             ('_probe' if args.motor_probe else '') +
-            ('_comm' if args.comms_app else '') + ('_test' if test else ''))
+            ('_comm' if args.comms_app else '') + ('_motion' if args.motion_app else '') +
+            ('_test' if test else ''))
     source = repo / 'build_make' / (stem + '.uf2')
     name = artifact_base + ('_TEST' if test else '')
     for extension in ['uf2', 'elf', 'map']:

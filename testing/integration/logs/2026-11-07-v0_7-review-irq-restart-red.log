@@ -1,0 +1,1 @@
+aai05_pair_review_test: testing/host/test_motor_pulse.c:451: test_pair_expiry_cannot_restart: Assertion `motor_drive_set(50, -50, 100U) == E_TMOUT' failed.

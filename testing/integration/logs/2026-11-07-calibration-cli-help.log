@@ -1,0 +1,12 @@
+usage: calibrate_cli.py [-h] {capture,report} ...
+
+Capture stationary tape readings or report saved ranges; no dependencies
+added.
+
+positional arguments:
+  {capture,report}
+    capture         Both sensors over the same tape; no drive client
+    report          Offline; reads immediate capture subdirectories
+
+options:
+  -h, --help        show this help message and exit

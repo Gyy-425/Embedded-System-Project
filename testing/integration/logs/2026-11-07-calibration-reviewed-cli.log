@@ -1,0 +1,29 @@
+test_c_encoder_python_decoder (test_comm_cli.CodecChecks.test_c_encoder_python_decoder) ... ok
+test_crc_reference_and_command_fields (test_comm_cli.CodecChecks.test_crc_reference_and_command_fields) ... ok
+test_readable_output_matches_capabilities (test_comm_cli.CodecChecks.test_readable_output_matches_capabilities) ... ok
+test_reject_bad_response (test_comm_cli.CodecChecks.test_reject_bad_response) ... ok
+test_reject_out_of_range_commands (test_comm_cli.CodecChecks.test_reject_out_of_range_commands) ... ok
+test_reconnected_or_rejected_ack_is_not_success (test_comm_cli.RequestChecks.test_reconnected_or_rejected_ack_is_not_success) ... ok
+test_status_waits_for_ready_ack (test_comm_cli.RequestChecks.test_status_waits_for_ready_ack) ... ok
+test_wrap_and_duplicate_ack (test_comm_cli.RequestChecks.test_wrap_and_duplicate_ack) ... ok
+test_bounded_run_renews_and_always_stops (test_drive_cli.DriveClientChecks.test_bounded_run_renews_and_always_stops) ... ok
+test_changed_device_state_or_other_rejection_cannot_retry_start (test_drive_cli.DriveClientChecks.test_changed_device_state_or_other_rejection_cannot_retry_start) ... ok
+test_duration_budget_includes_startup (test_drive_cli.DriveClientChecks.test_duration_budget_includes_startup) ... ok
+test_expired_grant_during_running_is_not_a_new_start (test_drive_cli.DriveClientChecks.test_expired_grant_during_running_is_not_a_new_start) ... ok
+test_expired_idle_grant_recovers_only_explicitly_rejected_start (test_drive_cli.DriveClientChecks.test_expired_idle_grant_recovers_only_explicitly_rejected_start) ... ok
+test_gp21_or_session_change_never_restarts (test_drive_cli.DriveClientChecks.test_gp21_or_session_change_never_restarts) ... ok
+test_grant_recovery_is_limited_to_one_rejection (test_drive_cli.DriveClientChecks.test_grant_recovery_is_limited_to_one_rejection) ... ok
+test_idle_configuration_uses_same_bounded_grant_recovery (test_drive_cli.DriveClientChecks.test_idle_configuration_uses_same_bounded_grant_recovery) ... ok
+test_invalid_run_does_not_publish (test_drive_cli.DriveClientChecks.test_invalid_run_does_not_publish) ... ok
+test_keyboard_interrupt_still_requests_stop (test_drive_cli.DriveClientChecks.test_keyboard_interrupt_still_requests_stop) ... ok
+test_lost_start_ack_still_requests_stop (test_drive_cli.DriveClientChecks.test_lost_start_ack_still_requests_stop) ... ok
+test_near_deadline_renewal_cannot_extend_run (test_drive_cli.DriveClientChecks.test_near_deadline_renewal_cannot_extend_run) ... ok
+test_refreshed_start_with_lost_ack_only_repeats_identical_bytes (test_drive_cli.DriveClientChecks.test_refreshed_start_with_lost_ack_only_repeats_identical_bytes) ... ok
+test_short_remaining_lease_is_renewed_without_fixed_wait (test_drive_cli.DriveClientChecks.test_short_remaining_lease_is_renewed_without_fixed_wait) ... ok
+test_stop_ack_is_not_immediate_output_confirmation (test_drive_cli.DriveClientChecks.test_stop_ack_is_not_immediate_output_confirmation) ... ok
+test_wrong_echo_is_ignored (test_drive_cli.DriveClientChecks.test_wrong_echo_is_ignored) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.003s
+
+OK

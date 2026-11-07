@@ -6,7 +6,10 @@ and [v2 protocol](../../docs/MQTT_MOTION_PROTOCOL_V2.md). Host checks and both
 firmware builds passed. The corrected client now has recorded bounded MQTT
 left-wheel movement, ordinary rearm and GP21 stopping during movement.
 [Actual result](../../testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md).
-Broker-only loss/recovery during movement remains the next focused case.
+Broker-only loss/recovery and explicit fresh START also passed in the
+[recorded check](../../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md).
+The next prepared tool is stationary [tape calibration capture](../../docs/TAPE_CALIBRATION.md);
+actual tape measurements remain pending.
 
 `robot_cli.py` remains the v0.5 no-drive target/status/raw-IR client. Its actual
 recorded connection/recovery passes remain valid. Both clients use Python3.10+

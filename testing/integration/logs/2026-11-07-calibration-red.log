@@ -1,0 +1,20 @@
+E
+======================================================================
+ERROR: test_tape_calibration (unittest.loader._FailedTest.test_tape_calibration)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_tape_calibration
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 13, in <module>
+    from tape_calibration import capture_samples, report_captures, write_report
+ModuleNotFoundError: No module named 'tape_calibration'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

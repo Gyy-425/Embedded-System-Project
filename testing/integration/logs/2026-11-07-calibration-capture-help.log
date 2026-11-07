@@ -1,0 +1,20 @@
+usage: calibrate_cli.py capture [-h] --host HOST [--port PORT]
+                                [--device DEVICE] [--tools-dir TOOLS_DIR]
+                                --label LABEL --name NAME --setup SETUP
+                                [--height-mm HEIGHT_MM] --out OUT
+                                [--samples SAMPLES] [--timeout TIMEOUT]
+
+options:
+  -h, --help            show this help message and exit
+  --host HOST
+  --port PORT
+  --device DEVICE
+  --tools-dir TOOLS_DIR
+  --label LABEL
+  --name NAME
+  --setup SETUP         Fixed bracket/height, lighting and background
+  --height-mm HEIGHT_MM
+                        Actual measured height, if available
+  --out OUT             New capture directory
+  --samples SAMPLES
+  --timeout TIMEOUT

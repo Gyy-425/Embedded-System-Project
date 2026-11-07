@@ -1,0 +1,16 @@
+E
+======================================================================
+ERROR: test_corrupt_metadata_state_fails_with_clear_validation (__main__.CalibrationChecks.test_corrupt_metadata_state_fails_with_clear_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 208, in test_corrupt_metadata_state_fails_with_clear_validation
+    report_captures(self.root)
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 194, in report_captures
+    if state in INCOMPLETE:
+       ^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.023s
+
+FAILED (errors=1)

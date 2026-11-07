@@ -1,12 +1,23 @@
 # AAI05 robot firmware
 
+Latest actual result,7 November: **broker-loss stopping, recovery without automatic
+movement and explicit fresh START passed** for the MQTT left-wheel case.
+[Observed result](testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md).
+The current MQTT movement bring-up sequence is complete within its recorded
+scope; it does not need replaying. The next capture tool is prepared; actual tape samples remain pending.
+
 Actual result,7 November: **v0.8 MQTT left-wheel movement, ordinary STOP/rearm
 and GP21 during movement passed** within the recorded setup. Two CLI runs
 confirmed fresh output-off status; the coordinator confirms movement and GP21
-stopping the moving wheel. Later missing ACKs coincided with a deliberate
-broker or power change. Broker-only loss/recovery during movement remains
-pending. [Observed result and limits](testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md).
-Do not repeat the completed basic cases; the next focused case is guide step4.
+stopping the moving wheel. The earlier ambiguous shutdown was followed by the dedicated broker-loss
+check recorded above. [Observed result and limits](testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md).
+Do not repeat the completed basic movement checks.
+
+Next case prepared: [stationary tape calibration capture](docs/TAPE_CALIBRATION.md).
+The Python tool saves labelled raw IR samples and metadata, preserves incomplete
+captures and reports per-sensor class-range overlap.46 affected host tests
+passed after review fixes. Use the current firmware when actual tapes become
+available; no tape capture, classifier or recognition accuracy is claimed yet.
 
 Client correction,7 November: fixed an idle grant-expiry race reported on the
 first v0.8 car attempt. The Python client safely handles one explicit rejection

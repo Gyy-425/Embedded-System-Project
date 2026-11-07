@@ -1,0 +1,32 @@
+FFF
+======================================================================
+FAIL: test_ordered_backlog_cannot_become_fresh_calibration (__main__.CalibrationChecks.test_ordered_backlog_cannot_become_fresh_calibration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 137, in test_ordered_backlog_cannot_become_fresh_calibration
+    with self.assertRaisesRegex(RuntimeError, "elapsed"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_pause_inside_receive_does_not_hide_silence (__main__.CalibrationChecks.test_pause_inside_receive_does_not_hide_silence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 153, in test_pause_inside_receive_does_not_hide_silence
+    with self.assertRaisesRegex(RuntimeError, "fresh telemetry"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_last_receive_cannot_complete_after_deadline (__main__.CalibrationChecks.test_last_receive_cannot_complete_after_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 168, in test_last_receive_cannot_complete_after_deadline
+    with self.assertRaises(TimeoutError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TimeoutError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.016s
+
+FAILED (failures=3)

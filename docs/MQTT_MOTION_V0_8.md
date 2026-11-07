@@ -3,7 +3,9 @@
 Current result,7 November: bounded MQTT left-wheel movement, ordinary STOP/rearm
 and GP21 during movement passed within the recorded setup.
 [Result and limits](../testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md).
-Those cases do not need repeating; the next focused check is step4. The steps
+The separate broker-loss/recovery/fresh-START case also passed: see
+[the loss result](../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md).
+Those cases do not need repeating. The steps
 below remain reproduction instructions. This connects the passed local Motion
 interface to MQTT. It does not classify tapes or follow a coloured path yet.
 Keep the existing wiring. Basic IR, manual encoder, hardware-button, v0.6.1

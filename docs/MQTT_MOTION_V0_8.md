@@ -1,6 +1,10 @@
 # MQTT movement test, v0.8
 
-Prepared software, not an on-car pass. This connects the passed local Motion
+Current result,7 November: bounded MQTT left-wheel movement, ordinary STOP/rearm
+and GP21 during movement passed within the recorded setup.
+[Result and limits](../testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md).
+Those cases do not need repeating; the next focused check is step4. The steps
+below remain reproduction instructions. This connects the passed local Motion
 interface to MQTT. It does not classify tapes or follow a coloured path yet.
 Keep the existing wiring. Basic IR, manual encoder, hardware-button, v0.6.1
 pulse and v0.7 local expiry tests do not need repeating.
@@ -11,8 +15,8 @@ The Python client now handles one explicitly rejected idle request with the
 returned new grant, only while session/sequence/stopped state are unchanged.
 Timeouts or lost ACKs never authorize a new grant/START. The original timeout
 and movement budget remain in force. Firmware and wiring are unchanged: with
-the current v0.8 image already installed and broker working, resume at step3
-using the updated local client. [Diagnosis/tests](../testing/integration/logs/2026-11-07-v0_8-grant-fix.md).
+the current v0.8 image and updated client, step3 has now passed as recorded
+above. [Diagnosis/tests](../testing/integration/logs/2026-11-07-v0_8-grant-fix.md).
 
 ## 1. Load the REMOTE image
 

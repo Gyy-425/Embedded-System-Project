@@ -1,10 +1,18 @@
 # AAI05 robot firmware
 
+Actual result,7 November: **v0.8 MQTT left-wheel movement, ordinary STOP/rearm
+and GP21 during movement passed** within the recorded setup. Two CLI runs
+confirmed fresh output-off status; the coordinator confirms movement and GP21
+stopping the moving wheel. Later missing ACKs coincided with a deliberate
+broker or power change. Broker-only loss/recovery during movement remains
+pending. [Observed result and limits](testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md).
+Do not repeat the completed basic cases; the next focused case is guide step4.
+
 Client correction,7 November: fixed an idle grant-expiry race reported on the
 first v0.8 car attempt. The Python client safely handles one explicit rejection
 before acceptance;28 affected client/codec tests and the sanitized controller
-boundary test passed. Firmware files are unchanged; resume the existing test
-at step3. [Diagnosis and scope](testing/integration/logs/2026-11-07-v0_8-grant-fix.md).
+boundary test passed. Firmware files are unchanged; the movement retest above
+now passes. [Diagnosis and scope](testing/integration/logs/2026-11-07-v0_8-grant-fix.md).
 
 Prepared on 7 November: **v0.8 MQTT movement control**, with explicit START/STOP,
 fresh-command leases, guarded restart and a readable v2 client. All 31 affected
@@ -12,9 +20,8 @@ host/build stages passed, including 14 v2 Python tests, 8 legacy client tests
 and normal/TEST firmware builds, with zero reported compiler warnings.
 [Build evidence](testing/integration/logs/2026-11-07-v0_8-preparation.md),
 [protocol](docs/MQTT_MOTION_PROTOCOL_V2.md), [next car test](docs/MQTT_MOTION_V0_8.md).
-**Movement has not yet passed on the car.** The first START attempt was rejected
-by grant expiry; the client correction above is ready for retest. No tape
-recognition or path following is implemented by this feature.
+The earlier idle START rejection was corrected and retested as recorded above.
+No tape recognition or path following is implemented by this feature.
 
 Use `output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2` and
 `tools/mqtt/drive_cli.py` for the next test. The configured broker is
@@ -23,7 +30,7 @@ disabled in REMOTE; GP21 stops. Ordinary STOP/expiry requires a new explicit
 START after release/healthy coast; reconnect never automatically starts.
 Session/grants are liveness checks on the trusted test LAN, not authentication.
 
-The latest **physical pass remains v0.7 LOCAL**: renewed left-wheel movement,
+The preceding **v0.7 LOCAL physical pass** covers renewed left-wheel movement,
 automatic expiry, GP21 while moving and restart prevention.
 [Recorded result and limits](testing/integration/logs/2026-11-07-v0_7-pico-motion-result.md).
 v0.6.1's four software pulse requests and v0.5's target/status/raw-IR and

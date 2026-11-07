@@ -1,0 +1,1 @@
+aai05_colour_red: testing/host/test_colour_classifier.c:55: test_packing_and_missing: Assertion `colour_calibration_init(&model, 100U) == COLOUR_MODEL_OK' failed.

@@ -1,9 +1,9 @@
-# AAI05 revised project scope — review draft
+# AAI05 revised project scope — approved
 
-Prepared7 November2026. **Pending coordinator review.** This is a consolidated
-scope proposal, not evidence that the final robot behaviours have passed.
-Do not start the C colour-classifier implementation until the coordinator has
-checked this scope and authorized proceeding.
+Prepared7 November2026. **Approved by the coordinator7 November2026.** This is a consolidated
+scope record, not evidence that the final robot behaviours have passed.
+The coordinator checked this scope and authorized the configurable C
+colour-classifier core as the next focused implementation case.
 
 ## 1. Basis and precedence
 
@@ -150,4 +150,6 @@ one-case-at-a-time workflow.
 - [Prepared tape capture tool](TAPE_CALIBRATION.md).
 - [Capture-tool host evidence](../testing/integration/logs/2026-11-07-calibration-preparation.md).
 
-Review decision pending. Classifier code has not been started under this draft.
+Scope review complete. The authorized configurable C core is implemented and
+verified within its portable-core scope; see [the API](COLOUR_CLASSIFIER_CORE.md).
+Actual tape calibration and integrated demonstrations remain pending.

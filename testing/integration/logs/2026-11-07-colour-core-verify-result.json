@@ -1,0 +1,278 @@
+{
+  "label": "2026-11-07-colour-core-verify",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "host-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_classifier.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-colour-igfwa98r/colour_host"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/2026-11-07-colour-core-verify-host-compile.log"
+    },
+    {
+      "name": "host",
+      "command": [
+        "/tmp/aai05-colour-igfwa98r/colour_host"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/2026-11-07-colour-core-verify-host.log"
+    },
+    {
+      "name": "target-compile",
+      "command": [
+        "arm-none-eabi-gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-mcpu=cortex-m0plus",
+        "-mthumb",
+        "-ffreestanding",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-colour-igfwa98r/colour_target.o"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/2026-11-07-colour-core-verify-target-compile.log"
+    },
+    {
+      "name": "target-layout",
+      "command": [
+        "arm-none-eabi-gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-mcpu=cortex-m0plus",
+        "-mthumb",
+        "-ffreestanding",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-x",
+        "c",
+        "-include",
+        "testing/host/colour_reference.h",
+        "-c",
+        "-",
+        "-o",
+        "/tmp/aai05-colour-igfwa98r/layout_target.o"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/2026-11-07-colour-core-verify-target-layout.log"
+    },
+    {
+      "name": "firmware-test0",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=lwip",
+        "MQTT=1",
+        "CRASH_REPORT=0",
+        "MOTOR_PROBE=0",
+        "COMM_APP=0",
+        "MOTION_APP=1",
+        "REMOTE_APP=1",
+        "TEST=0",
+        "EXE_FILE=mtk3pico_colour_core_2026-11-07-colour-core-verify"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/2026-11-07-colour-core-verify-firmware-test0.log",
+      "uf2": "output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check.uf2",
+      "sha256": "d80d95ad4b7c364198e293942cef1bb8a46bf8202fb138b580460092dae5ba0a",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 340640\t    100\t  82576\t 423316\t  67594\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check.elf"
+    },
+    {
+      "name": "firmware-test1",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=lwip",
+        "MQTT=1",
+        "CRASH_REPORT=0",
+        "MOTOR_PROBE=0",
+        "COMM_APP=0",
+        "MOTION_APP=1",
+        "REMOTE_APP=1",
+        "TEST=1",
+        "EXE_FILE=mtk3pico_colour_core_2026-11-07-colour-core-verify_test"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/2026-11-07-colour-core-verify-firmware-test1.log",
+      "uf2": "output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check_TEST.uf2",
+      "sha256": "0b002d4b11266aedf3ec4a1fd947e63e20ec38cd465e409b3c9d0999ca0b7728",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 341196\t    100\t  82576\t 423872\t  677c0\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check_TEST.elf"
+    }
+  ],
+  "source_commit": "9d256488fc94d10e0665c3adfad8ffeff28851b4",
+  "source_dirty": true,
+  "firmware_runtime": "UNCHANGED; core not activated",
+  "old_artifacts": [
+    {
+      "path": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "c9d6e1c45331a83d9c928f436f6cbf8c37c6bbf5539fe9ca898d0f10788d8189",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "61cd30108754d4f87be228328178c55f56cfdb8d7ddeab7bcd097955f2aef79c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_1.uf2",
+      "sha256": "167bae49cdd11484e3123128089df513605df3cc3de18f3437586896a4e1a1ce",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_1_TEST.uf2",
+      "sha256": "3213a6f2798faf706bb943215faaff39e3feeb8382d762577d70b260d28ece1a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_2.uf2",
+      "sha256": "c662dc2f4159267287bba2170baf5244ff7241fb743a3fa59ab1824c25d81c51",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_2_TEST.uf2",
+      "sha256": "b332da2a6a76c683dc59268c8bb09a7e54cea1ccceadfc53012d5378459e1c35",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motion_v0_7_LOCAL.uf2",
+      "sha256": "24cdbbbbdaaa4c167262be38d422b7b2034806d47b180bf1d61cf052eba0b347",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motion_v0_7_LOCAL_TEST.uf2",
+      "sha256": "cce14a9ea09c1ba823af7181a0ddf3df267162b34d7061001a1d964d14ed3f5a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE.uf2",
+      "sha256": "ddaca6a73eac1ced8e80ba64c2808c55a3d84b84d9e39b06e370c2cbb4f1d805",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE_TEST.uf2",
+      "sha256": "906fdb154eebe99c82ba3c95ad0e7ea9808f7b8f92ccc5639eb60e36491f2fac",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6.uf2",
+      "sha256": "e1062112cfc0860a67b2f062ae56948be7f47fd8f5c29180d93b5e1e3cfb3a9f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_1.uf2",
+      "sha256": "018a41bc4f56955218c0d227ac367771cee20a38790792316b13244c2da71b09",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_1_TEST.uf2",
+      "sha256": "5b33b5fdfc9b363a070644329efd34787367ab6776f21d40bdf6a6e5b8d8943b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_TEST.uf2",
+      "sha256": "cc4bddf1472e134e36ffa3beb965488a805fe8de67bed4373907b38305caf48e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3.uf2",
+      "sha256": "4a1af5d9b09026536aa1239bfb2ce1b7c5d3a6897837919c0c09a48aef4002e0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_1.uf2",
+      "sha256": "30abbae451e37d54b6734c802a2ada3c38902ec979d5d3816ab15b01f288c9a1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_1_TEST.uf2",
+      "sha256": "1c1e4d1318d990ef8a06ee67c27ecca6bfb7c5df98eb5b6889c02412da33f76d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_2.uf2",
+      "sha256": "72c224beb09b5f388e99c64e6e5c8e8cc3dceb27b2eac23187267beda3d0caef",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_2_TEST.uf2",
+      "sha256": "6fa36cc2d339193fb09bde2919009b3bbe00bfaa24350055965ce6ddc079139f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_TEST.uf2",
+      "sha256": "16fc127da7f60f1fd6a11beb0064405f34c573b2fd505770ff39010052bc4a79",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2",
+      "sha256": "d80d95ad4b7c364198e293942cef1bb8a46bf8202fb138b580460092dae5ba0a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE_TEST.uf2",
+      "sha256": "0b002d4b11266aedf3ec4a1fd947e63e20ec38cd465e409b3c9d0999ca0b7728",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE.uf2",
+      "sha256": "e9427de33eb385c6b9d49a86647022126bd9be49bfdf30ee507737ee735abe99",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE_TEST.uf2",
+      "sha256": "bde20006b0da9ac28d54380debdec1beb7fce91965c0df255c638b030f63c49d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/archive/v0_5-broker-192_168_1_196/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "67e97ef38a396a087b382852037a648274e8aa1a4c0fc987d9a667494af024f0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/archive/v0_5-broker-192_168_1_196/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "2191644fa13d43d01001152f8d092c908bdaeb160f663e889c8e93dfad3e2766",
+      "unchanged": true
+    }
+  ],
+  "status": "PASS"
+}

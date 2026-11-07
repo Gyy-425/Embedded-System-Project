@@ -1,0 +1,14 @@
+test_undefined_behavior_is_fatal_with_runner_flags (__main__.SanitizerGateCheck.test_undefined_behavior_is_fatal_with_runner_flags) ... FAIL
+
+======================================================================
+FAIL: test_undefined_behavior_is_fatal_with_runner_flags (__main__.SanitizerGateCheck.test_undefined_behavior_is_fatal_with_runner_flags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_colour_sanitizer_gate.py", line 38, in test_undefined_behavior_is_fatal_with_runner_flags
+    self.assertNotEqual(ran.returncode, 0,
+AssertionError: 0 == 0 : Recoverable UB must never yield a passing host step
+
+----------------------------------------------------------------------
+Ran 1 test in 0.307s
+
+FAILED (failures=1)

@@ -1,5 +1,16 @@
 # AAI05 robot firmware
 
+C classifier core prepared,7 November: **configurable per-sensor calibration,
+seven classes, unknown/ambiguous handling, validity and timestamp checks**.
+[Core API and limits](docs/COLOUR_CLASSIFIER_CORE.md),
+[verification evidence](testing/integration/logs/2026-11-07-colour-core-preparation.md).
+Strict host/ARM checks and normal/TEST compile-compatibility builds passed;
+16,384 ADC/reference comparisons pass. Packed model46 bytes versus equivalent
+native60; result1 versus2 bytes. Existing runtime and tested images are unchanged.
+No real calibration, live classification, moving accuracy or path following is
+claimed. Keep the existing car image installed; actual tape data/model integration
+comes later. [Approved scope](docs/PROJECT_SCOPE_REVIEW.md).
+
 Latest actual result,7 November: **broker-loss stopping, recovery without automatic
 movement and explicit fresh START passed** for the MQTT left-wheel case.
 [Observed result](testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md).

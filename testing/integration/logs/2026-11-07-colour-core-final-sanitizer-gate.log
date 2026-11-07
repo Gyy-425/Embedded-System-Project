@@ -1,0 +1,6 @@
+test_undefined_behavior_is_fatal_with_runner_flags (__main__.SanitizerGateCheck.test_undefined_behavior_is_fatal_with_runner_flags) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.265s
+
+OK

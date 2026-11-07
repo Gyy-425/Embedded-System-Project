@@ -1,0 +1,140 @@
+ACK result=OK target=colour1 seq=1 tag=9c5338b8 ready=1 motion-capability=none
+Watching raw IR; colour classification/motion unavailable.
+t=   55420 ms  IR L= 864 R=1883 [valid]  target=colour1  detected=unknown  seq=33 drop=0  motion-capability=none
+t=   55920 ms  IR L= 811 R=1878 [valid]  target=colour1  detected=unknown  seq=34 drop=0  motion-capability=none
+t=   56420 ms  IR L= 837 R=1857 [valid]  target=colour1  detected=unknown  seq=35 drop=0  motion-capability=none
+t=   56920 ms  IR L= 853 R=1877 [valid]  target=colour1  detected=unknown  seq=36 drop=0  motion-capability=none
+t=   57420 ms  IR L= 809 R=1873 [valid]  target=colour1  detected=unknown  seq=37 drop=0  motion-capability=none
+t=   57920 ms  IR L= 811 R=1854 [valid]  target=colour1  detected=unknown  seq=38 drop=0  motion-capability=none
+t=   58420 ms  IR L= 801 R=1869 [valid]  target=colour1  detected=unknown  seq=39 drop=0  motion-capability=none
+t=   58920 ms  IR L= 851 R=1870 [valid]  target=colour1  detected=unknown  seq=40 drop=0  motion-capability=none
+t=   59420 ms  IR L= 817 R=1874 [valid]  target=colour1  detected=unknown  seq=41 drop=0  motion-capability=none
+t=   59920 ms  IR L= 806 R=1858 [valid]  target=colour1  detected=unknown  seq=42 drop=0  motion-capability=none
+t=   60420 ms  IR L= 813 R=1854 [valid]  target=colour1  detected=unknown  seq=43 drop=0  motion-capability=none
+t=   60920 ms  IR L= 810 R=1877 [valid]  target=colour1  detected=unknown  seq=44 drop=0  motion-capability=none
+t=   61420 ms  IR L= 842 R=1877 [valid]  target=colour1  detected=unknown  seq=45 drop=0  motion-capability=none
+t=   61920 ms  IR L= 848 R=1856 [valid]  target=colour1  detected=unknown  seq=46 drop=0  motion-capability=none
+t=   62420 ms  IR L= 852 R=1870 [valid]  target=colour1  detected=unknown  seq=47 drop=0  motion-capability=none
+t=   62920 ms  IR L= 860 R=1886 [valid]  target=colour1  detected=unknown  seq=48 drop=0  motion-capability=none
+t=   63420 ms  IR L= 853 R=1865 [valid]  target=colour1  detected=unknown  seq=49 drop=0  motion-capability=none
+t=   63920 ms  IR L= 827 R=1877 [valid]  target=colour1  detected=unknown  seq=50 drop=0  motion-capability=none
+t=   64420 ms  IR L= 828 R=1886 [valid]  target=colour1  detected=unknown  seq=51 drop=0  motion-capability=none
+t=   64920 ms  IR L= 853 R=1873 [valid]  target=colour1  detected=unknown  seq=52 drop=0  motion-capability=none
+t=   65420 ms  IR L= 844 R=1886 [valid]  target=colour1  detected=unknown  seq=53 drop=0  motion-capability=none
+t=   65920 ms  IR L= 864 R=1875 [valid]  target=colour1  detected=unknown  seq=54 drop=0  motion-capability=none
+t=   66420 ms  IR L= 830 R=1888 [valid]  target=colour1  detected=unknown  seq=55 drop=0  motion-capability=none
+t=   66920 ms  IR L= 869 R=1888 [valid]  target=colour1  detected=unknown  seq=56 drop=0  motion-capability=none
+t=   67420 ms  IR L= 857 R=1884 [valid]  target=colour1  detected=unknown  seq=57 drop=0  motion-capability=none
+t=   67920 ms  IR L= 824 R=1885 [valid]  target=colour1  detected=unknown  seq=58 drop=0  motion-capability=none
+t=   68420 ms  IR L= 833 R=1883 [valid]  target=colour1  detected=unknown  seq=59 drop=0  motion-capability=none
+t=   68920 ms  IR L= 822 R=1874 [valid]  target=colour1  detected=unknown  seq=60 drop=0  motion-capability=none
+t=   69420 ms  IR L= 843 R=1888 [valid]  target=colour1  detected=unknown  seq=61 drop=0  motion-capability=none
+t=   69920 ms  IR L= 836 R=1872 [valid]  target=colour1  detected=unknown  seq=62 drop=0  motion-capability=none
+t=   70420 ms  IR L= 858 R=1875 [valid]  target=colour1  detected=unknown  seq=63 drop=0  motion-capability=none
+t=   70920 ms  IR L= 827 R=1876 [valid]  target=colour1  detected=unknown  seq=64 drop=0  motion-capability=none
+t=   71420 ms  IR L= 858 R=1891 [valid]  target=colour1  detected=unknown  seq=65 drop=0  motion-capability=none
+t=   71920 ms  IR L= 870 R=1902 [valid]  target=colour1  detected=unknown  seq=66 drop=0  motion-capability=none
+t=   72420 ms  IR L= 856 R=1889 [valid]  target=colour1  detected=unknown  seq=67 drop=0  motion-capability=none
+t=   72920 ms  IR L= 843 R=1880 [valid]  target=colour1  detected=unknown  seq=68 drop=0  motion-capability=none
+t=   73420 ms  IR L= 841 R=1889 [valid]  target=colour1  detected=unknown  seq=69 drop=0  motion-capability=none
+t=   73920 ms  IR L= 859 R=1896 [valid]  target=colour1  detected=unknown  seq=70 drop=0  motion-capability=none
+t=   74420 ms  IR L= 837 R=1877 [valid]  target=colour1  detected=unknown  seq=71 drop=0  motion-capability=none
+t=   74920 ms  IR L= 834 R=1892 [valid]  target=colour1  detected=unknown  seq=72 drop=0  motion-capability=none
+t=   75420 ms  IR L= 869 R=1904 [valid]  target=colour1  detected=unknown  seq=73 drop=0  motion-capability=none
+t=   75920 ms  IR L= 861 R=1900 [valid]  target=colour1  detected=unknown  seq=74 drop=0  motion-capability=none
+t=   76420 ms  IR L= 841 R=1901 [valid]  target=colour1  detected=unknown  seq=75 drop=0  motion-capability=none
+t=   76920 ms  IR L= 843 R=1900 [valid]  target=colour1  detected=unknown  seq=76 drop=0  motion-capability=none
+t=   77420 ms  IR L= 875 R=1890 [valid]  target=colour1  detected=unknown  seq=77 drop=0  motion-capability=none
+t=   77920 ms  IR L= 864 R=1881 [valid]  target=colour1  detected=unknown  seq=78 drop=0  motion-capability=none
+t=   78420 ms  IR L= 870 R=1885 [valid]  target=colour1  detected=unknown  seq=79 drop=0  motion-capability=none
+t=   78920 ms  IR L= 871 R=1901 [valid]  target=colour1  detected=unknown  seq=80 drop=0  motion-capability=none
+t=   79420 ms  IR L= 874 R=1897 [valid]  target=colour1  detected=unknown  seq=81 drop=0  motion-capability=none
+t=   79920 ms  IR L= 843 R=1907 [valid]  target=colour1  detected=unknown  seq=82 drop=0  motion-capability=none
+t=   80420 ms  IR L= 870 R=1900 [valid]  target=colour1  detected=unknown  seq=83 drop=0  motion-capability=none
+t=   80920 ms  IR L= 876 R=1886 [valid]  target=colour1  detected=unknown  seq=84 drop=0  motion-capability=none
+t=   81420 ms  IR L= 830 R=1884 [valid]  target=colour1  detected=unknown  seq=85 drop=0  motion-capability=none
+t=   81920 ms  IR L= 876 R=1891 [valid]  target=colour1  detected=unknown  seq=86 drop=0  motion-capability=none
+t=   82420 ms  IR L=   0 R=   0 [stale]  target=colour1  detected=unknown  seq=87 drop=0  motion-capability=none
+t=   82920 ms  IR L= 837 R=1882 [valid]  target=colour1  detected=unknown  seq=88 drop=0  motion-capability=none
+t=   83420 ms  IR L= 849 R=1907 [valid]  target=colour1  detected=unknown  seq=89 drop=0  motion-capability=none
+t=   83920 ms  IR L= 835 R=1893 [valid]  target=colour1  detected=unknown  seq=90 drop=0  motion-capability=none
+t=   84420 ms  IR L= 877 R=1900 [valid]  target=colour1  detected=unknown  seq=91 drop=0  motion-capability=none
+t=   84920 ms  IR L= 840 R=1902 [valid]  target=colour1  detected=unknown  seq=92 drop=0  motion-capability=none
+t=   85420 ms  IR L= 854 R=1888 [valid]  target=colour1  detected=unknown  seq=93 drop=0  motion-capability=none
+t=   85920 ms  IR L= 862 R=1896 [valid]  target=colour1  detected=unknown  seq=94 drop=0  motion-capability=none
+t=   86420 ms  IR L= 866 R=1894 [valid]  target=colour1  detected=unknown  seq=95 drop=0  motion-capability=none
+t=   86920 ms  IR L= 863 R=1883 [valid]  target=colour1  detected=unknown  seq=96 drop=0  motion-capability=none
+t=   87420 ms  IR L= 881 R=1898 [valid]  target=colour1  detected=unknown  seq=97 drop=0  motion-capability=none
+t=   87920 ms  IR L= 845 R=1883 [valid]  target=colour1  detected=unknown  seq=98 drop=0  motion-capability=none
+t=   88420 ms  IR L= 857 R=1897 [valid]  target=colour1  detected=unknown  seq=99 drop=0  motion-capability=none
+t=   88920 ms  IR L= 830 R=1882 [valid]  target=colour1  detected=unknown  seq=100 drop=0  motion-capability=none
+t=   89420 ms  IR L= 870 R=1901 [valid]  target=colour1  detected=unknown  seq=101 drop=0  motion-capability=none
+t=   89920 ms  IR L= 829 R=1881 [valid]  target=colour1  detected=unknown  seq=102 drop=0  motion-capability=none
+t=   90420 ms  IR L= 874 R=1898 [valid]  target=colour1  detected=unknown  seq=103 drop=0  motion-capability=none
+t=   90920 ms  IR L= 832 R=1901 [valid]  target=colour1  detected=unknown  seq=104 drop=0  motion-capability=none
+t=   91420 ms  IR L= 833 R=1882 [valid]  target=colour1  detected=unknown  seq=105 drop=0  motion-capability=none
+t=   91920 ms  IR L= 851 R=1881 [valid]  target=colour1  detected=unknown  seq=106 drop=0  motion-capability=none
+t=   92420 ms  IR L= 827 R=1907 [valid]  target=colour1  detected=unknown  seq=107 drop=0  motion-capability=none
+t=   92920 ms  IR L= 859 R=1885 [valid]  target=colour1  detected=unknown  seq=108 drop=0  motion-capability=none
+t=   93420 ms  IR L= 837 R=1881 [valid]  target=colour1  detected=unknown  seq=109 drop=0  motion-capability=none
+t=   93920 ms  IR L= 830 R=1888 [valid]  target=colour1  detected=unknown  seq=110 drop=0  motion-capability=none
+t=   94420 ms  IR L= 878 R=1890 [valid]  target=colour1  detected=unknown  seq=111 drop=0  motion-capability=none
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+No fresh device packets; waiting for reconnection.
+t=  188060 ms  IR L= 868 R=1898 [valid]  target=unset    detected=unknown  seq=0 drop=0  motion-capability=none
+t=  188560 ms  IR L= 835 R=1883 [valid]  target=unset    detected=unknown  seq=1 drop=0  motion-capability=none
+t=  189060 ms  IR L= 869 R=1879 [valid]  target=unset    detected=unknown  seq=2 drop=0  motion-capability=none
+t=  189560 ms  IR L= 857 R=1894 [valid]  target=unset    detected=unknown  seq=3 drop=0  motion-capability=none
+t=  190060 ms  IR L= 870 R=1894 [valid]  target=unset    detected=unknown  seq=4 drop=0  motion-capability=none
+t=  190560 ms  IR L= 870 R=1897 [valid]  target=unset    detected=unknown  seq=5 drop=0  motion-capability=none
+t=  191060 ms  IR L= 862 R=1905 [valid]  target=unset    detected=unknown  seq=6 drop=0  motion-capability=none
+t=  191560 ms  IR L= 857 R=1882 [valid]  target=unset    detected=unknown  seq=7 drop=0  motion-capability=none
+t=  192060 ms  IR L= 835 R=1899 [valid]  target=unset    detected=unknown  seq=8 drop=0  motion-capability=none
+t=  192560 ms  IR L= 874 R=1882 [valid]  target=unset    detected=unknown  seq=9 drop=0  motion-capability=none
+t=  193060 ms  IR L= 825 R=1899 [valid]  target=unset    detected=unknown  seq=10 drop=0  motion-capability=none
+t=  193560 ms  IR L= 850 R=1894 [valid]  target=unset    detected=unknown  seq=11 drop=0  motion-capability=none
+t=  194060 ms  IR L= 852 R=1896 [valid]  target=unset    detected=unknown  seq=12 drop=0  motion-capability=none
+t=  194560 ms  IR L= 857 R=1904 [valid]  target=unset    detected=unknown  seq=13 drop=0  motion-capability=none
+t=  195060 ms  IR L= 877 R=1899 [valid]  target=unset    detected=unknown  seq=14 drop=0  motion-capability=none
+t=  195560 ms  IR L= 875 R=1886 [valid]  target=unset    detected=unknown  seq=15 drop=0  motion-capability=none
+t=  196060 ms  IR L= 861 R=1893 [valid]  target=unset    detected=unknown  seq=16 drop=0  motion-capability=none
+t=  196560 ms  IR L= 873 R=1881 [valid]  target=unset    detected=unknown  seq=17 drop=0  motion-capability=none
+t=  197060 ms  IR L= 831 R=1878 [valid]  target=unset    detected=unknown  seq=18 drop=0  motion-capability=none
+t=  197560 ms  IR L= 826 R=1873 [valid]  target=unset    detected=unknown  seq=19 drop=0  motion-capability=none
+t=  198060 ms  IR L= 861 R=1891 [valid]  target=unset    detected=unknown  seq=20 drop=0  motion-capability=none
+t=  198560 ms  IR L= 827 R=1881 [valid]  target=unset    detected=unknown  seq=21 drop=0  motion-capability=none
+t=  199060 ms  IR L= 852 R=1896 [valid]  target=unset    detected=unknown  seq=22 drop=0  motion-capability=none
+t=  199560 ms  IR L= 830 R=1894 [valid]  target=unset    detected=unknown  seq=23 drop=0  motion-capability=none
+t=  200060 ms  IR L= 865 R=1900 [valid]  target=unset    detected=unknown  seq=24 drop=0  motion-capability=none
+t=  200560 ms  IR L= 843 R=1897 [valid]  target=unset    detected=unknown  seq=25 drop=0  motion-capability=none
+t=  201060 ms  IR L= 873 R=1901 [valid]  target=unset    detected=unknown  seq=26 drop=0  motion-capability=none
+t=  201560 ms  IR L= 843 R=1905 [valid]  target=unset    detected=unknown  seq=27 drop=0  motion-capability=none
+t=  202060 ms  IR L= 837 R=1880 [valid]  target=unset    detected=unknown  seq=28 drop=0  motion-capability=none
+t=  202560 ms  IR L= 842 R=1879 [valid]  target=unset    detected=unknown  seq=29 drop=0  motion-capability=none
+t=  203060 ms  IR L= 853 R=1893 [valid]  target=unset    detected=unknown  seq=30 drop=0  motion-capability=none
+t=  203560 ms  IR L= 869 R=1900 [valid]  target=unset    detected=unknown  seq=31 drop=0  motion-capability=none
+t=  204060 ms  IR L= 828 R=1905 [valid]  target=unset    detected=unknown  seq=32 drop=0  motion-capability=none
+t=  204560 ms  IR L= 841 R=1894 [valid]  target=unset    detected=unknown  seq=33 drop=0  motion-capability=none
+t=  205060 ms  IR L= 828 R=1882 [valid]  target=unset    detected=unknown  seq=34 drop=0  motion-capability=none
+t=  205560 ms  IR L= 845 R=1881 [valid]  target=unset    detected=unknown  seq=35 drop=0  motion-capability=none
+t=  206060 ms  IR L= 851 R=1881 [valid]  target=unset    detected=unknown  seq=36 drop=0  motion-capability=none
+t=  206560 ms  IR L= 872 R=1891 [valid]  target=unset    detected=unknown  seq=37 drop=0  motion-capability=none
+t=  207060 ms  IR L= 870 R=1896 [valid]  target=unset    detected=unknown  seq=38 drop=0  motion-capability=none
+t=  207560 ms  IR L= 829 R=1894 [valid]  target=unset    detected=unknown  seq=39 drop=0  motion-capability=none
+t=  208060 ms  IR L= 873 R=1881 [valid]  target=unset    detected=unknown  seq=40 drop=0  motion-capability=none
+t=  208560 ms  IR L= 870 R=1894 [valid]  target=unset    detected=unknown  seq=41 drop=0  motion-capability=none
+t=  209060 ms  IR L= 831 R=1900 [valid]  target=unset    detected=unknown  seq=42 drop=0  motion-capability=none
+t=  209560 ms  IR L= 826 R=1884 [valid]  target=unset    detected=unknown  seq=43 drop=0  motion-capability=none
+t=  210060 ms  IR L= 844 R=1884 [valid]  target=unset    detected=unknown  seq=44 drop=0  motion-capability=none
+t=  210560 ms  IR L= 877 R=1913 [valid]  target=unset    detected=unknown  seq=45 drop=0  motion-capability=none
+t=  211060 ms  IR L= 859 R=1889 [valid]  target=unset    detected=unknown  seq=46 drop=0  motion-capability=none
+t=  211560 ms  IR L= 842 R=1907 [valid]  target=unset    detected=unknown  seq=47 drop=0  motion-capability=none

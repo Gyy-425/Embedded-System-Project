@@ -1,0 +1,55 @@
+{
+  "scope": "laptop Wi-Fi/network-path outage; Pico association loss not established",
+  "raw_log": "testing/integration/logs/network-path-20261107-125830.log",
+  "raw_sha256": "a35fc8c2a312877661deb3f4ffbc36c53b740a9b93c214e4825338cf726e5f06",
+  "utf8_copy": "testing/integration/logs/network-path-20261107-125830.utf8.log",
+  "utf8_sha256": "65e09f7e8273ab82782202ce8dd8f9e1a606854826d74cf46e7a0e392b1d2c9c",
+  "lines": 140,
+  "telemetry_samples": 127,
+  "valid_samples": 126,
+  "stale_samples": 1,
+  "waiting_notices": 11,
+  "nonzero_drop_samples": 0,
+  "non500ms_intervals": [
+    93640
+  ],
+  "baseline_ack": "ACK result=OK target=colour1 seq=1 tag=9c5338b8 ready=1 motion-capability=none",
+  "boundaries": [
+    {
+      "before": {
+        "line": 81,
+        "uptime_ms": 94420,
+        "quality": "valid",
+        "target": "colour1",
+        "detected": "unknown",
+        "sequence": 111,
+        "drop": 0,
+        "motion": "none"
+      },
+      "after": {
+        "line": 93,
+        "uptime_ms": 188060,
+        "quality": "valid",
+        "target": "unset",
+        "detected": "unknown",
+        "sequence": 0,
+        "drop": 0,
+        "motion": "none"
+      },
+      "gap_ms": 93640
+    }
+  ],
+  "final_status_observed_in_UI": {
+    "result": "OK",
+    "target": "unset",
+    "sequence": 0,
+    "tag": "375b55c0",
+    "ready": 1,
+    "motion_capability": "none"
+  },
+  "limitations": [
+    "operator outage duration and restoration timestamp not independently logged; gap is not reconnect latency",
+    "no Pico Wi-Fi association-loss/rejoin evidence",
+    "final STATUS and serial handshake are UI observations outside watch-only raw log"
+  ]
+}

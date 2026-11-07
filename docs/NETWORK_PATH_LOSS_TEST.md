@@ -1,5 +1,7 @@
 # Network-path interruption using laptop Wi-Fi
 
+Observed result7 November: this case is now supported by the saved watch log and inspected serial reconnect/status output. See [the network-path result](../testing/integration/logs/2026-11-07-v0_5-network-path-result.md). The procedure below is retained for reproducibility; no repeat is needed without a new reason.
+
 This is the next practical check with the current home setup because the coordinator is unsure how to access the router's Wi-Fi controls. It tests loss/restoration of the route between Pico and laptop broker while the broker process remains running. It does not prove that the Pico itself lost/reacquired its2.4GHz Wi-Fi association. No test result is claimed by this procedure.
 
 Current laptop address was rechecked as192.168.1.199 when this guide was prepared. The Pico's previously observed address is192.168.1.200. Keep these local instructions open before taking the laptop offline; chat/internet access will pause during the outage.

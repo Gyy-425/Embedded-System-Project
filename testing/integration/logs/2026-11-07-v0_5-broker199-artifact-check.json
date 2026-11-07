@@ -1,0 +1,28 @@
+{
+  "source_commit": "b8d7eac2955c77f2e2a9d9acb13672a90fb0dd79",
+  "scope": "broker address only; no application source change",
+  "build_only": true,
+  "broker": "192.168.1.199",
+  "host_tests": "Previous 25-stage host run passed; not repeated for this configuration rebuild",
+  "hardware_tests": "NOT RUN",
+  "firmware": [
+    {
+      "variant": "firmware-test0",
+      "file": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "c9d6e1c45331a83d9c928f436f6cbf8c37c6bbf5539fe9ca898d0f10788d8189",
+      "broker": "192.168.1.199",
+      "old_broker_absent": true,
+      "uf2_blocks_valid": true,
+      "bytes": 675328
+    },
+    {
+      "variant": "firmware-test1",
+      "file": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "61cd30108754d4f87be228328178c55f56cfdb8d7ddeab7bcd097955f2aef79c",
+      "broker": "192.168.1.199",
+      "old_broker_absent": true,
+      "uf2_blocks_valid": true,
+      "bytes": 676864
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # v0.5 communication test guide
 
+Current progress7 November: step1 host checks passed (25 stages,8 communication/client tests, both builds). Step2 broker address is now updated to the observed laptop address192.168.1.199, and both firmware variants rebuilt successfully. [Current image hashes and verification](../testing/integration/logs/2026-11-07-v0_5-broker199-rebuild.md). Continue at step3, then flash the normal image in step4. Recheck the address if changing networks. Earlier preparation-time deferral statements below are historical.
+
 Prepared for the next session. No car, tape, broker or protocol functional test was performed while developing this version. The normal and TEST firmware are compile variants; a compiled TEST image is not an executed test. Use the normal **AAI05_Comms_v0_5_NO_DRIVE.uf2** for this procedure. The prior v0.3.2 motor investigation is separate and remains unresolved.
 
 ## 1. Run the prepared host checks first

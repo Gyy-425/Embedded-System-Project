@@ -1,13 +1,20 @@
 # AAI05 robot firmware
 
+Client correction,7 November: fixed an idle grant-expiry race reported on the
+first v0.8 car attempt. The Python client safely handles one explicit rejection
+before acceptance;28 affected client/codec tests and the sanitized controller
+boundary test passed. Firmware files are unchanged; resume the existing test
+at step3. [Diagnosis and scope](testing/integration/logs/2026-11-07-v0_8-grant-fix.md).
+
 Prepared on 7 November: **v0.8 MQTT movement control**, with explicit START/STOP,
 fresh-command leases, guarded restart and a readable v2 client. All 31 affected
 host/build stages passed, including 14 v2 Python tests, 8 legacy client tests
 and normal/TEST firmware builds, with zero reported compiler warnings.
 [Build evidence](testing/integration/logs/2026-11-07-v0_8-preparation.md),
 [protocol](docs/MQTT_MOTION_PROTOCOL_V2.md), [next car test](docs/MQTT_MOTION_V0_8.md).
-**This image has not been tested on the car.** No tape recognition or path
-following is implemented by this feature.
+**Movement has not yet passed on the car.** The first START attempt was rejected
+by grant expiry; the client correction above is ready for retest. No tape
+recognition or path following is implemented by this feature.
 
 Use `output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2` and
 `tools/mqtt/drive_cli.py` for the next test. The configured broker is

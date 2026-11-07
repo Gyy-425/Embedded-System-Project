@@ -129,6 +129,13 @@ state; a cached Motion snapshot older than 100ms cannot authorize feeding.
 Driver rearm requires inactive/coasted outputs, disabled PWM and disarmed timer.
 
 The CLI validates -50..50 duties and a positive duration at most 10s (default 2).
+An idle STATUS grant may expire before the next request reaches the device.
+For START/TARGET/CLEAR only, the client may use the new grant from one matching
+STALE_GRANT rejection, preserving the original sequence, values and timeout.
+It requires the same session, unchanged mutation sequence/target/Motion state,
+ready status and DRIVE OFF. This is recovery before acceptance, not restarting
+stopped movement. A second rejection, lost ACK, running KEEPALIVE failure,
+changed state/session or fault aborts. Ambiguous retries keep identical bytes.
 The duration budget begins before START, includes handshake time and limits
 renewal waits. Exit/interruption requests STOP even after a lost START ACK;
 session/lease/STOP failure never triggers an automatic new START. Cleanup may

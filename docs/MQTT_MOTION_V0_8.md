@@ -5,6 +5,15 @@ interface to MQTT. It does not classify tapes or follow a coloured path yet.
 Keep the existing wiring. Basic IR, manual encoder, hardware-button, v0.6.1
 pulse and v0.7 local expiry tests do not need repeating.
 
+Client correction,7 November: the first car attempt returned `START
+STALE_GRANT` while IDLE/DRIVE OFF. STATUS can report a grant near its expiry.
+The Python client now handles one explicitly rejected idle request with the
+returned new grant, only while session/sequence/stopped state are unchanged.
+Timeouts or lost ACKs never authorize a new grant/START. The original timeout
+and movement budget remain in force. Firmware and wiring are unchanged: with
+the current v0.8 image already installed and broker working, resume at step3
+using the updated local client. [Diagnosis/tests](../testing/integration/logs/2026-11-07-v0_8-grant-fix.md).
+
 ## 1. Load the REMOTE image
 
 Support the chassis with both drive wheels clear and the power switch reachable.

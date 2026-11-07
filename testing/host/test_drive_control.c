@@ -139,11 +139,34 @@ static void test_configuration_motion_loss_and_wrap(void)
                                   &action) == DRIVE_STALE_GRANT);
 }
 
+static void test_status_just_before_grant_expiry(void)
+{
+    drive_control_t control;
+    drive_action_t action;
+    drive_control_reset(&control, 123U, 100U, 0U, true);
+    drive_command_t status = {.opcode = DRIVE_OP_STATUS, .target = 7U};
+    assert(drive_control_receive(&control, &status, false, 999U, &action) ==
+           DRIVE_OK);
+    assert(control.grant == 100U && action.kind == DRIVE_ACTION_NONE);
+    drive_command_t start = test_start(&control, 1U);
+    assert(drive_control_receive(&control, &start, false, 1001U, &action) ==
+           DRIVE_STALE_GRANT);
+    assert(control.grant == 101U && control.phase == DRIVE_IDLE);
+    assert(!control.has_sequence && action.kind == DRIVE_ACTION_NONE);
+    puts("TRACE: STATUS t=999 grant=100; START t=1001 -> STALE_GRANT, "
+         "grant=101, no ARM, sequence unchanged");
+    start.grant = 101U;
+    assert(drive_control_receive(&control, &start, false, 1002U, &action) ==
+           DRIVE_OK);
+    assert(control.phase == DRIVE_ARMING && action.kind == DRIVE_ACTION_ARM);
+}
+
 int main(void)
 {
     test_start_renew_duplicate_and_expiry();
     test_retained_stale_grant_and_stop_priority();
     test_configuration_motion_loss_and_wrap();
+    test_status_just_before_grant_expiry();
     puts("PASS: remote lifecycle, grant/sequence replay, STOP, expiry and wrap");
     return 0;
 }

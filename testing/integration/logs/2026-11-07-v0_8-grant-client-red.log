@@ -1,0 +1,72 @@
+....F.FFF.......
+======================================================================
+FAIL: test_expired_idle_grant_recovers_only_explicitly_rejected_start (test_drive_cli.DriveClientChecks.test_expired_idle_grant_recovers_only_explicitly_rejected_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 119, in test_expired_idle_grant_recovers_only_explicitly_rejected_start
+    result = run_drive(peer, peer.status, 50, 0, 0.7, 1.0, clock=clock)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py", line 145, in run_drive
+    raise failure
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py", line 107, in run_drive
+    current = request(bridge, current, OP_START, left=left, right=right,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py", line 59, in request
+    raise RuntimeError(format_drive_packet(packet))
+RuntimeError: ACK START result=STALE_GRANT request=1 remote=IDLE motion=STOPPED DRIVE=OFF reason=REQUEST duty L=+0% R=+0% lease=0ms target=unset seq=0 tag=0000007b
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 121, in test_expired_idle_grant_recovers_only_explicitly_rejected_start
+    self.fail(f"Unaccepted START must tolerate one idle grant expiry: {error}")
+AssertionError: Unaccepted START must tolerate one idle grant expiry: ACK START result=STALE_GRANT request=1 remote=IDLE motion=STOPPED DRIVE=OFF reason=REQUEST duty L=+0% R=+0% lease=0ms target=unset seq=0 tag=0000007b
+
+======================================================================
+FAIL: test_grant_recovery_is_limited_to_one_rejection (test_drive_cli.DriveClientChecks.test_grant_recovery_is_limited_to_one_rejection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 152, in test_grant_recovery_is_limited_to_one_rejection
+    self.assertEqual(operations(peer).count(OP_START), 2)
+AssertionError: 1 != 2
+
+======================================================================
+FAIL: test_idle_configuration_uses_same_bounded_grant_recovery (test_drive_cli.DriveClientChecks.test_idle_configuration_uses_same_bounded_grant_recovery) (opcode=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 140, in test_idle_configuration_uses_same_bounded_grant_recovery
+    result = request(peer, peer.status, opcode, target=target,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py", line 59, in request
+    raise RuntimeError(format_drive_packet(packet))
+RuntimeError: ACK TARGET result=STALE_GRANT request=1 remote=IDLE motion=STOPPED DRIVE=OFF reason=REQUEST duty L=+0% R=+0% lease=0ms target=unset seq=0 tag=0000007b
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 143, in test_idle_configuration_uses_same_bounded_grant_recovery
+    self.fail(f"Unaccepted idle configuration grant expired: {error}")
+AssertionError: Unaccepted idle configuration grant expired: ACK TARGET result=STALE_GRANT request=1 remote=IDLE motion=STOPPED DRIVE=OFF reason=REQUEST duty L=+0% R=+0% lease=0ms target=unset seq=0 tag=0000007b
+
+======================================================================
+FAIL: test_idle_configuration_uses_same_bounded_grant_recovery (test_drive_cli.DriveClientChecks.test_idle_configuration_uses_same_bounded_grant_recovery) (opcode=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 140, in test_idle_configuration_uses_same_bounded_grant_recovery
+    result = request(peer, peer.status, opcode, target=target,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py", line 59, in request
+    raise RuntimeError(format_drive_packet(packet))
+RuntimeError: ACK CLEAR result=STALE_GRANT request=1 remote=IDLE motion=STOPPED DRIVE=OFF reason=REQUEST duty L=+0% R=+0% lease=0ms target=unset seq=0 tag=0000007b
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 143, in test_idle_configuration_uses_same_bounded_grant_recovery
+    self.fail(f"Unaccepted idle configuration grant expired: {error}")
+AssertionError: Unaccepted idle configuration grant expired: ACK CLEAR result=STALE_GRANT request=1 remote=IDLE motion=STOPPED DRIVE=OFF reason=REQUEST duty L=+0% R=+0% lease=0ms target=unset seq=0 tag=0000007b
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.004s
+
+FAILED (failures=4)

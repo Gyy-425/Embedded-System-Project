@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_refreshed_start_with_lost_ack_only_repeats_identical_bytes (__main__.DriveClientChecks.test_refreshed_start_with_lost_ack_only_repeats_identical_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 164, in test_refreshed_start_with_lost_ack_only_repeats_identical_bytes
+    self.assertGreaterEqual(len(starts), 3)
+AssertionError: 1 not greater than or equal to 3
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

@@ -3,7 +3,8 @@
 The v0.8 movement client is `drive_cli.py`: status, watch, target, clear,
 stop and bounded drive. See [the car procedure](../../docs/MQTT_MOTION_V0_8.md)
 and [v2 protocol](../../docs/MQTT_MOTION_PROTOCOL_V2.md). Host checks and both
-firmware builds passed; this new image has not been tested on the car.
+firmware builds passed. The first car START was rejected at grant expiry;
+the Python correction is tested and ready for the same step3 retest.
 
 `robot_cli.py` remains the v0.5 no-drive target/status/raw-IR client. Its actual
 recorded connection/recovery passes remain valid. Both clients use Python3.10+

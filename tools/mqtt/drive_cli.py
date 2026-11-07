@@ -41,6 +41,7 @@ def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
     frame = encode_drive_command(opcode, target, sequence, status.session,
                                  0 if opcode == OP_STOP else status.grant,
                                  left, right)
+    grant_refreshed = False
     deadline = clock() + timeout
     next_send = clock()
     while clock() < deadline:
@@ -54,6 +55,28 @@ def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
             raise RuntimeError("Device session changed; no automatic restart")
         if (type(packet) is not DriveAck or packet.opcode != opcode or
                 packet.sequence != sequence):
+            continue
+        # STATUS can report a grant just before its expiry. Only a matching
+        # explicit rejection proves this idle request was not accepted. Use
+        # its new grant once, without changing intent/sequence or the deadline.
+        if (packet.result == 8 and not grant_refreshed and
+                opcode in (OP_START, OP_TARGET, OP_CLEAR) and
+                packet.ready and not packet.active and not status.active and
+                packet.remote_phase in (0, 3) and
+                packet.remote_phase == status.remote_phase and
+                packet.motion_phase in (0, 2) and
+                packet.motion_phase == status.motion_phase and
+                packet.reason == status.reason and
+                packet.mutation_sequence == status.mutation_sequence and
+                packet.target == status.target and
+                packet.left_pct == status.left_pct and
+                packet.right_pct == status.right_pct and
+                packet.grant not in (0, status.grant)):
+            frame = encode_drive_command(opcode, target, sequence,
+                                         status.session, packet.grant,
+                                         left, right)
+            grant_refreshed = True
+            next_send = clock()
             continue
         if packet.result not in (0, 1):
             raise RuntimeError(format_drive_packet(packet))

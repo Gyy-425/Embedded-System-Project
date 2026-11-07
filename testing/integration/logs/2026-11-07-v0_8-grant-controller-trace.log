@@ -1,0 +1,2 @@
+TRACE: STATUS t=999 grant=100; START t=1001 -> STALE_GRANT, grant=101, no ARM, sequence unchanged
+PASS: remote lifecycle, grant/sequence replay, STOP, expiry and wrap

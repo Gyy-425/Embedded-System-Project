@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-/* Diagnostic profile: exercise PWM/alarm setup while forcing both inputs high. */
+/* Diagnostic profile: exercise PWM/alarm setup with both inputs held high. */
 #ifndef MOTOR_TEST_PROBE
 #define MOTOR_TEST_PROBE 0
 #endif
@@ -18,7 +18,8 @@
 #define MOTOR_NEXT_PIN 20U
 #define MOTOR_STOP_PIN 21U
 
-typedef struct {
+typedef struct
+{
     uint32_t cutoff_count;
     uint32_t elapsed_us;
     int32_t error;
@@ -29,10 +30,12 @@ typedef struct {
     bool ready;
 } motor_pulse_status_t;
 
-/* Startup-only, before the priority-1 initial task yields to USB/radio tasks. */
+/* Startup-only, before the initial task yields to USB/radio tasks. */
 int32_t motor_timebase_init(void);
 int32_t motor_pulse_init(void);
-int32_t motor_pulse_start(uint8_t wheel, uint8_t direction, uint8_t duty, uint32_t duration_ms);
+/* Running: direct PWM on selected input, other LOW; STOP/boot:11 coast. */
+int32_t motor_pulse_start(uint8_t wheel, uint8_t direction, uint8_t duty,
+                         uint32_t duration_ms);
 void motor_pulse_stop(void);
-void motor_pulse_read(motor_pulse_status_t *status);
+void motor_pulse_read(motor_pulse_status_t *p_status);
 #endif

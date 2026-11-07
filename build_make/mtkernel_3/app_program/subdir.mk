@@ -14,6 +14,7 @@ C_DEPS += $(subst ../, ./mtkernel_3/, $(TEMP_DEPS))
 # inherited RTOS/SDK implementation.
 mtkernel_3/app_program/subsystem3/comm_protocol.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
 mtkernel_3/app_program/subsystem3/mqtt_app.o: CFLAGS += -Wall -Wextra -Werror -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem2/motor_pulse.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
 
 mtkernel_3/app_program/%.o: ../app_program/%.c
 	@echo 'Building file: $<'

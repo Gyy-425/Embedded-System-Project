@@ -68,7 +68,8 @@ static void assert_output_policy(void)
             assert(pair == 3U);
         } else {
             unsigned int drive = expected_direction == 1U ? 1U : 2U;
-            assert(pair == 3U || pair == drive);
+            /* Requested polarity, brake or coast; never reverse transiently. */
+            assert(pair == 0U || pair == 3U || pair == drive);
         }
     }
     assert(*reg(GPIO_CTRL(26U)) == 31U && *reg(GPIO_CTRL(27U)) == 31U);
@@ -236,13 +237,17 @@ static void test_polarity_and_independent_cutoff(void)
             assert(status.active && status.ready);
             assert(status.duty == 50U);
             uint32_t slice = wheel == 1U ? 4U : 5U;
-            /* Independent new-profile expectation: half-period drive/coast. */
+            /* Manufacturer pattern: first-half drive, second-half 00 brake. */
             if (!MOTOR_TEST_PROBE) {
                 unsigned int drive_samples = 0U;
                 unsigned int base_pin = wheel == 1U ? 8U : 10U;
                 for (uint32_t counter = 0U; counter < 12500U; counter += 125U) {
                     *reg(PWM_BASE + slice * 0x14U + 8U) = counter;
                     assert_output_policy();
+                    unsigned int pair = pin_level(base_pin) |
+                                        (pin_level(base_pin + 1U) << 1U);
+                    unsigned int drive = direction == 1U ? 1U : 2U;
+                    assert(pair == (counter < 6250U ? drive : 0U));
                     if (pin_level(base_pin) != pin_level(base_pin + 1U)) ++drive_samples;
                 }
                 assert(drive_samples == 50U);
@@ -252,7 +257,8 @@ static void test_polarity_and_independent_cutoff(void)
             if (MOTOR_TEST_PROBE) {
                 assert(pin_level(wheel == 1U ? 8U : 10U) == 1U && pin_level(wheel == 1U ? 9U : 11U) == 1U);
             } else {
-                assert(pin_level(wheel == 1U ? 8U : 10U) != pin_level(wheel == 1U ? 9U : 11U));
+                assert(pin_level(wheel == 1U ? 8U : 10U) == 0U &&
+                       pin_level(wheel == 1U ? 9U : 11U) == 0U);
             }
             /* No application task runs while the hardware deadline expires. */
             now_us += MOTOR_PULSE_US + 1U;
@@ -265,6 +271,27 @@ static void test_polarity_and_independent_cutoff(void)
             uint32_t duration = status.elapsed_us;
             motor_pulse_stop(); motor_pulse_read(&status);
             assert(status.elapsed_us == duration);
+        }
+    }
+}
+
+static void test_explicit_stop_in_both_phases(void)
+{
+    for (uint8_t wheel = 1U; wheel <= 2U; ++wheel) {
+        for (uint8_t direction = 1U; direction <= 2U; ++direction) {
+            for (uint32_t phase = 0U; phase <= 1U; ++phase) {
+                reset_hardware();
+                assert(motor_pulse_init() == E_OK);
+                expected_wheel = wheel;
+                expected_direction = direction;
+                assert(motor_pulse_start(wheel, direction, 50U, 400U) == E_OK);
+                uint32_t slice = wheel == 1U ? 4U : 5U;
+                *reg(PWM_BASE + slice * 0x14U + 8U) = phase * 11000U;
+                assert_output_policy();
+                motor_pulse_stop();
+                expected_wheel = 0U;
+                assert_output_policy();
+            }
         }
     }
 }
@@ -306,12 +333,13 @@ int main(int argc, char **argv)
     baseline_fixture();
 #endif
     test_polarity_and_independent_cutoff();
+    test_explicit_stop_in_both_phases();
     test_limits_conflicts_failure_and_wrap();
     test_cold_pwm_reset();
     test_unprepared_timer_rejected();
     test_early_timebase_setup_without_counter_reset();
     puts(MOTOR_TEST_PROBE ?
          "PASS: PROBE always coast, virtual pulse/alarm, caps/conflicts/failure and wrap" :
-         "PASS: pulse polarity/coast, independent timer cutoff, caps/conflicts/failure and wrap");
+         "PASS: direct PWM/brake, coast stop in both phases, cutoff, limits and wrap");
     return 0;
 }

@@ -1,5 +1,9 @@
 # v0.7 local Motion check
 
+Status: automatic expiry, GP21 stopping during motion and restart prevention
+have passed within the recorded setup. [Result and limits](../testing/integration/logs/2026-11-07-v0_7-pico-motion-result.md).
+Keep this guide for reproduction; these same cases need not be repeated now.
+
 Use `output/firmware/AAI05_Motion_v0_7_LOCAL.uf2`, without `_TEST`.
 One GP20 press renews left D1/50% commands for two seconds; right coasts.
 These two cases cover renewal/expiry and STOP during motion. No repeat of the

@@ -6,6 +6,7 @@ Latest preparation: v0.5 implements one focused communication case: binary targe
 
 ## Completed foundation
 
+- [x] First actual Pico MQTT exchange observed in VS Code: broker199/Pico200, ready STATUS ACK and readable valid raw IR telemetry. Target mutation/recovery remain pending; end-of-session disconnect intent is unconfirmed. [UI result](../testing/integration/logs/2026-11-07-v0_5-pico-network-ui-result.md).
 - [x] v0.5 host verification:25 stages passed, including8 communication/client tests and both firmware builds; actual Pico communication remains pending. [Evidence](../testing/integration/logs/2026-11-07-v0_5-host-verified.md).
 - [x] Personal GitHub repository, course starter, Ubuntu toolchain and normal/TEST baseline builds.
 - [x] Reported wiring map checked against component/board references; no pin remap currently needed.

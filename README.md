@@ -1,5 +1,7 @@
 # AAI05 diagnostic firmware
 
+Latest on-target observation7 November: the Pico connects as192.168.1.200 to the laptop broker192.168.1.199. The watch client receives a ready STATUS ACK and valid raw IR telemetry; these are distinct device addresses, not a mismatch. [Inspected results](testing/integration/logs/2026-11-07-v0_5-pico-network-ui-result.md). SET/CLEAR and recovery remain pending. Retained logs end with client stop/COM3 close/MQTT disconnect; intentional shutdown has not yet been confirmed. Earlier preparation-time statements below predate this observed exchange.
+
 Current communication image rebuilt7 November for broker **192.168.1.199**. Both no-drive variants compile without warnings, and UF2 payload/address/hash checks passed. Normal UF2 SHA256 starts `c9d6e1c45331a83d`; the previous `.196` artifacts are archived locally. [Rebuild evidence](testing/integration/logs/2026-11-07-v0_5-broker199-rebuild.md). No firmware upload or actual Pico communication has occurred; continue with broker startup and the normal image.
 
 Latest verification,7 November: the coordinator's v0.5 host run passed all25 stages with zero reported warnings, including8 communication/client tests with C-to-Python decoding,4 configuration tests and both firmware builds. Source and artifact hashes match the prepared version. [Verified host evidence](testing/integration/logs/2026-11-07-v0_5-host-verified.md). Actual Pico Wi-Fi/MQTT remains pending; continue at step2 of the v0.5 guide. Earlier statements below that host tests were deferred describe preparation before this run.

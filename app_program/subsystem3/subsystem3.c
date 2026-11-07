@@ -36,6 +36,7 @@ static void report_task(INT start_code, void *extra)
             tm_printf((UB *)"t=%u IR[L=%u R=%u valid=%u err=%d age=%u] "
                       "ENC[L=%d R=%d AB=%u/%u bad=%u/%u sat=%u age=%u] "
                       "ENC_READY=%u err=%d irq=%u over=%u/%u "
+                      "ENC_UNCERTAIN=%u "
 #if MOTOR_TEST_PROBE
                       "MOTOR_MODE=PROBE "
 #endif
@@ -58,7 +59,14 @@ static void report_task(INT start_code, void *extra)
                       (UINT)motion.count_saturated, (UINT)motion_age,
                       (UINT)motion.capture_ready, (INT)motion.capture_error,
                       (UINT)motion.irq_count, (UINT)motion.left_overrun,
-                      (UINT)motion.right_overrun, motor_phase_name(motion.motor_phase),
+                      (UINT)motion.right_overrun,
+                      (UINT)((motion.left_invalid != 0U) ||
+                             (motion.right_invalid != 0U) ||
+                             (motion.left_overrun != 0U) ||
+                             (motion.right_overrun != 0U) ||
+                             motion.count_saturated ||
+                             !motion.capture_ready),
+                      motor_phase_name(motion.motor_phase),
                       (UINT)(motion.motor_step < 4U ? motion.motor_step + 1U : 0U),
                       (UINT)motion.motor.wheel, (UINT)motion.motor.direction,
                       (UINT)motion.motor.duty, (UINT)motion.motor.elapsed_us,

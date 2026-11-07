@@ -62,7 +62,9 @@ EXPORT INT usermain(void)
 #elif MOTOR_TEST_PROBE
     tm_printf((UB *)"\n=== AAI05 MOTOR PROBE v0.3p: NO MOTOR OUTPUT ===\n");
 #else
-    tm_printf((UB *)"\n=== AAI05 MOTOR PWM v0.6: FIXED-LOW INPUT ===\n");
+    tm_printf((UB *)"\n=== AAI05 MOTOR PWM v0.6.1: FIXED-LOW INPUT ===\n");
+    tm_printf((UB *)"Encoder quality warnings are nonfatal in this "
+                       "bounded open-loop diagnostic.\n");
 #endif
     tm_printf((UB *)"IR: L=GP26 R=GP27; encoders: L=GP4/5 R=GP16/17\n");
     tm_printf((UB *)"Encoder IRQ capture: core 0; counts are edges, not distance.\n");

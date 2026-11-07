@@ -38,11 +38,8 @@ static void motion_task(INT start_code, void *extra)
         motor_pulse_read(&motor);
         uint32_t now = app_now_ms();
         UW buttons = in_w(GPIO_IN);
-        bool healthy = next.capture_ready && motor.ready && (motor.error == E_OK) &&
-                       (buttons_error == E_OK) && (motor_error == E_OK) &&
-                       (capture.left.invalid_transitions == 0U) && (capture.right.invalid_transitions == 0U) &&
-                       (capture.left_overrun == 0U) && (capture.right_overrun == 0U) &&
-                       !capture.left.count_saturated && !capture.right.count_saturated;
+        bool healthy = motor_test_inputs_ready(&capture, &motor,
+                            next.capture_ready, buttons_error, motor_error);
         uint8_t action = motor_test_update(&test, now,
                             (buttons & (1U << MOTOR_NEXT_PIN)) == 0U,
                             (buttons & (1U << MOTOR_STOP_PIN)) == 0U,

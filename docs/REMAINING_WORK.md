@@ -16,11 +16,12 @@ Latest progress: v0.5 implements binary target selection/clear/status, ACKs, raw
 - [x] Both raw IR channels respond; basic manual encoder input/IRQ capture supported by supplied logs.
 - [x] Captured motor-start HardFault and three GPIO definitions corrected, with regression/build evidence.
 - [x] All four hardware motor buttons reportedly produce clear movement and stopping on release: basic hardware-button response passes.
+- [x] v0.6.1 actual software-triggered four-request sequence: reported cutoffs400020/400010/400007/400009us, DONE/cutoff4/stop0, then GP21 STOPPED/stop1/DRIVE OFF. Coordinator reports movement working well. [Scoped result](../testing/integration/logs/2026-11-07-v0_6_1-pico-motor-result.md). Powered encoder accuracy and STOP under load remain unverified.
 - [x] Laptop broker/client runtime and no-drive communication image prepared; actual Pico status/target/raw-IR exchanges and the recorded recovery cases are supported.
 
 ## Remaining work in practical order
 
-Current motor development: v0.6 implements the vendor-pattern PWM/off-state comparison with safe start/stop ordering. Affected pulse/probe host checks and normal/TEST builds pass; physical motion is pending. [One conditional hardware session](MOTOR_PWM_V0_6.md), [evidence](../testing/integration/logs/2026-11-07-v0_6-pwm-preparation.md). Begin with one left-wheel request and continue only if it moves; do not repeat unchanged unsuccessful trials.
+Current motor development: the v0.6.1 bounded four-request sequence and unloaded GP21 input/latch are supported by the actual run. [Result](../testing/integration/logs/2026-11-07-v0_6_1-pico-motor-result.md). Do not repeat these basic requests. Next implement the normal Motion command/STOP/expiry interface and controlled running. Powered encoder accuracy remains unresolved (`over=3/2`) and must be addressed before counts control speed or position; sustained motion and STOP under load remain separate validation.
 
 1. [x] **Core communication bring-up.** Actual IP, broker/status/target/raw telemetry, MQTT session recovery and laptop-network-path loss/restoration are supported by recorded runs. This completes the current no-drive communication case. Actual Pico association-loss/rejoin and final demo-network checks remain explicitly deferred to integrated validation; they are not claimed by the laptop-only test.
 2. [ ] **Reliable program-controlled motor motion — can progress alongside networking.** Investigate the verified PWM off-state difference from the manufacturer example and obtain actual output evidence; avoid further blind duty increases. Verify both wheels/directions, controlled starting/running, STOP/expiry and encoder response during real powered motion. Establish physical forward signs and calibrate counts/distance or speed where used; add speed balancing/control as needed for stable tracking. Hardware buttons do not pass this item.
@@ -40,4 +41,4 @@ Networking does not need to wait for every motion qualification test. Calibratio
 
 Barcode decoding/directed junction manoeuvres, ultrasonic/servo obstacle profiling/avoidance and hump-height measurement are omitted under the professor's confirmed revision. IMU is optional and should only be reconsidered after the required colour/motion/communication application works. No dashboard is required.
 
-Current next actions: focused PWM correction/investigation and collection of the real tape set. Preserve the communication passes; include actual Pico association-loss/rejoin, final demo-network operation and combined-load freshness/timing in later validation.
+Current next actions: normal Motion command/STOP/expiry integration, powered encoder-quality work before feedback control, and collection of the real tape set. Preserve the communication passes; include actual Pico association-loss/rejoin, final demo-network operation and combined-load freshness/timing in later validation.

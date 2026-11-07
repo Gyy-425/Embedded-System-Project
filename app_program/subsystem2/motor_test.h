@@ -1,6 +1,7 @@
 #ifndef AAI05_MOTOR_TEST_H
 #define AAI05_MOTOR_TEST_H
 #include "motor_pulse.h"
+#include "encoder_capture.h"
 
 enum {MOTOR_TEST_IDLE, MOTOR_TEST_ACTIVE, MOTOR_TEST_COOLDOWN, MOTOR_TEST_DONE, MOTOR_TEST_STOPPED};
 enum {MOTOR_TEST_NONE, MOTOR_TEST_START, MOTOR_TEST_STOP};
@@ -24,4 +25,10 @@ void motor_test_init(motor_test_t *test, uint32_t now);
 uint8_t motor_test_update(motor_test_t *test, uint32_t now, bool next,
                           bool stop, bool healthy, bool pulse_active);
 void motor_test_abort(motor_test_t *test, uint8_t reason);
+/* Diagnostic-only readiness; count-quality warnings remain in telemetry.
+ * Do not use this policy to qualify encoder-based speed or position control. */
+bool motor_test_inputs_ready(const encoder_capture_t *p_capture,
+                             const motor_pulse_status_t *p_motor,
+                             bool is_capture_ready, int32_t buttons_error,
+                             int32_t motor_init_error);
 #endif

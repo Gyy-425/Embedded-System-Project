@@ -17,7 +17,7 @@ parser.add_argument('--motor-probe', action='store_true', help='coast-only PWM/t
 parser.add_argument('--network-probe', action='store_true', help='Wi-Fi/MQTT transport probe; forces coast-only motor mode')
 parser.add_argument('--comms-app', action='store_true', help='binary target/ACK/raw-IR application; no motor output')
 parser.add_argument('--build-only', action='store_true', help='compile/static checks only; defer executable functional tests')
-parser.add_argument('--motor-focused', action='store_true', help='run only affected PWM/probe host checks and motor builds')
+parser.add_argument('--motor-focused', action='store_true', help='run only affected controller/PWM/probe checks and motor builds')
 args = parser.parse_args()
 args.network_probe = args.network_probe or args.comms_app
 args.motor_probe = args.motor_probe or args.network_probe
@@ -25,7 +25,7 @@ if args.motor_focused and args.motor_probe:
     parser.error('--motor-focused uses the normal motor-output profile')
 args.label = args.label or ('2026-11-07-v0_5' if args.comms_app else
                            '2026-11-06-v0_4' if args.network_probe else
-                           '2026-11-06-v0_3p' if args.motor_probe else '2026-11-07-v0_6')
+                           '2026-11-06-v0_3p' if args.motor_probe else '2026-11-07-v0_6_1')
 if re.fullmatch(r'[A-Za-z0-9_-]+', args.label) is None:
     parser.error('--label must contain only letters, digits, underscores or hyphens')
 if not args.sdk:
@@ -62,18 +62,20 @@ host_binary = Path('/tmp/aai05_encoder_test')
 summary = {'baseline_commit': 'c3b09544cb1fd6dac6ad4b8f523be0af59b44482',
            'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
            'source_dirty': bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()),
-           'application_version': '0.5' if args.comms_app else '0.4' if args.network_probe else '0.3p' if args.motor_probe else '0.6',
+           'application_version': '0.5' if args.comms_app else '0.4' if args.network_probe else '0.3p' if args.motor_probe else '0.6.1',
            'motor_pulse_duty_percent': 50, 'motor_pulse_duration_ms': 400,
            'motor_mode': 'NO_DRIVE_PROBE' if args.motor_probe else 'BUTTON_TRIGGERED_DRIVE',
            'network_mode': 'BINARY_COMMS_APP' if args.comms_app else 'WIFI_MQTT_TRANSPORT_PROBE' if args.network_probe else 'RADIO_ONLY',
            'functional_tests': 'DEFERRED_AT_USER_REQUEST' if args.build_only else 'HOST_ONLY',
-           'test_scope': 'AFFECTED_MOTOR_PWM_AND_PROBE' if args.motor_focused else 'ALL',
+           'test_scope': 'AFFECTED_MOTOR_CONTROLLER_PWM_AND_PROBE' if args.motor_focused else 'ALL',
+           'encoder_warning_policy': 'NONFATAL_BOUNDED_OPEN_LOOP_ONLY',
            'running_pwm': 'DIRECT_DUTY_FIXED_LOW',
            'sdk': str(sdk), 'hardware_tests': 'NOT RUN', 'results': []}
 
 def run(command, label, cwd=repo):
     log = logs / f'{args.label}-{label}.log'
-    motor_checks = {'host-pulse-compile', 'host-pulse',
+    motor_checks = {'host-control-compile', 'host-control',
+                    'host-pulse-compile', 'host-pulse',
                     'host-probe-compile', 'host-probe'}
     if args.motor_focused and label.startswith('host-') and label not in motor_checks:
         summary['results'].append({'label': label, 'command': command,
@@ -170,7 +172,7 @@ profile = ['SMP=1', 'CONSOLE=usb_cdc', 'WIFI=cyw43',
            f'MOTOR_PROBE={int(args.motor_probe)}', f'COMM_APP={int(args.comms_app)}']
 artifact_base = ('AAI05_Comms_v0_5_NO_DRIVE' if args.comms_app else
                  'AAI05_Network_Probe_v0_4_NO_DRIVE' if args.network_probe else
-                 'AAI05_Motor_Probe_v0_3p_NO_DRIVE' if args.motor_probe else 'AAI05_Motor_PWM_v0_6')
+                 'AAI05_Motor_Probe_v0_3p_NO_DRIVE' if args.motor_probe else 'AAI05_Motor_PWM_v0_6_1')
 for test in [0, 1]:
     run(['make', '-j8', *profile, f'TEST={test}'], f'firmware-test{test}', repo / 'build_make')
     stem = ('mtk3pico_smp1_usb_cdc_wifi' + ('_lwip_mqtt' if args.network_probe else '') +

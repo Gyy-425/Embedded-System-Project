@@ -109,6 +109,70 @@ static void test_fallback_does_not_preempt_hardware_deadline(void)
     assert(test.phase == MOTOR_TEST_STOPPED && test.stop_reason == MOTOR_STOP_DRIVER);
 }
 
+/* Catches a count-quality warning incorrectly aborting open-loop motion. */
+static void test_capture_warning_allows_bounded_pulse(void)
+{
+    encoder_capture_t capture = {0};
+    motor_pulse_status_t motor = {.ready = true};
+    motor_test_t test;
+    bool is_ready;
+
+    motor_test_init(&test, 0U);
+    release_button(&test, 0U);
+    assert(press_button(&test, 60U) == MOTOR_TEST_START);
+    capture.left.count = 1856;
+    capture.irq_count = 1857U;
+    capture.left_overrun = 1U;
+    is_ready = motor_test_inputs_ready(&capture, &motor, true, 0, 0);
+    assert(motor_test_update(&test, 260U, false, false, is_ready, true) ==
+           MOTOR_TEST_NONE);
+    assert(test.phase == MOTOR_TEST_ACTIVE);
+    capture.right.invalid_transitions = 1U;
+    capture.left.invalid_transitions = 1U;
+    capture.right_overrun = 1U;
+    is_ready = motor_test_inputs_ready(&capture, &motor, true, 0, 0);
+    assert(is_ready);
+    assert(motor_test_update(&test, 500U, false, false, is_ready, false) ==
+           MOTOR_TEST_STOP);
+    assert(test.phase == MOTOR_TEST_COOLDOWN);
+    assert(test.stop_reason == MOTOR_STOP_NONE);
+    assert(motor_test_update(&test, 1500U, false, false, is_ready, false) ==
+           MOTOR_TEST_NONE);
+    assert(test.phase == MOTOR_TEST_IDLE && test.step == 1U);
+    assert(press_button(&test, 1560U) == MOTOR_TEST_START);
+    assert(motor_test_update(&test, 1620U, false, true, is_ready, true) ==
+           MOTOR_TEST_STOP);
+    assert(test.phase == MOTOR_TEST_STOPPED);
+    assert(test.stop_reason == MOTOR_STOP_BUTTON);
+    release_button(&test, 1660U);
+    assert(press_button(&test, 1720U) == MOTOR_TEST_NONE);
+}
+
+/* Catches warning tolerance accidentally disabling actual fault guards. */
+static void test_diagnostic_readiness_preserves_faults(void)
+{
+    encoder_capture_t capture = {0};
+    motor_pulse_status_t motor = {.ready = true};
+
+    assert(motor_test_inputs_ready(&capture, &motor, true, 0, 0));
+    assert(!motor_test_inputs_ready(NULL, &motor, true, 0, 0));
+    assert(!motor_test_inputs_ready(&capture, NULL, true, 0, 0));
+    assert(!motor_test_inputs_ready(&capture, &motor, false, 0, 0));
+    assert(!motor_test_inputs_ready(&capture, &motor, true, -5, 0));
+    assert(!motor_test_inputs_ready(&capture, &motor, true, 0, -5));
+    motor.ready = false;
+    assert(!motor_test_inputs_ready(&capture, &motor, true, 0, 0));
+    motor.ready = true;
+    motor.error = -5;
+    assert(!motor_test_inputs_ready(&capture, &motor, true, 0, 0));
+    motor.error = 0;
+    capture.left.count_saturated = true;
+    assert(!motor_test_inputs_ready(&capture, &motor, true, 0, 0));
+    capture.left.count_saturated = false;
+    capture.right.count_saturated = true;
+    assert(!motor_test_inputs_ready(&capture, &motor, true, 0, 0));
+}
+
 int main(void)
 {
     test_explicit_press_and_held_boot();
@@ -116,6 +180,8 @@ int main(void)
     test_four_steps_and_timer_completion();
     test_wrap_and_active_fault();
     test_fallback_does_not_preempt_hardware_deadline();
+    test_capture_warning_allows_bounded_pulse();
+    test_diagnostic_readiness_preserves_faults();
     puts("PASS: motor controller explicit-start, debounce/hold, STOP/fault, cooldown, sequence and wrap");
     return 0;
 }

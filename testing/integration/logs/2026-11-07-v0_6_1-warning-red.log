@@ -1,0 +1,1 @@
+aai05_motor_warning_test: testing/host/test_motor_control.c:127: test_capture_warning_allows_bounded_pulse: Assertion `motor_test_update(&test, 260U, false, false, is_ready, true) == MOTOR_TEST_NONE' failed.

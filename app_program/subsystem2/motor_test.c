@@ -1,4 +1,23 @@
 #include "motor_test.h"
+#include <stddef.h>
+
+bool motor_test_inputs_ready(const encoder_capture_t *p_capture,
+                             const motor_pulse_status_t *p_motor,
+                             bool is_capture_ready, int32_t buttons_error,
+                             int32_t motor_init_error)
+{
+    if ((p_capture == NULL) || (p_motor == NULL))
+    {
+        return false;
+    }
+    /* This bounded open-loop test never steers from encoder counts.
+     * Keep capture-quality warnings observable, but do not latch STOP on
+     * them. A feedback controller needs a separate quality policy. */
+    return is_capture_ready && p_motor->ready && (p_motor->error == 0) &&
+           (buttons_error == 0) && (motor_init_error == 0) &&
+           !p_capture->left.count_saturated &&
+           !p_capture->right.count_saturated;
+}
 
 void motor_test_init(motor_test_t *test, uint32_t now)
 {

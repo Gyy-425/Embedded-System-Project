@@ -1,5 +1,9 @@
 # v0.6 practical motor check
 
+Historical procedure: v0.6 produced left-wheel motion but an encoder capture
+warning latched an early STOP. Use [v0.6.1](MOTOR_PWM_V0_6_1.md) for the next
+session; the original procedure below records the previous image.
+
 Use **output/firmware/AAI05_Motor_PWM_v0_6.uf2**, the normal image without `_TEST`. This is the next focused motor case. No wiring change, repeat IR/manual-encoder check or network retest is needed.
 
 ## What changed

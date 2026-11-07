@@ -1,0 +1,1 @@
+aai05_drive_protocol_test: testing/host/test_drive_protocol.c:14: test_decode_and_rejection: Assertion `drive_protocol_decode(frame, 14U, &command) == DRIVE_OK' failed.

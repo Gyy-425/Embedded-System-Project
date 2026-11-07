@@ -42,8 +42,15 @@ static void motion_task(INT start_code, void *extra)
         motor_pulse_read(&motor);
         uint32_t now = app_now_ms();
         UW buttons = in_w(GPIO_IN);
+#if AAI05_REMOTE_APP
+        bool healthy = next.capture_ready && motor.ready &&
+            ((motor.error == E_OK) || (motor.error == E_TMOUT)) &&
+            (buttons_error == E_OK) && (motor_error == E_OK) &&
+            !capture.left.count_saturated && !capture.right.count_saturated;
+#else
         bool healthy = motor_test_inputs_ready(&capture, &motor,
                             next.capture_ready, buttons_error, motor_error);
+#endif
 #if AAI05_MOTION_APP
         motion_runtime_step(now, (uint32_t)buttons, healthy, motor.active,
                               &next.motion);

@@ -34,8 +34,11 @@ def executable(name: str, directory: Path | None) -> str:
 class Bridge:
     """Own only the subscriber child process created for this invocation."""
 
-    def __init__(self, args: argparse.Namespace):
-        self.base = f"aai05/v1/{args.device}"
+    def __init__(self, args: argparse.Namespace, *, version: int = 1,
+                 decoder=decode_packet, ack_type=Ack):
+        self.base = f"aai05/v{version}/{args.device}"
+        self.decoder = decoder
+        self.ack_type = ack_type
         self.common = ["-h", args.host, "-p", str(args.port), "-V", "mqttv311"]
         self.publisher = executable("mosquitto_pub", args.tools_dir)
         self.subscriber = executable("mosquitto_sub", args.tools_dir)
@@ -47,9 +50,14 @@ class Bridge:
         command = [self.subscriber, *self.common, "-q", "1", "-R",
                    "-t", self.base + "/ack", "-t", self.base + "/telemetry",
                    "-F", "%t %x"]
+        # Keep the response subscriber alive while the parent handles Ctrl+C
+        # and sends/receives its final STOP. __exit__ still owns termination.
+        process_options = ({"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
+                           if sys.platform == "win32" else {"start_new_session": True})
         self.process = subprocess.Popen(command, stdout=subprocess.PIPE,
                                         stderr=subprocess.PIPE, text=True,
-                                        encoding="ascii", errors="replace")
+                                        encoding="ascii", errors="replace",
+                                        **process_options)
         for stream, is_error in ((self.process.stdout, False),
                                  (self.process.stderr, True)):
             thread = threading.Thread(target=self._read,
@@ -90,7 +98,7 @@ class Bridge:
                              for char in detail)[:200]
             raise RuntimeError(f"MQTT publication failed: {detail}")
 
-    def receive(self, timeout: float) -> Ack | Telemetry | None:
+    def receive(self, timeout: float) -> object | None:
         try:
             line = self.messages.get(timeout=timeout)
         except queue.Empty:
@@ -99,8 +107,8 @@ class Bridge:
             return None
         try:
             topic, encoded = line.split(" ", 1)
-            packet = decode_packet(bytes.fromhex(encoded))
-            expected = "/ack" if isinstance(packet, Ack) else "/telemetry"
+            packet = self.decoder(bytes.fromhex(encoded))
+            expected = "/ack" if type(packet) is self.ack_type else "/telemetry"
             if topic != self.base + expected:
                 raise ValueError("Packet type/topic mismatch")
             return packet

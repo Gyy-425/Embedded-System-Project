@@ -1,0 +1,27 @@
+sE.E
+======================================================================
+ERROR: test_compact_signed_start_and_stop (test_drive_codec.DriveCodecChecks.test_compact_signed_start_and_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_codec.py", line 18, in test_compact_signed_start_and_stop
+    frame = encode_drive_command(OP_START, sequence=65535,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_codec.py", line 48, in encode_drive_command
+    raise ValueError("v2 command encoding not implemented")
+ValueError: v2 command encoding not implemented
+
+======================================================================
+ERROR: test_literal_status_vectors_and_readable_limits (test_drive_codec.DriveCodecChecks.test_literal_status_vectors_and_readable_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_codec.py", line 28, in test_literal_status_vectors_and_readable_limits
+    ack = decode_drive_packet(ACK)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_codec.py", line 52, in decode_drive_packet
+    raise ValueError("v2 status decoding not implemented")
+ValueError: v2 status decoding not implemented
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=2, skipped=1)

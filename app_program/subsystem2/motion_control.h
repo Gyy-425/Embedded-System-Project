@@ -58,6 +58,7 @@ typedef struct
     uint16_t sequence;
     int8_t left_pct;
     int8_t right_pct;
+    uint16_t epoch;
     uint8_t phase;
     uint8_t reason;
     uint8_t lease_ms;

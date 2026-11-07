@@ -1,0 +1,690 @@
+{
+  "baseline_commit": "c3b09544cb1fd6dac6ad4b8f523be0af59b44482",
+  "source_commit": "0660fdd3a634cc14e56ac8856f1090f512f4e5d7",
+  "source_dirty": true,
+  "application_version": "0.8",
+  "motor_pulse_duty_percent": 50,
+  "motor_pulse_duration_ms": null,
+  "motor_mode": "REMOTE_LEASED_MOTION",
+  "motion_command_ttl_ms": 100,
+  "network_mode": "BINARY_REMOTE_MOTION_V2",
+  "mqtt_parser_contract_sha256": "71bb51547bf2f81b324d5fa796df367076fb98bc8a0eb687a1450f7eedfcf98a",
+  "remote_lease_ms": 750,
+  "remote_grant_ms": 1000,
+  "remote_wire_sizes": [
+    14,
+    23,
+    26
+  ],
+  "functional_tests": "HOST_ONLY",
+  "test_scope": "AFFECTED_MOTOR_CONTROLLER_PWM_AND_PROBE",
+  "encoder_warning_policy": "NONFATAL_BOUNDED_OPEN_LOOP_ONLY",
+  "running_pwm": "DIRECT_DUTY_FIXED_LOW",
+  "sdk": "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "label": "host-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05_encoder_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-encoder",
+      "command": [
+        "/tmp/aai05_encoder_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-register-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "testing/host/test_rp2040_registers.c",
+        "-o",
+        "/tmp/aai05_rp2040_register_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-register",
+      "command": [
+        "/tmp/aai05_rp2040_register_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-motor-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_startup.c",
+        "app_program/subsystem2/drv_motor.c",
+        "-o",
+        "/tmp/aai05_motor_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-motor-startup",
+      "command": [
+        "/tmp/aai05_motor_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder_capture.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05_capture_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-capture",
+      "command": [
+        "/tmp/aai05_capture_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_encoder_startup.c",
+        "-o",
+        "/tmp/aai05_capture_startup_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-capture-startup",
+      "command": [
+        "/tmp/aai05_capture_startup_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_control.c",
+        "app_program/subsystem2/motor_test.c",
+        "-o",
+        "/tmp/aai05_motor_control_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-control-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-control",
+      "command": [
+        "/tmp/aai05_motor_control_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-control.log",
+      "warnings": []
+    },
+    {
+      "label": "host-motion-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motion_control.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05_motion_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-motion-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-motion",
+      "command": [
+        "/tmp/aai05_motion_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-motion.log",
+      "warnings": []
+    },
+    {
+      "label": "host-motion-runtime-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-pthread",
+        "-Iapp_program/subsystem2",
+        "-Iinclude",
+        "testing/host/test_motion_runtime.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05_motion_runtime_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-motion-runtime-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-motion-runtime",
+      "command": [
+        "/tmp/aai05_motion_runtime_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-motion-runtime.log",
+      "warnings": []
+    },
+    {
+      "label": "host-pulse-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05_motor_pulse_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-pulse-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-pulse",
+      "command": [
+        "/tmp/aai05_motor_pulse_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-pulse.log",
+      "warnings": []
+    },
+    {
+      "label": "host-probe-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-DMOTOR_TEST_PROBE=1",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05_motor_probe_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-probe-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-probe",
+      "command": [
+        "/tmp/aai05_motor_probe_test"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-probe.log",
+      "warnings": []
+    },
+    {
+      "label": "host-remote-runtime-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-pthread",
+        "-DAAI05_REMOTE_APP=1",
+        "-Iapp_program/subsystem2",
+        "-Iinclude",
+        "testing/host/test_motion_runtime.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05_remote_runtime"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-remote-runtime-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-remote-runtime",
+      "command": [
+        "/tmp/aai05_remote_runtime"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-remote-runtime.log",
+      "warnings": []
+    },
+    {
+      "label": "host-drive-protocol-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem3",
+        "testing/host/test_drive_protocol.c",
+        "app_program/subsystem3/drive_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05_drive_protocol"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-drive-protocol-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-drive-protocol",
+      "command": [
+        "/tmp/aai05_drive_protocol"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-drive-protocol.log",
+      "warnings": []
+    },
+    {
+      "label": "host-drive-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem3",
+        "testing/host/test_drive_control.c",
+        "app_program/subsystem3/drive_control.c",
+        "-o",
+        "/tmp/aai05_drive_control"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-drive-control-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-drive-control",
+      "command": [
+        "/tmp/aai05_drive_control"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-drive-control.log",
+      "warnings": []
+    },
+    {
+      "label": "host-drive-service-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-DAAI05_REMOTE_APP=1",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem2",
+        "testing/host/test_drive_service.c",
+        "app_program/subsystem3/mqtt_drive_app.c",
+        "app_program/subsystem3/drive_control.c",
+        "app_program/subsystem3/drive_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05_drive_service"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-drive-service-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-drive-service",
+      "command": [
+        "/tmp/aai05_drive_service"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-drive-service.log",
+      "warnings": []
+    },
+    {
+      "label": "host-mqtt-legacy-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-DAAI05_REMOTE_APP=0",
+        "-DAAI05_COMMS_APP=1",
+        "-Itesting/host/mqtt_fixture",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "-I/tmp/aai05-sdk-3eb0f28287/lib/lwip/src/include",
+        "testing/host/test_mqtt_ingress.c",
+        "-o",
+        "/tmp/aai05_mqtt_legacy"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-mqtt-legacy-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-mqtt-legacy",
+      "command": [
+        "/tmp/aai05_mqtt_legacy"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-mqtt-legacy.log",
+      "warnings": []
+    },
+    {
+      "label": "host-mqtt-remote-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-DAAI05_REMOTE_APP=1",
+        "-DAAI05_COMMS_APP=0",
+        "-Itesting/host/mqtt_fixture",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "-I/tmp/aai05-sdk-3eb0f28287/lib/lwip/src/include",
+        "testing/host/test_mqtt_ingress.c",
+        "-o",
+        "/tmp/aai05_mqtt_remote"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-mqtt-remote-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-mqtt-remote",
+      "command": [
+        "/tmp/aai05_mqtt_remote"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-mqtt-remote.log",
+      "warnings": []
+    },
+    {
+      "label": "host-drive-python",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "testing/host",
+        "-p",
+        "test_drive_*.py"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-host-drive-python.log",
+      "warnings": []
+    },
+    {
+      "label": "host-network-config",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "testing/host",
+        "-p",
+        "test_network_config.py"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "comm-static-compile",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05_comm_protocol.o"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-comm-static-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "comm-checks-static-compile",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-Iapp_program/subsystem3",
+        "-c",
+        "testing/host/test_comm_protocol.c",
+        "-o",
+        "/tmp/aai05_comm_checks.o"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-comm-checks-static-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "cli-syntax-compile",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "py_compile",
+        "tools/mqtt/robot_codec.py",
+        "tools/mqtt/robot_cli.py",
+        "testing/host/test_comm_cli.py"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-cli-syntax-compile.log",
+      "warnings": []
+    },
+    {
+      "label": "host-comm-compile",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-Iapp_program/subsystem3",
+        "testing/host/test_comm_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05_comm_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-comm",
+      "command": [
+        "/tmp/aai05_comm_test"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "host-comm-cli",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "testing/host",
+        "-p",
+        "test_comm_cli.py"
+      ],
+      "exit_code": null,
+      "status": "SKIPPED_UNCHANGED_SCOPE",
+      "warnings": []
+    },
+    {
+      "label": "firmware-test0",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=lwip",
+        "MQTT=1",
+        "CRASH_REPORT=0",
+        "MOTOR_PROBE=0",
+        "COMM_APP=0",
+        "MOTION_APP=1",
+        "REMOTE_APP=1",
+        "TEST=0"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-firmware-test0.log",
+      "warnings": [],
+      "uf2": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2",
+      "sha256": "c7895b64f95e0a395c4b43e56cfa9eacfc1b1d687a08ee92374397e137a2791d",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 340392\t    100\t  82576\t 423068\t  6749c\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/build_make/mtk3pico_smp1_usb_cdc_wifi_lwip_mqtt_motion_remote.elf"
+    },
+    {
+      "label": "firmware-test1",
+      "command": [
+        "make",
+        "-j8",
+        "SMP=1",
+        "CONSOLE=usb_cdc",
+        "WIFI=cyw43",
+        "NET=lwip",
+        "MQTT=1",
+        "CRASH_REPORT=0",
+        "MOTOR_PROBE=0",
+        "COMM_APP=0",
+        "MOTION_APP=1",
+        "REMOTE_APP=1",
+        "TEST=1"
+      ],
+      "exit_code": 0,
+      "log": "testing/integration/logs/2026-11-07-v0_8-remote-firmware-test1.log",
+      "warnings": [],
+      "uf2": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE_TEST.uf2",
+      "sha256": "96a8edcae89ad4a4e01969cab1d4484b9cc0af4ef144305b1019e88c30f0cd45",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 340948\t    100\t  82576\t 423624\t  676c8\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/build_make/mtk3pico_smp1_usb_cdc_wifi_lwip_mqtt_motion_remote_test.elf"
+    }
+  ],
+  "compiler": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009"
+}

@@ -55,7 +55,9 @@ EXPORT INT usermain(void)
     halt_on_error(subsystem2_init(), "motion init");
     halt_on_error(subsystem1_init(), "IR init");
     halt_on_error(subsystem3_init(), "report init");
-#if AAI05_MOTION_APP
+#if AAI05_REMOTE_APP
+    tm_printf((UB *)"\n=== AAI05 MQTT MOTION v0.8: EXPLICIT REMOTE START ===\n");
+#elif AAI05_MOTION_APP
     tm_printf((UB *)"\n=== AAI05 MOTION v0.7: LOCAL OPEN-LOOP EXERCISE ===\n");
 #elif AAI05_COMMS_APP
     tm_printf((UB *)"\n=== AAI05 COMMS v0.5: NO MOTOR OUTPUT ===\n");
@@ -71,7 +73,11 @@ EXPORT INT usermain(void)
     tm_printf((UB *)"IR: L=GP26 R=GP27; encoders: L=GP4/5 R=GP16/17\n");
     tm_printf((UB *)"Encoder IRQ capture: core 0; counts are edges, not distance.\n");
 #if TM_NET_LWIP
-#if AAI05_COMMS_APP
+#if AAI05_REMOTE_APP
+    tm_printf((UB *)"v2 MQTT START/KEEPALIVE/STOP;750 ms remote lease, "
+                       "100 ms internal lease. No auto-start on reconnect.\n");
+    tm_printf((UB *)"Raw IR/target storage; detected colours remain unknown.\n");
+#elif AAI05_COMMS_APP
     tm_printf((UB *)"Binary target selection/ACK/raw IR; colours not calibrated.\n");
     tm_printf((UB *)"No movement command or colour classification in this image.\n");
 #else
@@ -81,7 +87,12 @@ EXPORT INT usermain(void)
 #else
     tm_printf((UB *)"Motor image: USB diagnostics; MQTT disabled in this build.\n");
 #endif
-#if AAI05_MOTION_APP
+#if AAI05_REMOTE_APP
+    tm_printf((UB *)"GP20 local run is disabled. GP21 STOP; only fresh MQTT "
+                       "START can rearm after GP21 is released.\n");
+    tm_printf((UB *)"Open-loop electrical duties only; no calibrated speed "
+                       "or physical-forward convention.\n");
+#elif AAI05_MOTION_APP
     tm_printf((UB *)"GP20: one fresh press renews left D1/50%% commands "
                        "for 2 seconds; right wheel coasts.\n");
     tm_printf((UB *)"100 ms command/hardware lease. GP21 or expiry latches "

@@ -1,0 +1,21 @@
+.F....F...
+======================================================================
+FAIL: test_duration_budget_includes_startup (test_drive_cli.DriveClientChecks.test_duration_budget_includes_startup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 164, in test_duration_budget_includes_startup
+    self.assertLessEqual(peer.publish_times[stop_index] - peer.publish_times[0],
+AssertionError: 1.22 not less than or equal to 1.001
+
+======================================================================
+FAIL: test_near_deadline_renewal_cannot_extend_run (test_drive_cli.DriveClientChecks.test_near_deadline_renewal_cannot_extend_run)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 180, in test_near_deadline_renewal_cannot_extend_run
+    self.assertLessEqual(peer.publish_times[stop_index], 0.751)
+AssertionError: 0.97 not less than or equal to 0.751
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.002s
+
+FAILED (failures=2)

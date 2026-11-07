@@ -114,13 +114,25 @@ COMM_APP_SUFFIX := _comm
 endif
 
 # Opt-in open-loop Motion/local exercise, separate from legacy pulse/MQTT.
+REMOTE_APP ?= 0
+ifneq ($(filter $(REMOTE_APP),0 1),$(REMOTE_APP))
+$(error Unknown REMOTE_APP '$(REMOTE_APP)'; use 0 or 1)
+endif
+ifeq ($(REMOTE_APP),1)
+ifneq ($(NET)$(MQTT)$(MOTOR_PROBE)$(COMM_APP)$(MOTION_APP),lwip1001)
+$(error REMOTE_APP=1 requires NET=lwip MQTT=1 MOTOR_PROBE=0 COMM_APP=0 MOTION_APP=1)
+endif
+REMOTE_APP_SUFFIX := _remote
+endif
 MOTION_APP ?= 0
 ifneq ($(filter $(MOTION_APP),0 1),$(MOTION_APP))
 $(error Unknown MOTION_APP '$(MOTION_APP)'; use 0 or 1)
 endif
 ifeq ($(MOTION_APP),1)
+ifneq ($(REMOTE_APP),1)
 ifneq ($(NET)$(MQTT)$(MOTOR_PROBE)$(COMM_APP),none000)
 $(error MOTION_APP=1 requires NET=none MQTT=0 MOTOR_PROBE=0 COMM_APP=0)
+endif
 endif
 MOTION_APP_SUFFIX := _motion
 endif
@@ -150,7 +162,7 @@ endif
 # a live hazard: an SMP=1 build was once flashed in place of an SMP=0 one and
 # only the banner in the log revealed it.
 #
-EXE_FILE := mtk3pico_smp$(SMP)_$(CONSOLE)$(WIFI_SUFFIX)$(NET_SUFFIX)$(MQTT_SUFFIX)$(CRASH_SUFFIX)$(MOTOR_PROBE_SUFFIX)$(COMM_APP_SUFFIX)$(MOTION_APP_SUFFIX)$(TEST_SUFFIX)
+EXE_FILE := mtk3pico_smp$(SMP)_$(CONSOLE)$(WIFI_SUFFIX)$(NET_SUFFIX)$(MQTT_SUFFIX)$(CRASH_SUFFIX)$(MOTOR_PROBE_SUFFIX)$(COMM_APP_SUFFIX)$(MOTION_APP_SUFFIX)$(REMOTE_APP_SUFFIX)$(TEST_SUFFIX)
 
 GCC := arm-none-eabi-gcc
 AS := arm-none-eabi-gcc
@@ -214,6 +226,7 @@ CFLAGS  += -DAPP_TEST=$(TEST)
 CFLAGS  += -DMOTOR_TEST_PROBE=$(MOTOR_PROBE)
 CFLAGS  += -DAAI05_COMMS_APP=$(COMM_APP)
 CFLAGS  += -DAAI05_MOTION_APP=$(MOTION_APP)
+CFLAGS  += -DAAI05_REMOTE_APP=$(REMOTE_APP)
 CFLAGS  += -DTM_CONSOLE_UART=$(CRASH_REPORT)
 ifeq ($(CRASH_REPORT),0)
 CFLAGS  += -DBOARD_UART0_FREE=1
@@ -246,7 +259,7 @@ endif
 # before any recipe executes.
 ################################################################################
 
-PROFILE_ID := smp$(SMP)-$(CONSOLE)-wifi$(WIFI)-net$(NET)-mqtt$(MQTT)-crash$(CRASH_REPORT)-probe$(MOTOR_PROBE)-comm$(COMM_APP)-motion$(MOTION_APP)-test$(TEST)
+PROFILE_ID := smp$(SMP)-$(CONSOLE)-wifi$(WIFI)-net$(NET)-mqtt$(MQTT)-crash$(CRASH_REPORT)-probe$(MOTOR_PROBE)-comm$(COMM_APP)-motion$(MOTION_APP)-remote$(REMOTE_APP)-test$(TEST)
 PROFILE_FILE := .build_profile
 
 ifneq ($(strip $(shell cat $(PROFILE_FILE) 2>/dev/null)),$(PROFILE_ID))

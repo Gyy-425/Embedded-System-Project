@@ -46,14 +46,16 @@ static void report_task(INT start_code, void *extra)
                       "MOTOR_MODE=PROBE "
 #endif
 #if AAI05_MOTION_APP
-                      "MOTION[state=%s L=%d R=%d lease=%u seq=%u "
+                      "MOTION[state=%s L=%d R=%d lease=%u seq=%u epoch=%u "
                       "reason=%u cutoff=%u err=%d] "
 #else
                       "MOTOR[phase=%s next=%u M=%u D=%u pct=%u us=%u cutoff=%u stop=%u err=%d] "
 #endif
                       "DRIVE=%s RADIO_READY=%u"
 #if TM_NET_LWIP
-#if AAI05_COMMS_APP
+#if AAI05_REMOTE_APP
+                      " NETWORK_MODE=REMOTE_MOTION WIFI_LINK=%d WIFI_IP=%u.%u.%u.%u"
+#elif AAI05_COMMS_APP
                       " NETWORK_MODE=COMMS_APP WIFI_LINK=%d WIFI_IP=%u.%u.%u.%u"
 #else
                       " NETWORK_MODE=TRANSPORT_PROBE WIFI_LINK=%d WIFI_IP=%u.%u.%u.%u"
@@ -80,6 +82,7 @@ static void report_task(INT start_code, void *extra)
                       motor_phase_name(motion.motion.phase),
                       (INT)motion.motion.left_pct, (INT)motion.motion.right_pct,
                       (UINT)motion.motion.lease_ms, (UINT)motion.motion.sequence,
+                      (UINT)motion.motion.epoch,
                       (UINT)motion.motion.reason,
                       (UINT)motion.motor.cutoff_count, (INT)motion.motor.error,
 #else

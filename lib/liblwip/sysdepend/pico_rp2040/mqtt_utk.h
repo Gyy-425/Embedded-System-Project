@@ -12,6 +12,10 @@
 #ifndef AAI05_COMMS_APP
 #define AAI05_COMMS_APP 0
 #endif
+#ifndef AAI05_REMOTE_APP
+#define AAI05_REMOTE_APP 0
+#endif
+#define AAI05_MQTT_APP (AAI05_COMMS_APP || AAI05_REMOTE_APP)
 
 /*
  * Call once, from cyw43_utk_task() the first time the link reaches
@@ -22,7 +26,7 @@
  */
 void mqtt_utk_start(void);
 
-#if AAI05_COMMS_APP
+#if AAI05_MQTT_APP
 /* Called only by the existing radio owner, never by an app/report task. */
 void mqtt_utk_service(void);
 int32_t mqtt_utk_publish_binary(const char *p_topic, const uint8_t *p_data,
@@ -31,7 +35,12 @@ int32_t mqtt_utk_publish_binary(const char *p_topic, const uint8_t *p_data,
 /* Application hooks executed only on that same network-service task. */
 const char *mqtt_app_command_topic(void);
 void mqtt_app_link_changed(bool is_ready);
+#if AAI05_REMOTE_APP
+void mqtt_drive_receive(const uint8_t *p_data, uint16_t length,
+                         bool is_retained);
+#else
 void mqtt_app_receive(const uint8_t *p_data, uint16_t length);
+#endif
 void mqtt_app_poll(void);
 #endif
 

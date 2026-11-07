@@ -1,0 +1,13 @@
+.....F..
+======================================================================
+FAIL: test_short_remaining_lease_is_renewed_without_fixed_wait (test_drive_cli.DriveClientChecks.test_short_remaining_lease_is_renewed_without_fixed_wait)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 141, in test_short_remaining_lease_is_renewed_without_fixed_wait
+    self.assertLess(peer.publish_times[first_keep] - peer.publish_times[last_status], 0.12)
+AssertionError: 0.22000000000000003 not less than 0.12
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+
+FAILED (failures=1)

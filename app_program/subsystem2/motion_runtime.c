@@ -12,7 +12,12 @@
 static T_SPLOCK g_motion_runtime_lock;
 #endif
 static motion_control_t g_motion_runtime_control;
+#if !AAI05_REMOTE_APP
 static motion_button_t g_motion_runtime_button;
+#else
+static bool g_motion_runtime_arm_pending;
+#endif
+static uint16_t g_motion_runtime_epoch;
 static bool g_motion_runtime_initialized;
 static bool g_motion_runtime_available;
 
@@ -51,7 +56,12 @@ int32_t motion_runtime_init(void)
     }
 #endif
     motion_control_init(&g_motion_runtime_control);
+#if !AAI05_REMOTE_APP
     motion_button_init(&g_motion_runtime_button, app_now_ms());
+#else
+    g_motion_runtime_arm_pending = false;
+#endif
+    g_motion_runtime_epoch = 0U;
     g_motion_runtime_available = false;
     g_motion_runtime_initialized = true;
     return E_OK;
@@ -64,7 +74,11 @@ motion_result_t subsystem2_motion_submit(const motion_command_t *p_command)
         return MOTION_UNAVAILABLE;
     }
     UINT saved = motion_runtime_lock();
-    motion_result_t result = g_motion_runtime_available ?
+    bool is_available = g_motion_runtime_available;
+#if AAI05_REMOTE_APP
+    is_available = is_available && !g_motion_runtime_arm_pending;
+#endif
+    motion_result_t result = is_available ?
         motion_control_submit(&g_motion_runtime_control, p_command,
                                app_now_ms()) : MOTION_UNAVAILABLE;
     motion_runtime_unlock(saved);
@@ -78,33 +92,101 @@ motion_result_t subsystem2_motion_stop(void)
         return MOTION_UNAVAILABLE;
     }
     UINT saved = motion_runtime_lock();
+#if AAI05_REMOTE_APP
+    if (g_motion_runtime_arm_pending)
+    {
+        g_motion_runtime_arm_pending = false;
+        ++g_motion_runtime_epoch; /* Acknowledge cancellation, never rearm. */
+    }
+#endif
     motion_control_stop(&g_motion_runtime_control, MOTION_REASON_REQUEST);
     motion_runtime_unlock(saved);
     return MOTION_ACCEPTED;
+}
+
+motion_result_t subsystem2_motion_arm(uint16_t *p_epoch)
+{
+#if AAI05_REMOTE_APP
+    if (p_epoch == NULL)
+    {
+        return MOTION_BAD_COMMAND;
+    }
+    if (!g_motion_runtime_initialized)
+    {
+        return MOTION_UNAVAILABLE;
+    }
+    UINT saved = motion_runtime_lock();
+    motion_result_t result = MOTION_ACCEPTED;
+    if (!g_motion_runtime_available || g_motion_runtime_arm_pending)
+    {
+        result = MOTION_UNAVAILABLE;
+    }
+    else if ((g_motion_runtime_control.phase == MOTION_RUNNING) ||
+             (g_motion_runtime_control.phase == MOTION_FAULT))
+    {
+        result = MOTION_LATCHED;
+    }
+    else
+    {
+        g_motion_runtime_arm_pending = true;
+        *p_epoch = (uint16_t)(g_motion_runtime_epoch + 1U);
+    }
+    motion_runtime_unlock(saved);
+    return result;
+#else
+    (void)p_epoch;
+    return MOTION_UNAVAILABLE;
+#endif
 }
 
 void motion_runtime_step(uint32_t now_ms, uint32_t buttons,
                           bool is_hardware_ready, bool is_driver_active,
                           motion_status_t *p_status)
 {
+#if !AAI05_REMOTE_APP
     motion_command_t command;
+#endif
     motion_output_t output;
     UINT saved = motion_runtime_lock();
     /* A producer on the other core may have accepted a newer clock sample. */
     now_ms = app_now_ms();
+    bool is_stop_pressed = (buttons & (1U << MOTOR_STOP_PIN)) == 0U;
+#if AAI05_REMOTE_APP
+    if (g_motion_runtime_arm_pending)
+    {
+        g_motion_runtime_arm_pending = false;
+        ++g_motion_runtime_epoch;
+        motor_pulse_stop();
+        is_driver_active = false;
+        if (is_stop_pressed)
+        {
+            motion_control_stop(&g_motion_runtime_control, MOTION_REASON_BUTTON);
+        }
+        else if (!is_hardware_ready ||
+                 (g_motion_runtime_control.phase == MOTION_FAULT) ||
+                 (motor_drive_rearm() != E_OK))
+        {
+            g_motion_runtime_control.phase = MOTION_FAULT;
+            g_motion_runtime_control.reason = MOTION_REASON_HARDWARE;
+            g_motion_runtime_control.has_command = false;
+        }
+        else
+        {
+            motion_control_init(&g_motion_runtime_control);
+        }
+    }
+#else
+    bool is_next_pressed = (buttons & (1U << MOTOR_NEXT_PIN)) == 0U;
     bool is_available = is_hardware_ready &&
         ((g_motion_runtime_control.phase == MOTION_READY) ||
          (g_motion_runtime_control.phase == MOTION_RUNNING));
-    bool is_stop_pressed = (buttons & (1U << MOTOR_STOP_PIN)) == 0U;
-    bool is_next_pressed = (buttons & (1U << MOTOR_NEXT_PIN)) == 0U;
-
-    g_motion_runtime_available = is_available;
     if (motion_button_update(&g_motion_runtime_button, now_ms,
                               is_next_pressed, is_available, &command))
     {
         (void)motion_control_submit(&g_motion_runtime_control, &command,
                                      now_ms);
     }
+#endif
     motion_control_step(&g_motion_runtime_control, now_ms, is_stop_pressed,
                           is_hardware_ready, is_driver_active, &output);
     if (output.lease_ms == 0U)
@@ -137,6 +219,7 @@ void motion_runtime_step(uint32_t now_ms, uint32_t buttons,
         .sequence = g_motion_runtime_control.command.sequence,
         .left_pct = output.left_pct,
         .right_pct = output.right_pct,
+        .epoch = g_motion_runtime_epoch,
         .phase = g_motion_runtime_control.phase,
         .reason = g_motion_runtime_control.reason,
         .lease_ms = output.lease_ms,
@@ -159,6 +242,12 @@ motion_result_t subsystem2_motion_submit(const motion_command_t *p_command)
 
 motion_result_t subsystem2_motion_stop(void)
 {
+    return MOTION_UNAVAILABLE;
+}
+
+motion_result_t subsystem2_motion_arm(uint16_t *p_epoch)
+{
+    (void)p_epoch;
     return MOTION_UNAVAILABLE;
 }
 #endif

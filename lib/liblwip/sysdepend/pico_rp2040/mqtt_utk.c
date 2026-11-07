@@ -20,6 +20,11 @@
 #include "lwip/timeouts.h"
 #include "wifi_secrets.h"
 #include "mqtt_utk.h"
+#if AAI05_REMOTE_APP
+/* SDK2.3.0 parser contract: fixed header is intact at topic callback.
+ * build_wsl.py pins mqtt.c before enabling this private metadata access. */
+#include "lwip/apps/mqtt_priv.h"
+#endif
 #include <tm/tmonitor.h>
 #include <string.h>
 
@@ -43,8 +48,11 @@ static char		rx_topic[MQTT_UTK_RX_TOPIC_MAX];
 static UB		rx_data[MQTT_UTK_RX_DATA_MAX];
 static u16_t		rx_len;
 static u8_t		rx_truncated;
+#if AAI05_REMOTE_APP
+static bool g_rx_is_retained;
+#endif
 
-#if AAI05_COMMS_APP
+#if AAI05_MQTT_APP
 static uint32_t g_rx_expected;
 static bool g_is_app_ready;
 static bool g_is_sub_pending;
@@ -70,8 +78,11 @@ static void incoming_publish_cb(void *arg, const char *topic, u32_t tot_len)
 
 	rx_len = 0;
 	rx_truncated = 0;
-#if AAI05_COMMS_APP
+#if AAI05_MQTT_APP
     g_rx_expected = tot_len;
+#if AAI05_REMOTE_APP
+    g_rx_is_retained = (client->rx_buffer[0] & 1U) != 0U;
+#endif
     if (('\0' != topic[i]) || (tot_len > MQTT_UTK_RX_DATA_MAX))
     {
         rx_truncated = 1U;
@@ -81,13 +92,13 @@ static void incoming_publish_cb(void *arg, const char *topic, u32_t tot_len)
 
 static void incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t flags)
 {
-#if !AAI05_COMMS_APP
+#if !AAI05_MQTT_APP
 	u16_t	i;
 #endif
 
 	(void)arg;
 
-#if AAI05_COMMS_APP
+#if AAI05_MQTT_APP
     for (uint16_t index = 0U; index < len; ++index)
     {
         if (rx_len < MQTT_UTK_RX_DATA_MAX)
@@ -105,11 +116,19 @@ static void incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t flags)
     {
         if ((0U == rx_truncated) && (rx_len == g_rx_expected))
         {
+#if AAI05_REMOTE_APP
+            mqtt_drive_receive(rx_data, rx_len, g_rx_is_retained);
+#else
             mqtt_app_receive(rx_data, rx_len);
+#endif
         }
         else
         {
+#if AAI05_REMOTE_APP
+            mqtt_drive_receive(NULL, 0U, g_rx_is_retained);
+#else
             mqtt_app_receive(NULL, 0U);
+#endif
         }
     }
 #else
@@ -132,7 +151,7 @@ static void incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t flags)
 #endif
 }
 
-#if !AAI05_COMMS_APP
+#if !AAI05_MQTT_APP
 static void subscribe_done_cb(void *arg, err_t result)
 {
 	(void)arg;
@@ -152,7 +171,7 @@ static void publish_done_cb(void *arg, err_t result)
 	}
 }
 
-#if !AAI05_COMMS_APP
+#if !AAI05_MQTT_APP
 static void heartbeat_timeout(void *arg)
 {
 	static unsigned int	count = 0;
@@ -176,7 +195,7 @@ static void heartbeat_timeout(void *arg)
 }
 #endif
 
-#if AAI05_COMMS_APP
+#if AAI05_MQTT_APP
 static void app_subscribe_done(void *p_argument, err_t result)
 {
     (void)p_argument;
@@ -261,14 +280,14 @@ static void connection_cb(mqtt_client_t *c, void *arg, mqtt_connection_status_t 
 	(void)c;
 	(void)arg;
 
-#if AAI05_COMMS_APP
+#if AAI05_MQTT_APP
     g_is_app_ready = false;
     g_is_sub_pending = false;
     sys_untimeout(app_subscribe_retry, NULL);
     mqtt_app_link_changed(false);
 #endif
 	if(status == MQTT_CONNECT_ACCEPTED) {
-#if !AAI05_COMMS_APP
+#if !AAI05_MQTT_APP
 		err_t	err;
 #endif
 
@@ -290,7 +309,7 @@ static void connection_cb(mqtt_client_t *c, void *arg, mqtt_connection_status_t 
 		mqtt_set_inpub_callback(client, incoming_publish_cb,
 					incoming_data_cb, NULL);
 
-#if AAI05_COMMS_APP
+#if AAI05_MQTT_APP
         mqtt_app_subscribe();
 #else
 		err = mqtt_subscribe(client, MQTT_TOPIC, 0 /* qos */,

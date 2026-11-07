@@ -1,0 +1,93 @@
+FFFFFFFFEF
+======================================================================
+ERROR: test_stop_ack_is_not_immediate_output_confirmation (test_drive_cli.DriveClientChecks.test_stop_ack_is_not_immediate_output_confirmation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 112, in test_stop_ack_is_not_immediate_output_confirmation
+    stop_index = operations(peer).index(OP_STOP)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: 5 is not in list
+
+======================================================================
+FAIL: test_bounded_run_renews_and_always_stops (test_drive_cli.DriveClientChecks.test_bounded_run_renews_and_always_stops)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 80, in test_bounded_run_renews_and_always_stops
+    self.assertEqual(operations(peer).count(OP_START), 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_gp21_or_session_change_never_restarts (test_drive_cli.DriveClientChecks.test_gp21_or_session_change_never_restarts) (setting='gp21')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 103, in test_gp21_or_session_change_never_restarts
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_gp21_or_session_change_never_restarts (test_drive_cli.DriveClientChecks.test_gp21_or_session_change_never_restarts) (setting='change_session')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 103, in test_gp21_or_session_change_never_restarts
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_invalid_run_does_not_publish (test_drive_cli.DriveClientChecks.test_invalid_run_does_not_publish) (left=51, seconds=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 130, in test_invalid_run_does_not_publish
+    with self.subTest(left=left, seconds=seconds), self.assertRaises(ValueError):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_run_does_not_publish (test_drive_cli.DriveClientChecks.test_invalid_run_does_not_publish) (left=50, seconds=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 130, in test_invalid_run_does_not_publish
+    with self.subTest(left=left, seconds=seconds), self.assertRaises(ValueError):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_run_does_not_publish (test_drive_cli.DriveClientChecks.test_invalid_run_does_not_publish) (left=50, seconds=11)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 130, in test_invalid_run_does_not_publish
+    with self.subTest(left=left, seconds=seconds), self.assertRaises(ValueError):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_run_does_not_publish (test_drive_cli.DriveClientChecks.test_invalid_run_does_not_publish) (left=50, seconds=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 130, in test_invalid_run_does_not_publish
+    with self.subTest(left=left, seconds=seconds), self.assertRaises(ValueError):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_lost_start_ack_still_requests_stop (test_drive_cli.DriveClientChecks.test_lost_start_ack_still_requests_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 90, in test_lost_start_ack_still_requests_stop
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_wrong_echo_is_ignored (test_drive_cli.DriveClientChecks.test_wrong_echo_is_ignored)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_drive_cli.py", line 123, in test_wrong_echo_is_ignored
+    self.assertEqual(result.sequence, 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+FAILED (failures=9, errors=1)

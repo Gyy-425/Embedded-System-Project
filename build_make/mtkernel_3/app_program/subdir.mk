@@ -18,6 +18,11 @@ mtkernel_3/app_program/subsystem2/motor_pulse.o: CFLAGS += -Wall -Wextra -Werror
 mtkernel_3/app_program/subsystem2/motion_control.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
 mtkernel_3/app_program/subsystem2/motion_button.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
 mtkernel_3/app_program/subsystem2/motion_runtime.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/drive_protocol.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/drive_control.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/mqtt_drive_app.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/drive_platform_rp2040.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/drive_entropy_rp2040.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
 
 mtkernel_3/app_program/%.o: ../app_program/%.c
 	@echo 'Building file: $<'

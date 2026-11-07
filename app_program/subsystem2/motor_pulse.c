@@ -442,6 +442,46 @@ static ER motor_drive_renew_locked(uint32_t lease_us)
     return E_OK;
 }
 
+int32_t motor_drive_rearm(void)
+{
+    UINT saved = motor_pulse_lock();
+    ER error = E_OK;
+
+    if (!g_motor_pulse_status.ready)
+    {
+        error = E_CTX;
+    }
+    else if (g_motor_pulse_status.active)
+    {
+        error = E_BUSY;
+    }
+    else
+    {
+        for (uint32_t pin = 8U; pin <= 11U; ++pin)
+        {
+            if ((in_w(GPIO_CTRL(pin)) & 31U) != GPIO_CTRL_FUNCSEL_SIO)
+            {
+                error = E_CTX;
+            }
+        }
+        if (((in_w(GPIO_OUT) & MOTOR_OUTPUT_MASK) != MOTOR_OUTPUT_MASK) ||
+            (((in_w(TIMER_ARMED) | in_w(TIMER_INTE) | in_w(TIMER_INTF)) &
+              1U) != 0U) ||
+            (((in_w(PULSE_PWM_BASE(4U)) | in_w(PULSE_PWM_BASE(5U))) &
+              1U) != 0U))
+        {
+            error = E_CTX;
+        }
+        if (error == E_OK)
+        {
+            g_motor_drive_expired = false;
+            g_motor_pulse_status.error = E_OK;
+        }
+    }
+    motor_pulse_unlock(saved);
+    return error;
+}
+
 int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms)
 {
     UINT saved = motor_pulse_lock();
@@ -453,7 +493,7 @@ int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms)
     }
     else if (g_motor_drive_expired)
     {
-        /* Only startup initialization clears the continuous-output latch. */
+        /* Only startup or an explicit coast-verified rearm clears this. */
         motor_pulse_stop_locked();
         error = E_TMOUT;
     }

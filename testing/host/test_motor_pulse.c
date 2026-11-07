@@ -103,6 +103,7 @@ static uint32_t read_register(uint32_t address)
     }
     if (address >= PWM_BASE && address < PWM_BASE + 0xB4U && (*reg(RESETS_RESET) & RESETS_RESET_PWM) != 0U) return 0U;
     if (address == TIMER_INTS) return *reg(TIMER_INTR) & *reg(TIMER_INTE);
+    if (address == GPIO_OUT) return latch;
     return *reg(address);
 }
 static void write_register(uint32_t address, uint32_t value)
@@ -471,11 +472,32 @@ static void test_pair_expiry_during_renewal(void)
     assert(motor_drive_set(50, -50, 100U) == E_TMOUT);
 }
 
+static void test_explicit_rearm_only_when_coasted(void)
+{
+    reset_hardware();
+    assert(motor_pulse_init() == E_OK);
+    expect_pair(50, -50);
+    assert(motor_drive_set(50, -50, 100U) == E_OK);
+    assert(motor_drive_rearm() == E_BUSY);
+    now_us += 100000U;
+    *reg(TIMER_ARMED) &= ~1U;
+    *reg(TIMER_INTR) |= 1U;
+    alarm_handler(0U);
+    assert(motor_drive_set(50, -50, 100U) == E_TMOUT);
+    assert(motor_drive_rearm() == E_OK);
+    assert(pin_level(8U) && pin_level(9U) && pin_level(10U) && pin_level(11U));
+    assert(motor_drive_set(50, -50, 100U) == E_OK);
+    motor_pulse_stop();
+    *reg(GPIO_CTRL(8U)) = GPIO_CTRL_FUNCSEL_PWM;
+    assert(motor_drive_rearm() == E_CTX);
+}
+
 int main(int argc, char **argv)
 {
     reset_hardware();
     if (argc == 2) {
         if (strcmp(argv[1], "drive-after-irq") == 0) test_pair_expiry_cannot_restart();
+        else if (strcmp(argv[1], "explicit-rearm") == 0) test_explicit_rearm_only_when_coasted();
         else if (strcmp(argv[1], "renewal-race") == 0) test_pair_expiry_during_renewal();
         else if (strcmp(argv[1], "reset") == 0) test_cold_pwm_reset();
         else test_unprepared_timer_rejected();
@@ -493,6 +515,7 @@ int main(int argc, char **argv)
     test_paired_drive_and_lease();
     test_pair_expiry_cannot_restart();
     test_pair_expiry_during_renewal();
+    test_explicit_rearm_only_when_coasted();
     puts(MOTOR_TEST_PROBE ?
          "PASS: PROBE always coast for pulse/pair, lease, caps/conflicts and wrap" :
          "PASS: pulse/pair PWM, ordered coast, lease renewal/cutoff and wrap");

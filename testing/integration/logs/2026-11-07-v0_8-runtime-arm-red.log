@@ -1,0 +1,1 @@
+aai05_remote_runtime_test: testing/host/test_motion_runtime.c:231: test_remote_arm_and_stop_precedence: Assertion `subsystem2_motion_arm(&epoch) == MOTION_ACCEPTED && epoch == 1U' failed.

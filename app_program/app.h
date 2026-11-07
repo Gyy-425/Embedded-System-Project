@@ -16,9 +16,18 @@
 #ifndef AAI05_MOTION_APP
 #define AAI05_MOTION_APP 0
 #endif
+#ifndef AAI05_REMOTE_APP
+#define AAI05_REMOTE_APP 0
+#endif
 
-#if AAI05_MOTION_APP && (MOTOR_TEST_PROBE || TM_NET_LWIP || AAI05_COMMS_APP)
+#if AAI05_MOTION_APP && (MOTOR_TEST_PROBE || AAI05_COMMS_APP)
 #error Local Motion profile requires motor output and no network application
+#endif
+#if AAI05_REMOTE_APP && (!AAI05_MOTION_APP || !TM_NET_LWIP || !TM_MQTT)
+#error Remote Motion requires the Motion, lwIP and MQTT profiles
+#endif
+#if AAI05_MOTION_APP && !AAI05_REMOTE_APP && TM_NET_LWIP
+#error Local Motion cannot be combined with networking
 #endif
 
 #if AAI05_COMMS_APP && (!MOTOR_TEST_PROBE || !TM_NET_LWIP || !TM_MQTT)

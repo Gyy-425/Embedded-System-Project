@@ -1,26 +1,42 @@
-# AAI05 diagnostic firmware
+# AAI05 robot firmware
 
-Latest result,7 November: **v0.7 local Motion checks passed** within the observed setup: command renewal, automatic expiry (`reason=3`), GP21 during left-wheel movement (`reason=2`) and GP20 restart prevention. [Actual Pico result and limits](testing/integration/logs/2026-11-07-v0_7-pico-motion-result.md). Expiry and GP21 intentionally latch STOPPED until reset. Encoder ambiguity warnings remain; exact timing, simultaneous two-wheel load and MQTT movement are not qualified. Twelve affected host/build stages passed before this run. [Typed API](docs/MOTION_INTERFACE.md), [reproduction procedure](docs/MOTION_TEST_V0_7.md), [build evidence](testing/integration/logs/2026-11-07-v0_7-motion-preparation.md). Older known-working images are preserved.
+Prepared on 7 November: **v0.8 MQTT movement control**, with explicit START/STOP,
+fresh-command leases, guarded restart and a readable v2 client. All 31 affected
+host/build stages passed, including 14 v2 Python tests, 8 legacy client tests
+and normal/TEST firmware builds, with zero reported compiler warnings.
+[Build evidence](testing/integration/logs/2026-11-07-v0_8-preparation.md),
+[protocol](docs/MQTT_MOTION_PROTOCOL_V2.md), [next car test](docs/MQTT_MOTION_V0_8.md).
+**This image has not been tested on the car.** No tape recognition or path
+following is implemented by this feature.
 
-Latest motor result,7 November: **v0.6.1 completed all four software-triggered requests**, each at approximately400ms, followed by DONE and the GP21 STOP latch (`stop=1`, DRIVE OFF). The coordinator reports movement working well. [Actual Pico result and limits](testing/integration/logs/2026-11-07-v0_6_1-pico-motor-result.md). Capture warnings remain at `over=3/2`, `ENC_UNCERTAIN=1`; encoder accuracy and STOP under load remain unresolved. This basic pulse sequence does not need repeating. Existing v0.5 NO_DRIVE communication and old motor images are preserved.
+Use `output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2` and
+`tools/mqtt/drive_cli.py` for the next test. The configured broker is
+192.168.1.199; verify the laptop's current LAN address before testing. GP20 is
+disabled in REMOTE; GP21 stops. Ordinary STOP/expiry requires a new explicit
+START after release/healthy coast; reconnect never automatically starts.
+Session/grants are liveness checks on the trusted test LAN, not authentication.
 
-Current application,7 November: **v0.5 communication only**, with binary MQTT target selection/clear/status, ACKs, raw IR telemetry and a readable Python client. Actual connection/raw IR, target/clear, session recovery and laptop-network-path recovery are observed. The laptop broker is192.168.1.199; the Pico's observed address is192.168.1.200. [Initial exchange](testing/integration/logs/2026-11-07-v0_5-pico-network-ui-result.md), [target/clear](testing/integration/logs/2026-11-07-v0_5-target-clear-ui-result.md), [session recovery](testing/integration/logs/2026-11-07-v0_5-mqtt-recovery-ui-result.md), [network-path result](testing/integration/logs/2026-11-07-v0_5-network-path-result.md). The next development focus is controlled motor motion. Actual Pico Wi-Fi association-loss/rejoin, demo-network operation and combined-load timing remain later validation work. This image does not classify tapes or drive motors.
+The latest **physical pass remains v0.7 LOCAL**: renewed left-wheel movement,
+automatic expiry, GP21 while moving and restart prevention.
+[Recorded result and limits](testing/integration/logs/2026-11-07-v0_7-pico-motion-result.md).
+v0.6.1's four software pulse requests and v0.5's target/status/raw-IR and
+recorded recovery checks also passed within their scopes. Those tests need
+not be repeated. [Motor result](testing/integration/logs/2026-11-07-v0_6_1-pico-motor-result.md),
+[communication result](testing/integration/logs/2026-11-07-v0_5-network-path-result.md).
+All 22 pre-existing firmware artifacts were hash-checked unchanged.
 
-Current prepared normal image is `output/firmware/AAI05_Comms_v0_5_NO_DRIVE.uf2`, built for broker192.168.1.199, SHA256 beginning `c9d6e1c45331a83d`. Both compile variants and payload/address/hash checks passed; previous `.196` artifacts are archived locally. [Rebuild evidence](testing/integration/logs/2026-11-07-v0_5-broker199-rebuild.md). The coordinator's separate25-stage host run passed, including8 communication/client tests and both builds. [Host evidence](testing/integration/logs/2026-11-07-v0_5-host-verified.md). Follow [the v0.5 procedure](docs/COMMS_TEST_V0_5.md) and [wire protocol](docs/COMM_PROTOCOL_V1.md). New application C uses BARR-C conventions and strict compile checks; inherited code has not been wholly restyled.
+Powered encoder accuracy, physical forward signs, simultaneous two-wheel load,
+Wi-Fi timing, actual tape calibration, the two colour demonstrations and final
+Week13 evidence remain open. [Remaining work](docs/REMAINING_WORK.md).
+The historical motor HardFault was captured and corrected; do not treat old
+no-motion diagnostic notes as the current result. Hardware-button, basic IR,
+manual encoder and local Motion checks do not need replaying.
 
-Latest hardware result,7 November: the coordinator reports all four hardware motor buttons clearly turn the motors and stop on release. Basic motor/driver response through those controls is supported; software25%/50% motion remains unresolved. No repeat hardware-button test is needed. See [the result, assessment distinction and PWM comparison lead](testing/integration/logs/2026-11-07-hardware-buttons-user-result.md). Further duty increases are not the next step; actual Wi-Fi/MQTT can progress independently.
-
-Preceding software result: the supplied50% run completed all four cutoffs without freezing, but the coordinator reports sound/no visible rotation. Each pulse produced only one selected-wheel encoder edge, not sustained motion. [Actual result and limits](testing/integration/logs/2026-11-06-v0_3_2-user-no-rotation.md). The subsequent hardware-button check passed as described above; do not repeat it or raise firmware duty without PWM isolation evidence.
-
-Previous motor image: **v0.3.2 motor starting test**,50% duty for one wheel/400ms per fresh GP20 press. The user authorised the three audited macro corrections; all are applied and the66-address check now matches the SDK. All19 host/build steps and10 Python helpers passed, with no Critical/Important review findings. [The v0.3.2 first-request guide](docs/MOTOR_START_TEST_V0_3_2.md) records the completed software-pulse trial. Software-controlled motion remains unresolved; the old25% artifacts remain preserved. Earlier v0.3.1 descriptions below record the preceding diagnostic.
-
-Previous diagnostic: **v0.3.1 motor test**. SWD captured the original v0.3 crash: a conditional argument to the board's GPIO_CTRL macro generated an unaligned register write. That version corrected the call site and added the actual-board-macro regression; v0.3.2 now also repairs the shared definitions. See [the captured evidence](testing/integration/logs/2026-11-06-swd-gpio-hardfault-analysis.md).
-
-The corrected ELF was programmed and verified through the Debug Probe. Independent flash readback matches all ELF load bytes. After a physical power cycle, the target reports motor ready=1/error=0, encoder capture enabled and motor outputs in coast. The subsequent user run completed all four 25% requests and reported cutoffs without freezing, but the coordinator noticed no wheel movement and the log contains no encoder edges. See [the scoped result](testing/integration/logs/2026-11-06-v0_3_1-user-no-visible-motion.md). Check unpowered winding connections and mechanical freedom before another powered diagnostic; physical motor operation is not passed. Keep the original v0.3 images only as historical evidence.
-
-After the motor result, prioritise [Wi-Fi/MQTT transport testing](docs/NETWORK_BRINGUP.md). The distinct NO_DRIVE network image and laptop broker are prepared; actual Pico association and MQTT communication remain pending. No further basic IR or manual encoder test is needed now.
-
-Start with [the current bring-up guide](docs/BRINGUP.md) and [module ownership](TEAM.md). The application now uses three modules. The original course-template reference below describes its earlier examples.
+Application modules live in `app_program/subsystem1` (IR), `subsystem2`
+(Motion/encoders) and `subsystem3` (communication). New application C follows
+BARR-C conventions with strict checks; inherited course code was not wholly
+restyled. See [bring-up](docs/BRINGUP.md) and [module ownership](TEAM.md).
+The original course-template reference follows.
 
 ---
 

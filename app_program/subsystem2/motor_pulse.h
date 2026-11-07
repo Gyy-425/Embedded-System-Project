@@ -42,4 +42,6 @@ void motor_pulse_read(motor_pulse_status_t *p_status);
 /* Motion-owner only. Signed electrical duty, zero=coast, lease1..100ms.
  * Same-duty updates renew the alarm without interrupting PWM. */
 int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms);
+/* Owner only, explicit rearm after a verified stop/coast; never starts output. */
+int32_t motor_drive_rearm(void);
 #endif

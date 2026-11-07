@@ -1,6 +1,15 @@
 # Laptop MQTT broker
 
-The latest application client is `robot_cli.py`: `watch`, `status`, `target` and `clear`. It uses Python3.10+ with these existing Mosquitto tools and installs no Python dependencies. See [the v0.5 procedure](../../docs/COMMS_TEST_V0_5.md) and [binary protocol](../../docs/COMM_PROTOCOL_V1.md). The text heartbeat examples below describe the older v0.4 transport image; v0.5 uses separate binary topics and does not emit that heartbeat. Actual Pico tests remain pending.
+The v0.8 movement client is `drive_cli.py`: status, watch, target, clear,
+stop and bounded drive. See [the car procedure](../../docs/MQTT_MOTION_V0_8.md)
+and [v2 protocol](../../docs/MQTT_MOTION_PROTOCOL_V2.md). Host checks and both
+firmware builds passed; this new image has not been tested on the car.
+
+`robot_cli.py` remains the v0.5 no-drive target/status/raw-IR client. Its actual
+recorded connection/recovery passes remain valid. Both clients use Python3.10+
+and the existing Mosquitto tools, with no additional Python dependencies. The
+text heartbeat examples below are historical v0.4 transport examples; use the
+v0.8 procedure for the current test, not heartbeat messages.
 
 Official Eclipse Mosquitto 2.1.2 Windows files are unpacked locally in .runtime/mosquitto-2.1.2. They were not installed as a Windows service. No Docker daemon is needed. The runtime, installer and active machine settings are ignored by Git; they remain inside this workspace.
 
@@ -12,7 +21,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\mqtt\Start-Broker.ps
 
 # For the actual Pico test, stop the local instance first, then bind ONE
 # current Wi-Fi LAN IPv4 address of this laptop (replace the example):
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\mqtt\Start-Broker.ps1 -BindAddress 192.168.1.196
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\mqtt\Start-Broker.ps1 -BindAddress 192.168.1.199
 ```
 
 The script changes neither Wi-Fi nor firewall settings. A LAN listener requires actual reachability from the Pico; add only a scoped broker/port/local-subnet firewall rule if Windows blocks it. Do not disable the firewall. The bring-up listener uses anonymous plain MQTT because the unmodified template has no authentication/TLS configuration: use it on the selected test LAN, close it when done and do not expose/port-forward it to the Internet. Campus authentication and client isolation must be verified before the demo.
@@ -20,8 +29,8 @@ The script changes neither Wi-Fi nor firewall settings. A LAN listener requires 
 In another terminal, subscribe or publish a non-retained test message:
 
 ```powershell
-& '.\tools\mqtt\.runtime\mosquitto-2.1.2\mosquitto_sub.exe' -h 192.168.1.196 -t 'aai05/bringup/heartbeat' -v
-& '.\tools\mqtt\.runtime\mosquitto-2.1.2\mosquitto_pub.exe' -h 192.168.1.196 -t 'aai05/bringup/heartbeat' -m 'hello from laptop'
+& '.\tools\mqtt\.runtime\mosquitto-2.1.2\mosquitto_sub.exe' -h 192.168.1.199 -t 'aai05/bringup/heartbeat' -v
+& '.\tools\mqtt\.runtime\mosquitto-2.1.2\mosquitto_pub.exe' -h 192.168.1.199 -t 'aai05/bringup/heartbeat' -m 'hello from laptop'
 ```
 
 These addresses are examples from the current laptop network, not permanent configuration. The initial Pico image must subscribe to that topic before a laptop message appears on its serial console. Printing received text is transport evidence, not a validated robot command.
@@ -42,4 +51,4 @@ The check starts its own loopback-only broker, publishes a unique retained test 
 - Extracted with the official 7-Zip26.05 Linux tool after Ubuntu's older23.01 extractor reported zero files. The installer itself was not executed. Runtime licence/notice files remain alongside the binaries.
 - To recover after deleting runtime, download that pinned official installer and unpack it with a current NSIS-capable 7-Zip into .runtime/mosquitto-2.1.2. Check that mosquitto.exe, mosquitto_pub.exe and mosquitto_sub.exe are present and version2.1.2 runs. Do not commit binaries or credentials.
 
-Actual Pico connection and LAN/firewall verification remain separate checks.
+The earlier v0.5 Pico exchanges passed. v0.8 movement and final demo-network operation remain separate checks.

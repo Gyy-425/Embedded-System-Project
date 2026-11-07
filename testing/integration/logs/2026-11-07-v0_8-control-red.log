@@ -1,0 +1,1 @@
+aai05_drive_control_test: testing/host/test_drive_control.c:20: test_start_renew_duplicate_and_expiry: Assertion `drive_control_receive(&control, &start, false, 0U, &action) == DRIVE_OK' failed.

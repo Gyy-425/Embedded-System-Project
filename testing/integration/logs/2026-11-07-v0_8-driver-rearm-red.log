@@ -1,0 +1,1 @@
+aai05_remote_driver_test: testing/host/test_motor_pulse.c:481: test_explicit_rearm_only_when_coasted: Assertion `motor_drive_rearm() == E_BUSY' failed.

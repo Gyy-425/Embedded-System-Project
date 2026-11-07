@@ -78,6 +78,14 @@ void motor_pulse_stop(void)
     applied_lease = 0U;
 }
 
+int32_t motor_drive_rearm(void)
+{
+    assert(lock_depth == 1U);
+    assert(applied_left == 0 && applied_right == 0 && applied_lease == 0U);
+    driver_error = 0;
+    return E_OK;
+}
+
 #include "../../app_program/subsystem2/motion_runtime.c"
 
 #define BUTTONS_RELEASED ((1U << 20U) | (1U << 21U))
@@ -128,6 +136,7 @@ static void test_button_and_driver_failure(void)
 
     test_now = 0U;
     assert(motion_runtime_init() == E_OK);
+#if !AAI05_REMOTE_APP
     test_owner_step(0U, BUTTONS_RELEASED, true, false, &status);
     test_owner_step(40U, BUTTONS_RELEASED, true, false, &status);
     test_owner_step(60U, 1U << 21U, true, false, &status);
@@ -137,6 +146,7 @@ static void test_button_and_driver_failure(void)
     test_owner_step(120U, 0U, true, true, &status);
     assert(status.phase == MOTION_STOPPED);
     assert(status.reason == MOTION_REASON_BUTTON && applied_lease == 0U);
+#endif
 
     assert(motion_runtime_init() == E_OK);
     test_owner_step(0U, BUTTONS_RELEASED, true, false, &status);
@@ -208,12 +218,52 @@ static void test_newer_submission_precedes_old_owner_sample(void)
     assert(status.phase == MOTION_RUNNING && status.lease_ms == 100U);
 }
 
+#if AAI05_REMOTE_APP
+static void test_remote_arm_and_stop_precedence(void)
+{
+    motion_status_t status;
+    motion_command_t command = {20U, 1U, 50, 0};
+    uint16_t epoch = 0U;
+
+    test_now = 0U;
+    assert(motion_runtime_init() == E_OK);
+    test_owner_step(0U, BUTTONS_RELEASED, true, false, &status);
+    assert(subsystem2_motion_arm(&epoch) == MOTION_ACCEPTED && epoch == 1U);
+    test_now = 20U;
+    assert(subsystem2_motion_submit(&command) == MOTION_UNAVAILABLE);
+    test_owner_step(20U, BUTTONS_RELEASED, true, false, &status);
+    assert(status.epoch == epoch && status.phase == MOTION_READY);
+    assert(applied_lease == 0U);
+    assert(subsystem2_motion_submit(&command) == MOTION_ACCEPTED);
+    test_owner_step(40U, BUTTONS_RELEASED, true, false, &status);
+    assert(status.phase == MOTION_RUNNING);
+    assert(subsystem2_motion_arm(&epoch) == MOTION_LATCHED);
+
+    assert(subsystem2_motion_stop() == MOTION_ACCEPTED);
+    assert(subsystem2_motion_arm(&epoch) == MOTION_ACCEPTED);
+    assert(subsystem2_motion_stop() == MOTION_ACCEPTED);
+    test_owner_step(60U, BUTTONS_RELEASED, true, true, &status);
+    assert(status.epoch == epoch && status.phase == MOTION_STOPPED);
+    assert(applied_lease == 0U);
+    assert(subsystem2_motion_arm(&epoch) == MOTION_ACCEPTED);
+    test_owner_step(80U, 1U << 20U, true, false, &status);
+    assert(status.epoch == epoch && status.phase == MOTION_STOPPED);
+    assert(applied_lease == 0U); /* A held GP21 cannot be rearmed remotely. */
+    assert(subsystem2_motion_arm(&epoch) == MOTION_ACCEPTED);
+    test_owner_step(100U, BUTTONS_RELEASED, true, false, &status);
+    assert(status.epoch == epoch && status.phase == MOTION_READY);
+}
+#endif
+
 int main(void)
 {
     test_owner_applies_and_latches();
     test_button_and_driver_failure();
     test_concurrent_stop_and_commands();
     test_newer_submission_precedes_old_owner_sample();
+#if AAI05_REMOTE_APP
+    test_remote_arm_and_stop_precedence();
+#endif
     puts("PASS: real Motion adapter ownership, readiness, STOP/expiry, "
          "local producer and concurrent command/STOP serialization");
     return 0;

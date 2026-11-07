@@ -81,6 +81,8 @@ The CLI first learns the device tag and last mutating sequence. It retries an id
 
 ## 7. Recovery and saved evidence
 
+For the current setup without confirmed router-control access, follow [the detailed laptop Wi-Fi/network-path procedure](NETWORK_PATH_LOSS_TEST.md). It saves watch output and distinguishes loss of broker reachability from actual Pico Wi-Fi association loss. The procedure is planned work, not a passing result.
+
 Before each interruption case, select colour1 and confirm it, then run `watch`. Keep the Pico powered and its serial capture open through the interruption so reboot is not confused with recovery. For broker restart, stop/restart only the broker; this case is already observed as described in the recovery result above. Check an explicit MQTT disconnect/retry, new successful subscription/tag, target reset to unset, restored telemetry and increasing uptime. Select again only after readiness.
 
 Separately interrupt/restore the selected test network and capture the same evidence. Record whether the Pico actually loses Wi-Fi association (`WIFI_LINK` changes) or merely loses reachability to the laptop broker; these are different coverage cases. Recheck the laptop IP after reconnection and rebuild only if its configured broker address must change. Disconnection detection can be delayed by TCP/keepalive; measure actual timing rather than assuming an instant reset. If watch exits because the broker client terminated, rerun it and record that outcome instead of claiming automatic client recovery.

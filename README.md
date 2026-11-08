@@ -1,5 +1,11 @@
 # AAI05 robot firmware
 
+Latest car observation: v0.9 has powered count progression with the expected
+raw signs and a fresh output-off confirmation. Capture remains unqualified:
+the retained run has PIO_BAD=0/1 before movement and throughout its stopped
+tail. Isolate that pre-movement flag before another acceptance run.
+[Observed result and limits](testing/integration/logs/2026-11-08-v0_9-pio-ui-result.md).
+
 Prepared next image, 8 November: **v0.9 PIO encoder capture**. Hardware counters
 retain movement across CPU-service gaps; invalid flags and bounded read faults
 remain explicit. Strict host checks, 63 Python/Tcl tests, normal/TEST PIO and

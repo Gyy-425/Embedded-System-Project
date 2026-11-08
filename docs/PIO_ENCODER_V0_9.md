@@ -1,5 +1,10 @@
 # PIO encoder capture v0.9: one focused car check
 
+Observed trial: raw signs, powered counts and output OFF are supported, but
+the retained baseline already has PIO_BAD=0/1. Capture acceptance remains open;
+do not repeat this procedure until that pre-movement flag is isolated.
+[UI result](../testing/integration/logs/2026-11-08-v0_9-pio-ui-result.md).
+
 This candidate replaces CPU-serviced GPIO edge counting with a continuously
 running PIO counter for each wheel. The raw direction convention remains
 unchanged: forward drive and forward encoder deltas are left negative/right

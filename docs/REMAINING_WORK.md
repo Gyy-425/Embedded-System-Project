@@ -8,6 +8,11 @@ normal/TEST builds passed. Actual capture quality is still pending.
 [Next focused car procedure](PIO_ENCODER_V0_9.md),
 [preparation evidence](../testing/integration/logs/2026-11-08-pio-v0_9-preparation.md).
 
+Latest physical observation: v0.9 powered signs/count progression and output
+OFF are supported. The retained serial baseline already has PIO_BAD0/1, so
+capture acceptance is still open. Isolate the initial flag/first invalid event
+while stopped before repeating a powered trial. [UI evidence](../testing/integration/logs/2026-11-08-v0_9-pio-ui-result.md).
+
 Current case: [paired motor/encoder qualification](MOTOR_ENCODER_QUALIFICATION.md).
 The laptop broker is now 192.168.1.206; a separately named working v0.8 image
 has been built for that address, with no motor/encoder source changes. The
@@ -63,4 +68,4 @@ Networking does not need to wait for every motion qualification test. Calibratio
 
 Barcode decoding/directed junction manoeuvres, ultrasonic/servo obstacle profiling/avoidance and hump-height measurement are omitted under the professor's confirmed revision. IMU is optional and should only be reconsidered after the required colour/motion/communication application works. No dashboard is required.
 
-Current next action: perform the prepared v0.9 PIO capture check with Wi-Fi/MQTT active, then use an independent revolution reference if capture flags/errors stay clear. Both motor and encoder forward signs are established; do not replay basic direction/MQTT cases or change wiring. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.
+Current next action: isolate the v0.9 pre-movement right PIO invalid flag, checking initial phase establishment and the first invalid event before choosing a fix. The existing powered run supports movement/stop but cannot qualify capture with a flag already latched. Once clean capture is supported, use an independent revolution reference. Do not replay basic direction/MQTT cases or change wiring on this evidence alone. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.

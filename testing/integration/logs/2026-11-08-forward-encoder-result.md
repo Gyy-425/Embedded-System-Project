@@ -38,11 +38,13 @@ mechanical-rest detector. The last two records have right 11736 ->11772, so
 the last supplied right count is not a demonstrated fully settled total.
 Do not infer a wheel-speed mismatch from these end values.
 
-The newly found saved CLI artifact `encoder-forward-20261108-153002.txt` contains
-a fresh OFF response with seq7, tag a376afe1. The pasted run stops at Motion
-seq100. Do not silently identify that CLI file as the matching acknowledgement
-for this serial run. Preserve it as a separate artifact with an unverified run
-association; the serial data itself provides the output-OFF evidence here.
+The saved CLI artifact `encoder-forward-20261108-153002.txt` contains a fresh
+OFF response with remote mutation seq7, tag a376afe1; the pasted serial run
+stops at internal Motion feed seq100. These are different sequence domains,
+not evidence of a mismatch: mqtt_drive_app.c reports remote mutations while
+drive_control_poll generates internal periodic Motion sequences. Without a
+shared session marker in these serial records, the numbers alone cannot prove
+or disprove run association. The serial data provides output-OFF evidence.
 
 ## Code trace and next development step
 

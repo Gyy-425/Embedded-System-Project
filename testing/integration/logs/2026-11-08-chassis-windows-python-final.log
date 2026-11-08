@@ -1,0 +1,1418 @@
+test_invalid_move_fails_before_bridge_creation (test_chassis_cli.ChassisCliTests.test_invalid_move_fails_before_bridge_creation) ... ok
+test_move_defaults_and_explicit_mapping (test_chassis_cli.ChassisCliTests.test_move_defaults_and_explicit_mapping) ... ok
+test_move_serializes_mapped_start_renews_and_confirms_stop (test_chassis_cli.ChassisCliTests.test_move_serializes_mapped_start_renews_and_confirms_stop) ... ok
+test_raw_drive_meaning_is_unchanged (test_chassis_cli.ChassisCliTests.test_raw_drive_meaning_is_unchanged) ... ok
+test_script_entrypoint_rejects_zero_forward_before_network (test_chassis_cli.ChassisCliTests.test_script_entrypoint_rejects_zero_forward_before_network) ... ok
+test_literal_physical_directions_and_scaling (test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) ... ok
+test_matches_real_c_output_for_all_5151_valid_pairs (test_chassis_cli.ChassisConversionTests.test_matches_real_c_output_for_all_5151_valid_pairs) ... ok
+test_reject_narrowing_and_noninteger_values (test_chassis_cli.ChassisConversionTests.test_reject_narrowing_and_noninteger_values) ... ok
+test_undefined_behavior_is_fatal_with_runner_flags (test_colour_sanitizer_gate.SanitizerGateCheck.test_undefined_behavior_is_fatal_with_runner_flags) ... ERROR
+test_c_encoder_python_decoder (test_comm_cli.CodecChecks.test_c_encoder_python_decoder) ... skipped 'Set COMM_VECTOR_FILE to captured C output'
+test_crc_reference_and_command_fields (test_comm_cli.CodecChecks.test_crc_reference_and_command_fields) ... ok
+test_readable_output_matches_capabilities (test_comm_cli.CodecChecks.test_readable_output_matches_capabilities) ... ok
+test_reject_bad_response (test_comm_cli.CodecChecks.test_reject_bad_response) ... ok
+test_reject_out_of_range_commands (test_comm_cli.CodecChecks.test_reject_out_of_range_commands) ... ok
+test_reconnected_or_rejected_ack_is_not_success (test_comm_cli.RequestChecks.test_reconnected_or_rejected_ack_is_not_success) ... ok
+test_status_waits_for_ready_ack (test_comm_cli.RequestChecks.test_status_waits_for_ready_ack) ... ok
+test_wrap_and_duplicate_ack (test_comm_cli.RequestChecks.test_wrap_and_duplicate_ack) ... ok
+test_armed_transport_error_attempts_stop_and_reports_power_off (test_debug_capture.CaptureStopTests.test_armed_transport_error_attempts_stop_and_reports_power_off) ... ok
+test_failed_halt_still_attempts_coast_but_does_not_claim_capture_ready (test_debug_capture.CaptureStopTests.test_failed_halt_still_attempts_coast_but_does_not_claim_capture_ready) ... ok
+test_failed_output_writes_do_not_claim_stop_success (test_debug_capture.CaptureStopTests.test_failed_output_writes_do_not_claim_stop_success) ... ok
+test_selection_and_state_errors_still_attempt_output_removal (test_debug_capture.CaptureStopTests.test_selection_and_state_errors_still_attempt_output_removal) ... ok
+test_shared_output_removal_uses_an_available_debug_path (test_debug_capture.CaptureStopTests.test_shared_output_removal_uses_an_available_debug_path) ... ok
+test_stop_attempt_precedes_halt_and_both_cores_stay_halted (test_debug_capture.CaptureStopTests.test_stop_attempt_precedes_halt_and_both_cores_stay_halted) ... ok
+test_bounded_run_renews_and_always_stops (test_drive_cli.DriveClientChecks.test_bounded_run_renews_and_always_stops) ... ok
+test_changed_device_state_or_other_rejection_cannot_retry_start (test_drive_cli.DriveClientChecks.test_changed_device_state_or_other_rejection_cannot_retry_start) ... ok
+test_duration_budget_includes_startup (test_drive_cli.DriveClientChecks.test_duration_budget_includes_startup) ... ok
+test_expired_grant_during_running_is_not_a_new_start (test_drive_cli.DriveClientChecks.test_expired_grant_during_running_is_not_a_new_start) ... ok
+test_expired_idle_grant_recovers_only_explicitly_rejected_start (test_drive_cli.DriveClientChecks.test_expired_idle_grant_recovers_only_explicitly_rejected_start) ... ok
+test_gp21_or_session_change_never_restarts (test_drive_cli.DriveClientChecks.test_gp21_or_session_change_never_restarts) ... ok
+test_grant_recovery_is_limited_to_one_rejection (test_drive_cli.DriveClientChecks.test_grant_recovery_is_limited_to_one_rejection) ... ok
+test_idle_configuration_uses_same_bounded_grant_recovery (test_drive_cli.DriveClientChecks.test_idle_configuration_uses_same_bounded_grant_recovery) ... ok
+test_invalid_run_does_not_publish (test_drive_cli.DriveClientChecks.test_invalid_run_does_not_publish) ... ok
+test_keyboard_interrupt_still_requests_stop (test_drive_cli.DriveClientChecks.test_keyboard_interrupt_still_requests_stop) ... ok
+test_lost_start_ack_still_requests_stop (test_drive_cli.DriveClientChecks.test_lost_start_ack_still_requests_stop) ... ok
+test_near_deadline_renewal_cannot_extend_run (test_drive_cli.DriveClientChecks.test_near_deadline_renewal_cannot_extend_run) ... ok
+test_refreshed_start_with_lost_ack_only_repeats_identical_bytes (test_drive_cli.DriveClientChecks.test_refreshed_start_with_lost_ack_only_repeats_identical_bytes) ... ok
+test_short_remaining_lease_is_renewed_without_fixed_wait (test_drive_cli.DriveClientChecks.test_short_remaining_lease_is_renewed_without_fixed_wait) ... ok
+test_stop_ack_is_not_immediate_output_confirmation (test_drive_cli.DriveClientChecks.test_stop_ack_is_not_immediate_output_confirmation) ... ok
+test_wrong_echo_is_ignored (test_drive_cli.DriveClientChecks.test_wrong_echo_is_ignored) ... ok
+test_actual_c_encoder_python_decoder (test_drive_codec.DriveCodecChecks.test_actual_c_encoder_python_decoder) ... skipped 'Set DRIVE_VECTOR_FILE to captured C vectors'
+test_compact_signed_start_and_stop (test_drive_codec.DriveCodecChecks.test_compact_signed_start_and_stop) ... ok
+test_invalid_packets_and_requests (test_drive_codec.DriveCodecChecks.test_invalid_packets_and_requests) ... ok
+test_literal_status_vectors_and_readable_limits (test_drive_codec.DriveCodecChecks.test_literal_status_vectors_and_readable_limits) ... ok
+test_all_sixteen_transitions_and_relative_invalid_flags (test_encoder_pio_program.ProgramTests.test_all_sixteen_transitions_and_relative_invalid_flags) ... ok
+test_cpu_pause_and_full_fifo_do_not_lose_count (test_encoder_pio_program.ProgramTests.test_cpu_pause_and_full_fifo_do_not_lose_count) ... ok
+test_invalid_flag_stays_latched_while_counting_resumes (test_encoder_pio_program.ProgramTests.test_invalid_flag_stays_latched_while_counting_resumes) ... ok
+test_reversal_and_counter_wrap (test_encoder_pio_program.ProgramTests.test_reversal_and_counter_wrap) ... ok
+test_stationary_all_start_phases_have_no_phantom_edges (test_encoder_pio_program.ProgramTests.test_stationary_all_start_phases_have_no_phantom_edges) ... ok
+test_twelve_clock_state_dwell_with_full_fifo (test_encoder_pio_program.ProgramTests.test_twelve_clock_state_dwell_with_full_fifo) ... ok
+test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) ... 
+  test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) (value='999.1.1.1') ... ERROR
+  test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) (value='0') ... ERROR
+  test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) (value='65536') ... ERROR
+  test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) (value='aai05/#') ... ERROR
+test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) ... 
+  test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\ud800') ... ERROR
+  test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\u0041') ... ERROR
+  test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\/') ... ERROR
+  test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\x41') ... ERROR
+test_missing_placeholder_and_bad_quoting_rejected_without_secret (test_network_config.NetworkConfigTests.test_missing_placeholder_and_bad_quoting_rejected_without_secret) ... 
+  test_missing_placeholder_and_bad_quoting_rejected_without_secret (test_network_config.NetworkConfigTests.test_missing_placeholder_and_bad_quoting_rejected_without_secret) (replacement='') ... ERROR
+test_missing_placeholder_and_bad_quoting_rejected_without_secret (test_network_config.NetworkConfigTests.test_missing_placeholder_and_bad_quoting_rejected_without_secret) ... ERROR
+test_valid_and_escaped_password (test_network_config.NetworkConfigTests.test_valid_and_escaped_password) ... ERROR
+test_cli_offline_report_and_invalid_capture_arguments (test_tape_calibration.CalibrationChecks.test_cli_offline_report_and_invalid_capture_arguments) ... ERROR
+test_cli_offline_report_and_invalid_capture_arguments (test_tape_calibration.CalibrationChecks.test_cli_offline_report_and_invalid_capture_arguments) ... ERROR
+test_complete_capture_persists_only_fresh_valid_samples (test_tape_calibration.CalibrationChecks.test_complete_capture_persists_only_fresh_valid_samples) ... ERROR
+test_complete_capture_persists_only_fresh_valid_samples (test_tape_calibration.CalibrationChecks.test_complete_capture_persists_only_fresh_valid_samples) ... ERROR
+test_corrupt_metadata_state_fails_with_clear_validation (test_tape_calibration.CalibrationChecks.test_corrupt_metadata_state_fails_with_clear_validation) ... ERROR
+test_corrupt_metadata_state_fails_with_clear_validation (test_tape_calibration.CalibrationChecks.test_corrupt_metadata_state_fails_with_clear_validation) ... ERROR
+test_different_setups_or_class_names_are_rejected (test_tape_calibration.CalibrationChecks.test_different_setups_or_class_names_are_rejected) ... ERROR
+test_different_setups_or_class_names_are_rejected (test_tape_calibration.CalibrationChecks.test_different_setups_or_class_names_are_rejected) ... ERROR
+test_incomplete_capture_excluded_and_missing_classes_named (test_tape_calibration.CalibrationChecks.test_incomplete_capture_excluded_and_missing_classes_named) ... ERROR
+test_incomplete_capture_excluded_and_missing_classes_named (test_tape_calibration.CalibrationChecks.test_incomplete_capture_excluded_and_missing_classes_named) ... ERROR
+test_interrupt_keeps_flushed_samples (test_tape_calibration.CalibrationChecks.test_interrupt_keeps_flushed_samples) ... ERROR
+test_interrupt_keeps_flushed_samples (test_tape_calibration.CalibrationChecks.test_interrupt_keeps_flushed_samples) ... ERROR
+test_invalid_arguments_have_no_output_side_effect (test_tape_calibration.CalibrationChecks.test_invalid_arguments_have_no_output_side_effect) ... ERROR
+test_last_receive_cannot_complete_after_deadline (test_tape_calibration.CalibrationChecks.test_last_receive_cannot_complete_after_deadline) ... ERROR
+test_last_receive_cannot_complete_after_deadline (test_tape_calibration.CalibrationChecks.test_last_receive_cannot_complete_after_deadline) ... ERROR
+test_malformed_complete_capture_rejected (test_tape_calibration.CalibrationChecks.test_malformed_complete_capture_rejected) ... ERROR
+test_malformed_complete_capture_rejected (test_tape_calibration.CalibrationChecks.test_malformed_complete_capture_rejected) ... ERROR
+test_movement_or_session_change_preserves_partial_capture (test_tape_calibration.CalibrationChecks.test_movement_or_session_change_preserves_partial_capture) ... 
+  test_movement_or_session_change_preserves_partial_capture (test_tape_calibration.CalibrationChecks.test_movement_or_session_change_preserves_partial_capture) (changed={'active': True}) ... ERROR
+test_movement_or_session_change_preserves_partial_capture (test_tape_calibration.CalibrationChecks.test_movement_or_session_change_preserves_partial_capture) ... ERROR
+test_movement_or_session_change_preserves_partial_capture (test_tape_calibration.CalibrationChecks.test_movement_or_session_change_preserves_partial_capture) ... ERROR
+test_ordered_backlog_cannot_become_fresh_calibration (test_tape_calibration.CalibrationChecks.test_ordered_backlog_cannot_become_fresh_calibration) ... ERROR
+test_ordered_backlog_cannot_become_fresh_calibration (test_tape_calibration.CalibrationChecks.test_ordered_backlog_cannot_become_fresh_calibration) ... ERROR
+test_overlap_is_reported_for_each_sensor (test_tape_calibration.CalibrationChecks.test_overlap_is_reported_for_each_sensor) ... ERROR
+test_overlap_is_reported_for_each_sensor (test_tape_calibration.CalibrationChecks.test_overlap_is_reported_for_each_sensor) ... ERROR
+test_pause_inside_receive_does_not_hide_silence (test_tape_calibration.CalibrationChecks.test_pause_inside_receive_does_not_hide_silence) ... ERROR
+test_pause_inside_receive_does_not_hide_silence (test_tape_calibration.CalibrationChecks.test_pause_inside_receive_does_not_hide_silence) ... ERROR
+test_report_rejects_duplicate_rows (test_tape_calibration.CalibrationChecks.test_report_rejects_duplicate_rows) ... ERROR
+test_report_rejects_duplicate_rows (test_tape_calibration.CalibrationChecks.test_report_rejects_duplicate_rows) ... ERROR
+test_seven_classes_report_candidates_not_accuracy (test_tape_calibration.CalibrationChecks.test_seven_classes_report_candidates_not_accuracy) ... ERROR
+test_seven_classes_report_candidates_not_accuracy (test_tape_calibration.CalibrationChecks.test_seven_classes_report_candidates_not_accuracy) ... ERROR
+test_timeout_and_silence_are_not_complete_data (test_tape_calibration.CalibrationChecks.test_timeout_and_silence_are_not_complete_data) ... ERROR
+test_timeout_and_silence_are_not_complete_data (test_tape_calibration.CalibrationChecks.test_timeout_and_silence_are_not_complete_data) ... ERROR
+test_unsafe_initial_status_does_not_create_capture (test_tape_calibration.CalibrationChecks.test_unsafe_initial_status_does_not_create_capture) ... ERROR
+test_unsigned_wrap_and_settling (test_tape_calibration.CalibrationChecks.test_unsigned_wrap_and_settling) ... ERROR
+test_unsigned_wrap_and_settling (test_tape_calibration.CalibrationChecks.test_unsigned_wrap_and_settling) ... ERROR
+
+======================================================================
+ERROR: test_undefined_behavior_is_fatal_with_runner_flags (test_colour_sanitizer_gate.SanitizerGateCheck.test_undefined_behavior_is_fatal_with_runner_flags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_colour_sanitizer_gate.py", line 30, in test_undefined_behavior_is_fatal_with_runner_flags
+    source_path.write_text(source)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\aai05-ubsan-tnexj47m\\probe.c'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\aai05-ubsan-tnexj47m'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_colour_sanitizer_gate.py", line 27, in test_undefined_behavior_is_fatal_with_runner_flags
+    with tempfile.TemporaryDirectory(prefix="aai05-ubsan-") as directory:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\aai05-ubsan-tnexj47m'
+
+======================================================================
+ERROR: test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) (value='999.1.1.1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpuf4enfut\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpuf4enfut'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 42, in test_invalid_broker_port_and_topic_rejected
+    self.check_config(SAMPLE.replace(old, new))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpuf4enfut'
+
+======================================================================
+ERROR: test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) (value='0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp2oj29o2h\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp2oj29o2h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 42, in test_invalid_broker_port_and_topic_rejected
+    self.check_config(SAMPLE.replace(old, new))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp2oj29o2h'
+
+======================================================================
+ERROR: test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) (value='65536')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpwivqubug\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpwivqubug'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 42, in test_invalid_broker_port_and_topic_rejected
+    self.check_config(SAMPLE.replace(old, new))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpwivqubug'
+
+======================================================================
+ERROR: test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) (value='aai05/#')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpt5k9o76x\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpt5k9o76x'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 42, in test_invalid_broker_port_and_topic_rejected
+    self.check_config(SAMPLE.replace(old, new))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpt5k9o76x'
+
+======================================================================
+ERROR: test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\ud800')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpcg8l2vea\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpcg8l2vea'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 47, in test_json_only_escapes_do_not_reach_c_compiler
+    self.check_config(SAMPLE.replace('SYNTHETIC_TEST_SECRET', 'synthetic' + escape))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpcg8l2vea'
+
+======================================================================
+ERROR: test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\u0041')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpti2r_x7u\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpti2r_x7u'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 47, in test_json_only_escapes_do_not_reach_c_compiler
+    self.check_config(SAMPLE.replace('SYNTHETIC_TEST_SECRET', 'synthetic' + escape))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpti2r_x7u'
+
+======================================================================
+ERROR: test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\/')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmplgg7_ynp\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmplgg7_ynp'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 47, in test_json_only_escapes_do_not_reach_c_compiler
+    self.check_config(SAMPLE.replace('SYNTHETIC_TEST_SECRET', 'synthetic' + escape))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmplgg7_ynp'
+
+======================================================================
+ERROR: test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) (escape='\\x41')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpr4o4p_9z\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpr4o4p_9z'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 47, in test_json_only_escapes_do_not_reach_c_compiler
+    self.check_config(SAMPLE.replace('SYNTHETIC_TEST_SECRET', 'synthetic' + escape))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpr4o4p_9z'
+
+======================================================================
+ERROR: test_missing_placeholder_and_bad_quoting_rejected_without_secret (test_network_config.NetworkConfigTests.test_missing_placeholder_and_bad_quoting_rejected_without_secret) (replacement='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpadfqkhf9\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpadfqkhf9'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 33, in test_missing_placeholder_and_bad_quoting_rejected_without_secret
+    self.check_config(SAMPLE.replace('SYNTHETIC_TEST_SECRET', replacement))
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpadfqkhf9'
+
+======================================================================
+ERROR: test_missing_placeholder_and_bad_quoting_rejected_without_secret (test_network_config.NetworkConfigTests.test_missing_placeholder_and_bad_quoting_rejected_without_secret)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 34, in test_missing_placeholder_and_bad_quoting_rejected_without_secret
+    self.assertNotIn('SYNTHETIC_TEST_SECRET', str(caught.exception))
+                                                  ^^^^^^^^^^^^^^^^
+AttributeError: '_AssertRaisesContext' object has no attribute 'exception'
+
+======================================================================
+ERROR: test_valid_and_escaped_password (test_network_config.NetworkConfigTests.test_valid_and_escaped_password)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 23, in check_config
+    path.write_text(content, encoding='utf-8')
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpb4uzcw02\\wifi_secrets.h'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpb4uzcw02'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 27, in test_valid_and_escaped_password
+    self.assertIsNone(self.check_config(SAMPLE))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_network_config.py", line 21, in check_config
+    with tempfile.TemporaryDirectory() as directory:
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpb4uzcw02'
+
+======================================================================
+ERROR: test_cli_offline_report_and_invalid_capture_arguments (test_tape_calibration.CalibrationChecks.test_cli_offline_report_and_invalid_capture_arguments)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 276, in test_cli_offline_report_and_invalid_capture_arguments
+    self.collect()
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpuygwg00b\\capture'
+
+======================================================================
+ERROR: test_cli_offline_report_and_invalid_capture_arguments (test_tape_calibration.CalibrationChecks.test_cli_offline_report_and_invalid_capture_arguments)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpuygwg00b'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpuygwg00b'
+
+======================================================================
+ERROR: test_complete_capture_persists_only_fresh_valid_samples (test_tape_calibration.CalibrationChecks.test_complete_capture_persists_only_fresh_valid_samples)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 74, in test_complete_capture_persists_only_fresh_valid_samples
+    result, stream = self.collect(packets=frames)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpilrn66z3\\capture'
+
+======================================================================
+ERROR: test_complete_capture_persists_only_fresh_valid_samples (test_tape_calibration.CalibrationChecks.test_complete_capture_persists_only_fresh_valid_samples)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpilrn66z3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpilrn66z3'
+
+======================================================================
+ERROR: test_corrupt_metadata_state_fails_with_clear_validation (test_tape_calibration.CalibrationChecks.test_corrupt_metadata_state_fails_with_clear_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 254, in test_corrupt_metadata_state_fails_with_clear_validation
+    self.collect()
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp2r80e6s6\\capture'
+
+======================================================================
+ERROR: test_corrupt_metadata_state_fails_with_clear_validation (test_tape_calibration.CalibrationChecks.test_corrupt_metadata_state_fails_with_clear_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp2r80e6s6'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp2r80e6s6'
+
+======================================================================
+ERROR: test_different_setups_or_class_names_are_rejected (test_tape_calibration.CalibrationChecks.test_different_setups_or_class_names_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 240, in test_different_setups_or_class_names_are_rejected
+    self.collect("a")
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp8t36e00i\\a'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp8t36e00i'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 238, in test_different_setups_or_class_names_are_rejected
+    with tempfile.TemporaryDirectory() as directory:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp8t36e00i'
+
+======================================================================
+ERROR: test_different_setups_or_class_names_are_rejected (test_tape_calibration.CalibrationChecks.test_different_setups_or_class_names_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp5s0hcfec'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp5s0hcfec'
+
+======================================================================
+ERROR: test_incomplete_capture_excluded_and_missing_classes_named (test_tape_calibration.CalibrationChecks.test_incomplete_capture_excluded_and_missing_classes_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 227, in test_incomplete_capture_excluded_and_missing_classes_named
+    self.collect()
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp97ymp308\\capture'
+
+======================================================================
+ERROR: test_incomplete_capture_excluded_and_missing_classes_named (test_tape_calibration.CalibrationChecks.test_incomplete_capture_excluded_and_missing_classes_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp97ymp308'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp97ymp308'
+
+======================================================================
+ERROR: test_interrupt_keeps_flushed_samples (test_tape_calibration.CalibrationChecks.test_interrupt_keeps_flushed_samples)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 120, in test_interrupt_keeps_flushed_samples
+    self.collect(packets=[packet(1), packet(2), KeyboardInterrupt()])
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp9v0xqr00\\capture'
+
+======================================================================
+ERROR: test_interrupt_keeps_flushed_samples (test_tape_calibration.CalibrationChecks.test_interrupt_keeps_flushed_samples)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp9v0xqr00'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp9v0xqr00'
+
+======================================================================
+ERROR: test_invalid_arguments_have_no_output_side_effect (test_tape_calibration.CalibrationChecks.test_invalid_arguments_have_no_output_side_effect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpb8zdwzkl'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpb8zdwzkl'
+
+======================================================================
+ERROR: test_last_receive_cannot_complete_after_deadline (test_tape_calibration.CalibrationChecks.test_last_receive_cannot_complete_after_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 169, in test_last_receive_cannot_complete_after_deadline
+    capture_samples(LastPauseStream(clock, [packet(i) for i in range(1, 11)]),
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpfj3erb2r\\deadline'
+
+======================================================================
+ERROR: test_last_receive_cannot_complete_after_deadline (test_tape_calibration.CalibrationChecks.test_last_receive_cannot_complete_after_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpfj3erb2r'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpfj3erb2r'
+
+======================================================================
+ERROR: test_malformed_complete_capture_rejected (test_tape_calibration.CalibrationChecks.test_malformed_complete_capture_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 246, in test_malformed_complete_capture_rejected
+    self.collect()
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpxtz41lkv\\capture'
+
+======================================================================
+ERROR: test_malformed_complete_capture_rejected (test_tape_calibration.CalibrationChecks.test_malformed_complete_capture_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpxtz41lkv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpxtz41lkv'
+
+======================================================================
+ERROR: test_movement_or_session_change_preserves_partial_capture (test_tape_calibration.CalibrationChecks.test_movement_or_session_change_preserves_partial_capture) (changed={'active': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 103, in test_movement_or_session_change_preserves_partial_capture
+    self.collect(directory, [packet(1), packet(2, **changed)])
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp8cdtm76r\\partial0'
+
+======================================================================
+ERROR: test_movement_or_session_change_preserves_partial_capture (test_tape_calibration.CalibrationChecks.test_movement_or_session_change_preserves_partial_capture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 104, in test_movement_or_session_change_preserves_partial_capture
+    meta = self.metadata(directory)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 68, in metadata
+    return json.loads((self.root / directory / "metadata.json").read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp8cdtm76r\\partial0\\metadata.json'
+
+======================================================================
+ERROR: test_movement_or_session_change_preserves_partial_capture (test_tape_calibration.CalibrationChecks.test_movement_or_session_change_preserves_partial_capture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp8cdtm76r'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp8cdtm76r'
+
+======================================================================
+ERROR: test_ordered_backlog_cannot_become_fresh_calibration (test_tape_calibration.CalibrationChecks.test_ordered_backlog_cannot_become_fresh_calibration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 138, in test_ordered_backlog_cannot_become_fresh_calibration
+    capture_samples(DelayedStream(clock, frames), status(), self.root / "lag",
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp91376zmi\\lag'
+
+======================================================================
+ERROR: test_ordered_backlog_cannot_become_fresh_calibration (test_tape_calibration.CalibrationChecks.test_ordered_backlog_cannot_become_fresh_calibration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp91376zmi'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp91376zmi'
+
+======================================================================
+ERROR: test_overlap_is_reported_for_each_sensor (test_tape_calibration.CalibrationChecks.test_overlap_is_reported_for_each_sensor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 220, in test_overlap_is_reported_for_each_sensor
+    self.seven(overlap=True)
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 202, in seven
+    self.collect(f"class{label}", frames, label=label,
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpintmulvf\\class0'
+
+======================================================================
+ERROR: test_overlap_is_reported_for_each_sensor (test_tape_calibration.CalibrationChecks.test_overlap_is_reported_for_each_sensor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpintmulvf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpintmulvf'
+
+======================================================================
+ERROR: test_pause_inside_receive_does_not_hide_silence (test_tape_calibration.CalibrationChecks.test_pause_inside_receive_does_not_hide_silence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 154, in test_pause_inside_receive_does_not_hide_silence
+    capture_samples(PausedStream(clock, frames), status(), self.root / "pause",
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp0p1kjnqt\\pause'
+
+======================================================================
+ERROR: test_pause_inside_receive_does_not_hide_silence (test_tape_calibration.CalibrationChecks.test_pause_inside_receive_does_not_hide_silence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp0p1kjnqt'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp0p1kjnqt'
+
+======================================================================
+ERROR: test_report_rejects_duplicate_rows (test_tape_calibration.CalibrationChecks.test_report_rejects_duplicate_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 263, in test_report_rejects_duplicate_rows
+    self.collect()
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpahitfx9c\\capture'
+
+======================================================================
+ERROR: test_report_rejects_duplicate_rows (test_tape_calibration.CalibrationChecks.test_report_rejects_duplicate_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpahitfx9c'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpahitfx9c'
+
+======================================================================
+ERROR: test_seven_classes_report_candidates_not_accuracy (test_tape_calibration.CalibrationChecks.test_seven_classes_report_candidates_not_accuracy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 206, in test_seven_classes_report_candidates_not_accuracy
+    self.seven()
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 202, in seven
+    self.collect(f"class{label}", frames, label=label,
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpa612o6v1\\class0'
+
+======================================================================
+ERROR: test_seven_classes_report_candidates_not_accuracy (test_tape_calibration.CalibrationChecks.test_seven_classes_report_candidates_not_accuracy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpa612o6v1'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpa612o6v1'
+
+======================================================================
+ERROR: test_timeout_and_silence_are_not_complete_data (test_tape_calibration.CalibrationChecks.test_timeout_and_silence_are_not_complete_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 111, in test_timeout_and_silence_are_not_complete_data
+    self.collect(packets=[packet(i, ir_valid=False) for i in range(1, 30)],
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 63, in collect
+    result = capture_samples(stream, status(), self.root / directory,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpp7nto5hx\\capture'
+
+======================================================================
+ERROR: test_timeout_and_silence_are_not_complete_data (test_tape_calibration.CalibrationChecks.test_timeout_and_silence_are_not_complete_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpp7nto5hx'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpp7nto5hx'
+
+======================================================================
+ERROR: test_unsafe_initial_status_does_not_create_capture (test_tape_calibration.CalibrationChecks.test_unsafe_initial_status_does_not_create_capture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpb6s44s02'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmpb6s44s02'
+
+======================================================================
+ERROR: test_unsigned_wrap_and_settling (test_tape_calibration.CalibrationChecks.test_unsigned_wrap_and_settling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_tape_calibration.py", line 182, in test_unsigned_wrap_and_settling
+    result = capture_samples(Stream(clock, frames), initial, self.root / "wrap",
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\tape_calibration.py", line 70, in capture_samples
+    output.mkdir(parents=True, exist_ok=False)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp56kf6g05\\wrap'
+
+======================================================================
+ERROR: test_unsigned_wrap_and_settling (test_tape_calibration.CalibrationChecks.test_unsigned_wrap_and_settling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp56kf6g05'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Guo YouYan\\AppData\\Local\\Packages\\sandbox.{824ad07f-d460-4bbc-a3ce-70912b891119}\\AC\\Temp\\tmp56kf6g05'
+
+----------------------------------------------------------------------
+Ran 71 tests in 0.483s
+
+FAILED (errors=47, skipped=2)

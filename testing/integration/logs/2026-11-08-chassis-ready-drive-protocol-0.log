@@ -1,0 +1,3 @@
+DRIVE_ACK a6070a1234ffff0102030411223344ffffffffeca74b08
+DRIVE_TELEMETRY c0070a1234ffff0102030411223344ffffffffeca74babc123e8
+PASS: v2 strict command fields, signed duties, CRC and packed status

@@ -1,0 +1,12 @@
+test_invalid_move_fails_before_bridge_creation (testing.host.test_chassis_cli.ChassisCliTests.test_invalid_move_fails_before_bridge_creation) ... ok
+test_move_defaults_and_explicit_mapping (testing.host.test_chassis_cli.ChassisCliTests.test_move_defaults_and_explicit_mapping) ... ok
+test_move_serializes_mapped_start_renews_and_confirms_stop (testing.host.test_chassis_cli.ChassisCliTests.test_move_serializes_mapped_start_renews_and_confirms_stop) ... ok
+test_raw_drive_meaning_is_unchanged (testing.host.test_chassis_cli.ChassisCliTests.test_raw_drive_meaning_is_unchanged) ... ok
+test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) ... ok
+test_matches_real_c_output_for_all_5151_valid_pairs (testing.host.test_chassis_cli.ChassisConversionTests.test_matches_real_c_output_for_all_5151_valid_pairs) ... ok
+test_reject_narrowing_and_noninteger_values (testing.host.test_chassis_cli.ChassisConversionTests.test_reject_narrowing_and_noninteger_values) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.051s
+
+OK

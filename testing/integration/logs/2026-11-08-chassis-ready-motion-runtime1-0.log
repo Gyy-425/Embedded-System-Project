@@ -1,0 +1,1 @@
+PASS: real Motion adapter ownership, readiness, STOP/expiry, local producer and concurrent command/STOP serialization

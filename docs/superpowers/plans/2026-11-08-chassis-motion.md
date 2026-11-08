@@ -33,11 +33,11 @@
 
 **Interfaces:** Consumes motion_command_t, motion_result_t, subsystem2_motion_submit. Produces motion_chassis_command_t, motion_chassis_convert(const motion_chassis_command_t *, motion_command_t *) and subsystem2_motion_submit_chassis(const motion_chassis_command_t *).
 
-- [ ] Write literal vector, null/range, metadata-wrap and exhaustive invariant tests; write actual runtime checks proving raw polarity at the driver boundary and unchanged STOP/expiry/duplicate/conflict/readiness/fault behavior.
-- [ ] Run tests against unimplemented behavior and preserve RED evidence.
-- [ ] Implement pure conversion, wrapper and strict object integration; link new source into existing runtime host runner. Preserve input metadata and reject without output mutation.
-- [ ] Run strict/sanitized C tests, real runtime LOCAL/REMOTE regressions and freestanding ARM compile. Expected: all PASS, no warnings/sanitizer findings.
-- [ ] Commit independently tested C deliverable.
+- [x] Write literal vector, null/range, metadata-wrap and exhaustive invariant tests; write actual runtime checks proving raw polarity at the driver boundary and unchanged STOP/expiry/duplicate/conflict/readiness/fault behavior.
+- [x] Run tests against unimplemented behavior and preserve RED evidence.
+- [x] Implement pure conversion, wrapper and strict object integration; link new source into existing runtime host runner. Preserve input metadata and reject without output mutation.
+- [x] Run strict/sanitized C tests, real runtime LOCAL/REMOTE regressions and freestanding ARM compile. Expected: all PASS, no warnings/sanitizer findings.
+- [x] Commit independently tested C deliverable.
 
 ### Task 2: Practical move CLI and complete compatibility evidence
 
@@ -45,10 +45,10 @@
 
 **Interfaces:** Consumes the spec's mixer contract and existing run_drive. Produces chassis_duties(forward, turn)->(raw_left,raw_right) and CLI move with --forward/--turn/--seconds.
 
-- [ ] Write literal conversion/type/range tests, subprocess argument rejection before bridge creation, exhaustive parity against the real C vector executable, and run_drive publication/STOP-confirmation checks with controlled transport.
-- [ ] Run against missing behavior and preserve RED evidence.
-- [ ] Implement conversion and CLI mapping without new wire opcodes or mutation of existing drive behavior; add shared vector evidence to host runner.
-- [ ] Run tools/check_encoder_pio.py with a fresh label, SDK path, Windows Tcl Python and --firmware. Expected: complete C/Python regression PASS and four normal/TEST PIO/GPIO compatibility builds, zero warnings, all old UF2 hashes unchanged.
+- [x] Write literal conversion/type/range tests, subprocess argument rejection before bridge creation, exhaustive parity against the real C vector executable, and run_drive publication/STOP-confirmation checks with controlled transport.
+- [x] Run against missing behavior and preserve RED evidence.
+- [x] Implement conversion and CLI mapping without new wire opcodes or mutation of existing drive behavior; add shared vector evidence to host runner.
+- [x] Run tools/check_encoder_pio.py with a fresh label, SDK path, Windows Tcl Python and --firmware. Expected: complete C/Python regression PASS and four normal/TEST PIO/GPIO compatibility builds, zero warnings, all old UF2 hashes unchanged.
 - [ ] Document callable API, exact duty/steering/zero/rounding semantics, commands for the future bounded ground run and hardware limits. Record actual software results; commit, then obtain one independent whole-change review and address material findings with RED-to-GREEN regressions.
 
 No task changes the deployed image, starts a broker, sends a motor request or claims physical tracking.

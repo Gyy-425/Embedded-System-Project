@@ -1,0 +1,258 @@
+test_invalid_move_fails_before_bridge_creation (testing.host.test_chassis_cli.ChassisCliTests.test_invalid_move_fails_before_bridge_creation) ... ok
+test_move_defaults_and_explicit_mapping (testing.host.test_chassis_cli.ChassisCliTests.test_move_defaults_and_explicit_mapping) ... usage: drive_cli.py [-h] --host HOST [--port PORT] [--device DEVICE]
+                    [--tools-dir TOOLS_DIR] [--timeout TIMEOUT]
+                    {status,watch,clear,stop,target,drive} ...
+drive_cli.py: error: argument action: invalid choice: 'move' (choose from status, watch, clear, stop, target, drive)
+ERROR
+test_move_serializes_mapped_start_renews_and_confirms_stop (testing.host.test_chassis_cli.ChassisCliTests.test_move_serializes_mapped_start_renews_and_confirms_stop) ... usage: drive_cli.py [-h] --host HOST [--port PORT] [--device DEVICE]
+                    [--tools-dir TOOLS_DIR] [--timeout TIMEOUT]
+                    {status,watch,clear,stop,target,drive} ...
+drive_cli.py: error: argument action: invalid choice: 'move' (choose from status, watch, clear, stop, target, drive)
+ERROR
+test_raw_drive_meaning_is_unchanged (testing.host.test_chassis_cli.ChassisCliTests.test_raw_drive_meaning_is_unchanged) ... ok
+test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) ... 
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=0, turn=50) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=1, turn=1) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=10, turn=50) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=10, turn=-50) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=30, turn=10) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=0) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=10) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=-10) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=20) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=-20) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=50, turn=1) ... ERROR
+  test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=50, turn=0) ... ERROR
+test_matches_real_c_output_for_all_5151_valid_pairs (testing.host.test_chassis_cli.ChassisConversionTests.test_matches_real_c_output_for_all_5151_valid_pairs) ... skipped 'C vector output supplied by complete host runner'
+test_reject_narrowing_and_noninteger_values (testing.host.test_chassis_cli.ChassisConversionTests.test_reject_narrowing_and_noninteger_values) ... ok
+
+======================================================================
+ERROR: test_move_defaults_and_explicit_mapping (testing.host.test_chassis_cli.ChassisCliTests.test_move_defaults_and_explicit_mapping)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1943, in _parse_known_args2
+    namespace, args = self._parse_known_args(args, namespace, intermixed)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2188, in _parse_known_args
+    stop_index = consume_positionals(start_index)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2141, in consume_positionals
+    take_action(action, args)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2003, in take_action
+    argument_values = self._get_values(action, argument_strings)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2523, in _get_values
+    self._check_value(action, value[0])
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2573, in _check_value
+    raise ArgumentError(action, msg % args)
+argparse.ArgumentError: argument action: invalid choice: 'move' (choose from status, watch, clear, stop, target, drive)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 71, in test_move_defaults_and_explicit_mapping
+    args = self.parse("move")
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 68, in parse
+    return drive_cli.arguments()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py", line 187, in arguments
+    args = parser.parse_args()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1904, in parse_args
+    args, argv = self.parse_known_args(args, namespace)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1914, in parse_known_args
+    return self._parse_known_args2(args, namespace, intermixed=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1945, in _parse_known_args2
+    self.error(str(err))
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2650, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2637, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+======================================================================
+ERROR: test_move_serializes_mapped_start_renews_and_confirms_stop (testing.host.test_chassis_cli.ChassisCliTests.test_move_serializes_mapped_start_renews_and_confirms_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1943, in _parse_known_args2
+    namespace, args = self._parse_known_args(args, namespace, intermixed)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2165, in _parse_known_args
+    positionals_end_index = consume_positionals(start_index)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2141, in consume_positionals
+    take_action(action, args)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2003, in take_action
+    argument_values = self._get_values(action, argument_strings)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2523, in _get_values
+    self._check_value(action, value[0])
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2573, in _check_value
+    raise ArgumentError(action, msg % args)
+argparse.ArgumentError: argument action: invalid choice: 'move' (choose from status, watch, clear, stop, target, drive)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 108, in test_move_serializes_mapped_start_renews_and_confirms_stop
+    self.assertEqual(drive_cli.main(), 0)
+                     ^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py", line 206, in main
+    args = arguments()
+           ^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py", line 187, in arguments
+    args = parser.parse_args()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1904, in parse_args
+    args, argv = self.parse_known_args(args, namespace)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1914, in parse_known_args
+    return self._parse_known_args2(args, namespace, intermixed=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 1945, in _parse_known_args2
+    self.error(str(err))
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2650, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "C:\Users\Guo YouYan\AppData\Local\Programs\Python\Python312\Lib\argparse.py", line 2637, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=0, turn=50)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=1, turn=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=10, turn=50)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=10, turn=-50)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=30, turn=10)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=10)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=-10)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=20)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=40, turn=-20)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=50, turn=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+======================================================================
+ERROR: test_literal_physical_directions_and_scaling (testing.host.test_chassis_cli.ChassisConversionTests.test_literal_physical_directions_and_scaling) (forward=50, turn=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\testing\host\test_chassis_cli.py", line 43, in test_literal_physical_directions_and_scaling
+    self.assertEqual(chassis_duties(forward, turn), expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\chassis.py", line 5, in chassis_duties
+    raise ValueError("Not implemented")
+ValueError: Not implemented
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.047s
+
+FAILED (errors=14, skipped=1)

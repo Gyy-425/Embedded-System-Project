@@ -13,6 +13,7 @@ from drive_codec import (DriveAck, DriveTelemetry, OP_STATUS, OP_TARGET,
                          format_drive_packet)
 from robot_cli import Bridge
 from robot_codec import parse_colour
+from chassis import chassis_duties
 
 
 def synchronise(bridge, timeout=4.0, *, clock=time.monotonic):
@@ -184,6 +185,10 @@ def arguments():
     run.add_argument("--left", type=int, default=50)
     run.add_argument("--right", type=int, default=0)
     run.add_argument("--seconds", type=float, default=2.0)
+    move = actions.add_parser("move", help="Forward duty and steering; positive turn is right")
+    move.add_argument("--forward", type=int, default=30, help="Forward duty1..50; not calibrated speed")
+    move.add_argument("--turn", type=int, default=0, help="Steering duty-50..50; positive is right")
+    move.add_argument("--seconds", type=float, default=2.0)
     args = parser.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9_-]{1,24}", args.device):
         parser.error("--device must be1..24 letters/digits/underscore/hyphen")
@@ -194,9 +199,17 @@ def arguments():
             args.target = parse_colour(args.colour)
         except ValueError as error:
             parser.error(str(error))
-    if args.action == "drive":
+    if args.action in ("drive", "move"):
         if not math.isfinite(args.seconds) or not 0 < args.seconds <= 10:
             parser.error("--seconds must be greater than0 and at most10")
+    if args.action == "move":
+        if args.forward <= 0:
+            parser.error("--forward must be1..50; use stop for latched STOP")
+        try:
+            args.left, args.right = chassis_duties(args.forward, args.turn)
+        except ValueError as error:
+            parser.error(str(error))
+    if args.action == "drive":
         if not -50 <= args.left <= 50 or not -50 <= args.right <= 50 or not (args.left or args.right):
             parser.error("Duties must be -50..50 with at least one nonzero wheel")
     return args
@@ -208,7 +221,11 @@ def main():
                 ack_type=DriveAck) as bridge:
         status = synchronise(bridge, args.timeout)
         print(format_drive_packet(status), flush=True)
-        if args.action == "drive":
+        if args.action in ("drive", "move"):
+            if args.action == "move":
+                print(f"MOVE forward={args.forward}% turn={args.turn:+}% "
+                      f"-> raw L={args.left:+}% R={args.right:+}% "
+                      "(positive turn=right)", flush=True)
             print("Bounded electrical-duty request; no automatic restart.", flush=True)
             stopped = run_drive(bridge, status, args.left, args.right,
                                 args.seconds, args.timeout)

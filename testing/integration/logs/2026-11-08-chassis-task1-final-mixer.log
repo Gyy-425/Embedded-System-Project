@@ -1,0 +1,3 @@
+PASS: chassis literals, full byte-domain rejection, 5151 valid pairs, symmetry, duty bounds, forward-only output and metadata preservation
+
+exit_code=0

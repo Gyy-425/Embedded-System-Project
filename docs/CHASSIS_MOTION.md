@@ -6,7 +6,8 @@ owner, raw motor driver and MQTT v2 START/renew/STOP flow. The car's tested
 v0.9 PIO image can remain installed: the CLI performs coordinate conversion
 before sending the existing raw requests. The new on-robot C entry point is
 host-tested and included in compile-compatibility builds; no live IR controller
-calls it yet. Ground movement/steering and calibrated speed are not demonstrated.
+calls it yet. Ground forward movement is observed with rightward drift;
+straight tracking, commanded curves and calibrated speed remain unverified.
 
 ## Coordinates and limits
 
@@ -76,7 +77,17 @@ output memory; do not mutate it concurrently with conversion/submission.
 This typed structure is not a native MQTT payload. No new wire encoding or
 minimum-bit saving is claimed. Existing v2 serialization and leases are reused.
 
-## Next practical ground run — user-operated, not yet performed
+## Ground-run procedure and current observations
+
+Update8November: the user performed the straight request twice. Forward travel
+works but turns right while powered; comparable encoder intervals show10-11%
+more left ticks. PIO flags/errors remain clear and serial shows both stops;
+the second client reports a missing ACK. The initial tuning trial is now
+`move --forward 40 --turn -2 --seconds 1` (raw-38/+42), with cable slack and
+broker/Pico kept on through the return. This is a proposed small correction,
+not verified permanent trim. Keep curve tests pending. See the
+[observed result](../testing/integration/logs/2026-11-08-ground-straight-drift-result.md).
+The original straight/curve procedure below is retained for context.
 
 Keep the current wiring and installed v0.9 image. Use the network and power
 arrangement from the clean PIO run, with sufficient Pico USB cable slack and

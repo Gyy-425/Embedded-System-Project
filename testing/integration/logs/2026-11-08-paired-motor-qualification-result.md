@@ -1,5 +1,11 @@
 # Paired motor qualification: observed directions and unresolved encoder quality
 
+Superseding follow-up: the user subsequently supplied forward-run serial
+records. They establish raw forward encoder signs left negative/right positive,
+requested output OFF and new overrun warnings within the powered interval.
+[Current forward-run assessment](2026-11-08-forward-encoder-result.md).
+The original observations and evidence gaps below are retained chronologically.
+
 8 November 2026. User ran the raised-wheel paired test and requested inspection
 of the retained VS Code terminals and Serial Monitor. The assistant read those
 views using the Computer Use skill and read the saved CLI log. No command was

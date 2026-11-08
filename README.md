@@ -7,9 +7,12 @@ address; no motor/encoder logic changed. Normal/TEST builds and supporting
 software checks passed, and all 28 older images were preserved. The paired
 run now has observed movement and saved output-off confirmation:
 positive electrical duty drives left rearward and right forward. The user then
-confirmed both wheels forward with raw `-50/+50`. Direction mapping is complete;
-the follow-up serial samples still need review. Powered encoder qualification remains
-open: the retained serial interval contains new overrun warnings.
+confirmed both wheels forward with raw `-50/+50`. The supplied forward-run serial
+records establish raw encoder signs left negative/right positive and requested
+output OFF. Powered capture is not qualified: new overrun warnings rise to
+32/30 while moving, then 39/36 during spin-down. No basic direction replay is
+needed; capture quality must be addressed before feedback control.
+[Forward-run assessment](testing/integration/logs/2026-11-08-forward-encoder-result.md).
 [Observed result](testing/integration/logs/2026-11-08-paired-motor-qualification-result.md),
 [next focused check](docs/MOTOR_ENCODER_QUALIFICATION.md),
 [preparation evidence](testing/integration/logs/2026-11-08-motor-qualification-preparation.md).

@@ -1,5 +1,14 @@
 # Motor and encoder qualification — first paired check
 
+Latest result: the user supplied the forward run's serial records. Physical
+forward is raw left negative/right positive, and forward encoder deltas have
+the same signs. Requested output OFF is observed without reported driver or
+capture API errors. Powered capture quality is **not qualified**: overrun
+counters rise from 0/0 to 32/30 while moving, then 39/36 during spin-down.
+[Forward result and code trace](../testing/integration/logs/2026-11-08-forward-encoder-result.md).
+No more basic direction/pulse tests are needed. Address capture quality next
+before accepting speed feedback; the procedures below are historical references.
+
 8 November 2026. The current laptop LAN address was read outside the command
 sandbox: 192.168.1.206, connected to the existing SINGTEL-A9C0_MLO network.
 The previous car image targets broker 192.168.1.199. A separate address-updated
@@ -12,7 +21,7 @@ right wheel forward. Powered encoder quality remains unresolved because the
 retained record contains new overrun warnings. [Observed result and limits](../testing/integration/logs/2026-11-08-paired-motor-qualification-result.md).
 Do not repeat the four basic pulses, manual input checks or earlier MQTT tests.
 
-## Confirmed forward mapping; encoder evidence pending
+## Confirmed forward mapping; capture quality unresolved
 
 The user tested the following command and confirmed both wheels moving toward
 the front. Physical forward polarity is now established: left negative, right
@@ -23,10 +32,11 @@ known forward reference for this raw-duty interface:
 python .\tools\mqtt\drive_cli.py --host 192.168.1.206 drive --left -50 --right 50 --seconds 2
 ```
 
-Next review the completed run's stationary, moving and stopped serial lines.
-Compare per-run signed counts and `bad`/`over`/`sat`; do not infer forward encoder
-signs or accuracy from motor polarity alone. No new follow-up serial samples
-have been verified yet. GP21 stops. No reflash or wiring change is needed.
+The completed run's serial lines have now been reviewed. Forward counts decrease
+on the left and increase on the right; new overrun warnings occur in the moving
+interval. `bad=0` and `sat=0` do not establish accuracy because ambiguous batches
+are skipped. No new run is requested until the capture investigation justifies
+a focused validation. GP21 stops. No wiring change is indicated by these logs.
 The original first-polarity procedure below is retained as history, not a request
 to repeat `+50/+50`. Existing CLI duties remain electrical signs.
 

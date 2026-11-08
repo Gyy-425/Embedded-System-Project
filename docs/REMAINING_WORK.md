@@ -7,10 +7,12 @@ The laptop broker is now 192.168.1.206; a separately named working v0.8 image
 has been built for that address, with no motor/encoder source changes. The
 first paired physical test produced both-wheel movement and a saved fresh
 output-off response. Raw positive duty drives left rearward and right forward;
-the user subsequently confirmed both forward with `-50/+50`. Physical motor
-direction mapping is complete; follow-up serial samples still need review.
-The earlier retained interval contains new overrun warnings, so powered
-feedback accuracy remains open.
+the user subsequently confirmed both forward with `-50/+50`. The supplied
+serial records establish raw forward encoder signs left negative/right positive
+and requested output OFF, with errors0/bad0/sat0. Powered capture is unqualified:
+over rises 0/0 ->32/30 during movement and ->39/36 during spin-down.
+Do not replay basic direction tests; investigate capture quality before feedback.
+[Forward-run evidence](../testing/integration/logs/2026-11-08-forward-encoder-result.md).
 [Observed result and limits](../testing/integration/logs/2026-11-08-paired-motor-qualification-result.md).
 
 Latest actual result: v0.8 bounded MQTT left-wheel movement, ordinary STOP/rearm, GP21 during movement, broker-loss stopping, recovery without automatic movement and fresh START afterward passed within the recorded setup. [Movement result](../testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md), [loss/recovery result](../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md). The current MQTT movement bring-up case is complete; do not repeat it. The stationary capture/range-overlap tool and configurable C classifier core are prepared and host-verified; no actual tape readings or live recognition results are available yet. [Capture guide](TAPE_CALIBRATION.md).
@@ -55,4 +57,4 @@ Networking does not need to wait for every motion qualification test. Calibratio
 
 Barcode decoding/directed junction manoeuvres, ultrasonic/servo obstacle profiling/avoidance and hump-height measurement are omitted under the professor's confirmed revision. IMU is optional and should only be reconsidered after the required colour/motion/communication application works. No dashboard is required.
 
-Current next action: review the completed forward run's serial samples for per-run encoder signs and warning deltas. Physical motor direction mapping has passed by user observation; do not repeat it. Investigate capture ambiguity before using feedback; do not change wiring or silently redefine raw MQTT duties. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Do not repeat the completed MQTT movement checks. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.
+Current next action: investigate powered capture ambiguity using the preserved forward trace and code path before using feedback. Both motor and encoder forward signs are now established; do not repeat basic direction checks, change wiring or silently redefine raw MQTT duties. Review IRQ latency/critical sections and choose a justified capture change, then validate against a focused run and independent revolution reference. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.

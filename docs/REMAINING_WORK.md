@@ -6,13 +6,13 @@ Focused motion coding: forward/steering C adapter and equivalent CLI `move`
 are implemented; strict/sanitized C checks,71 Python/Tcl tests and four
 compatibility builds passed after the independent review's input-narrowing
 finding was corrected and regression-tested.
-No on-car IR controller is active yet. The user reports three neutral bank-only
-untethered runs travelling straight under power, with a small post-OFF left
-movement. Keep turn0; move to the two intentional curve checks. Fresh client
-status/OFF exchanges currently work; earlier transient connection/ACK failures
-remain unexplained. Precise stopping/heading performance and calibrated encoder
+No on-car IR controller is active yet. Basic ground motion bring-up is complete
+within the recorded setup: three neutral straight trials and both intentional
+curve directions are user-confirmed, with a small residual stopping movement.
+Keep turn0; advance to IR calibration/runtime classifier integration. Earlier
+ACK failures, precise stopping/heading performance and calibrated encoder
 feedback remain open.
-[Latest ground result and next check](../testing/integration/logs/2026-11-08-neutral-ground-result.md).
+[Latest ground result and limits](../testing/integration/logs/2026-11-08-ground-curves-result.md).
 [Motion API and ground guide](CHASSIS_MOTION.md).
 
 Latest prepared development: v0.9 PIO capture replaces CPU-serviced edge latches
@@ -46,6 +46,7 @@ Latest actual result: v0.8 bounded MQTT left-wheel movement, ordinary STOP/rearm
 
 ## Completed foundation
 
+- [x] Basic ground motion bring-up: user explicitly confirms turn+10 curves right and turn-10 curves left, following three powered-straight neutral trials. Same small residual stopping movement retained; no angle/radius/stop-distance precision claimed. [Scoped result](../testing/integration/logs/2026-11-08-ground-curves-result.md).
 - [x] Neutral untethered ground bring-up: user reports three straight powered runs at forward40/turn0, with a small post-OFF left movement retained as a stopping observation. Current command/status/OFF exchanges are observed; no measured heading/stop-distance or precise speed claim. [Scoped result](../testing/integration/logs/2026-11-08-neutral-ground-result.md).
 - [x] v0.9 basic powered PIO capture trial: clean baseline and final sticky flags0/0, expected raw count progression, errors0/sat0, fresh output OFF and stable coast totals. Independent count/revolution accuracy, calibrated speed/distance and ground-load performance remain pending. [Scoped result](../testing/integration/logs/2026-11-08-v0_9-pio-clean-rerun.md).
 - [x] Dedicated v0.8 broker-loss stop/recovery/no automatic movement/fresh START case. Increasing uptime and new session/off-state recovery are observed; physical stop and fresh movement are user-confirmed. [Scoped evidence](../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md).
@@ -66,10 +67,10 @@ Latest actual result: v0.8 bounded MQTT left-wheel movement, ordinary STOP/rearm
 
 ## Remaining work in practical order
 
-Current motor development: physical forward signs, scoped MQTT movement/stop/recovery and the basic powered PIO capture trial are supported. Preserve those results. Independent encoder accuracy/scaling, ground-loaded performance and integrated tracking remain pending.
+Current motor development: basic forward/curve bring-up, scoped MQTT control/stop/recovery and basic powered PIO capture are supported. Preserve those results and advance to IR integration. Precise stopping/heading, independent encoder scaling if feedback is used, final-load timing and integrated tracking remain pending.
 
 1. [x] **Core communication bring-up.** Actual IP, broker/status/target/raw telemetry, MQTT session recovery and laptop-network-path loss/restoration are supported by recorded runs. This completes the current no-drive communication case. Actual Pico association-loss/rejoin and final demo-network checks remain explicitly deferred to integrated validation; they are not claimed by the laptop-only test.
-2. [ ] **Qualify program-controlled movement for tracking.** Software pulses, local Motion STOP/expiry, physical forward signs and the basic powered PIO capture trial passed. A bounded forward/steering C API and matching CLI are implemented and software-verified, including correction/regression of the independent review's input-boundary finding. Next qualify ground-loaded starting, straight movement and both steering directions. Establish independent count/revolution scaling before calibrated feedback if used; add balancing/control as needed for stable tracking. Preserve prior passes rather than replaying diagnostic versions.
+2. [x] **Basic program-controlled ground movement bring-up.** Software pulses, local Motion STOP/expiry, physical forward signs and basic powered PIO capture passed within their records. The forward/steering C API and matching CLI are software-verified; the user confirms neutral straight travel and both curve directions on the ground. This completes bring-up, not precise tracking/stopping acceptance. Establish encoder scaling before calibrated feedback if selected; retain final-load timing and stopping/heading work under integration. Preserve prior passes rather than replaying diagnostic versions.
 3. [x] **Scoped MQTT actuation-loss/recovery bring-up.** The user confirms stopping on broker loss and successful fresh-command movement afterward. Watch shows the pre-gap RUNNING/ON session, waiting interval, new session IDLE/OFF, explicit START, RUNNING/ON and confirmed final STOPPED/OFF. [Evidence](../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md). Exact latency, all replay/fault injections, actual AP loss, final demo network and combined-load qualification remain later integration checks.
 4. [ ] **Actual tapes, track and acceptance conditions.** Obtain/use the actual five chosen colours plus black/white, cardboard/background and fixed sensor mounting. Set track width/curves/start positions and layouts for both required demonstrations. Choose achievable speed, shortest segment and accuracy/lighting conditions from measurements;5cm remains a proposal, not a confirmed requirement. Check seven classes are separable in IR ADC data before committing to a tape set.
 5. [ ] **Colour calibration and recognition.** The portable C classifier core is implemented with per-sensor configurable ranges and explicit unknown/ambiguity/freshness guards;16,384 reference comparisons and host/ARM/firmware compile checks pass. [Core API](COLOUR_CLASSIFIER_CORE.md). Runtime model installation, recognition/reporting and real calibration remain pending. Stationary capture/CSV/metadata and offline overlap-report code is prepared;46 affected host tests passed. Use [the guide](TAPE_CALIBRATION.md) when actual tapes are available. Record labelled readings from each sensor at installed height, derive/store calibration and implement seven-class plus unknown/uncertain handling. Validate stationary and moving classification, transitions and short segments; avoid filtering/debounce that erases brief colours. Report actual accuracy against known tape sequences, not guessed RGB colour recognition.
@@ -86,4 +87,4 @@ Networking does not need to wait for every motion qualification test. Calibratio
 
 Barcode decoding/directed junction manoeuvres, ultrasonic/servo obstacle profiling/avoidance and hump-height measurement are omitted under the professor's confirmed revision. IMU is optional and should only be reconsidered after the required colour/motion/communication application works. No dashboard is required.
 
-Current next action after final motion software checks: one short duty-based ground run for starting, straight movement and steering using the installed v0.9 image and new CLI move command. Establish an independent marked-revolution count reference before calibrated encoder feedback if selected; it does not block duty-based testing or colour work. The clean v0.9 powered rerun needs no replay or firmware change. The earlier invalid flag's cause remains unproven; investigate if it recurs while stationary. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.
+Current next action: IR colour calibration and runtime classifier/reporting integration. Use the prepared capture tool when the actual seven tape classes/background are available, check per-sensor separability and populate the model with measured ranges. Synthetic ranges must not be installed as real calibration. Normal controller/colour reporting and target-following integration follow. Basic straight/curve/PIO checks need no replay; calibrated encoder feedback, precise stops, actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.

@@ -5,13 +5,13 @@ CLI conversion through the existing MQTT v2 drive path. Positive turn means
 right; verified raw motor polarities are handled at the boundary. Keep the
 tested v0.9 image installed. Strict/sanitized C checks,71 Python/Tcl tests and
 four firmware compatibility builds passed after fixing the review's C input
-narrowing finding. The user now reports three neutral untethered ground runs
-travelling straight under power, with a small left movement after output OFF.
-Keep turn0 as the straight baseline; next perform the two planned curve checks.
-Fresh client status/OFF exchanges work currently, while the earlier transient
-connection/ACK failures remain unexplained. Precise stop/heading performance
-and live IR control remain open.
-[Latest ground observation and next check](testing/integration/logs/2026-11-08-neutral-ground-result.md).
+narrowing finding. **Basic ground motion bring-up is complete** within the
+recorded setup: three neutral straight runs and both requested curve directions
+are user-confirmed. Keep turn0; a small post-OFF movement remains a stopping
+observation. Precise stop/heading performance and earlier intermittent ACK
+failures remain open. Next: IR calibration and runtime classifier integration;
+actual tape separability and live colour control are not demonstrated yet.
+[Ground result and limits](testing/integration/logs/2026-11-08-ground-curves-result.md).
 [API, semantics and next ground-run guide](docs/CHASSIS_MOTION.md).
 [Software evidence](testing/integration/logs/2026-11-08-chassis-motion-preparation.md).
 

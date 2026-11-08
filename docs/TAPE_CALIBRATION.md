@@ -24,13 +24,13 @@ STATUS or heavy host scheduling can conservatively abort; use a new capture.
    mounting, height, lighting and module adjustments consistent. Do not hold
    the car at a different height for each sample.
 2. Start the usual broker, using the laptop's current address configured in
-   firmware. Commands below use the established192.168.1.199 example. The
-   Pico's own address may differ. Use v0.8/updated client; no drive process.
+   firmware. Commands below use the established192.168.1.206 example. The
+   Pico's own address may differ. The tested v0.9 PIO REMOTE image retains the v2 capture protocol; use the current client with no drive process.
 3. From PowerShell in `C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware`,
    place black material under both sensors and run:
 
 ```powershell
-python .\tools\mqtt\calibrate_cli.py capture --host 192.168.1.199 --label black --name black --setup "installed bracket; room lighting; actual cardboard" --out .\testing\calibration\black-01
+python .\tools\mqtt\calibrate_cli.py capture --host 192.168.1.206 --label black --name black --setup "installed bracket; room lighting; actual cardboard" --out .\testing\calibration\black-01
 ```
 
 Replace the setup description with the actual conditions. Keep it identical

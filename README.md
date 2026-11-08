@@ -4,10 +4,14 @@ Current case, 8 November: **paired motor and powered encoder qualification**.
 The laptop's broker address is now 192.168.1.206. A separate working v0.8 image,
 `output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206.uf2`, is built for that
 address; no motor/encoder logic changed. Normal/TEST builds and supporting
-software checks passed, and all 28 older images were preserved. Physical
-qualification is pending. Follow the [one-run guide](docs/MOTOR_ENCODER_QUALIFICATION.md)
-to upload the normal image, then record paired movement, physical directions,
-encoder counter changes and final stopping. [Preparation evidence](testing/integration/logs/2026-11-08-motor-qualification-preparation.md).
+software checks passed, and all 28 older images were preserved. The paired
+run now has observed movement and saved output-off confirmation:
+positive electrical duty drives left rearward and right forward. Forward is
+therefore the next raw `-50/+50` check. Powered encoder qualification remains
+open: the retained serial interval contains new overrun warnings.
+[Observed result](testing/integration/logs/2026-11-08-paired-motor-qualification-result.md),
+[next focused check](docs/MOTOR_ENCODER_QUALIFICATION.md),
+[preparation evidence](testing/integration/logs/2026-11-08-motor-qualification-preparation.md).
 
 C classifier core prepared,7 November: **configurable per-sensor calibration,
 seven classes, unknown/ambiguous handling, validity and timestamp checks**.

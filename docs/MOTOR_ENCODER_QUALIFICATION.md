@@ -6,9 +6,27 @@ The previous car image targets broker 192.168.1.199. A separate address-updated
 v0.8 image is prepared; only the ignored broker setting changes. The original
 images, motor/encoder logic, PWM limit and STOP protections are preserved.
 
-This test has not passed yet. Do not repeat the four basic pulse requests,
-manual IR/encoder checks or earlier MQTT loss/restart tests. The first new case
-commands both wheels together and records capture quality under powered motion.
+The first paired request was performed: both wheels moved, and a fresh output-off
+response was saved. Positive raw duty drove the left wheel rearward and the
+right wheel forward. Powered encoder quality remains unresolved because the
+retained record contains new overrun warnings. [Observed result and limits](../testing/integration/logs/2026-11-08-paired-motor-qualification-result.md).
+Do not repeat the four basic pulses, manual input checks or earlier MQTT tests.
+
+## Current next check: physical forward and isolated encoder deltas
+
+Keep both wheels raised. With the same working image, broker and serial setup,
+retain three stationary serial lines, then run once:
+
+```powershell
+python .\tools\mqtt\drive_cli.py --host 192.168.1.206 drive --left -50 --right 50 --seconds 2
+```
+
+Based on the observed polarity, both should now drive toward the front. Confirm
+this physically and retain moving plus three stopped serial lines. Compare
+per-run signed counts and `bad`/`over`/`sat`; do not infer forward encoder signs
+from motor polarity alone. GP21 stops. No reflash or wiring change is needed.
+The original first-polarity procedure below is retained as history, not a request
+to repeat `+50/+50`. Existing CLI duties remain electrical signs.
 
 ## 1. Load the address-updated working image
 

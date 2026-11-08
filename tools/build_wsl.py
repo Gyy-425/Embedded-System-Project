@@ -172,6 +172,7 @@ run(['gcc', '-std=c11', '-Wall', '-Wextra', '-Werror', '-Wconversion',
      '-pthread', '-Iapp_program/subsystem2', '-Iinclude',
      'testing/host/test_motion_runtime.c',
      'app_program/subsystem2/motion_control.c',
+     'app_program/subsystem2/motion_chassis.c',
      'app_program/subsystem2/motion_button.c', '-o', str(runtime_binary)],
     'host-motion-runtime-compile')
 run([str(runtime_binary)], 'host-motion-runtime')
@@ -193,6 +194,7 @@ if args.remote_app:
          '-Iapp_program/subsystem2', '-Iinclude',
          'testing/host/test_motion_runtime.c',
          'app_program/subsystem2/motion_control.c',
+         'app_program/subsystem2/motion_chassis.c',
          'app_program/subsystem2/motion_button.c', '-o', '/tmp/aai05_remote_runtime'],
         'host-remote-runtime-compile')
     run(['/tmp/aai05_remote_runtime'], 'host-remote-runtime')

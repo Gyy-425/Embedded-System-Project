@@ -98,12 +98,98 @@ static void test_owner_step(uint32_t now_ms, uint32_t buttons,
     motion_runtime_step(now_ms, buttons, is_healthy, is_active, p_status);
 }
 
+/* Breaks caught: logical adapter bypasses the owner, raw sequence domain,
+ * readiness/arm guards, STOP/fault latch, zero semantics or wrapped expiry. */
+static void test_chassis_submission_uses_existing_guards(void)
+{
+    motion_chassis_command_t request = {1000U, UINT16_MAX, 40U, 10};
+    motion_status_t status;
+
+    assert(subsystem2_motion_submit_chassis(NULL) == MOTION_BAD_COMMAND);
+    test_now = 1000U;
+    assert(motion_runtime_init() == E_OK);
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_UNAVAILABLE);
+    test_owner_step(1000U, BUTTONS_RELEASED, true, false, &status);
+#if AAI05_REMOTE_APP
+    uint16_t epoch;
+    assert(subsystem2_motion_arm(&epoch) == MOTION_ACCEPTED);
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_UNAVAILABLE);
+    test_owner_step(1000U, BUTTONS_RELEASED, true, false, &status);
+#endif
+    request.issued_ms = 900U;
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_STALE);
+    request.issued_ms = 1001U;
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_STALE);
+    request.issued_ms = 1000U;
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_ACCEPTED);
+    assert(applied_lease == 0U);
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_DUPLICATE);
+    motion_command_t raw = {1000U, UINT16_MAX, -50, 30};
+    assert(subsystem2_motion_submit(&raw) == MOTION_DUPLICATE);
+    raw.right_pct = 31;
+    assert(subsystem2_motion_submit(&raw) == MOTION_CONFLICT);
+    test_owner_step(1020U, BUTTONS_RELEASED, true, false, &status);
+    assert(status.phase == MOTION_RUNNING);
+    assert(applied_left == -50 && applied_right == 30 && applied_lease == 80U);
+    request.forward_pct = 51U;
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_BAD_COMMAND);
+    assert(applied_left == -50 && applied_right == 30 && applied_lease == 80U);
+    request.forward_pct = 40U;
+    raw = (motion_command_t){1020U, 0U, -25, 25};
+    assert(subsystem2_motion_submit(&raw) == MOTION_ACCEPTED);
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_STALE);
+    request = (motion_chassis_command_t){1020U, 1U, 0U, 50};
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_ACCEPTED);
+    test_owner_step(1020U, BUTTONS_RELEASED, true, true, &status);
+    assert(status.phase == MOTION_READY && applied_lease == 0U);
+    request.sequence = 2U;
+    request.forward_pct = 30U;
+    request.turn_pct = 0;
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_ACCEPTED);
+    test_owner_step(1040U, BUTTONS_RELEASED, true, false, &status);
+    assert(applied_left == -30 && applied_right == 30);
+    test_owner_step(1050U, 1U << 20U, true, true, &status);
+    assert(status.phase == MOTION_STOPPED && applied_lease == 0U);
+    assert(status.reason == MOTION_REASON_BUTTON);
+    request.issued_ms = 1050U;
+    request.sequence = 3U;
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_LATCHED);
+
+    assert(motion_runtime_init() == E_OK);
+    test_owner_step(1050U, BUTTONS_RELEASED, false, false, &status);
+    assert(status.phase == MOTION_FAULT);
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_UNAVAILABLE);
+    test_owner_step(1050U, BUTTONS_RELEASED, true, false, &status);
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_LATCHED);
+    assert(applied_lease == 0U);
+}
+
+static void test_chassis_wrapped_expiry(void)
+{
+    motion_status_t status;
+    motion_chassis_command_t request = {UINT32_MAX - 20U, UINT16_MAX, 40U, -10};
+    test_now = request.issued_ms;
+    assert(motion_runtime_init() == E_OK);
+    test_owner_step(test_now, BUTTONS_RELEASED, true, false, &status);
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_ACCEPTED);
+    test_owner_step(9U, BUTTONS_RELEASED, true, false, &status);
+    assert(applied_left == -30 && applied_right == 50 && applied_lease == 70U);
+    test_owner_step(79U, BUTTONS_RELEASED, true, true, &status);
+    assert(status.phase == MOTION_STOPPED && applied_lease == 0U);
+    assert(status.reason == MOTION_REASON_EXPIRED);
+    request.issued_ms = 79U;
+    request.sequence = 0U;
+    assert(subsystem2_motion_submit_chassis(&request) == MOTION_LATCHED);
+}
+
 static void test_owner_applies_and_latches(void)
 {
     motion_command_t command = {0U, 1U, 30, -30};
+    motion_chassis_command_t chassis = {0U, 1U, 30U, 0};
     motion_status_t status;
 
     assert(subsystem2_motion_submit(&command) == MOTION_UNAVAILABLE);
+    assert(subsystem2_motion_submit_chassis(&chassis) == MOTION_UNAVAILABLE);
     assert(motion_runtime_init() == E_OK);
     assert(subsystem2_motion_submit(&command) == MOTION_UNAVAILABLE);
     test_owner_step(0U, BUTTONS_RELEASED, true, false, &status);
@@ -258,6 +344,8 @@ static void test_remote_arm_and_stop_precedence(void)
 int main(void)
 {
     test_owner_applies_and_latches();
+    test_chassis_submission_uses_existing_guards();
+    test_chassis_wrapped_expiry();
     test_button_and_driver_failure();
     test_concurrent_stop_and_commands();
     test_newer_submission_precedes_old_owner_sample();

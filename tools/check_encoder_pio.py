@@ -94,8 +94,12 @@ def main():
             c_test("motor-pulse", ["testing/host/test_motor_pulse.c"], strict=False)
             c_test("motor-probe", ["testing/host/test_motor_pulse.c"], ["-DMOTOR_TEST_PROBE=1"], strict=False)
             c_test("motion", ["testing/host/test_motion_control.c", "app_program/subsystem2/motion_control.c", "app_program/subsystem2/motion_button.c"])
+            vector = c_test("chassis", ["testing/host/test_motion_chassis.c", "app_program/subsystem2/motion_chassis.c"],
+                            cases=[("--vectors",)])
+            env["CHASSIS_VECTOR_FILE"] = str(vector)
+            c_test("chassis-disabled", ["testing/host/test_motion_chassis_disabled.c", "app_program/subsystem2/motion_chassis.c"])
             for remote in (0, 1):
-                c_test("motion-runtime" + str(remote), ["testing/host/test_motion_runtime.c", "app_program/subsystem2/motion_control.c", "app_program/subsystem2/motion_button.c"],
+                c_test("motion-runtime" + str(remote), ["testing/host/test_motion_runtime.c", "app_program/subsystem2/motion_control.c", "app_program/subsystem2/motion_chassis.c", "app_program/subsystem2/motion_button.c"],
                        ["-pthread", "-Iinclude", "-DAAI05_REMOTE_APP=" + str(remote)])
             c_test("drive-capture-fault", ["testing/host/test_drive_capture_fault.c"],
                    ["-DAAI05_REMOTE_APP=1", "-Ilib/libwifi/sysdepend/pico_rp2040", "-Ilib/liblwip/sysdepend/pico_rp2040"])

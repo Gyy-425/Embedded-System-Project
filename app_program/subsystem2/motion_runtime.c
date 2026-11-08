@@ -6,6 +6,18 @@
 #include "motion_button.h"
 #include "motor_pulse.h"
 
+motion_result_t subsystem2_motion_submit_chassis(
+    const motion_chassis_command_t *p_request)
+{
+    motion_command_t command;
+    motion_result_t result = motion_chassis_convert(p_request, &command);
+    if (result == MOTION_ACCEPTED)
+    {
+        result = subsystem2_motion_submit(&command);
+    }
+    return result;
+}
+
 #if AAI05_MOTION_APP
 #if TK_SUPPORT_SMP
 #include <tk/smp.h>

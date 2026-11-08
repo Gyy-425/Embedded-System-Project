@@ -1,0 +1,3 @@
+aai05-chassis-task1-runtime1: testing/host/test_motion_runtime.c:187: test_owner_applies_and_latches: Assertion `subsystem2_motion_submit_chassis(&chassis) == MOTION_UNAVAILABLE' failed.
+
+exit_code=-6

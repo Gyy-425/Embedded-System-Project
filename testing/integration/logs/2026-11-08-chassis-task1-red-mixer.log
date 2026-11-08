@@ -1,0 +1,3 @@
+aai05-chassis-task1-mixer: testing/host/test_motion_chassis.c:32: test_vectors: Assertion `motion_chassis_convert(&request, &raw) == MOTION_ACCEPTED' failed.
+
+exit_code=-6

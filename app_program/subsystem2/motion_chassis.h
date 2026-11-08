@@ -9,8 +9,9 @@ typedef struct
 {
     uint32_t issued_ms;
     uint16_t sequence;
-    uint8_t forward_pct;
-    int8_t turn_pct;
+    /* Preserve a controller's computed values until range validation. */
+    int32_t forward_pct;
+    int32_t turn_pct;
 } motion_chassis_command_t;
 
 /* forward0..50, turn-50..50, no wheel reversal/pivot. Excess turn is clipped

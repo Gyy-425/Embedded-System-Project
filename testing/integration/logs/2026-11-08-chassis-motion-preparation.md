@@ -60,14 +60,25 @@ in the established WSL/Windows-Tcl split above with all C vector fixtures.
 ## Artifacts and limits
 
 Compile-only candidates/ELF/maps:
-`output/firmware/encoder_pio_2026-11-08-chassis-ready/`.
+`output/firmware/encoder_pio_2026-11-08-chassis-reviewed/` (final corrected
+builds; earlier ready candidates are retained separately).
 These reuse the runner's v0.9/compatibility names; they are not a new hardware
 release or a reason to upload. Original delivered v0.9 normal SHA256 remains
 0a5e865299d594d4f4a338d387df4c5754e7047d52a9c7191b26acb8eb17b6eb.
 Normal PIO ARM text341452/data100/bss82616, TEST342144/100/82616. These build
 sizes are compatibility evidence, not minimum-bit representation savings.
 
-Independent review pending. Ground starting, straightness/steering, minimum
+Independent review complete: one Important C input-narrowing finding corrected
+with wide signed inputs and validation before arithmetic/narrowing. See
+[review and RED-to-GREEN evidence](2026-11-08-chassis-review.md). Final post-fix
+`2026-11-08-chassis-reviewed-result.json` passes65 stages, zero warnings,
+65 Python +6 Tcl =71 tests, four firmware builds and42 existing UF2s unchanged
+(38 original artifacts plus4 earlier compile candidates). The corrected source
+tree was verified while HEAD was a895e3c, before its final local fix commit.
+No production code changed after that gate. Temporary ARM request layout is16
+bytes, validated raw command8; this is not minimum-bit savings.
+
+Ground starting, straightness/steering, minimum
 useful loaded duty, combined-load timing/rail behaviour and real IR/colour
 following remain unverified. The guide is docs/CHASSIS_MOTION.md. Encoder
 scaling is required before calibrated feedback if used; it need not block the

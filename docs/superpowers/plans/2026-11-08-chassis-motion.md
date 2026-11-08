@@ -49,6 +49,6 @@
 - [x] Run against missing behavior and preserve RED evidence.
 - [x] Implement conversion and CLI mapping without new wire opcodes or mutation of existing drive behavior; add shared vector evidence to host runner.
 - [x] Run tools/check_encoder_pio.py with a fresh label, SDK path, Windows Tcl Python and --firmware. Expected: complete C/Python regression PASS and four normal/TEST PIO/GPIO compatibility builds, zero warnings, all old UF2 hashes unchanged.
-- [ ] Document callable API, exact duty/steering/zero/rounding semantics, commands for the future bounded ground run and hardware limits. Record actual software results; commit, then obtain one independent whole-change review and address material findings with RED-to-GREEN regressions.
+- [x] Document callable API, exact duty/steering/zero/rounding semantics, commands for the future bounded ground run and hardware limits. Record actual software results; commit, then obtain one independent whole-change review and address material findings with RED-to-GREEN regressions.
 
 No task changes the deployed image, starts a broker, sends a motor request or claims physical tracking.

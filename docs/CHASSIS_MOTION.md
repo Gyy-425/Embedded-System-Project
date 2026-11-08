@@ -61,6 +61,10 @@ The later normal IR controller must replace/arbitrate the diagnostic remote
 producer; it must not run concurrently as another independent producer.
 
 Pure `motion_chassis_convert(request, raw)` performs no IO or synchronization.
+Both input coordinates are signed32-bit computation values, range-checked
+before narrowing. This rejects296 or negative forward values at the C boundary;
+raw/stored motor duties remain signed8-bit. The wider request is temporary
+validation input, not a new stored slot or wire representation.
 It returns BAD_COMMAND for null/out-of-range input, leaving the caller's output
 unchanged; otherwise it preserves timestamp and sequence exactly. The runtime
 wrapper then uses the existing readiness, pending-arm, stale/future timestamp,

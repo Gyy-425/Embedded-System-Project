@@ -45,6 +45,8 @@ class ChassisConversionTests(unittest.TestCase):
 
     def test_reject_narrowing_and_noninteger_values(self):
         for forward, turn in ((-1, 0), (51, 0), (256, 0), (10, -51),
+                               (296, 0), (40, 296), (-2147483648, 2147483647),
+                               (2147483647, -2147483648),
                                (10, 51), (10, 256), (True, 0), (10, False),
                                (10.0, 0), (10, 1.0), ("10", 0), (None, 0)):
             with self.subTest(forward=forward, turn=turn), self.assertRaises(ValueError):

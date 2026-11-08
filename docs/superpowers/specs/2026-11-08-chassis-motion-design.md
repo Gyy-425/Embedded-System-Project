@@ -30,7 +30,9 @@ of the focused task; no additional approval handoff is needed.
 
 - C11/BARR-C style, integer-only pure conversion, no heap/shared mutable state.
 - `motion_chassis_command_t`: issued_ms:uint32_t, sequence:uint16_t,
-  forward_pct:uint8_t (0..50), turn_pct:int8_t (-50..50).
+  forward_pct:int32_t (accepted0..50), turn_pct:int32_t (accepted-50..50).
+  Inputs stay signed/wide until validation to reject negative/overflowing
+  computations before narrowing. Raw/retained motor duties remain int8_t.
 - Values are electrical-duty requests, not calibrated speed/turn angle.
 - Positive turn means right: increase left logical wheel relative to right.
 - Clamp turn magnitude to forward duty so this interface never reverses a
@@ -60,6 +62,7 @@ of the focused task; no additional approval handoff is needed.
 ## Evidence
 
 Hand-derived vectors and exhaustive valid C/Python parity/invariants; invalid
+wide computed inputs (296, negative forward, mixed INT32_MIN/INT32_MAX),
 and null boundaries; timestamp/sequence wrap; real Motion runtime integration
 for STOP/rearm/fault/unavailable/expiry with host driver doubles only at the
 hardware boundary; invalid CLI inputs rejected before bridge creation and

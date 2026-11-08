@@ -8,6 +8,7 @@ motion_result_t motion_chassis_convert(const motion_chassis_command_t *p_request
                                         motion_command_t *p_command)
 {
     if ((p_request == NULL) || (p_command == NULL) ||
+        (p_request->forward_pct < 0) ||
         (p_request->forward_pct > MOTION_MAX_DUTY) ||
         (p_request->turn_pct < -MOTION_MAX_DUTY) ||
         (p_request->turn_pct > MOTION_MAX_DUTY))

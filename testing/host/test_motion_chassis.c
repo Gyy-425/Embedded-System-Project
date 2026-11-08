@@ -46,8 +46,8 @@ static void test_invalid_preserves_output(void)
     {
         for (int turn = INT8_MIN; turn <= INT8_MAX; ++turn)
         {
-            request.forward_pct = (uint8_t)forward;
-            request.turn_pct = (int8_t)turn;
+            request.forward_pct = (int32_t)forward;
+            request.turn_pct = turn;
             if ((forward > 50U) || (turn < -50) || (turn > 50))
             {
                 assert(motion_chassis_convert(&request, &raw) == MOTION_BAD_COMMAND);
@@ -55,6 +55,30 @@ static void test_invalid_preserves_output(void)
                 assert(raw.left_pct == -17 && raw.right_pct == 23);
             }
         }
+    }
+}
+
+/* Computed duties must reach validation before any narrowing conversion. */
+static void test_wide_inputs_rejected_before_narrowing(void)
+{
+    static const struct
+    {
+        int32_t forward;
+        int32_t turn;
+    } cases[] = {
+        {296, 0}, {40, 296}, {-256, 0}, {-1, 0}, {40, -256},
+        {INT32_MIN, INT32_MAX}, {INT32_MAX, INT32_MIN},
+        {INT32_MIN, 0}, {0, INT32_MIN}, {INT32_MAX, 0}, {0, INT32_MAX}
+    };
+    for (size_t index = 0U; index < sizeof(cases) / sizeof(cases[0]); ++index)
+    {
+        motion_chassis_command_t request = {0};
+        motion_command_t raw = {123U, 456U, -17, 23};
+        request.forward_pct = cases[index].forward;
+        request.turn_pct = cases[index].turn;
+        assert(motion_chassis_convert(&request, &raw) == MOTION_BAD_COMMAND);
+        assert(raw.issued_ms == 123U && raw.sequence == 456U);
+        assert(raw.left_pct == -17 && raw.right_pct == 23);
     }
 }
 
@@ -104,6 +128,7 @@ int main(int argc, char **argv)
 {
     bool emit_vectors = (argc == 2) && (strcmp(argv[1], "--vectors") == 0);
     test_vectors();
+    test_wide_inputs_rejected_before_narrowing();
     test_invalid_preserves_output();
     test_domain(emit_vectors);
     puts("PASS: chassis literals, full byte-domain rejection, 5151 valid pairs, "

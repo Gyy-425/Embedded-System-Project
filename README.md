@@ -4,7 +4,8 @@ Focused motion addition: logical forward duty and steering C API plus `move`
 CLI conversion through the existing MQTT v2 drive path. Positive turn means
 right; verified raw motor polarities are handled at the boundary. Keep the
 tested v0.9 image installed. Strict/sanitized C checks,71 Python/Tcl tests and
-four firmware compatibility builds passed; independent review is pending. Ground
+four firmware compatibility builds passed after fixing the review's C input
+narrowing finding. Ground
 steering/load and live IR control remain pending.
 [API, semantics and next ground-run guide](docs/CHASSIS_MOTION.md).
 [Software evidence](testing/integration/logs/2026-11-08-chassis-motion-preparation.md).

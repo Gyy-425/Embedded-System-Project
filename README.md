@@ -1,5 +1,14 @@
 # AAI05 robot firmware
 
+Current case, 8 November: **paired motor and powered encoder qualification**.
+The laptop's broker address is now 192.168.1.206. A separate working v0.8 image,
+`output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206.uf2`, is built for that
+address; no motor/encoder logic changed. Normal/TEST builds and supporting
+software checks passed, and all 28 older images were preserved. Physical
+qualification is pending. Follow the [one-run guide](docs/MOTOR_ENCODER_QUALIFICATION.md)
+to upload the normal image, then record paired movement, physical directions,
+encoder counter changes and final stopping. [Preparation evidence](testing/integration/logs/2026-11-08-motor-qualification-preparation.md).
+
 C classifier core prepared,7 November: **configurable per-sensor calibration,
 seven classes, unknown/ambiguous handling, validity and timestamp checks**.
 [Core API and limits](docs/COLOUR_CLASSIFIER_CORE.md),
@@ -8,7 +17,8 @@ Strict host/ARM checks and normal/TEST compile-compatibility builds passed;
 16,384 ADC/reference comparisons pass. Packed model46 bytes versus equivalent
 native60; result1 versus2 bytes. Existing runtime and tested images are unchanged.
 No real calibration, live classification, moving accuracy or path following is
-claimed. Keep the existing car image installed; actual tape data/model integration
+claimed. The classifier alone needs no new car image; the broker-address update
+above is for today's motor qualification. Actual tape data/model integration
 comes later. [Approved scope](docs/PROJECT_SCOPE_REVIEW.md).
 
 Latest actual result,7 November: **broker-loss stopping, recovery without automatic
@@ -45,9 +55,10 @@ and normal/TEST firmware builds, with zero reported compiler warnings.
 The earlier idle START rejection was corrected and retested as recorded above.
 No tape recognition or path following is implemented by this feature.
 
-Use `output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2` and
-`tools/mqtt/drive_cli.py` for the next test. The configured broker is
-192.168.1.199; verify the laptop's current LAN address before testing. GP20 is
+The historical `output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2` targets
+192.168.1.199. Use today's separate BROKER206 image and
+`tools/mqtt/drive_cli.py` for the paired check above. Verify the laptop's current
+LAN address before a later session. GP20 is
 disabled in REMOTE; GP21 stops. Ordinary STOP/expiry requires a new explicit
 START after release/healthy coast; reconnect never automatically starts.
 Session/grants are liveness checks on the trusted test LAN, not authentication.

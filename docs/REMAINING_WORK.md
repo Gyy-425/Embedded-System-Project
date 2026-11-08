@@ -1,6 +1,11 @@
 # Remaining project work
 
-Status snapshot:7 November2026. Follow the professor-confirmed revised scope: two IR AO/ADC sensors; report successive tape colours while moving; receive a target colour over Wi-Fi and follow its path; five selected colours plus black/white; readable command-prompt output. Existing software/submission requirements remain applicable. This is a work checklist, not evidence that pending behaviour has passed.
+Status snapshot: 8 November 2026. Follow the professor-confirmed revised scope: two IR AO/ADC sensors; report successive tape colours while moving; receive a target colour over Wi-Fi and follow its path; five selected colours plus black/white; readable command-prompt output. Existing software/submission requirements remain applicable. This is a work checklist, not evidence that pending behaviour has passed.
+
+Current case: [paired motor/encoder qualification](MOTOR_ENCODER_QUALIFICATION.md).
+The laptop broker is now 192.168.1.206; a separately named working v0.8 image
+has been built for that address, with no motor/encoder source changes. The
+first paired physical test remains pending. [Preparation evidence](../testing/integration/logs/2026-11-08-motor-qualification-preparation.md).
 
 Latest actual result: v0.8 bounded MQTT left-wheel movement, ordinary STOP/rearm, GP21 during movement, broker-loss stopping, recovery without automatic movement and fresh START afterward passed within the recorded setup. [Movement result](../testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md), [loss/recovery result](../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md). The current MQTT movement bring-up case is complete; do not repeat it. The stationary capture/range-overlap tool and configurable C classifier core are prepared and host-verified; no actual tape readings or live recognition results are available yet. [Capture guide](TAPE_CALIBRATION.md).
 
@@ -44,4 +49,4 @@ Networking does not need to wait for every motion qualification test. Calibratio
 
 Barcode decoding/directed junction manoeuvres, ultrasonic/servo obstacle profiling/avoidance and hump-height measurement are omitted under the professor's confirmed revision. IMU is optional and should only be reconsidered after the required colour/motion/communication application works. No dashboard is required.
 
-Current next action: obtain actual seven tape samples/background and use the prepared stationary capture tool; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Do not repeat the completed MQTT movement checks. Powered encoder-quality work precedes feedback control; actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.
+Current next action: run the single paired motor/encoder case and review direction signs, new capture warnings and stopping before choosing a reference-turn measurement or capture fix. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Do not repeat the completed MQTT movement checks. Powered encoder-quality work precedes feedback control; actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.

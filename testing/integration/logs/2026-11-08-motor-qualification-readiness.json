@@ -1,0 +1,21 @@
+{
+  "status": "PREPARED_NOT_HARDWARE_TESTED",
+  "broker_ip": "192.168.1.206",
+  "previous_broker_ip": "192.168.1.199",
+  "motor_encoder_source_changes": false,
+  "original_uf2_count_preserved": 28,
+  "artifacts": [
+    {
+      "variant": "normal",
+      "file": "output\\firmware\\AAI05_Motor_Qualification_v0_8_BROKER206.uf2",
+      "sha256": "d34dd070d9ed2723eacefb24f45b4039f6363130b6a093e04c5971b5b3208a29",
+      "broker_literal_verified": true
+    },
+    {
+      "variant": "TEST",
+      "file": "output\\firmware\\AAI05_Motor_Qualification_v0_8_BROKER206_TEST.uf2",
+      "sha256": "cf84fce3e261bd612e157216a83e76660819d422e63a0f8de68d30cbf0e5241b",
+      "broker_literal_verified": true
+    }
+  ]
+}

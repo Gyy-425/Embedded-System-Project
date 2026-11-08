@@ -79,7 +79,15 @@ minimum-bit saving is claimed. Existing v2 serialization and leases are reused.
 
 ## Ground-run procedure and current observations
 
-Latest8November: the user identified USB cable pull in the earlier tests.
+Latest8November: the user reports two bank-powered, laptop-USB-disconnected
+runs turning left near the end, then switches OFF. The preceding requested
+command was forward40/turn-2/seconds1; exact new arguments/ACK logs are not
+independently verified. Assuming that command was used, the provisional left
+compensation may be excessive. Next establish the neutral untethered baseline:
+forward40/turn0/seconds1, same setup. No further trim or firmware change.
+[Untethered report](../testing/integration/logs/2026-11-08-untethered-left-drift-result.md).
+
+Previous cable-supported observation: the user identified USB cable pull.
 Supporting it gave mostly straight travel, with an end-of-run right turn.
 Latest recorded turn-2 command has3.67% left excess in a powered520ms interval,
 then275 left/50 right extra ticks after the first output-OFF row. The last
@@ -87,8 +95,8 @@ client confirms STOP; an intervening request has unconfirmed ACK/STOP. These
 are not controlled motor-calibration comparisons. Keep further/permanent trim
 provisional. [Latest evidence](../testing/integration/logs/2026-11-08-cable-supported-motion-result.md).
 
-The next single comparison removes the laptop tether while holding the command
-unchanged:
+The next single comparison keeps the bank-only, USB-disconnected setup and
+returns the steering request to zero:
 
 1. Start/keep the existing laptop broker running. Close Serial Monitor and
    power the car from the existing bank-to-VIN lead only, with Pico USB
@@ -97,7 +105,7 @@ unchanged:
 
 ```powershell
 python "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py" --host 192.168.1.206 status
-python "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py" --host 192.168.1.206 move --forward 40 --turn -2 --seconds 1
+python "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py" --host 192.168.1.206 move --forward 40 --turn 0 --seconds 1
 ```
 
 3. Observe forward travel and end-of-run yaw. Wait for fresh output-OFF
@@ -111,8 +119,8 @@ python "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive
 Removing laptop USB also changes the previous dual-power arrangement to
 bank-only. This checks the intended untethered setup rather than isolating
 mechanical drag alone. No firmware change is needed. The USB console's bounded ring discards when
-full and does not wait for a host. Bank-only load performance is still to be
-validated by this trial. Keep the left/right curve checks pending. The earlier
+full and does not wait for a host. Bank-only movement is user-reported; neutral
+straightness and load qualification remain open. Keep curve checks pending. The earlier
 tethered procedure below remains a reproduction reference, not another required
 straightness rerun with the laptop cable attached.
 

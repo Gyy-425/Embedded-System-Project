@@ -5,11 +5,13 @@ CLI conversion through the existing MQTT v2 drive path. Positive turn means
 right; verified raw motor polarities are handled at the boundary. Keep the
 tested v0.9 image installed. Strict/sanitized C checks,71 Python/Tcl tests and
 four firmware compatibility builds passed after fixing the review's C input
-narrowing finding. Two ground forward40/turn0 runs move, with powered rightward
-drift and left encoder gains about10-11% higher in sampled powered intervals.
-Both reach serial output OFF; the second client reports a missing ACK. Initial
-trim and curve/load qualification remain open, as does live IR control.
-[Ground observation and next bounded trial](testing/integration/logs/2026-11-08-ground-straight-drift-result.md).
+narrowing finding. Ground motion is observed; the user found USB cable pull
+biased earlier straight tests. Latest turn-2 run has closer powered counts
+(3.67% left excess over520ms), unequal post-OFF counts and confirmed STOP.
+An intervening client ACK failure remains unresolved. Permanent trim, untethered
+straightness/curves and live IR control remain open. Next compare the same
+command on bank VIN only with Pico USB disconnected.
+[Latest ground observation and next check](testing/integration/logs/2026-11-08-cable-supported-motion-result.md).
 [API, semantics and next ground-run guide](docs/CHASSIS_MOTION.md).
 [Software evidence](testing/integration/logs/2026-11-08-chassis-motion-preparation.md).
 

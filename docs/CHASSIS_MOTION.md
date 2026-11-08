@@ -79,15 +79,42 @@ minimum-bit saving is claimed. Existing v2 serialization and leases are reused.
 
 ## Ground-run procedure and current observations
 
-Update8November: the user performed the straight request twice. Forward travel
-works but turns right while powered; comparable encoder intervals show10-11%
-more left ticks. PIO flags/errors remain clear and serial shows both stops;
-the second client reports a missing ACK. The initial tuning trial is now
-`move --forward 40 --turn -2 --seconds 1` (raw-38/+42), with cable slack and
-broker/Pico kept on through the return. This is a proposed small correction,
-not verified permanent trim. Keep curve tests pending. See the
-[observed result](../testing/integration/logs/2026-11-08-ground-straight-drift-result.md).
-The original straight/curve procedure below is retained for context.
+Latest8November: the user identified USB cable pull in the earlier tests.
+Supporting it gave mostly straight travel, with an end-of-run right turn.
+Latest recorded turn-2 command has3.67% left excess in a powered520ms interval,
+then275 left/50 right extra ticks after the first output-OFF row. The last
+client confirms STOP; an intervening request has unconfirmed ACK/STOP. These
+are not controlled motor-calibration comparisons. Keep further/permanent trim
+provisional. [Latest evidence](../testing/integration/logs/2026-11-08-cable-supported-motion-result.md).
+
+The next single comparison removes the laptop tether while holding the command
+unchanged:
+
+1. Start/keep the existing laptop broker running. Close Serial Monitor and
+   power the car from the existing bank-to-VIN lead only, with Pico USB
+   unplugged from the laptop. Keep the switch/GP21 accessible and floor clear.
+2. Obtain fresh MQTT status showing ready and output OFF, then run once:
+
+```powershell
+python "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py" --host 192.168.1.206 status
+python "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py" --host 192.168.1.206 move --forward 40 --turn -2 --seconds 1
+```
+
+3. Observe forward travel and end-of-run yaw. Wait for fresh output-OFF
+   confirmation and wheel standstill. If an ACK is missing, use GP21 or the
+   power switch to ensure standstill and retain the error instead of repeating.
+4. Once stationary, USB can be reconnected while bank power stays on. Let old
+   buffered output drain, then save three fresh serial diagnostic rows with
+   advancing timestamps and STOPPED/OFF. USB serial is unavailable during the
+   untethered movement; current MQTT telemetry does not include encoder counts.
+
+Removing laptop USB also changes the previous dual-power arrangement to
+bank-only. This checks the intended untethered setup rather than isolating
+mechanical drag alone. No firmware change is needed. The USB console's bounded ring discards when
+full and does not wait for a host. Bank-only load performance is still to be
+validated by this trial. Keep the left/right curve checks pending. The earlier
+tethered procedure below remains a reproduction reference, not another required
+straightness rerun with the laptop cable attached.
 
 Keep the current wiring and installed v0.9 image. Use the network and power
 arrangement from the clean PIO run, with sufficient Pico USB cable slack and

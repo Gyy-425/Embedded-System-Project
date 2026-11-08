@@ -6,12 +6,13 @@ Focused motion coding: forward/steering C adapter and equivalent CLI `move`
 are implemented; strict/sanitized C checks,71 Python/Tcl tests and four
 compatibility builds passed after the independent review's input-narrowing
 finding was corrected and regression-tested.
-No on-car IR controller is active yet. Two ground forward40/turn0 runs move,
-with right drift while powered and clean PIO flags; sampled powered encoder
-gains are10-11% higher on the left. Both serial runs stop, while the second
-client's ACK is unconfirmed. Initial trim/curve/load qualification remains open;
-calibrated encoder scaling is conditional on using feedback.
-[Ground result and next bounded trial](../testing/integration/logs/2026-11-08-ground-straight-drift-result.md).
+No on-car IR controller is active yet. Ground motion works, but the user found
+USB cable pull biased earlier straight tests. Latest turn-2 run has closer
+powered counts, unequal post-OFF coast and clean PIO flags/confirmed STOP.
+An intervening ACK failure remains unresolved. Next use bank VIN only with
+Pico USB disconnected and the same command before choosing further trim.
+Untethered straightness/curves and calibrated encoder feedback remain open.
+[Latest ground result and next check](../testing/integration/logs/2026-11-08-cable-supported-motion-result.md).
 [Motion API and ground guide](CHASSIS_MOTION.md).
 
 Latest prepared development: v0.9 PIO capture replaces CPU-serviced edge latches

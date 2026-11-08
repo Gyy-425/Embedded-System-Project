@@ -1,5 +1,10 @@
 # Ground straight requests: powered rightward drift observed
 
+Later clarification: the user found USB cable pull affected this setup.
+Supporting it gave mostly straight travel; later turn-2 records have closer
+powered counts and unequal post-OFF coast. These earlier observations are
+not intrinsic motor calibration. See [later run and tether-free next check](2026-11-08-cable-supported-motion-result.md).
+
 User ran the new CLI straight request twice and reports approximately forward
 travel followed by a rightward turn. They clarified that turning occurs while
 still powered. Computer Use inspected the retained VS Code drive-client,

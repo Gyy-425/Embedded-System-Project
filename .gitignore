@@ -12,6 +12,7 @@ tools/elf2uf2/elf2uf2
 build_make/.build_profile
 # Distinct compatibility-check artifacts and their local README.
 output/firmware/colour_core_*/
+output/firmware/encoder_pio_*/
 
 # Real WiFi credentials -- never commit these. Copy config/wifi_secrets.example.h
 # to config/wifi_secrets.h and fill in your own network's SSID/password.

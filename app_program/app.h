@@ -65,6 +65,8 @@ typedef struct {
     ER capture_error;
     uint8_t left_ab;
     uint8_t right_ab;
+    uint8_t pio_invalid_flags;
+    uint8_t pio_block;
     bool count_saturated;
     bool capture_ready;
     motor_pulse_status_t motor;

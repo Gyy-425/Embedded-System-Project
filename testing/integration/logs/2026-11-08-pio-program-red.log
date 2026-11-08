@@ -1,0 +1,51 @@
+FFFFF
+======================================================================
+FAIL: test_all_sixteen_transitions_and_relative_invalid_flags (test_encoder_pio_program.ProgramTests.test_all_sixteen_transitions_and_relative_invalid_flags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_encoder_pio_program.py", line 105, in test_all_sixteen_transitions_and_relative_invalid_flags
+    self.assertEqual(machine.y, expected & 0xffffffff, (old, new))
+AssertionError: 0 != 4294967295 : (0, 1)
+
+======================================================================
+FAIL: test_cpu_pause_and_full_fifo_do_not_lose_count (test_encoder_pio_program.ProgramTests.test_cpu_pause_and_full_fifo_do_not_lose_count)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_encoder_pio_program.py", line 114, in test_cpu_pause_and_full_fifo_do_not_lose_count
+    self.assertEqual(len(left.fifo), 4)
+AssertionError: 0 != 4
+
+======================================================================
+FAIL: test_invalid_flag_stays_latched_while_counting_resumes (test_encoder_pio_program.ProgramTests.test_invalid_flag_stays_latched_while_counting_resumes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_encoder_pio_program.py", line 133, in test_invalid_flag_stays_latched_while_counting_resumes
+    self.assertEqual(machine.flags, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_reversal_and_counter_wrap (test_encoder_pio_program.ProgramTests.test_reversal_and_counter_wrap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_encoder_pio_program.py", line 125, in test_reversal_and_counter_wrap
+    self.assertEqual(machine.fresh(), 3)
+                     ^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_encoder_pio_program.py", line 83, in fresh
+    raise AssertionError("No fresh PIO snapshot")
+AssertionError: No fresh PIO snapshot
+
+======================================================================
+FAIL: test_stationary_all_start_phases_have_no_phantom_edges (test_encoder_pio_program.ProgramTests.test_stationary_all_start_phases_have_no_phantom_edges)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_encoder_pio_program.py", line 93, in test_stationary_all_start_phases_have_no_phantom_edges
+    self.assertEqual(machine.fresh(), 0)
+                     ^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_encoder_pio_program.py", line 83, in fresh
+    raise AssertionError("No fresh PIO snapshot")
+AssertionError: No fresh PIO snapshot
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.052s
+
+FAILED (failures=5)

@@ -1,5 +1,14 @@
 # AAI05 robot firmware
 
+Prepared next image, 8 November: **v0.9 PIO encoder capture**. Hardware counters
+retain movement across CPU-service gaps; invalid flags and bounded read faults
+remain explicit. Strict host checks, 63 Python/Tcl tests, normal/TEST PIO and
+GPIO compatibility builds passed; all 32 earlier UF2s were preserved.
+Physical capture acceptance is pending. Use
+`output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE.uf2` for the next focused run.
+[Upload/test guide](docs/PIO_ENCODER_V0_9.md),
+[review and verification evidence](testing/integration/logs/2026-11-08-pio-v0_9-preparation.md).
+
 Current case, 8 November: **paired motor and powered encoder qualification**.
 The laptop's broker address is now 192.168.1.206. A separate working v0.8 image,
 `output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206.uf2`, is built for that

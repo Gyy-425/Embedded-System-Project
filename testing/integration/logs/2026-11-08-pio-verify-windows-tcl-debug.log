@@ -1,0 +1,11 @@
+test_armed_transport_error_attempts_stop_and_reports_power_off (test_debug_capture.CaptureStopTests.test_armed_transport_error_attempts_stop_and_reports_power_off) ... ok
+test_failed_halt_still_attempts_coast_but_does_not_claim_capture_ready (test_debug_capture.CaptureStopTests.test_failed_halt_still_attempts_coast_but_does_not_claim_capture_ready) ... ok
+test_failed_output_writes_do_not_claim_stop_success (test_debug_capture.CaptureStopTests.test_failed_output_writes_do_not_claim_stop_success) ... ok
+test_selection_and_state_errors_still_attempt_output_removal (test_debug_capture.CaptureStopTests.test_selection_and_state_errors_still_attempt_output_removal) ... ok
+test_shared_output_removal_uses_an_available_debug_path (test_debug_capture.CaptureStopTests.test_shared_output_removal_uses_an_available_debug_path) ... ok
+test_stop_attempt_precedes_halt_and_both_cores_stay_halted (test_debug_capture.CaptureStopTests.test_stop_attempt_precedes_halt_and_both_cores_stay_halted) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.041s
+
+OK

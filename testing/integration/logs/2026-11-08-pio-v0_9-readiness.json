@@ -1,0 +1,20 @@
+{
+  "status": "PREPARED_NOT_HARDWARE_TESTED",
+  "broker_ip": "192.168.1.206",
+  "verification": "2026-11-08-pio-ready-result.json",
+  "stages": 61,
+  "python_tcl_tests": 63,
+  "older_images_preserved": 32,
+  "images": [
+    {
+      "file": "output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "0a5e865299d594d4f4a338d387df4c5754e7047d52a9c7191b26acb8eb17b6eb",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 341444\t    100\t  82616\t 424160\t  678e0\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_Encoder_PIO_v0_9_REMOTE.elf"
+    },
+    {
+      "file": "output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "e7ba61620019d0eb51f9f5135cf896c9fedfa56465fb840d6ff06c83490fb5b2",
+      "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\n 342136\t    100\t  82616\t 424852\t  67b94\t/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.elf"
+    }
+  ]
+}

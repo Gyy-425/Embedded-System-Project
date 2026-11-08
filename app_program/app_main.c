@@ -55,7 +55,9 @@ EXPORT INT usermain(void)
     halt_on_error(subsystem2_init(), "motion init");
     halt_on_error(subsystem1_init(), "IR init");
     halt_on_error(subsystem3_init(), "report init");
-#if AAI05_REMOTE_APP
+#if AAI05_REMOTE_APP && AAI05_ENCODER_PIO
+    tm_printf((UB *)"\n=== AAI05 MQTT MOTION v0.9: PIO ENCODER CAPTURE ===\n");
+#elif AAI05_REMOTE_APP
     tm_printf((UB *)"\n=== AAI05 MQTT MOTION v0.8: EXPLICIT REMOTE START ===\n");
 #elif AAI05_MOTION_APP
     tm_printf((UB *)"\n=== AAI05 MOTION v0.7: LOCAL OPEN-LOOP EXERCISE ===\n");
@@ -71,7 +73,12 @@ EXPORT INT usermain(void)
                        "bounded open-loop diagnostic.\n");
 #endif
     tm_printf((UB *)"IR: L=GP26 R=GP27; encoders: L=GP4/5 R=GP16/17\n");
+#if AAI05_ENCODER_PIO
+    tm_printf((UB *)"PIO capture: 1 MHz state-machine clock; raw counts L-/R+ forward.\n");
+    tm_printf((UB *)"PIO_BAD flags are sticky; GPIO irq/over counters do not apply.\n");
+#else
     tm_printf((UB *)"Encoder IRQ capture: core 0; counts are edges, not distance.\n");
+#endif
 #if TM_NET_LWIP
 #if AAI05_REMOTE_APP
     tm_printf((UB *)"v2 MQTT START/KEEPALIVE/STOP;750 ms remote lease, "

@@ -2,6 +2,12 @@
 
 Status snapshot: 8 November 2026. Follow the professor-confirmed revised scope: two IR AO/ADC sensors; report successive tape colours while moving; receive a target colour over Wi-Fi and follow its path; five selected colours plus black/white; readable command-prompt output. Existing software/submission requirements remain applicable. This is a work checklist, not evidence that pending behaviour has passed.
 
+Latest prepared development: v0.9 PIO capture replaces CPU-serviced edge latches
+in an opt-in image. Host checks, independent review and all four PIO/GPIO
+normal/TEST builds passed. Actual capture quality is still pending.
+[Next focused car procedure](PIO_ENCODER_V0_9.md),
+[preparation evidence](../testing/integration/logs/2026-11-08-pio-v0_9-preparation.md).
+
 Current case: [paired motor/encoder qualification](MOTOR_ENCODER_QUALIFICATION.md).
 The laptop broker is now 192.168.1.206; a separately named working v0.8 image
 has been built for that address, with no motor/encoder source changes. The
@@ -57,4 +63,4 @@ Networking does not need to wait for every motion qualification test. Calibratio
 
 Barcode decoding/directed junction manoeuvres, ultrasonic/servo obstacle profiling/avoidance and hump-height measurement are omitted under the professor's confirmed revision. IMU is optional and should only be reconsidered after the required colour/motion/communication application works. No dashboard is required.
 
-Current next action: investigate powered capture ambiguity using the preserved forward trace and code path before using feedback. Both motor and encoder forward signs are now established; do not repeat basic direction checks, change wiring or silently redefine raw MQTT duties. Review IRQ latency/critical sections and choose a justified capture change, then validate against a focused run and independent revolution reference. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.
+Current next action: perform the prepared v0.9 PIO capture check with Wi-Fi/MQTT active, then use an independent revolution reference if capture flags/errors stay clear. Both motor and encoder forward signs are established; do not replay basic direction/MQTT cases or change wiring. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.

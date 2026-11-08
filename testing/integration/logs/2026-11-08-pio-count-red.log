@@ -1,0 +1,1 @@
+aai05_pio_count_red: testing/host/test_encoder_pio_count.c:11: main: Assertion `encoder_pio_count_update(&count, UINT32_MAX)' failed.

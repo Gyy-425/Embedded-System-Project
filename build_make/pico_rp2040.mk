@@ -162,7 +162,19 @@ endif
 # a live hazard: an SMP=1 build was once flashed in place of an SMP=0 one and
 # only the banner in the log revealed it.
 #
-EXE_FILE := mtk3pico_smp$(SMP)_$(CONSOLE)$(WIFI_SUFFIX)$(NET_SUFFIX)$(MQTT_SUFFIX)$(CRASH_SUFFIX)$(MOTOR_PROBE_SUFFIX)$(COMM_APP_SUFFIX)$(MOTION_APP_SUFFIX)$(REMOTE_APP_SUFFIX)$(TEST_SUFFIX)
+# Opt-in application capture backend; legacy GPIO remains the default.
+ENCODER_PIO ?= 0
+ifneq ($(filter $(ENCODER_PIO),0 1),$(ENCODER_PIO))
+$(error Unknown ENCODER_PIO '$(ENCODER_PIO)'; use 0 or 1)
+endif
+ifeq ($(ENCODER_PIO),1)
+ifneq ($(WIFI)$(REMOTE_APP),cyw431)
+$(error ENCODER_PIO=1 requires WIFI=cyw43 REMOTE_APP=1)
+endif
+ENCODER_PIO_SUFFIX := _encpio
+endif
+
+EXE_FILE := mtk3pico_smp$(SMP)_$(CONSOLE)$(WIFI_SUFFIX)$(NET_SUFFIX)$(MQTT_SUFFIX)$(CRASH_SUFFIX)$(MOTOR_PROBE_SUFFIX)$(COMM_APP_SUFFIX)$(MOTION_APP_SUFFIX)$(REMOTE_APP_SUFFIX)$(ENCODER_PIO_SUFFIX)$(TEST_SUFFIX)
 
 GCC := arm-none-eabi-gcc
 AS := arm-none-eabi-gcc
@@ -227,6 +239,7 @@ CFLAGS  += -DMOTOR_TEST_PROBE=$(MOTOR_PROBE)
 CFLAGS  += -DAAI05_COMMS_APP=$(COMM_APP)
 CFLAGS  += -DAAI05_MOTION_APP=$(MOTION_APP)
 CFLAGS  += -DAAI05_REMOTE_APP=$(REMOTE_APP)
+CFLAGS  += -DAAI05_ENCODER_PIO=$(ENCODER_PIO)
 CFLAGS  += -DTM_CONSOLE_UART=$(CRASH_REPORT)
 ifeq ($(CRASH_REPORT),0)
 CFLAGS  += -DBOARD_UART0_FREE=1
@@ -259,7 +272,7 @@ endif
 # before any recipe executes.
 ################################################################################
 
-PROFILE_ID := smp$(SMP)-$(CONSOLE)-wifi$(WIFI)-net$(NET)-mqtt$(MQTT)-crash$(CRASH_REPORT)-probe$(MOTOR_PROBE)-comm$(COMM_APP)-motion$(MOTION_APP)-remote$(REMOTE_APP)-test$(TEST)
+PROFILE_ID := smp$(SMP)-$(CONSOLE)-wifi$(WIFI)-net$(NET)-mqtt$(MQTT)-crash$(CRASH_REPORT)-probe$(MOTOR_PROBE)-comm$(COMM_APP)-motion$(MOTION_APP)-remote$(REMOTE_APP)-encpio$(ENCODER_PIO)-test$(TEST)
 PROFILE_FILE := .build_profile
 
 ifneq ($(strip $(shell cat $(PROFILE_FILE) 2>/dev/null)),$(PROFILE_ID))

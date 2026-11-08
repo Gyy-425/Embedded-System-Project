@@ -1,0 +1,1 @@
+aai05_capture_pio_red: testing/host/test_encoder_capture_pio.c:41: main: Assertion `encoder_capture_start() == E_BUSY' failed.

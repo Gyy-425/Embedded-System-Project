@@ -1,0 +1,2 @@
+GPIO deferred reference4000, observed0, ambiguous batches1
+aai05_gpio_deferred: testing/host/test_encoder_gpio_deferred.c:24: main: Assertion `capture.left.count == 4000' failed.

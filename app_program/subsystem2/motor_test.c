@@ -13,7 +13,8 @@ bool motor_test_inputs_ready(const encoder_capture_t *p_capture,
     /* This bounded open-loop test never steers from encoder counts.
      * Keep capture-quality warnings observable, but do not latch STOP on
      * them. A feedback controller needs a separate quality policy. */
-    return is_capture_ready && p_motor->ready && (p_motor->error == 0) &&
+    return is_capture_ready && (p_capture->error == 0) &&
+           p_motor->ready && (p_motor->error == 0) &&
            (buttons_error == 0) && (motor_init_error == 0) &&
            !p_capture->left.count_saturated &&
            !p_capture->right.count_saturated;

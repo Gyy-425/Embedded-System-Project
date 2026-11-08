@@ -1,0 +1,77 @@
+test_undefined_behavior_is_fatal_with_runner_flags (test_colour_sanitizer_gate.SanitizerGateCheck.test_undefined_behavior_is_fatal_with_runner_flags) ... ok
+test_c_encoder_python_decoder (test_comm_cli.CodecChecks.test_c_encoder_python_decoder) ... ok
+test_crc_reference_and_command_fields (test_comm_cli.CodecChecks.test_crc_reference_and_command_fields) ... ok
+test_readable_output_matches_capabilities (test_comm_cli.CodecChecks.test_readable_output_matches_capabilities) ... ok
+test_reject_bad_response (test_comm_cli.CodecChecks.test_reject_bad_response) ... ok
+test_reject_out_of_range_commands (test_comm_cli.CodecChecks.test_reject_out_of_range_commands) ... ok
+test_reconnected_or_rejected_ack_is_not_success (test_comm_cli.RequestChecks.test_reconnected_or_rejected_ack_is_not_success) ... ok
+test_status_waits_for_ready_ack (test_comm_cli.RequestChecks.test_status_waits_for_ready_ack) ... ok
+test_wrap_and_duplicate_ack (test_comm_cli.RequestChecks.test_wrap_and_duplicate_ack) ... ok
+test_debug_capture (unittest.loader._FailedTest.test_debug_capture) ... ERROR
+test_bounded_run_renews_and_always_stops (test_drive_cli.DriveClientChecks.test_bounded_run_renews_and_always_stops) ... ok
+test_changed_device_state_or_other_rejection_cannot_retry_start (test_drive_cli.DriveClientChecks.test_changed_device_state_or_other_rejection_cannot_retry_start) ... ok
+test_duration_budget_includes_startup (test_drive_cli.DriveClientChecks.test_duration_budget_includes_startup) ... ok
+test_expired_grant_during_running_is_not_a_new_start (test_drive_cli.DriveClientChecks.test_expired_grant_during_running_is_not_a_new_start) ... ok
+test_expired_idle_grant_recovers_only_explicitly_rejected_start (test_drive_cli.DriveClientChecks.test_expired_idle_grant_recovers_only_explicitly_rejected_start) ... ok
+test_gp21_or_session_change_never_restarts (test_drive_cli.DriveClientChecks.test_gp21_or_session_change_never_restarts) ... ok
+test_grant_recovery_is_limited_to_one_rejection (test_drive_cli.DriveClientChecks.test_grant_recovery_is_limited_to_one_rejection) ... ok
+test_idle_configuration_uses_same_bounded_grant_recovery (test_drive_cli.DriveClientChecks.test_idle_configuration_uses_same_bounded_grant_recovery) ... ok
+test_invalid_run_does_not_publish (test_drive_cli.DriveClientChecks.test_invalid_run_does_not_publish) ... ok
+test_keyboard_interrupt_still_requests_stop (test_drive_cli.DriveClientChecks.test_keyboard_interrupt_still_requests_stop) ... ok
+test_lost_start_ack_still_requests_stop (test_drive_cli.DriveClientChecks.test_lost_start_ack_still_requests_stop) ... ok
+test_near_deadline_renewal_cannot_extend_run (test_drive_cli.DriveClientChecks.test_near_deadline_renewal_cannot_extend_run) ... ok
+test_refreshed_start_with_lost_ack_only_repeats_identical_bytes (test_drive_cli.DriveClientChecks.test_refreshed_start_with_lost_ack_only_repeats_identical_bytes) ... ok
+test_short_remaining_lease_is_renewed_without_fixed_wait (test_drive_cli.DriveClientChecks.test_short_remaining_lease_is_renewed_without_fixed_wait) ... ok
+test_stop_ack_is_not_immediate_output_confirmation (test_drive_cli.DriveClientChecks.test_stop_ack_is_not_immediate_output_confirmation) ... ok
+test_wrong_echo_is_ignored (test_drive_cli.DriveClientChecks.test_wrong_echo_is_ignored) ... ok
+test_actual_c_encoder_python_decoder (test_drive_codec.DriveCodecChecks.test_actual_c_encoder_python_decoder) ... ok
+test_compact_signed_start_and_stop (test_drive_codec.DriveCodecChecks.test_compact_signed_start_and_stop) ... ok
+test_invalid_packets_and_requests (test_drive_codec.DriveCodecChecks.test_invalid_packets_and_requests) ... ok
+test_literal_status_vectors_and_readable_limits (test_drive_codec.DriveCodecChecks.test_literal_status_vectors_and_readable_limits) ... ok
+test_all_sixteen_transitions_and_relative_invalid_flags (test_encoder_pio_program.ProgramTests.test_all_sixteen_transitions_and_relative_invalid_flags) ... ok
+test_cpu_pause_and_full_fifo_do_not_lose_count (test_encoder_pio_program.ProgramTests.test_cpu_pause_and_full_fifo_do_not_lose_count) ... ok
+test_invalid_flag_stays_latched_while_counting_resumes (test_encoder_pio_program.ProgramTests.test_invalid_flag_stays_latched_while_counting_resumes) ... ok
+test_reversal_and_counter_wrap (test_encoder_pio_program.ProgramTests.test_reversal_and_counter_wrap) ... ok
+test_stationary_all_start_phases_have_no_phantom_edges (test_encoder_pio_program.ProgramTests.test_stationary_all_start_phases_have_no_phantom_edges) ... ok
+test_invalid_broker_port_and_topic_rejected (test_network_config.NetworkConfigTests.test_invalid_broker_port_and_topic_rejected) ... ok
+test_json_only_escapes_do_not_reach_c_compiler (test_network_config.NetworkConfigTests.test_json_only_escapes_do_not_reach_c_compiler) ... ok
+test_missing_placeholder_and_bad_quoting_rejected_without_secret (test_network_config.NetworkConfigTests.test_missing_placeholder_and_bad_quoting_rejected_without_secret) ... ok
+test_valid_and_escaped_password (test_network_config.NetworkConfigTests.test_valid_and_escaped_password) ... ok
+test_cli_offline_report_and_invalid_capture_arguments (test_tape_calibration.CalibrationChecks.test_cli_offline_report_and_invalid_capture_arguments) ... ok
+test_complete_capture_persists_only_fresh_valid_samples (test_tape_calibration.CalibrationChecks.test_complete_capture_persists_only_fresh_valid_samples) ... ok
+test_corrupt_metadata_state_fails_with_clear_validation (test_tape_calibration.CalibrationChecks.test_corrupt_metadata_state_fails_with_clear_validation) ... ok
+test_different_setups_or_class_names_are_rejected (test_tape_calibration.CalibrationChecks.test_different_setups_or_class_names_are_rejected) ... ok
+test_incomplete_capture_excluded_and_missing_classes_named (test_tape_calibration.CalibrationChecks.test_incomplete_capture_excluded_and_missing_classes_named) ... ok
+test_interrupt_keeps_flushed_samples (test_tape_calibration.CalibrationChecks.test_interrupt_keeps_flushed_samples) ... ok
+test_invalid_arguments_have_no_output_side_effect (test_tape_calibration.CalibrationChecks.test_invalid_arguments_have_no_output_side_effect) ... ok
+test_last_receive_cannot_complete_after_deadline (test_tape_calibration.CalibrationChecks.test_last_receive_cannot_complete_after_deadline) ... ok
+test_malformed_complete_capture_rejected (test_tape_calibration.CalibrationChecks.test_malformed_complete_capture_rejected) ... ok
+test_movement_or_session_change_preserves_partial_capture (test_tape_calibration.CalibrationChecks.test_movement_or_session_change_preserves_partial_capture) ... ok
+test_ordered_backlog_cannot_become_fresh_calibration (test_tape_calibration.CalibrationChecks.test_ordered_backlog_cannot_become_fresh_calibration) ... ok
+test_overlap_is_reported_for_each_sensor (test_tape_calibration.CalibrationChecks.test_overlap_is_reported_for_each_sensor) ... ok
+test_pause_inside_receive_does_not_hide_silence (test_tape_calibration.CalibrationChecks.test_pause_inside_receive_does_not_hide_silence) ... ok
+test_report_rejects_duplicate_rows (test_tape_calibration.CalibrationChecks.test_report_rejects_duplicate_rows) ... ok
+test_seven_classes_report_candidates_not_accuracy (test_tape_calibration.CalibrationChecks.test_seven_classes_report_candidates_not_accuracy) ... ok
+test_timeout_and_silence_are_not_complete_data (test_tape_calibration.CalibrationChecks.test_timeout_and_silence_are_not_complete_data) ... ok
+test_unsafe_initial_status_does_not_create_capture (test_tape_calibration.CalibrationChecks.test_unsafe_initial_status_does_not_create_capture) ... ok
+test_unsigned_wrap_and_settling (test_tape_calibration.CalibrationChecks.test_unsigned_wrap_and_settling) ... ok
+
+======================================================================
+ERROR: test_debug_capture (unittest.loader._FailedTest.test_debug_capture)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_debug_capture
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/mnt/c/Users/Guo YouYan/Desktop/INF2004-main/AAI05_Firmware/testing/host/test_debug_capture.py", line 3, in <module>
+    import tkinter
+ModuleNotFoundError: No module named 'tkinter'
+
+
+----------------------------------------------------------------------
+Ran 57 tests in 1.049s
+
+FAILED (errors=1)

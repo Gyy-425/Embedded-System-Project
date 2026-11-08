@@ -39,8 +39,14 @@ static void report_task(INT start_code, void *extra)
             radio_ready = (UINT)radio.ready;
 #endif
             tm_printf((UB *)"t=%u IR[L=%u R=%u valid=%u err=%d age=%u] "
-                      "ENC[L=%d R=%d AB=%u/%u bad=%u/%u sat=%u age=%u] "
+                      "ENC[L=%d R=%d AB=%u/%u "
+#if AAI05_ENCODER_PIO
+                      "sat=%u age=%u] ENC_CAPTURE=PIO PIO=%u "
+                      "ENC_READY=%u err=%d PIO_BAD=%u/%u "
+#else
+                      "bad=%u/%u sat=%u age=%u] "
                       "ENC_READY=%u err=%d irq=%u over=%u/%u "
+#endif
                       "ENC_UNCERTAIN=%u "
 #if MOTOR_TEST_PROBE
                       "MOTOR_MODE=PROBE "
@@ -67,16 +73,26 @@ static void report_task(INT start_code, void *extra)
                       (INT)ir.error, (UINT)ir_age,
                       (INT)motion.left_count, (INT)motion.right_count,
                       (UINT)motion.left_ab, (UINT)motion.right_ab,
+#if AAI05_ENCODER_PIO
+                      (UINT)motion.count_saturated, (UINT)motion_age,
+                      (UINT)motion.pio_block,
+                      (UINT)motion.capture_ready, (INT)motion.capture_error,
+                      (UINT)((motion.pio_invalid_flags & 1U) != 0U),
+                      (UINT)((motion.pio_invalid_flags & 2U) != 0U),
+#else
                       (UINT)motion.left_invalid, (UINT)motion.right_invalid,
                       (UINT)motion.count_saturated, (UINT)motion_age,
                       (UINT)motion.capture_ready, (INT)motion.capture_error,
                       (UINT)motion.irq_count, (UINT)motion.left_overrun,
                       (UINT)motion.right_overrun,
+#endif
                       (UINT)((motion.left_invalid != 0U) ||
                              (motion.right_invalid != 0U) ||
                              (motion.left_overrun != 0U) ||
                              (motion.right_overrun != 0U) ||
                              motion.count_saturated ||
+                             (motion.pio_invalid_flags != 0U) ||
+                             (motion.capture_error != E_OK) ||
                              !motion.capture_ready),
 #if AAI05_MOTION_APP
                       motor_phase_name(motion.motion.phase),

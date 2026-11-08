@@ -21,7 +21,7 @@ static ER configure_test_buttons(void)
 static void motion_task(INT start_code, void *extra)
 {
     motion_snapshot_t next = {0};
-    encoder_capture_t capture = {0};
+    encoder_capture_t capture = {.pio_block = UINT8_MAX};
 #if !AAI05_MOTION_APP
     motor_test_t test;
 #endif
@@ -38,12 +38,16 @@ static void motion_task(INT start_code, void *extra)
     motor_test_init(&test, app_now_ms());
 #endif
     for (;;) {
-        if (next.capture_ready) encoder_capture_read(&capture);
+        if (next.capture_ready)
+        {
+            encoder_capture_read(&capture);
+            next.capture_error = capture.error;
+        }
         motor_pulse_read(&motor);
         uint32_t now = app_now_ms();
         UW buttons = in_w(GPIO_IN);
 #if AAI05_REMOTE_APP
-        bool healthy = next.capture_ready && motor.ready &&
+        bool healthy = next.capture_ready && (next.capture_error == E_OK) && motor.ready &&
             ((motor.error == E_OK) || (motor.error == E_TMOUT)) &&
             (buttons_error == E_OK) && (motor_error == E_OK) &&
             !capture.left.count_saturated && !capture.right.count_saturated;
@@ -90,13 +94,15 @@ static void motion_task(INT start_code, void *extra)
         next.irq_count = capture.irq_count;
         next.left_overrun = capture.left_overrun;
         next.right_overrun = capture.right_overrun;
+        next.pio_invalid_flags = capture.pio_invalid_flags;
+        next.pio_block = capture.pio_block;
         next.sampled_ms = now;
         ++next.sequence;
         if (tk_loc_mtx(snapshot_mutex, TMO_FEVR) == E_OK) {
             latest = next;
             (void)tk_unl_mtx(snapshot_mutex);
         }
-        /* Snapshot publication only; edge acquisition runs in the handler. */
+        /* Snapshot publication; acquisition runs in GPIO IRQ or PIO hardware. */
         (void)tk_dly_tsk(10);
     }
 }

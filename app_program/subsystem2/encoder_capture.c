@@ -1,4 +1,5 @@
 #include "encoder_capture.h"
+#if !AAI05_ENCODER_PIO
 #include <limits.h>
 
 static encoder_capture_t capture;
@@ -35,6 +36,9 @@ void encoder_capture_reset(void)
     capture.irq_count = 0U;
     capture.left_overrun = 0U;
     capture.right_overrun = 0U;
+    capture.error = 0;
+    capture.pio_invalid_flags = 0U;
+    capture.pio_block = 0U;
     encoder_io_unlock(saved);
 }
 
@@ -73,3 +77,4 @@ void encoder_capture_read(encoder_capture_t *snapshot)
     *snapshot = capture;
     encoder_io_unlock(saved);
 }
+#endif

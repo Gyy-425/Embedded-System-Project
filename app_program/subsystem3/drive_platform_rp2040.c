@@ -42,7 +42,8 @@ void drive_io_snapshot(drive_input_t *p_input, uint32_t now_ms)
     p_input->motion.is_active = p_motion->motor.active;
     p_input->motion.is_available = g_drive_platform_has_motion &&
         ((uint32_t)(now_ms - p_motion->sampled_ms) <= 100U) &&
-        p_motion->capture_ready && p_motion->motor.ready &&
+        p_motion->capture_ready && (p_motion->capture_error == E_OK) &&
+        p_motion->motor.ready &&
         !p_motion->count_saturated &&
         ((p_motion->motor.error == E_OK) || (p_motion->motor.error == E_TMOUT));
     p_input->is_ir_stale = !g_drive_platform_has_ir ||

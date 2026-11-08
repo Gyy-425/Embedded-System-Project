@@ -1,0 +1,44 @@
+; Copyright (c) 2023 Raspberry Pi (Trading) Ltd.
+; SPDX-License-Identifier: BSD-3-Clause
+;
+; Adapted from pico-examples/pio/quadrature_encoder/quadrature_encoder.pio.
+; Add sticky per-SM diagonal-transition detection. See licenses/Raspberry-Pi-BSD-3-Clause.txt.
+; IN base = A, B = A+1. GPIO decoder's 00->B->AB->A->00 sign is preserved.
+; Counter Y wraps modulo 2^32. A full FIFO drops snapshots, never wheel updates.
+.pio_version 0
+.program encoder_counter
+.origin 0
+
+    jmp update
+    jmp decrement
+    jmp increment
+    jmp invalid
+    jmp increment
+    jmp update
+    jmp invalid
+    jmp decrement
+    jmp decrement
+    jmp invalid
+    jmp update
+    jmp increment
+    jmp invalid
+    jmp increment
+decrement:
+    jmp y--, update
+.wrap_target
+update:
+    mov isr, y
+    push noblock
+    out isr, 2
+    in pins, 2
+    mov osr, isr
+    mov pc, isr
+increment:
+    mov y, ~y
+    jmp y--, increment_cont
+increment_cont:
+    mov y, ~y
+.wrap
+invalid:
+    irq set 0 rel
+    jmp update

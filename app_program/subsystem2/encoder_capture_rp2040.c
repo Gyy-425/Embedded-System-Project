@@ -1,5 +1,6 @@
 #include "../app.h"
 #include "encoder_capture.h"
+#if !AAI05_ENCODER_PIO
 #if TK_SUPPORT_SMP
 #include <tk/smp.h>
 static T_SPLOCK capture_lock;
@@ -81,3 +82,4 @@ int32_t encoder_capture_start(void)
     EnableInt(ENCODER_GPIO_IRQ, ENCODER_IRQ_PRIORITY);
     return E_OK;
 }
+#endif

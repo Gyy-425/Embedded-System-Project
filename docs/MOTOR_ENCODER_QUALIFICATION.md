@@ -1,5 +1,9 @@
 # Motor and encoder qualification — first paired check
 
+The next software candidate is now prepared: [PIO capture v0.9](PIO_ENCODER_V0_9.md).
+Follow that guide for its first physical capture trial. Earlier GPIO procedures
+below are retained as history; do not replay the basic direction tests.
+
 Latest result: the user supplied the forward run's serial records. Physical
 forward is raw left negative/right positive, and forward encoder deltas have
 the same signs. Requested output OFF is observed without reported driver or

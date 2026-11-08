@@ -155,6 +155,9 @@ static void test_diagnostic_readiness_preserves_faults(void)
     motor_pulse_status_t motor = {.ready = true};
 
     assert(motor_test_inputs_ready(&capture, &motor, true, 0, 0));
+    capture.error = -50;
+    assert(!motor_test_inputs_ready(&capture, &motor, true, 0, 0));
+    capture.error = 0;
     assert(!motor_test_inputs_ready(NULL, &motor, true, 0, 0));
     assert(!motor_test_inputs_ready(&capture, NULL, true, 0, 0));
     assert(!motor_test_inputs_ready(&capture, &motor, false, 0, 0));

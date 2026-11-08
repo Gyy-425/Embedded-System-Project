@@ -1,0 +1,1 @@
+aai05_ready_red: testing/host/test_motor_control.c:159: test_diagnostic_readiness_preserves_faults: Assertion `!motor_test_inputs_ready(&capture, &motor, true, 0, 0)' failed.

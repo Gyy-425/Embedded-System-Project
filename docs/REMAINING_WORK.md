@@ -6,13 +6,13 @@ Focused motion coding: forward/steering C adapter and equivalent CLI `move`
 are implemented; strict/sanitized C checks,71 Python/Tcl tests and four
 compatibility builds passed after the independent review's input-narrowing
 finding was corrected and regression-tested.
-No on-car IR controller is active yet. Ground motion works; USB cable pull
-biased earlier tests. The user now reports two bank-only untethered runs with
-left turn near the end, following a turn-2 instruction. New command/ACK logs
-are not independently verified. Next use forward40/turn0/duration1s, same
-untethered setup, before choosing any permanent trim. Earlier ACK failures,
-neutral straightness/curves and calibrated encoder feedback remain open.
-[Latest ground result and next check](../testing/integration/logs/2026-11-08-untethered-left-drift-result.md).
+No on-car IR controller is active yet. The user reports three neutral bank-only
+untethered runs travelling straight under power, with a small post-OFF left
+movement. Keep turn0; move to the two intentional curve checks. Fresh client
+status/OFF exchanges currently work; earlier transient connection/ACK failures
+remain unexplained. Precise stopping/heading performance and calibrated encoder
+feedback remain open.
+[Latest ground result and next check](../testing/integration/logs/2026-11-08-neutral-ground-result.md).
 [Motion API and ground guide](CHASSIS_MOTION.md).
 
 Latest prepared development: v0.9 PIO capture replaces CPU-serviced edge latches
@@ -46,6 +46,7 @@ Latest actual result: v0.8 bounded MQTT left-wheel movement, ordinary STOP/rearm
 
 ## Completed foundation
 
+- [x] Neutral untethered ground bring-up: user reports three straight powered runs at forward40/turn0, with a small post-OFF left movement retained as a stopping observation. Current command/status/OFF exchanges are observed; no measured heading/stop-distance or precise speed claim. [Scoped result](../testing/integration/logs/2026-11-08-neutral-ground-result.md).
 - [x] v0.9 basic powered PIO capture trial: clean baseline and final sticky flags0/0, expected raw count progression, errors0/sat0, fresh output OFF and stable coast totals. Independent count/revolution accuracy, calibrated speed/distance and ground-load performance remain pending. [Scoped result](../testing/integration/logs/2026-11-08-v0_9-pio-clean-rerun.md).
 - [x] Dedicated v0.8 broker-loss stop/recovery/no automatic movement/fresh START case. Increasing uptime and new session/off-state recovery are observed; physical stop and fresh movement are user-confirmed. [Scoped evidence](../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md).
 - [x] v0.8 actual bounded MQTT left-wheel movement, ordinary STOP/rearm and GP21 while moving. Two successful fresh output-off confirmations and user-confirmed physical movement/GP21 stop are recorded. Later communication loss was deliberate; broker-only actuation-loss/recovery is still pending. [Scoped result](../testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md).

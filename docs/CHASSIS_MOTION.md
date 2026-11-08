@@ -6,8 +6,9 @@ owner, raw motor driver and MQTT v2 START/renew/STOP flow. The car's tested
 v0.9 PIO image can remain installed: the CLI performs coordinate conversion
 before sending the existing raw requests. The new on-robot C entry point is
 host-tested and included in compile-compatibility builds; no live IR controller
-calls it yet. Ground forward movement is observed with rightward drift;
-straight tracking, commanded curves and calibrated speed remain unverified.
+calls it yet. The user reports three straight neutral powered ground runs,
+with a small post-OFF left movement. Commanded curves, precise heading/stop
+performance, calibrated speed and live IR tracking remain unverified.
 
 ## Coordinates and limits
 
@@ -79,7 +80,27 @@ minimum-bit saving is claimed. Existing v2 serialization and leases are reused.
 
 ## Ground-run procedure and current observations
 
-Latest8November: the user reports two bank-powered, laptop-USB-disconnected
+Latest8November: three neutral untethered runs travel straight under power,
+according to the user, with a short left movement after output switches off.
+Current client logs show fresh status/OFF confirmations. Keep turn0 as the
+straight baseline; the next checks are one right curve and one left curve.
+Precise stopping behaviour remains unmeasured. [Latest result](../testing/integration/logs/2026-11-08-neutral-ground-result.md).
+
+With the same bank-only/USB-disconnected setup and broker running, perform once
+each, allowing output OFF and physical standstill between requests:
+
+```powershell
+python "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py" --host 192.168.1.206 move --forward 40 --turn 10 --seconds 1
+python "C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware\tools\mqtt\drive_cli.py" --host 192.168.1.206 move --forward 40 --turn -10 --seconds 1
+```
+
+First should curve right, second left. Preserve command output and report
+powered direction/stalling separately from post-OFF motion. Earlier connection
+failures remain unexplained; a missing ACK requires standstill via GP21/power
+switch and preserved output, not an automatic motion retry. The neutral run
+below is now historical reproduction context, not another required replay.
+
+Earlier observation: the user reported two bank-powered, laptop-USB-disconnected
 runs turning left near the end, then switches OFF. The preceding requested
 command was forward40/turn-2/seconds1; exact new arguments/ACK logs are not
 independently verified. Assuming that command was used, the provisional left
@@ -95,8 +116,8 @@ client confirms STOP; an intervening request has unconfirmed ACK/STOP. These
 are not controlled motor-calibration comparisons. Keep further/permanent trim
 provisional. [Latest evidence](../testing/integration/logs/2026-11-08-cable-supported-motion-result.md).
 
-The next single comparison keeps the bank-only, USB-disconnected setup and
-returns the steering request to zero:
+The completed neutral baseline used the bank-only, USB-disconnected setup and
+zero steering:
 
 1. Start/keep the existing laptop broker running. Close Serial Monitor and
    power the car from the existing bank-to-VIN lead only, with Pico USB

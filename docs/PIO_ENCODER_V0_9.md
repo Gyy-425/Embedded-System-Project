@@ -1,15 +1,18 @@
 # PIO encoder capture v0.9: one focused car check
 
-Observed trial: raw signs, powered counts and output OFF are supported, but
-the retained baseline already has PIO_BAD=0/1. Capture acceptance remains open;
-do not repeat this procedure until that pre-movement flag is isolated.
-[UI result](../testing/integration/logs/2026-11-08-v0_9-pio-ui-result.md).
+Latest rerun: **basic powered PIO capture trial passed**. The reconnected run
+starts clean, retains PIO_BAD=0/0/UNCERTAIN=0 with no errors/saturation, shows
+expected count progression and ends with fresh output OFF and stable totals.
+[Clean rerun](../testing/integration/logs/2026-11-08-v0_9-pio-clean-rerun.md).
+Do not replay this procedure. The earlier pre-movement flag did not recur;
+its cause remains unproven. [Earlier UI result](../testing/integration/logs/2026-11-08-v0_9-pio-ui-result.md).
+Instructions below are retained for reproduction, not a new required test.
 
 This candidate replaces CPU-serviced GPIO edge counting with a continuously
 running PIO counter for each wheel. The raw direction convention remains
 unchanged: forward drive and forward encoder deltas are left negative/right
 positive. Existing motor output, GP21 STOP, leases and MQTT commands remain.
-Hardware capture accuracy has not passed yet.
+Independent count accuracy/scaling has not passed yet.
 
 ## Upload the normal candidate
 

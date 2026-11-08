@@ -4,16 +4,19 @@ Status snapshot: 8 November 2026. Follow the professor-confirmed revised scope: 
 
 Latest prepared development: v0.9 PIO capture replaces CPU-serviced edge latches
 in an opt-in image. Host checks, independent review and all four PIO/GPIO
-normal/TEST builds passed. Actual capture quality is still pending.
-[Next focused car procedure](PIO_ENCODER_V0_9.md),
+normal/TEST builds passed. The basic powered trial below has now passed;
+independent count accuracy/scaling remains pending.
+[Reproduction guide](PIO_ENCODER_V0_9.md),
 [preparation evidence](../testing/integration/logs/2026-11-08-pio-v0_9-preparation.md).
 
-Latest physical observation: v0.9 powered signs/count progression and output
-OFF are supported. The retained serial baseline already has PIO_BAD0/1, so
-capture acceptance is still open. Isolate the initial flag/first invalid event
-while stopped before repeating a powered trial. [UI evidence](../testing/integration/logs/2026-11-08-v0_9-pio-ui-result.md).
+Latest physical observation: **v0.9 basic powered PIO capture trial passed**.
+The power/USB-reconnected run starts clean, counts in the expected directions,
+retains PIO_BAD0/0/UNCERTAIN0/errors0/sat0 and ends with fresh output OFF and
+stable counts-10652/+11113. No repeat of this test is needed. The earlier
+flag's cause is unproven; independently establish count scaling before using
+calibrated feedback. [Clean rerun](../testing/integration/logs/2026-11-08-v0_9-pio-clean-rerun.md).
 
-Current case: [paired motor/encoder qualification](MOTOR_ENCODER_QUALIFICATION.md).
+Earlier GPIO case: [paired motor/encoder qualification](MOTOR_ENCODER_QUALIFICATION.md).
 The laptop broker is now 192.168.1.206; a separately named working v0.8 image
 has been built for that address, with no motor/encoder source changes. The
 first paired physical test produced both-wheel movement and a saved fresh
@@ -30,6 +33,7 @@ Latest actual result: v0.8 bounded MQTT left-wheel movement, ordinary STOP/rearm
 
 ## Completed foundation
 
+- [x] v0.9 basic powered PIO capture trial: clean baseline and final sticky flags0/0, expected raw count progression, errors0/sat0, fresh output OFF and stable coast totals. Independent count/revolution accuracy, calibrated speed/distance and ground-load performance remain pending. [Scoped result](../testing/integration/logs/2026-11-08-v0_9-pio-clean-rerun.md).
 - [x] Dedicated v0.8 broker-loss stop/recovery/no automatic movement/fresh START case. Increasing uptime and new session/off-state recovery are observed; physical stop and fresh movement are user-confirmed. [Scoped evidence](../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md).
 - [x] v0.8 actual bounded MQTT left-wheel movement, ordinary STOP/rearm and GP21 while moving. Two successful fresh output-off confirmations and user-confirmed physical movement/GP21 stop are recorded. Later communication loss was deliberate; broker-only actuation-loss/recovery is still pending. [Scoped result](../testing/integration/logs/2026-11-07-v0_8-pico-motion-result.md).
 - [x] Laptop-network-path interruption:127 saved telemetry samples,11 waiting notices, automatic resumed data/targetunset/newtag and serial resubscription, with continuing Pico uptime. USB reporting correctly continues through a laptop Wi-Fi outage. [Result](../testing/integration/logs/2026-11-07-v0_5-network-path-result.md).
@@ -48,10 +52,10 @@ Latest actual result: v0.8 bounded MQTT left-wheel movement, ordinary STOP/rearm
 
 ## Remaining work in practical order
 
-Current motor development: the scoped v0.8 MQTT left-wheel bring-up and broker-loss/recovery checks passed. Preserve those results. Powered encoder accuracy remains unresolved before feedback control; physical forward signs, simultaneous two-wheel load and integrated tracking remain later validation.
+Current motor development: physical forward signs, scoped MQTT movement/stop/recovery and the basic powered PIO capture trial are supported. Preserve those results. Independent encoder accuracy/scaling, ground-loaded performance and integrated tracking remain pending.
 
 1. [x] **Core communication bring-up.** Actual IP, broker/status/target/raw telemetry, MQTT session recovery and laptop-network-path loss/restoration are supported by recorded runs. This completes the current no-drive communication case. Actual Pico association-loss/rejoin and final demo-network checks remain explicitly deferred to integrated validation; they are not claimed by the laptop-only test.
-2. [ ] **Qualify program-controlled movement for tracking.** Software pulses and local Motion STOP/expiry passed; PWM off-state behavior was corrected. Establish physical forward signs, qualify simultaneous two-wheel load and resolve powered encoder capture before using feedback. Calibrate counts/distance or speed only where used; add balancing/control as needed for stable tracking. Preserve prior passes rather than replaying diagnostic versions.
+2. [ ] **Qualify program-controlled movement for tracking.** Software pulses, local Motion STOP/expiry, physical forward signs and the basic powered PIO capture trial passed. Establish independent count/revolution scaling before calibrated feedback, then qualify ground-loaded two-wheel performance. Calibrate distance or speed only where used; add balancing/control as needed for stable tracking. Preserve prior passes rather than replaying diagnostic versions.
 3. [x] **Scoped MQTT actuation-loss/recovery bring-up.** The user confirms stopping on broker loss and successful fresh-command movement afterward. Watch shows the pre-gap RUNNING/ON session, waiting interval, new session IDLE/OFF, explicit START, RUNNING/ON and confirmed final STOPPED/OFF. [Evidence](../testing/integration/logs/2026-11-07-v0_8-broker-loss-result.md). Exact latency, all replay/fault injections, actual AP loss, final demo network and combined-load qualification remain later integration checks.
 4. [ ] **Actual tapes, track and acceptance conditions.** Obtain/use the actual five chosen colours plus black/white, cardboard/background and fixed sensor mounting. Set track width/curves/start positions and layouts for both required demonstrations. Choose achievable speed, shortest segment and accuracy/lighting conditions from measurements;5cm remains a proposal, not a confirmed requirement. Check seven classes are separable in IR ADC data before committing to a tape set.
 5. [ ] **Colour calibration and recognition.** The portable C classifier core is implemented with per-sensor configurable ranges and explicit unknown/ambiguity/freshness guards;16,384 reference comparisons and host/ARM/firmware compile checks pass. [Core API](COLOUR_CLASSIFIER_CORE.md). Runtime model installation, recognition/reporting and real calibration remain pending. Stationary capture/CSV/metadata and offline overlap-report code is prepared;46 affected host tests passed. Use [the guide](TAPE_CALIBRATION.md) when actual tapes are available. Record labelled readings from each sensor at installed height, derive/store calibration and implement seven-class plus unknown/uncertain handling. Validate stationary and moving classification, transitions and short segments; avoid filtering/debounce that erases brief colours. Report actual accuracy against known tape sequences, not guessed RGB colour recognition.
@@ -68,4 +72,4 @@ Networking does not need to wait for every motion qualification test. Calibratio
 
 Barcode decoding/directed junction manoeuvres, ultrasonic/servo obstacle profiling/avoidance and hump-height measurement are omitted under the professor's confirmed revision. IMU is optional and should only be reconsidered after the required colour/motion/communication application works. No dashboard is required.
 
-Current next action: isolate the v0.9 pre-movement right PIO invalid flag, checking initial phase establishment and the first invalid event before choosing a fix. The existing powered run supports movement/stop but cannot qualify capture with a flag already latched. Once clean capture is supported, use an independent revolution reference. Do not replay basic direction/MQTT cases or change wiring on this evidence alone. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.
+Current next action: establish an independent marked-revolution count reference before calibrated encoder feedback, then develop tracking control as needed. The clean v0.9 powered rerun needs no replay or firmware change. The earlier invalid flag's cause remains unproven; investigate if it recurs while stationary. Do not replay basic direction/MQTT cases or change wiring on this evidence alone. Actual tape capture can proceed when samples/background are available; then inspect per-sensor overlap and populate/validate the prepared C classifier before runtime integration. Actual AP loss/rejoin, demo network and combined-load freshness/timing remain later validation.

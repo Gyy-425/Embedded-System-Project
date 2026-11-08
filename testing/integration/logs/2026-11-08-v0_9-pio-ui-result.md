@@ -1,5 +1,10 @@
 # v0.9 PIO car run inspected in VS Code: startup flag prevents qualification
 
+Historical flagged session. A later power/USB-reconnected run passed the basic
+powered trial without a code change; see [clean rerun](2026-11-08-v0_9-pio-clean-rerun.md).
+The original flag's cause remains unproven. Assessment below applies to this
+earlier session and is retained without treating it as the current result.
+
 The user requested Computer Use inspection of VS Code after the v0.9 run.
 Read the retained Serial Monitor and drive-client/broker terminals. No robot
 command, serial transmission, power change or firmware upload was performed

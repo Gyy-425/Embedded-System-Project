@@ -1,21 +1,23 @@
 # AAI05 robot firmware
 
-Latest car observation: v0.9 has powered count progression with the expected
-raw signs and a fresh output-off confirmation. Capture remains unqualified:
-the retained run has PIO_BAD=0/1 before movement and throughout its stopped
-tail. Isolate that pre-movement flag before another acceptance run.
-[Observed result and limits](testing/integration/logs/2026-11-08-v0_9-pio-ui-result.md).
+Latest car observation: **v0.9 basic powered PIO capture trial passed** after
+the user reconnected power/USB and reran. Clean baseline, expected raw signs,
+PIO_BAD=0/0, no uncertainty/errors/saturation, fresh output OFF and a stable
+stopped tail are observed. Count accuracy/scaling and ground-load behaviour
+remain unverified. The earlier flag's cause is unproven; no code change was made.
+[Clean rerun and limits](testing/integration/logs/2026-11-08-v0_9-pio-clean-rerun.md),
+[earlier flagged result](testing/integration/logs/2026-11-08-v0_9-pio-ui-result.md).
 
-Prepared next image, 8 November: **v0.9 PIO encoder capture**. Hardware counters
+Current image, 8 November: **v0.9 PIO encoder capture**. Hardware counters
 retain movement across CPU-service gaps; invalid flags and bounded read faults
 remain explicit. Strict host checks, 63 Python/Tcl tests, normal/TEST PIO and
 GPIO compatibility builds passed; all 32 earlier UF2s were preserved.
-Physical capture acceptance is pending. Use
-`output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE.uf2` for the next focused run.
+The scoped powered trial above passed. Keep
+`output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE.uf2`; no repeat upload is needed.
 [Upload/test guide](docs/PIO_ENCODER_V0_9.md),
 [review and verification evidence](testing/integration/logs/2026-11-08-pio-v0_9-preparation.md).
 
-Current case, 8 November: **paired motor and powered encoder qualification**.
+Earlier GPIO case, 8 November: **paired motor and powered encoder qualification**.
 The laptop's broker address is now 192.168.1.206. A separate working v0.8 image,
 `output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206.uf2`, is built for that
 address; no motor/encoder logic changed. Normal/TEST builds and supporting
@@ -95,7 +97,7 @@ not be repeated. [Motor result](testing/integration/logs/2026-11-07-v0_6_1-pico-
 [communication result](testing/integration/logs/2026-11-07-v0_5-network-path-result.md).
 All 22 pre-existing firmware artifacts were hash-checked unchanged.
 
-Powered encoder accuracy, physical forward signs, simultaneous two-wheel load,
+Powered encoder accuracy/scaling, ground-loaded two-wheel performance,
 Wi-Fi timing, actual tape calibration, the two colour demonstrations and final
 Week13 evidence remain open. [Remaining work](docs/REMAINING_WORK.md).
 The historical motor HardFault was captured and corrected; do not treat old

@@ -6,8 +6,9 @@ The laptop's broker address is now 192.168.1.206. A separate working v0.8 image,
 address; no motor/encoder logic changed. Normal/TEST builds and supporting
 software checks passed, and all 28 older images were preserved. The paired
 run now has observed movement and saved output-off confirmation:
-positive electrical duty drives left rearward and right forward. Forward is
-therefore the next raw `-50/+50` check. Powered encoder qualification remains
+positive electrical duty drives left rearward and right forward. The user then
+confirmed both wheels forward with raw `-50/+50`. Direction mapping is complete;
+the follow-up serial samples still need review. Powered encoder qualification remains
 open: the retained serial interval contains new overrun warnings.
 [Observed result](testing/integration/logs/2026-11-08-paired-motor-qualification-result.md),
 [next focused check](docs/MOTOR_ENCODER_QUALIFICATION.md),

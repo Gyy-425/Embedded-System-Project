@@ -13,14 +13,18 @@ reference: the left wheel drove toward the rear; the right wheel drove toward
 the front. Clockwise alone is not a portable direction convention for mirrored
 motors viewed from different sides.
 
-| Wheel | Positive raw duty: observed physical direction | Raw duty for forward: next check |
+| Wheel | Positive raw duty: observed physical direction | Raw duty for forward: user-confirmed |
 |---|---|---|
 | Left / M1 | Rearward | Negative |
 | Right / M2 | Forward | Positive |
 
 Logical forward control must therefore map the left motor with sign -1 and the
-right with sign +1. The opposite-polarity paired command has not been observed
-yet. Keep the existing wiring and the raw-duty diagnostic/protocol contract.
+right with sign +1. In the follow-up the user tested `left=-50, right=+50` and
+confirmed both wheels moving toward the front. This establishes the physical
+forward polarity; do not repeat that direction check. No new serial samples
+were supplied or verified for the follow-up, so encoder signs, warning deltas
+and count accuracy remain unresolved. Keep the existing wiring and the raw-duty
+diagnostic/protocol contract.
 Any later logical-forward API must apply the conversion once at a defined
 boundary; do not silently redefine existing MQTT electrical duties. Raw encoder
 signs for physical forward must be checked independently before normalizing
@@ -75,10 +79,10 @@ cause or justify estimating speed/PPR from these totals.
 
 ## Next focused action
 
-With wheels still raised, confirm one raw `left=-50, right=+50` two-second
-request using the current image. Preserve three stationary serial lines,
-moving lines and three stopped lines so the per-run count signs and new
-bad/over deltas are isolated. Observe both physical directions relative to the
-front. No new firmware, rewiring or replay of the earlier basic tests is needed.
-Then investigate the capture path if ambiguity counters increase; do not use
-these counts as qualified PID feedback yet.
+Review the follow-up's stationary, moving and stopped serial samples to isolate
+per-run encoder signs and new bad/over deltas. Physical forward direction has
+passed by the user's observation; no repeat direction test or rewiring is
+needed. Investigate the capture path if ambiguity counters increase; do not use
+these counts as qualified PID feedback yet. If the samples were not preserved,
+design the next capture-quality run around that missing evidence rather than
+replaying the earlier basic motor/MQTT cases.

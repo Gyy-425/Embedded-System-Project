@@ -1,16 +1,22 @@
 # AAI05 robot firmware
 
+Latest car result: **v0.10 basic stationary uncalibrated reporting passed**.
+Serial shows valid IR, both results7/1, no reported colour queue drops and
+motor output OFF. Colour MQTT snapshots and a fresh v2 STATUS OK are observed;
+the user confirmed deliberate shutdown. Actual calibration and moving-colour
+acceptance remain pending. [Result and limits](testing/integration/logs/2026-11-09-colour-runtime-car-result.md).
+
 Latest prepared case: **IR colour runtime/reporting v0.10**. The IR owner now
 classifies each acquisition, retains bounded class/reason transitions and
 exposes a separate read-only MQTT colour stream and serial results. The boot
 model is deliberately uncalibrated: no real tapes or thresholds are available.
 Existing v2 motion commands remain compatible; this does not enable automatic
-target following. Keep the installed v0.9 image until a later upload/check.
+target following. The v0.10 BROKER210 image has now passed the scoped reporting check.
 [Runtime guide and limits](docs/COLOUR_RUNTIME.md).
 Offline verification:73 stages,76 Python/Tcl tests, all four PIO/GPIO normal/
 TEST builds and zero warnings;46 earlier UF2s preserved. Independent review
-found no Critical/Important defect. Actual tape calibration and on-car use
-are pending. [Evidence](testing/integration/logs/2026-11-08-colour-runtime-preparation.md).
+found no Critical/Important defect. Actual tape calibration and moving use
+remain pending. [Evidence](testing/integration/logs/2026-11-08-colour-runtime-preparation.md).
 
 Focused motion addition: logical forward duty and steering C API plus `move`
 CLI conversion through the existing MQTT v2 drive path. Positive turn means

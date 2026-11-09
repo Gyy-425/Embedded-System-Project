@@ -1,6 +1,8 @@
 # IR colour runtime and reporting
 
 This case connects the configurable classifier to the IR owner and reporting.
+The basic on-car uncalibrated reporting and concurrent v2 STATUS check passed
+on9 November. [Observed result and limits](../testing/integration/logs/2026-11-09-colour-runtime-car-result.md).
 No tape readings have been captured. The shipped boot model deliberately has
 no ranges, so valid readings report unknown/UNCALIBRATED. Host fixtures are
 synthetic and are not linked as robot calibration. Target following is not
@@ -130,8 +132,8 @@ This runs strict/sanitized C, real IR-adapter/service host tests, C/Python wire
 vectors, the full host suite and PIO/GPIO normal/TEST builds in a new candidate
 directory. Earlier UF2 hashes are verified unchanged; it never flashes or
 contacts the car. Use the PIO normal candidate for the later colour runtime
-check, not a GPIO compatibility or TEST image. Keep the tested installed
-v0.9 image until that upload/check is requested.
+check, not a GPIO compatibility or TEST image. The BROKER210 normal PIO
+image has now passed that scoped reporting check; it needs no repeat upload.
 
 Actual seven-class separability, short-segment moving detection, recognition
 accuracy and lighting/height sensitivity require real tape/background data.

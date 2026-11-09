@@ -60,12 +60,18 @@ and precedence; unavailable model/sample states do not establish freshness.
 
 ## Command-prompt colour watch
 
+9 November update: laptop WLAN changed to192.168.1.210. The configuration-only
+normal PIO rebuild is output/firmware/AAI05_Colour_Runtime_v0_10_BROKER210.uf2.
+Use [the stationary car procedure](COLOUR_RUNTIME_CAR_CHECK.md) for upload,
+broker setup, expected output and evidence collection. Older206 candidates
+remain preserved for their recorded network configuration.
+
 After a deliberately scheduled upload of the new colour-runtime candidate,
 with the normal laptop broker already running, from PowerShell:
 
 ```powershell
 Set-Location -LiteralPath 'C:\Users\Guo YouYan\Desktop\INF2004-main\AAI05_Firmware'
-python .\tools\mqtt\colour_cli.py --host 192.168.1.206 watch
+python .\tools\mqtt\colour_cli.py --host 192.168.1.210 watch
 ```
 
 Use the laptop's current broker address and the matching firmware network

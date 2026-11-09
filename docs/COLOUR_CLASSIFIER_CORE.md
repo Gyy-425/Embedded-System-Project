@@ -3,8 +3,11 @@
 This implements the next case authorized after scope review. The module is
 `app_program/subsystem1/colour_classifier.[ch]`: portable C with no RTOS, I/O,
 heap, floating point, global mutable state or temporal filtering. Existing
-firmware compiles it, but IR/Motion/MQTT do not call it yet. The current car
-image and `detected=unknown` telemetry remain intentional until integration.
+v0.9 firmware compiles it without calling it. The later v0.10 candidate now
+integrates classification in the IR owner and adds separate serial/MQTT
+reporting; see [runtime integration](COLOUR_RUNTIME.md). Motion does not consume
+classifier results yet. The installed v0.9 car image and old raw v2
+`detected=unknown` field are retained until an explicit later upload/check.
 
 No real tape thresholds are supplied. The host test ranges are explicitly
 synthetic and never installed as robot calibration.
@@ -61,16 +64,16 @@ not intentionally suppressed. Actual moving accuracy remains untested.
 
 ## Ownership and integration boundary
 
-Setters/init are not concurrent publication APIs. Build/validate private copies,
-then later publish an immutable complete snapshot using the IR owner's lock or
-equivalent ownership transfer. Readers must not observe in-place updates of
-three-byte bounds. The module is reentrant with immutable independent models;
-it does not provide a thread-safe live configuration mechanism.
+Setters/init are not concurrent publication APIs. Build/validate private copies;
+readers must not observe in-place updates of three-byte bounds. The v0.10
+runtime copies a boot model once and uses the IR owner's existing mutex for
+observations/queue publication; there is no live model update. The core remains
+reentrant with immutable independent models.
 
 Classification does not drive motors, change a Wi-Fi target or emit MQTT events.
-Actual model import/storage, synchronized runtime installation, reporting and
-tracking are later integration work. It can be tested before tapes arrive;
-the actual capture tool will provide measurements for model selection later.
+The v0.10 runtime supplies boot-copy/reporting integration. Actual model
+import/persistence, real calibration and tracking remain pending. The core can
+be tested before tapes arrive; actual captures supply model-selection evidence.
 
 ## Representation and measured comparison
 

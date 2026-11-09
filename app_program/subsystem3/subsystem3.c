@@ -1,4 +1,5 @@
 #include "subsystem3.h"
+#include "../subsystem1/subsystem1.h"
 #if TM_WIFI_CYW43
 #include "cyw43_utk.h"
 #endif
@@ -30,6 +31,8 @@ static void report_task(INT start_code, void *extra)
         ir_error = subsystem1_get_snapshot(&ir);
         motion_error = subsystem2_get_snapshot(&motion);
         if ((ir_error == E_OK) && (motion_error == E_OK)) {
+            colour_report_t colour = {0};
+            bool colour_available = subsystem1_colour_latest(&colour);
             now = app_now_ms();
             ir_age = now - ir.sampled_ms;
             motion_age = now - motion.sampled_ms;
@@ -39,6 +42,7 @@ static void report_task(INT start_code, void *extra)
             radio_ready = (UINT)radio.ready;
 #endif
             tm_printf((UB *)"t=%u IR[L=%u R=%u valid=%u err=%d age=%u] "
+                      "COLOUR[read=%u L=%u/%u R=%u/%u t=%u drop=%u] "
                       "ENC[L=%d R=%d AB=%u/%u "
 #if AAI05_ENCODER_PIO
                       "sat=%u age=%u] ENC_CAPTURE=PIO PIO=%u "
@@ -71,6 +75,12 @@ static void report_task(INT start_code, void *extra)
                       (UINT)now, (UINT)ir.left_raw, (UINT)ir.right_raw,
                       (UINT)(ir.valid && (ir.sequence != 0U) && (ir_age <= 100U)),
                       (INT)ir.error, (UINT)ir_age,
+                      (UINT)colour_available,
+                      (UINT)colour_result_class(colour.observation.result[0]),
+                      (UINT)colour_result_reason(colour.observation.result[0]),
+                      (UINT)colour_result_class(colour.observation.result[1]),
+                      (UINT)colour_result_reason(colour.observation.result[1]),
+                      (UINT)colour.observation.sampled_ms, (UINT)colour.dropped,
                       (INT)motion.left_count, (INT)motion.right_count,
                       (UINT)motion.left_ab, (UINT)motion.right_ab,
 #if AAI05_ENCODER_PIO

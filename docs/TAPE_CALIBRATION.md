@@ -1,7 +1,8 @@
 # Stationary tape calibration capture
 
 This is the next prepared coding case after the recorded MQTT movement checks.
-It uses the existing v0.8 REMOTE firmware and two AO/ADC channels. No reflash,
+It uses the tested v0.9 PIO REMOTE firmware and two AO/ADC channels. The later
+v0.10 reporting candidate retains this raw v2 protocol too. No reflash,
 wiring change or Python package installation is required. The tool is prepared
 and host-tested; actual tape capture/colour recognition has not passed yet.
 

@@ -1,5 +1,6 @@
 #include "drive_service.h"
 #include "../subsystem2/motion_runtime.h"
+#include "colour_service.h"
 
 #if AAI05_REMOTE_APP
 static drive_control_t g_drive_service_control;
@@ -43,6 +44,7 @@ void mqtt_app_link_changed(bool is_ready)
     }
     drive_control_reset(&g_drive_service_control, session, grant, now_ms,
                           is_ready);
+    colour_service_link(session);
     g_drive_service_telemetry_sequence = 0U;
     g_drive_service_published_ms = now_ms - DRIVE_TELEMETRY_MS;
     g_drive_service_tx_drop = false;
@@ -165,6 +167,8 @@ void mqtt_app_poll(void)
 
     drive_io_snapshot(&input, now_ms);
     drive_service_step(now_ms, &input);
+    /* Optional reporting follows motion STOP/lease work on the same owner. */
+    colour_service_poll();
     if (!g_drive_service_control.is_ready ||
         ((uint32_t)(now_ms - g_drive_service_published_ms) <
          DRIVE_TELEMETRY_MS))

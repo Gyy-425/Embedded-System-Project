@@ -19,6 +19,10 @@ static motion_result_t g_submit_result;
 static int32_t g_publish_error;
 static motion_command_t g_applied;
 
+/* Colour reporting has no authority to arm or submit movement. */
+void colour_service_link(uint32_t session) {(void)session;}
+void colour_service_poll(void) {}
+
 uint32_t drive_io_now(void) { return g_now; }
 uint32_t drive_io_seed(void) { return ++g_seed; }
 void drive_io_snapshot(drive_input_t *p_input, uint32_t now_ms)

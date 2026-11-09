@@ -23,6 +23,7 @@ def main():
     parser.add_argument("--label", required=True)
     parser.add_argument("--sdk", required=True)
     parser.add_argument("--firmware", action="store_true")
+    parser.add_argument("--colour-runtime", action="store_true", help="Name new candidates as colour runtime v0.10; does not upload")
     parser.add_argument("--debug-python", help="Optional Windows Python exe for Tcl-only tests when WSL lacks tkinter")
     args = parser.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9_-]+", args.label):
@@ -111,6 +112,14 @@ def main():
             vector = c_test("comm-protocol", ["testing/host/test_comm_protocol.c", "app_program/subsystem3/comm_protocol.c"])
             env["COMM_VECTOR_FILE"] = str(vector)
             c_test("colour", ["testing/host/test_colour_classifier.c", "app_program/subsystem1/colour_classifier.c"])
+            colour_sources = ["app_program/subsystem1/colour_classifier.c", "app_program/subsystem1/colour_runtime.c"]
+            c_test("colour-runtime", ["testing/host/test_colour_runtime.c", *colour_sources])
+            c_test("ir-runtime", ["testing/host/test_ir_runtime.c", *colour_sources])
+            colour_wire = ["app_program/subsystem3/colour_protocol.c", "app_program/subsystem3/comm_protocol.c",
+                           "app_program/subsystem1/colour_classifier.c"]
+            vector = c_test("colour-wire", ["testing/host/test_colour_protocol.c", *colour_wire])
+            env["COLOUR_VECTOR_FILE"] = str(vector)
+            c_test("colour-service", ["testing/host/test_colour_service.c", "app_program/subsystem3/colour_service.c", *colour_wire])
             for remote in (0, 1):
                 c_test("mqtt-ingress" + str(remote), ["testing/host/test_mqtt_ingress.c"],
                        ["-DAAI05_REMOTE_APP=" + str(remote), "-DAAI05_COMMS_APP=" + str(1 - remote),
@@ -141,6 +150,8 @@ def main():
                 run(["make", "-j8", *profile, f"ENCODER_PIO={pio}", f"TEST={test}", "EXE_FILE=" + stem],
                     f"firmware-pio{pio}-test{test}", repo / "build_make")
                 name = ("AAI05_Encoder_PIO_v0_9_REMOTE" if pio else "AAI05_GPIO_Compatibility") + ("_TEST" if test else "")
+                if args.colour_runtime:
+                    name = "AAI05_Colour_Runtime_v0_10_" + ("PIO" if pio else "GPIO") + "_REMOTE" + ("_TEST" if test else "")
                 for extension in ("uf2", "elf", "map"):
                     shutil.copy2(repo / "build_make" / (stem + "." + extension), candidate / (name + "." + extension))
                 image = candidate / (name + ".uf2")

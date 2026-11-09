@@ -13,6 +13,11 @@ C_DEPS += $(subst ../, ./mtkernel_3/, $(TEMP_DEPS))
 # New communication modules use strict diagnostics without reformatting the
 # inherited RTOS/SDK implementation.
 mtkernel_3/app_program/subsystem1/colour_classifier.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem1/colour_runtime.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem1/subsystem1.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/colour_protocol.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/colour_service.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
+mtkernel_3/app_program/subsystem3/colour_platform_rp2040.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
 mtkernel_3/app_program/subsystem2/encoder_pio_count.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
 mtkernel_3/app_program/subsystem2/encoder_capture_pio.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes
 mtkernel_3/app_program/subsystem2/encoder_pio_io_rp2040.o: CFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes

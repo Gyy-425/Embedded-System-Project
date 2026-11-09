@@ -1,5 +1,17 @@
 # AAI05 robot firmware
 
+Latest prepared case: **IR colour runtime/reporting v0.10**. The IR owner now
+classifies each acquisition, retains bounded class/reason transitions and
+exposes a separate read-only MQTT colour stream and serial results. The boot
+model is deliberately uncalibrated: no real tapes or thresholds are available.
+Existing v2 motion commands remain compatible; this does not enable automatic
+target following. Keep the installed v0.9 image until a later upload/check.
+[Runtime guide and limits](docs/COLOUR_RUNTIME.md).
+Offline verification:73 stages,76 Python/Tcl tests, all four PIO/GPIO normal/
+TEST builds and zero warnings;46 earlier UF2s preserved. Independent review
+found no Critical/Important defect. Actual tape calibration and on-car use
+are pending. [Evidence](testing/integration/logs/2026-11-08-colour-runtime-preparation.md).
+
 Focused motion addition: logical forward duty and steering C API plus `move`
 CLI conversion through the existing MQTT v2 drive path. Positive turn means
 right; verified raw motor polarities are handled at the boundary. Keep the
@@ -9,7 +21,7 @@ narrowing finding. **Basic ground motion bring-up is complete** within the
 recorded setup: three neutral straight runs and both requested curve directions
 are user-confirmed. Keep turn0; a small post-OFF movement remains a stopping
 observation. Precise stop/heading performance and earlier intermittent ACK
-failures remain open. Next: IR calibration and runtime classifier integration;
+failures remain open. Next: actual IR calibration and the runtime on-car check;
 actual tape separability and live colour control are not demonstrated yet.
 [Ground result and limits](testing/integration/logs/2026-11-08-ground-curves-result.md).
 [API, semantics and next ground-run guide](docs/CHASSIS_MOTION.md).

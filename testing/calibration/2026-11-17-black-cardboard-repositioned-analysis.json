@@ -1,0 +1,137 @@
+[
+  {
+    "label": "black",
+    "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\50240f69-864c-45d1-aaa3-7f98764208cf\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+    "sha256": "e75d1cc1f750e02eac0165447f5c26c8fdf455e0b1f84f4839ee974c61a7ce66",
+    "raw": {
+      "R": {
+        "n": 25,
+        "min": 199,
+        "max": 199,
+        "mean": 199
+      },
+      "G": {
+        "n": 25,
+        "min": 208,
+        "max": 209,
+        "mean": 208.08
+      },
+      "B": {
+        "n": 25,
+        "min": 191,
+        "max": 191,
+        "mean": 191
+      },
+      "C": {
+        "n": 25,
+        "min": 523,
+        "max": 523,
+        "mean": 523
+      },
+      "age": {
+        "n": 25,
+        "min": 20,
+        "max": 100,
+        "mean": 60
+      }
+    },
+    "fractions": {
+      "R": {
+        "n": 25,
+        "min": 1360,
+        "max": 1363,
+        "mean": 1362.76
+      },
+      "G": {
+        "n": 25,
+        "min": 1424,
+        "max": 1429,
+        "mean": 1424.4
+      },
+      "B": {
+        "n": 25,
+        "min": 1306,
+        "max": 1308,
+        "mean": 1307.84
+      }
+    },
+    "classes": {
+      "UNKNOWN": 25
+    },
+    "bad": 0,
+    "exposure": [
+      [
+        "4x",
+        "50400"
+      ]
+    ]
+  },
+  {
+    "label": "cardboard",
+    "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\cf6d5f29-03a4-4a46-9ec5-935f5c548460\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+    "sha256": "b3e57975f2a35b416deb63eaae7377d34344c836d79e0d5beca0002ed423e9ed",
+    "raw": {
+      "R": {
+        "n": 22,
+        "min": 389,
+        "max": 390,
+        "mean": 389.6818
+      },
+      "G": {
+        "n": 22,
+        "min": 359,
+        "max": 359,
+        "mean": 359
+      },
+      "B": {
+        "n": 22,
+        "min": 325,
+        "max": 325,
+        "mean": 325
+      },
+      "C": {
+        "n": 22,
+        "min": 837,
+        "max": 838,
+        "mean": 837.9545
+      },
+      "age": {
+        "n": 22,
+        "min": 20,
+        "max": 100,
+        "mean": 60
+      }
+    },
+    "fractions": {
+      "R": {
+        "n": 22,
+        "min": 1485,
+        "max": 1487,
+        "mean": 1486.3636
+      },
+      "G": {
+        "n": 22,
+        "min": 1369,
+        "max": 1370,
+        "mean": 1369.3182
+      },
+      "B": {
+        "n": 22,
+        "min": 1239,
+        "max": 1240,
+        "mean": 1239.3182
+      }
+    },
+    "classes": {
+      "BACKGROUND": 7,
+      "UNKNOWN": 15
+    },
+    "bad": 0,
+    "exposure": [
+      [
+        "4x",
+        "50400"
+      ]
+    ]
+  }
+]

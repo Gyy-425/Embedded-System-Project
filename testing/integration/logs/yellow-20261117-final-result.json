@@ -1,0 +1,432 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-rgb-report-powered.log"
+    },
+    {
+      "name": "yellow-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-yellow-core-compile.log"
+    },
+    {
+      "name": "yellow-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-yellow-core.log"
+    },
+    {
+      "name": "yellow-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-yellow-replay-compile.log"
+    },
+    {
+      "name": "yellow-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-yellow-replay.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-duty35-compile.log"
+    },
+    {
+      "name": "owner-duty35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-duty35.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-duty50.log"
+    },
+    {
+      "name": "yellow-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-yellow-owner-compile.log"
+    },
+    {
+      "name": "yellow-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-yellow-owner.log"
+    },
+    {
+      "name": "yellow-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-yellow-startup-compile.log"
+    },
+    {
+      "name": "yellow-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-yellow-startup.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-owner-original50-turn20.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-duty.log"
+    },
+    {
+      "name": "reject-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-turn.log"
+    },
+    {
+      "name": "reject-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-geometry.log"
+    },
+    {
+      "name": "reject-orphan-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-reject-orphan-yellow.log"
+    },
+    {
+      "name": "build-Yellow_Follow_v0_14_D40_T8_NO_DRIVE",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-build-Yellow_Follow_v0_14_D40_T8_NO_DRIVE.log"
+    },
+    {
+      "name": "build-Yellow_Follow_v0_14_D40_T8",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-build-Yellow_Follow_v0_14_D40_T8.log"
+    },
+    {
+      "name": "build-Yellow_Follow_v0_14_D40_T8_TEST",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-build-Yellow_Follow_v0_14_D40_T8_TEST.log"
+    },
+    {
+      "name": "build-Black_Follow_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-build-Black_Follow_Compatibility.log"
+    },
+    {
+      "name": "build-RGB_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-build-RGB_Compatibility.log"
+    },
+    {
+      "name": "build-Remote_PIO_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-final-build-Remote_PIO_Compatibility.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.uf2",
+      "sha256": "b66d8257768721650f855dc237d86f6cdbe802a15b6c02a775e24c66a6f33305"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.elf",
+      "sha256": "33d6e5b36708646317599de1a7d3c1e030bdb48d68c565f6ad043c4859be88cc"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.map",
+      "sha256": "9c013205fa2bf62499570cfdc947bc2677acfe1d8b2ca3f86df87894eeffe3fd"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8.uf2",
+      "sha256": "1b9fe3b171086e8eeb45b788779f0dfd0a1a0091e5e4e36c4574266a747b2e71"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8.elf",
+      "sha256": "26223fc5648061d87f6fea44be4a585f5cb7f4636d9c505d5f074b32a9134252"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8.map",
+      "sha256": "689fbfd3ac46e3b32601db87d927cbddf9647e6403a5622abaa0e8b83f97316a"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_TEST.uf2",
+      "sha256": "810e561b58f9ea3e8949023d5353fb9e8d0cb6e7f408366965ff5d5b0390f68e"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_TEST.elf",
+      "sha256": "8fdfcdcf8614ed6e6726dea63160ba87ca259c39d5179d9ee6655ec2016ef1c3"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_TEST.map",
+      "sha256": "40fde95e8cd0a02931b898edf0d92969563b785200fb99d3d54494422812ef1c"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Black_Follow_Compatibility.uf2",
+      "sha256": "989a16a1c33631883338f257663fef5470fe56f289328da330100e9e31b5cb0c"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Black_Follow_Compatibility.elf",
+      "sha256": "69eacba0b13d163cd6700068ab73fb0e10adfc57311f13218c5e05324acc2ba5"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Black_Follow_Compatibility.map",
+      "sha256": "1fbe4adfe268564c217899554a96a0cb0717ff041ec66e6849d297c1fc9439a5"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_RGB_Compatibility.uf2",
+      "sha256": "287440c3dfc8a8cc30700cb2e410f7d4e8a7707d007430448d2c8503e9385647"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_RGB_Compatibility.elf",
+      "sha256": "164b23740385d9bf9bb3f59ee9bd4477fd2cb2a6cf6670151c59f602f935453b"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_RGB_Compatibility.map",
+      "sha256": "1e281c5f3536c7626386e6eb5cde4100cc2fc48919d1fe2c98cda81015826028"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Remote_PIO_Compatibility.elf",
+      "sha256": "6e2e1f463a0e395140b2a2f429fbb856a0a9843357c29b854ea92f6a82ae4d30"
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Remote_PIO_Compatibility.map",
+      "sha256": "4ecdf3350c7d764343e305c85771160681b23b40c102d51a2e84bd50453e73b2"
+    }
+  ],
+  "old_uf2s": 123,
+  "old_uf2s_unchanged": true
+}

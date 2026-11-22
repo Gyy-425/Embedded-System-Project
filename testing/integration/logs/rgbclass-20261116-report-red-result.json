@@ -1,0 +1,66 @@
+{
+  "label": "rgbclass-20261116-report-red",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-report-red-classifier-compile.log"
+    },
+    {
+      "name": "classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-report-red-classifier.log"
+    },
+    {
+      "name": "classifier-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-report-red-classifier-replay-compile.log"
+    },
+    {
+      "name": "classifier-replay",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-report-red-classifier-replay.log"
+    },
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-report-red-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-report-red-core.log"
+    },
+    {
+      "name": "task-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-report-red-task-compile.log"
+    },
+    {
+      "name": "task",
+      "exit_code": -6,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-report-red-task.log"
+    }
+  ],
+  "status": "FAILED",
+  "error": "task failed or warned",
+  "old_uf2s": 70,
+  "old_uf2s_unchanged": true
+}

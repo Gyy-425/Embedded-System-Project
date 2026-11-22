@@ -492,6 +492,58 @@ static void test_explicit_rearm_only_when_coasted(void)
     assert(motor_drive_rearm() == E_CTX);
 }
 
+static void test_absolute_deadlines(void)
+{
+    motor_pulse_status_t status;
+    reset_hardware();
+    assert(motor_pulse_init()==E_OK);
+    uint32_t deadline=motor_drive_now_us()+10000U;
+    now_us+=20000U; /* Delayed first apply must never start on expired data. */
+    forbid_drive=true;
+    assert(motor_drive_set_until(50,50,deadline)==E_TMOUT);
+    motor_pulse_read(&status);assert(!status.active);
+    reset_hardware();assert(motor_pulse_init()==E_OK);
+    expect_pair(50,50);
+    uint32_t anchor=now_us;
+    assert(motor_drive_set_until(50,50,anchor+100000U)==E_OK);
+    now_us=anchor+90000U;
+    deadline=anchor+95000U;
+    now_us+=3000U; /* Preemption after caller chose deadline. */
+    assert(motor_drive_set_until(50,50,deadline)==E_OK);
+    assert(*reg(TIMER_ALARM0)==deadline);
+    now_us=deadline;
+    assert(motor_drive_set_until(50,50,deadline)==E_TMOUT);
+    motor_pulse_read(&status);assert(!status.active);
+    reset_hardware();assert(motor_pulse_init()==E_OK);
+    expect_pair(50,50);
+    now_us=UINT32_MAX-50000U;
+    deadline=now_us+80000U;
+    assert(motor_drive_set_until(50,50,deadline)==E_OK);
+    assert(*reg(TIMER_ALARM0)==deadline);
+    now_us+=60000U;
+    assert(motor_drive_set_until(50,50,deadline)==E_OK);
+    assert(*reg(TIMER_ALARM0)==deadline);
+}
+
+static void test_half_percent_drive(void)
+{
+    reset_hardware();
+    assert(motor_pulse_init() == E_OK);
+    expect_pair(-27, 27); /* The GPIO checker uses the signs of these values. */
+    uint32_t deadline = motor_drive_now_us() + 90000U;
+    assert(motor_drive_set_until_half_pct(-55, 55, deadline) == E_OK);
+    assert(*reg(PWM_BASE + 4U * 0x14U + 0xCU) == (3438U << 16U));
+    assert(*reg(PWM_BASE + 5U * 0x14U + 0xCU) == 3438U);
+    uint32_t writes = gpio_write_count;
+    now_us += 20000U;
+    assert(motor_drive_set_until_half_pct(-55, 55, deadline) == E_OK);
+    assert(gpio_write_count == writes);
+    assert(*reg(TIMER_ALARM0) == deadline);
+    now_us = deadline;
+    assert(motor_drive_set_until_half_pct(-55, 55, deadline) == E_TMOUT);
+    assert(pin_level(8U) && pin_level(9U) && pin_level(10U) && pin_level(11U));
+}
+
 int main(int argc, char **argv)
 {
     reset_hardware();
@@ -516,6 +568,8 @@ int main(int argc, char **argv)
     test_pair_expiry_cannot_restart();
     test_pair_expiry_during_renewal();
     test_explicit_rearm_only_when_coasted();
+    test_absolute_deadlines();
+    test_half_percent_drive();
     puts(MOTOR_TEST_PROBE ?
          "PASS: PROBE always coast for pulse/pair, lease, caps/conflicts and wrap" :
          "PASS: pulse/pair PWM, ordered coast, lease renewal/cutoff and wrap");

@@ -1,0 +1,1513 @@
+{
+  "status": "PASS",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "assembler",
+      "command": [
+        "/usr/bin/python3",
+        "tools/assemble_encoder_pio.py",
+        "--sdk",
+        "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0",
+        "--check"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-assembler.log"
+    },
+    {
+      "name": "pio-count-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_pio_count.c",
+        "app_program/subsystem2/encoder_pio_count.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/pio-count"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-count-compile.log"
+    },
+    {
+      "name": "pio-count-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-count"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-count-0.log"
+    },
+    {
+      "name": "pio-io-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_ENCODER_PIO=1",
+        "-Itesting/host/pio_fixture",
+        "testing/host/test_encoder_pio_io.c",
+        "app_program/subsystem2/encoder_pio_io_rp2040.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/pio-io"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-io-compile.log"
+    },
+    {
+      "name": "pio-io-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-io",
+        "success"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-io-0.log"
+    },
+    {
+      "name": "pio-io-1",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-io",
+        "busy"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-io-1.log"
+    },
+    {
+      "name": "pio-io-2",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-io",
+        "programbusy"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-io-2.log"
+    },
+    {
+      "name": "pio-io-3",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-io",
+        "unclaimedactive"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-io-3.log"
+    },
+    {
+      "name": "pio-io-4",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-io",
+        "initfail"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-io-4.log"
+    },
+    {
+      "name": "pio-io-5",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-io",
+        "disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-io-5.log"
+    },
+    {
+      "name": "pio-io-6",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-io",
+        "frozen"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-io-6.log"
+    },
+    {
+      "name": "pio-adapter-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_ENCODER_PIO=1",
+        "testing/host/test_encoder_capture_pio.c",
+        "app_program/subsystem2/encoder_pio_count.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/pio-adapter"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-adapter-compile.log"
+    },
+    {
+      "name": "pio-adapter-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-adapter",
+        "success"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-adapter-0.log"
+    },
+    {
+      "name": "pio-adapter-1",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-adapter",
+        "startfail"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-adapter-1.log"
+    },
+    {
+      "name": "pio-adapter-2",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/pio-adapter",
+        "half"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-pio-adapter-2.log"
+    },
+    {
+      "name": "gpio-deferred-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_gpio_deferred.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/gpio-deferred"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-gpio-deferred-compile.log"
+    },
+    {
+      "name": "gpio-deferred-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/gpio-deferred"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-gpio-deferred-0.log"
+    },
+    {
+      "name": "encoder-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/encoder"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-encoder-compile.log"
+    },
+    {
+      "name": "encoder-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/encoder"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-encoder-0.log"
+    },
+    {
+      "name": "gpio-capture-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_capture.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/gpio-capture"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-gpio-capture-compile.log"
+    },
+    {
+      "name": "gpio-capture-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/gpio-capture"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-gpio-capture-0.log"
+    },
+    {
+      "name": "gpio-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_startup.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/gpio-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-gpio-startup-compile.log"
+    },
+    {
+      "name": "gpio-startup-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/gpio-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-gpio-startup-0.log"
+    },
+    {
+      "name": "registers-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_rp2040_registers.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/registers"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-registers-compile.log"
+    },
+    {
+      "name": "registers-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/registers"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-registers-0.log"
+    },
+    {
+      "name": "motor-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_startup.c",
+        "app_program/subsystem2/drv_motor.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/motor-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motor-startup-compile.log"
+    },
+    {
+      "name": "motor-startup-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/motor-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motor-startup-0.log"
+    },
+    {
+      "name": "motor-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_control.c",
+        "app_program/subsystem2/motor_test.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/motor-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motor-control-compile.log"
+    },
+    {
+      "name": "motor-control-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/motor-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motor-control-0.log"
+    },
+    {
+      "name": "motor-pulse-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/motor-pulse"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motor-pulse-compile.log"
+    },
+    {
+      "name": "motor-pulse-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/motor-pulse"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motor-pulse-0.log"
+    },
+    {
+      "name": "motor-probe-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DMOTOR_TEST_PROBE=1",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/motor-probe"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motor-probe-compile.log"
+    },
+    {
+      "name": "motor-probe-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/motor-probe"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motor-probe-0.log"
+    },
+    {
+      "name": "motion-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_control.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/motion"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motion-compile.log"
+    },
+    {
+      "name": "motion-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/motion"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motion-0.log"
+    },
+    {
+      "name": "chassis-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_chassis.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/chassis"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-chassis-compile.log"
+    },
+    {
+      "name": "chassis-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/chassis",
+        "--vectors"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-chassis-0.log"
+    },
+    {
+      "name": "chassis-disabled-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_chassis_disabled.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/chassis-disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-chassis-disabled-compile.log"
+    },
+    {
+      "name": "chassis-disabled-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/chassis-disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-chassis-disabled-0.log"
+    },
+    {
+      "name": "motion-runtime0-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-pthread",
+        "-Iinclude",
+        "-DAAI05_REMOTE_APP=0",
+        "testing/host/test_motion_runtime.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/motion-runtime0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motion-runtime0-compile.log"
+    },
+    {
+      "name": "motion-runtime0-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/motion-runtime0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motion-runtime0-0.log"
+    },
+    {
+      "name": "motion-runtime1-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-pthread",
+        "-Iinclude",
+        "-DAAI05_REMOTE_APP=1",
+        "testing/host/test_motion_runtime.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/motion-runtime1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motion-runtime1-compile.log"
+    },
+    {
+      "name": "motion-runtime1-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/motion-runtime1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-motion-runtime1-0.log"
+    },
+    {
+      "name": "drive-capture-fault-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "-Ilib/libwifi/sysdepend/pico_rp2040",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "testing/host/test_drive_capture_fault.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/drive-capture-fault"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-drive-capture-fault-compile.log"
+    },
+    {
+      "name": "drive-capture-fault-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/drive-capture-fault"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-drive-capture-fault-0.log"
+    },
+    {
+      "name": "drive-protocol-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_drive_protocol.c",
+        "app_program/subsystem3/drive_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/drive-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-drive-protocol-compile.log"
+    },
+    {
+      "name": "drive-protocol-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/drive-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-drive-protocol-0.log"
+    },
+    {
+      "name": "drive-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_drive_control.c",
+        "app_program/subsystem3/drive_control.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/drive-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-drive-control-compile.log"
+    },
+    {
+      "name": "drive-control-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/drive-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-drive-control-0.log"
+    },
+    {
+      "name": "drive-service-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "testing/host/test_drive_service.c",
+        "app_program/subsystem3/mqtt_drive_app.c",
+        "app_program/subsystem3/drive_control.c",
+        "app_program/subsystem3/drive_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/drive-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-drive-service-compile.log"
+    },
+    {
+      "name": "drive-service-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/drive-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-drive-service-0.log"
+    },
+    {
+      "name": "comm-protocol-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_comm_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/comm-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-comm-protocol-compile.log"
+    },
+    {
+      "name": "comm-protocol-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/comm-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-comm-protocol-0.log"
+    },
+    {
+      "name": "colour-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_classifier.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/colour"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-colour-compile.log"
+    },
+    {
+      "name": "colour-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/colour"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-colour-0.log"
+    },
+    {
+      "name": "colour-runtime-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_runtime.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "app_program/subsystem1/colour_runtime.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/colour-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-colour-runtime-compile.log"
+    },
+    {
+      "name": "colour-runtime-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/colour-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-colour-runtime-0.log"
+    },
+    {
+      "name": "ir-runtime-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_ir_runtime.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "app_program/subsystem1/colour_runtime.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/ir-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-ir-runtime-compile.log"
+    },
+    {
+      "name": "ir-runtime-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/ir-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-ir-runtime-0.log"
+    },
+    {
+      "name": "colour-wire-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_protocol.c",
+        "app_program/subsystem3/colour_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/colour-wire"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-colour-wire-compile.log"
+    },
+    {
+      "name": "colour-wire-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/colour-wire"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-colour-wire-0.log"
+    },
+    {
+      "name": "colour-service-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_service.c",
+        "app_program/subsystem3/colour_service.c",
+        "app_program/subsystem3/colour_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/colour-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-colour-service-compile.log"
+    },
+    {
+      "name": "colour-service-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/colour-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-colour-service-0.log"
+    },
+    {
+      "name": "mqtt-ingress0-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=0",
+        "-DAAI05_COMMS_APP=1",
+        "-Itesting/host/mqtt_fixture",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "-I/tmp/aai05-sdk-3eb0f28287/lib/lwip/src/include",
+        "testing/host/test_mqtt_ingress.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/mqtt-ingress0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-mqtt-ingress0-compile.log"
+    },
+    {
+      "name": "mqtt-ingress0-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/mqtt-ingress0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-mqtt-ingress0-0.log"
+    },
+    {
+      "name": "mqtt-ingress1-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "-DAAI05_COMMS_APP=0",
+        "-Itesting/host/mqtt_fixture",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "-I/tmp/aai05-sdk-3eb0f28287/lib/lwip/src/include",
+        "testing/host/test_mqtt_ingress.c",
+        "-o",
+        "/tmp/aai05-pio-check-xjanily_/mqtt-ingress1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-mqtt-ingress1-compile.log"
+    },
+    {
+      "name": "mqtt-ingress1-0",
+      "command": [
+        "/tmp/aai05-pio-check-xjanily_/mqtt-ingress1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-mqtt-ingress1-0.log"
+    },
+    {
+      "name": "all-python-except-tcl",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "testing.host.test_chassis_cli",
+        "testing.host.test_colour_codec",
+        "testing.host.test_colour_sanitizer_gate",
+        "testing.host.test_comm_cli",
+        "testing.host.test_drive_cli",
+        "testing.host.test_drive_codec",
+        "testing.host.test_encoder_pio_program",
+        "testing.host.test_network_config",
+        "testing.host.test_tape_calibration"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-all-python-except-tcl.log"
+    },
+    {
+      "name": "windows-tcl-debug",
+      "command": [
+        "/mnt/c/Users/Guo YouYan/AppData/Local/Programs/Python/Python312/python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "testing/host",
+        "-p",
+        "test_debug_capture.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbclass-20261116-regression-windows-tcl-debug.log"
+    }
+  ],
+  "source_commit": "13f5b5eb9e4eaf9c2c7bb49615543f7391655146",
+  "old_artifacts": [
+    {
+      "path": "output/firmware/AAI05_Colour_Runtime_v0_10_BROKER210.uf2",
+      "sha256": "197c62cd63949268ad926984ea493c4641d6a30d381be5d90c152177874847f3",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Colour_Runtime_v0_10_HOTSPOT_campus-20261110-141643.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "c9d6e1c45331a83d9c928f436f6cbf8c37c6bbf5539fe9ca898d0f10788d8189",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "61cd30108754d4f87be228328178c55f56cfdb8d7ddeab7bcd097955f2aef79c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_1.uf2",
+      "sha256": "167bae49cdd11484e3123128089df513605df3cc3de18f3437586896a4e1a1ce",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_1_TEST.uf2",
+      "sha256": "3213a6f2798faf706bb943215faaff39e3feeb8382d762577d70b260d28ece1a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_2.uf2",
+      "sha256": "c662dc2f4159267287bba2170baf5244ff7241fb743a3fa59ab1824c25d81c51",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_2_TEST.uf2",
+      "sha256": "b332da2a6a76c683dc59268c8bb09a7e54cea1ccceadfc53012d5378459e1c35",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "0a5e865299d594d4f4a338d387df4c5754e7047d52a9c7191b26acb8eb17b6eb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "e7ba61620019d0eb51f9f5135cf896c9fedfa56465fb840d6ff06c83490fb5b2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motion_v0_7_LOCAL.uf2",
+      "sha256": "24cdbbbbdaaa4c167262be38d422b7b2034806d47b180bf1d61cf052eba0b347",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motion_v0_7_LOCAL_TEST.uf2",
+      "sha256": "cce14a9ea09c1ba823af7181a0ddf3df267162b34d7061001a1d964d14ed3f5a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE.uf2",
+      "sha256": "ddaca6a73eac1ced8e80ba64c2808c55a3d84b84d9e39b06e370c2cbb4f1d805",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE_TEST.uf2",
+      "sha256": "906fdb154eebe99c82ba3c95ad0e7ea9808f7b8f92ccc5639eb60e36491f2fac",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6.uf2",
+      "sha256": "e1062112cfc0860a67b2f062ae56948be7f47fd8f5c29180d93b5e1e3cfb3a9f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_1.uf2",
+      "sha256": "018a41bc4f56955218c0d227ac367771cee20a38790792316b13244c2da71b09",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_1_TEST.uf2",
+      "sha256": "5b33b5fdfc9b363a070644329efd34787367ab6776f21d40bdf6a6e5b8d8943b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_TEST.uf2",
+      "sha256": "cc4bddf1472e134e36ffa3beb965488a805fe8de67bed4373907b38305caf48e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206.uf2",
+      "sha256": "d34dd070d9ed2723eacefb24f45b4039f6363130b6a093e04c5971b5b3208a29",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206_TEST.uf2",
+      "sha256": "cf84fce3e261bd612e157216a83e76660819d422e63a0f8de68d30cbf0e5241b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3.uf2",
+      "sha256": "4a1af5d9b09026536aa1239bfb2ce1b7c5d3a6897837919c0c09a48aef4002e0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_1.uf2",
+      "sha256": "30abbae451e37d54b6734c802a2ada3c38902ec979d5d3816ab15b01f288c9a1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_1_TEST.uf2",
+      "sha256": "1c1e4d1318d990ef8a06ee67c27ecca6bfb7c5df98eb5b6889c02412da33f76d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_2.uf2",
+      "sha256": "72c224beb09b5f388e99c64e6e5c8e8cc3dceb27b2eac23187267beda3d0caef",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_2_TEST.uf2",
+      "sha256": "6fa36cc2d339193fb09bde2919009b3bbe00bfaa24350055965ce6ddc079139f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_TEST.uf2",
+      "sha256": "16fc127da7f60f1fd6a11beb0064405f34c573b2fd505770ff39010052bc4a79",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2",
+      "sha256": "d80d95ad4b7c364198e293942cef1bb8a46bf8202fb138b580460092dae5ba0a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE_TEST.uf2",
+      "sha256": "0b002d4b11266aedf3ec4a1fd947e63e20ec38cd465e409b3c9d0999ca0b7728",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE.uf2",
+      "sha256": "e9427de33eb385c6b9d49a86647022126bd9be49bfdf30ee507737ee735abe99",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE_TEST.uf2",
+      "sha256": "bde20006b0da9ac28d54380debdec1beb7fce91965c0df255c638b030f63c49d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "6bf00159a89b6463e98e11deb1c0b6aa4f884f26cfe374a19db7ca6a822bb227",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check.uf2",
+      "sha256": "d80d95ad4b7c364198e293942cef1bb8a46bf8202fb138b580460092dae5ba0a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check_TEST.uf2",
+      "sha256": "0b002d4b11266aedf3ec4a1fd947e63e20ec38cd465e409b3c9d0999ca0b7728",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-08-motor-qual-broker206/AAI05_Colour_Core_Compile_Check.uf2",
+      "sha256": "d34dd070d9ed2723eacefb24f45b4039f6363130b6a093e04c5971b5b3208a29",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-08-motor-qual-broker206/AAI05_Colour_Core_Compile_Check_TEST.uf2",
+      "sha256": "cf84fce3e261bd612e157216a83e76660819d422e63a0f8de68d30cbf0e5241b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "755d08a2246ac1e23fe1e21e782a64ae1b33aebbc051c0d0cb39f455511dd158",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "ed1f42ab340c1483cc14b70ea1998911b5f7c2d549d879b75d9b32616efdaca5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "0de06426e29c5b4ef3a8d5608cf467b380a7c2d2c8c0a97ba751c7a6d5db0b59",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "f98e6cfcacb2421d34931faa3cec4b6901b9be7526d0ba47a67fb44f6460946c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "755d08a2246ac1e23fe1e21e782a64ae1b33aebbc051c0d0cb39f455511dd158",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "ed1f42ab340c1483cc14b70ea1998911b5f7c2d549d879b75d9b32616efdaca5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "0de06426e29c5b4ef3a8d5608cf467b380a7c2d2c8c0a97ba751c7a6d5db0b59",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "f98e6cfcacb2421d34931faa3cec4b6901b9be7526d0ba47a67fb44f6460946c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "f2a06b48976a7b35ce630f3975f73c2d59e7d5e466b124729ee677ec5d90ceaa",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "7a53caabe80d6173ce974c1448dc0ecf9fa4f3d16e4fb23b1b93cc212413dfb1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "d333263c3e1e6ab56bb0744e97e630ec521fb6467e524f75626f9eab6a7d7291",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "abcd06caba0653917d837f2247342d0adada062434779489aabddadefdc5b0a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "0a5e865299d594d4f4a338d387df4c5754e7047d52a9c7191b26acb8eb17b6eb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "e7ba61620019d0eb51f9f5135cf896c9fedfa56465fb840d6ff06c83490fb5b2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "74d69eb6994262dcd6dbe12d187657c252511124daf43a1e27186fef6ab364a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "d73d5a4189957aa1856eef2aee7645763325469b559e8c81e0d668725122d8b0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "e403aae3ce735508127641323c8c1d2a8d198a6bb825d7a084a9a4de7ede2f9d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "ed7416ea00ca36a15f5e7dfa19ad60895be80abf50d04eb98234fd645ea0ba01",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "65fc992409340d5d4f642f7112102013dfd77da1047f6269e4cd07a0dc0d88d4",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "9f2908d4c55254ba341eb08b2f94d21e224fe98e840bff7a86f70334e9fe95de",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "8c16e60e021106e5c5d90e93bfe8dc84026abfae536433b3a700a42e76451d0c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "037915e6c2d91a2c10e4b2b3ec7ff0f961bd682252bbdad116ab7e5b641cc21c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "41b2d7e5f27920380364b6d17f592433a20d4baf7fd4add22065673048cadcd5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "edb2eaf64055714c10e527e63c246bdaf42df510780f6cec38735c3ea767dada",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "b9e0582f9f102985e7756c8b62d8e159bd99db96abe38d2bc09ba7f8d35c25e8",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "0be4d7db247d3c8eaa4f907cb70fc82da0f1dd350a3d1c0195c4011a5511bec1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "aaebe16f22d842c3e8c725cede20258cb2ce270de5a525b8c0b5544c5cb70e1c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "39e28bfd5357da7b63061e53b776933cb99a3bd5148a8b5c843dca60eb9775a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "6bf00159a89b6463e98e11deb1c0b6aa4f884f26cfe374a19db7ca6a822bb227",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "821bd36e7dd5a5a41f855782cd39e0f22d8c3de4c2a39a937431709b5dd0de33",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/archive/v0_5-broker-192_168_1_196/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "67e97ef38a396a087b382852037a648274e8aa1a4c0fc987d9a667494af024f0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/archive/v0_5-broker-192_168_1_196/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "2191644fa13d43d01001152f8d092c908bdaeb160f663e889c8e93dfad3e2766",
+      "unchanged": true
+    }
+  ]
+}

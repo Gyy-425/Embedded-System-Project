@@ -1,0 +1,43 @@
+SELECTED TAPES AND BACKGROUND — SMALL-SAMPLE CHECK
+PENDING: template only, no measurements entered.
+
+Capture date/time:
+Left optical-face-to-surface gap (mm):
+Right optical-face-to-surface gap (mm):
+Power arrangement:
+Lighting (keep fixed; no direct sunlight):
+Background sample is the same material/finish as intended full track:
+Both sensors fully over the same uniform sample in each capture:
+White tape identifier: WHITE TAPE 1
+Other changes:
+
+Use existing firmware and USB Serial Monitor. No MQTT movement commands.
+Check IR valid=1 err=0, zero motor duties, DRIVE=OFF.
+For each section: position, hands clear, wait 2 seconds, then paste 20 complete serial lines.
+For repeat 2: remove and independently reposition each sample, without changing the mounting or lighting.
+Preserve complete lines, including timestamps. Do not invent missing readings.
+
+BLACK repeat 1
+[Paste 20 complete serial lines here]
+
+WHITE TAPE 1 repeat 1
+[Paste 20 complete serial lines here]
+
+BLUE repeat 1
+[Paste 20 complete serial lines here]
+
+BARE CARDBOARD BACKGROUND repeat 1
+[Paste 20 complete serial lines here]
+
+BLACK repeat 2
+[Paste 20 complete serial lines here]
+
+WHITE TAPE 1 repeat 2
+[Paste 20 complete serial lines here]
+
+BLUE repeat 2
+[Paste 20 complete serial lines here]
+
+BARE CARDBOARD BACKGROUND repeat 2
+[Paste 20 complete serial lines here]
+

@@ -1,0 +1,225 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-rgb-report-powered.log"
+    },
+    {
+      "name": "yellow-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-yellow-core-compile.log"
+    },
+    {
+      "name": "yellow-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-yellow-core.log"
+    },
+    {
+      "name": "yellow-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-yellow-replay-compile.log"
+    },
+    {
+      "name": "yellow-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-yellow-replay.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-duty35-compile.log"
+    },
+    {
+      "name": "owner-duty35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-duty35.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-duty50.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-owner-original50-turn20.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellow-20261117-green1-core-target.log"
+    }
+  ],
+  "old_uf2s": 117,
+  "old_uf2s_unchanged": true
+}

@@ -1,0 +1,66 @@
+{
+  "fixture_sha256": "f21111b4b7563918a3745bc829b3394a2d10e79f5d6b7f854c80021c5bae5aae",
+  "source_filename": "test-records.txt",
+  "archived_source": "testing/calibration/2026-11-22-room2-blue-background-original.txt",
+  "source_sha256": "a60bc48cae794d9b688c6d305dcc703931fa4ab99bbb64846868f58424ec9666",
+  "role": "Stationary home-track captures after moving to a room with different lighting (ROOM2); firmware v0.80 model BWYRB_20261120_HOME_R2 reported UNKNOWN/NO_MATCH for every row",
+  "dedup": "One row per RGB sequence number; repeated report lines of the same sequence dropped",
+  "counts": {
+    "room2-blue": 24,
+    "room2-background": 21
+  },
+  "normalized_rgb_and_clear_ranges": {
+    "blue": [
+      [
+        1289,
+        1294
+      ],
+      [
+        1358,
+        1363
+      ],
+      [
+        1441,
+        1444
+      ],
+      [
+        628,
+        631
+      ]
+    ],
+    "background": [
+      [
+        1491,
+        1493
+      ],
+      [
+        1337,
+        1338
+      ],
+      [
+        1265,
+        1267
+      ],
+      [
+        861,
+        866
+      ]
+    ]
+  },
+  "bounds_change": "Separate AAI05_RGB_ROOM2=1 profile (home track only); old-room profiles unchanged. BLUE and BACKGROUND home boxes translated by the measured old-home->ROOM2 shift and rounded outward: BLUE R1253..1324 G1330..1406 B1399..1494 C599..1021 (shift +50/-41/-11, clear x1.314); BACKGROUND R1479..1560 G1313..1383 B1195..1270 C838..1477 (shift +65/-35/-30, clear x1.438). A union box was rejected because it reclassified recorded old-room border/join UNKNOWN samples as BLUE.",
+  "not_covered": "RED and YELLOW were not recaptured in ROOM2; robot-left/right offsets were not captured",
+  "old_home_reference": {
+    "blue": [
+      1241,
+      1401,
+      1453,
+      479
+    ],
+    "background": [
+      1427,
+      1372,
+      1296,
+      600.5
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-rgb-report-powered.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-duty35-compile.log"
+    },
+    {
+      "name": "owner-duty35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-duty35.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-duty50.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-owner-original50-turn20.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-reject-duty.log"
+    },
+    {
+      "name": "reject-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-reject-turn.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_3_D40_T8_NO_DRIVE",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-build-Black_Follow_v0_13_3_D40_T8_NO_DRIVE.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_3_D40_T8",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-build-Black_Follow_v0_13_3_D40_T8.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_3_D40_T8_TEST",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-build-Black_Follow_v0_13_3_D40_T8_TEST.log"
+    },
+    {
+      "name": "build-RGB_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-build-RGB_Compatibility.log"
+    },
+    {
+      "name": "build-Remote_PIO_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blackcov-20261117-release-build-Remote_PIO_Compatibility.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_NO_DRIVE.uf2",
+      "sha256": "2d4e43b6bc16a0f1f6c99c50efee7f1f075e44b06d99a0c430fb43d08c245fe6"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_NO_DRIVE.elf",
+      "sha256": "5bcfea50058698481d819575905c353e20eed093b1ebf05b0aead63548c47d4d"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_NO_DRIVE.map",
+      "sha256": "1312ec348eb1856f79156989f32c91c1b86019e33df8bb7e5756342546c355e0"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8.uf2",
+      "sha256": "a4a1103f6edaeea3f8a476d985d58aaeb5f7ab17c2ef0638b0e2b2f832182bf0"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8.elf",
+      "sha256": "6bc969447647f2fe75926e6ee97d5fdefcf363d838454e43fc63d4847965cd92"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8.map",
+      "sha256": "9abbd2262681a7c3448e03f9cb57f56978d389ee9cd3d21ecffb60c513db9b2d"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_TEST.uf2",
+      "sha256": "1d801a2659e6ff86e3797b3732185920b38e5aa5ae6a2390ce69be3e2c4c2a3a"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_TEST.elf",
+      "sha256": "07d20c0f6b94886611fd410a86994673cff6cd8ceed7d053d879d9eaff57b6ab"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_TEST.map",
+      "sha256": "97872886fb5c6c363c1de04325fd3544aa12bd20d99869df4d3434b6c3aef981"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_RGB_Compatibility.uf2",
+      "sha256": "9017481c40a483482ac96441f6730f9012f8b83bfacde7050fd9fbe6b3c7faa3"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_RGB_Compatibility.elf",
+      "sha256": "c4acd8fe7d2e26ce1ca120bc2324078fdac61a9f20dd39f4a9058f321fda3a71"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_RGB_Compatibility.map",
+      "sha256": "1b7f93c669edb577b46ee26e1767ba1c4b57307bfa228ab0ec8a6cbb4cef3afd"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Remote_PIO_Compatibility.elf",
+      "sha256": "e26318c672e0d32ea90cadc46b097f1b2917623a1027caf5cf8c3b644e4c70f4"
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Remote_PIO_Compatibility.map",
+      "sha256": "dae3eba714bc49150d992f170da4c36add76ad18343bb3ad73689c22dc79c15e"
+    }
+  ],
+  "old_uf2s": 110,
+  "old_uf2s_unchanged": true
+}

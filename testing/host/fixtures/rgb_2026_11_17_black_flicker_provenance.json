@@ -1,0 +1,28 @@
+{
+  "fixture_sha256": "e166f10f8759529f4c6064b46180e30c454d9ba6e4115e28229ba5713f5358e2",
+  "source": "testing\\calibration\\2026-11-17-black-profile-flicker-serial.txt",
+  "source_sha256": "c7f758c9e1dd7b1347c734c26978d0702b126e9c3829f68b8bcf1b5f00ca2692",
+  "role": "labelled adaptation/replay, not held-out accuracy",
+  "known_black_count": 177,
+  "known_black_sources": {
+    "rgb_2026_11_16.csv": 104,
+    "rgb_2026_11_17_track.csv": 51,
+    "rgb_2026_11_17_black_flicker.csv": 22
+  },
+  "fraction_margin": 32,
+  "lower": [
+    1319,
+    1366,
+    1255
+  ],
+  "upper": [
+    1432,
+    1461,
+    1352
+  ],
+  "clear_unchanged": [
+    495,
+    828
+  ],
+  "model_id": "BWY_20261117_R2"
+}

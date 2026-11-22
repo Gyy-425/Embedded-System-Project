@@ -1,0 +1,52 @@
+{
+  "label": "rgb-20261116-b",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-b-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-b-core.log"
+    },
+    {
+      "name": "task-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-b-task-compile.log"
+    },
+    {
+      "name": "task",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-b-task.log"
+    },
+    {
+      "name": "adapter-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-b-adapter-compile.log"
+    },
+    {
+      "name": "adapter",
+      "exit_code": -6,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-b-adapter.log"
+    }
+  ],
+  "status": "FAILED",
+  "error": "adapter failed or warned",
+  "old_uf2s": 60,
+  "old_uf2s_unchanged": true
+}

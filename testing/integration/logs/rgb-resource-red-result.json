@@ -1,0 +1,38 @@
+{
+  "label": "rgb-resource-red",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-resource-red-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-resource-red-core.log"
+    },
+    {
+      "name": "task-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-resource-red-task-compile.log"
+    },
+    {
+      "name": "task",
+      "exit_code": -6,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-resource-red-task.log"
+    }
+  ],
+  "status": "FAILED",
+  "error": "task failed or warned",
+  "old_uf2s": 60,
+  "old_uf2s_unchanged": true
+}

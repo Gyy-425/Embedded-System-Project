@@ -1,0 +1,275 @@
+{
+  "original": "C:\\Users\\Guo YouYan\\Downloads\\black1.txt",
+  "sha256": "819b18180d07aa644834dc33cade94f75201143329d5e29c049cc8aaefd0c04d",
+  "received_date": "2026-11-14",
+  "setup": "User confirms white1 and white2 are repositioned captures of the same selected white tape 1. Numeric heights, lighting and power not recorded in this file.",
+  "sections": [
+    {
+      "surface": "black",
+      "repeat": 1,
+      "n": 24,
+      "L": {
+        "min": 2608,
+        "max": 2645,
+        "mean": 2627.9167,
+        "sd": 13.5772
+      },
+      "R": {
+        "min": 2845,
+        "max": 2886,
+        "mean": 2866,
+        "sd": 13.3123
+      }
+    },
+    {
+      "surface": "black",
+      "repeat": 2,
+      "n": 21,
+      "L": {
+        "min": 2643,
+        "max": 2685,
+        "mean": 2667.7143,
+        "sd": 14.7721
+      },
+      "R": {
+        "min": 2814,
+        "max": 2851,
+        "mean": 2836.7143,
+        "sd": 12.1332
+      }
+    },
+    {
+      "surface": "white",
+      "repeat": 1,
+      "n": 21,
+      "L": {
+        "min": 163,
+        "max": 206,
+        "mean": 181.8095,
+        "sd": 14.2394
+      },
+      "R": {
+        "min": 170,
+        "max": 209,
+        "mean": 185.7619,
+        "sd": 14.6284
+      }
+    },
+    {
+      "surface": "white",
+      "repeat": 2,
+      "n": 19,
+      "L": {
+        "min": 161,
+        "max": 204,
+        "mean": 181.3158,
+        "sd": 13.2374
+      },
+      "R": {
+        "min": 172,
+        "max": 213,
+        "mean": 191.8947,
+        "sd": 13.5765
+      }
+    },
+    {
+      "surface": "blue",
+      "repeat": 1,
+      "n": 20,
+      "L": {
+        "min": 185,
+        "max": 225,
+        "mean": 206.6,
+        "sd": 14.6122
+      },
+      "R": {
+        "min": 194,
+        "max": 234,
+        "mean": 216.75,
+        "sd": 12.6943
+      }
+    },
+    {
+      "surface": "blue",
+      "repeat": 2,
+      "n": 21,
+      "L": {
+        "min": 184,
+        "max": 226,
+        "mean": 204.5714,
+        "sd": 14.7125
+      },
+      "R": {
+        "min": 195,
+        "max": 231,
+        "mean": 211.0476,
+        "sd": 11.3467
+      }
+    },
+    {
+      "surface": "card",
+      "repeat": 1,
+      "n": 19,
+      "L": {
+        "min": 180,
+        "max": 220,
+        "mean": 197.6316,
+        "sd": 12.107
+      },
+      "R": {
+        "min": 189,
+        "max": 228,
+        "mean": 207.3158,
+        "sd": 12.6669
+      }
+    },
+    {
+      "surface": "card",
+      "repeat": 2,
+      "n": 21,
+      "L": {
+        "min": 184,
+        "max": 226,
+        "mean": 202.9524,
+        "sd": 15.0979
+      },
+      "R": {
+        "min": 192,
+        "max": 232,
+        "mean": 209.619,
+        "sd": 14.603
+      }
+    }
+  ],
+  "pooled": {
+    "black": {
+      "n": 45,
+      "L": {
+        "min": 2608,
+        "max": 2685,
+        "mean": 2646.4889,
+        "sd": 24.4686
+      },
+      "R": {
+        "min": 2814,
+        "max": 2886,
+        "mean": 2852.3333,
+        "sd": 19.4387
+      }
+    },
+    "white": {
+      "n": 40,
+      "L": {
+        "min": 161,
+        "max": 206,
+        "mean": 181.575,
+        "sd": 13.5984
+      },
+      "R": {
+        "min": 170,
+        "max": 213,
+        "mean": 188.675,
+        "sd": 14.2979
+      }
+    },
+    "blue": {
+      "n": 41,
+      "L": {
+        "min": 184,
+        "max": 226,
+        "mean": 205.561,
+        "sd": 14.5156
+      },
+      "R": {
+        "min": 194,
+        "max": 234,
+        "mean": 213.8293,
+        "sd": 12.2166
+      }
+    },
+    "card": {
+      "n": 40,
+      "L": {
+        "min": 180,
+        "max": 226,
+        "mean": 200.425,
+        "sd": 13.8488
+      },
+      "R": {
+        "min": 189,
+        "max": 232,
+        "mean": 208.525,
+        "sd": 13.593
+      }
+    }
+  },
+  "quality": {
+    "total_records": 166,
+    "malformed_lines": [],
+    "duplicate_timestamps": 0,
+    "invalid_error_stale_or_drive_on": 0
+  },
+  "exploratory_method": "Four-class nearest-centroid using paired L/R, channels scaled by pooled within-class training variance. Train on one full repositioned repeat, test the other; reverse as sensitivity check. No filtering or deployment. Not an upper bound on other methods, not moving validation.",
+  "repeat_checks": [
+    {
+      "train_repeat": 1,
+      "test_repeat": 2,
+      "confusion": {
+        "black": {
+          "black": 21,
+          "white": 0,
+          "blue": 0,
+          "card": 0
+        },
+        "white": {
+          "black": 0,
+          "white": 14,
+          "blue": 2,
+          "card": 3
+        },
+        "blue": {
+          "black": 0,
+          "white": 0,
+          "blue": 11,
+          "card": 10
+        },
+        "card": {
+          "black": 0,
+          "white": 1,
+          "blue": 10,
+          "card": 10
+        }
+      }
+    },
+    {
+      "train_repeat": 2,
+      "test_repeat": 1,
+      "confusion": {
+        "black": {
+          "black": 24,
+          "white": 0,
+          "blue": 0,
+          "card": 0
+        },
+        "white": {
+          "black": 0,
+          "white": 18,
+          "blue": 0,
+          "card": 3
+        },
+        "blue": {
+          "black": 0,
+          "white": 1,
+          "blue": 13,
+          "card": 6
+        },
+        "card": {
+          "black": 0,
+          "white": 6,
+          "blue": 7,
+          "card": 6
+        }
+      }
+    }
+  ]
+}

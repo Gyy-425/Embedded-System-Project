@@ -1,0 +1,573 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-rgb-report-powered.log"
+    },
+    {
+      "name": "yellow-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-yellow-core-compile.log"
+    },
+    {
+      "name": "yellow-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-yellow-core.log"
+    },
+    {
+      "name": "yellow-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-yellow-replay-compile.log"
+    },
+    {
+      "name": "yellow-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-yellow-replay.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty40-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-duty40-compile.log"
+    },
+    {
+      "name": "owner-duty40",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-duty40.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-duty50.log"
+    },
+    {
+      "name": "yellow-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-yellow-owner-compile.log"
+    },
+    {
+      "name": "yellow-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-yellow-owner.log"
+    },
+    {
+      "name": "yellow-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-yellow-startup-compile.log"
+    },
+    {
+      "name": "yellow-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-yellow-startup.log"
+    },
+    {
+      "name": "red-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-red-core-compile.log"
+    },
+    {
+      "name": "red-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-red-core.log"
+    },
+    {
+      "name": "red-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-red-replay-compile.log"
+    },
+    {
+      "name": "red-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-red-replay.log"
+    },
+    {
+      "name": "red-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-red-owner35-compile.log"
+    },
+    {
+      "name": "red-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-red-owner35.log"
+    },
+    {
+      "name": "red-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-red-startup-compile.log"
+    },
+    {
+      "name": "red-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-red-startup.log"
+    },
+    {
+      "name": "blue-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-blue-replay-compile.log"
+    },
+    {
+      "name": "blue-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-blue-replay.log"
+    },
+    {
+      "name": "blue-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-blue-owner35-compile.log"
+    },
+    {
+      "name": "blue-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-blue-owner35.log"
+    },
+    {
+      "name": "blue-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-blue-startup-compile.log"
+    },
+    {
+      "name": "blue-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-blue-startup.log"
+    },
+    {
+      "name": "multi-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-multi-owner25-compile.log"
+    },
+    {
+      "name": "multi-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-multi-owner25.log"
+    },
+    {
+      "name": "multi-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-multi-startup-compile.log"
+    },
+    {
+      "name": "multi-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-multi-startup.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-owner-original50-turn20.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-duty.log"
+    },
+    {
+      "name": "reject-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-turn.log"
+    },
+    {
+      "name": "reject-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-geometry.log"
+    },
+    {
+      "name": "reject-orphan-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-orphan-yellow.log"
+    },
+    {
+      "name": "reject-red-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-red-geometry.log"
+    },
+    {
+      "name": "reject-orphan-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-orphan-red.log"
+    },
+    {
+      "name": "reject-mixed-colour",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-mixed-colour.log"
+    },
+    {
+      "name": "reject-blue-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-blue-geometry.log"
+    },
+    {
+      "name": "reject-orphan-blue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-orphan-blue.log"
+    },
+    {
+      "name": "reject-mix-blue-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-mix-blue-red.log"
+    },
+    {
+      "name": "reject-mix-blue-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-mix-blue-yellow.log"
+    },
+    {
+      "name": "reject-multi-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-multi-geometry.log"
+    },
+    {
+      "name": "reject-orphan-multi",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-orphan-multi.log"
+    },
+    {
+      "name": "reject-multi-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-multi-duty.log"
+    },
+    {
+      "name": "reject-mix-multi-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-mix-multi-red.log"
+    },
+    {
+      "name": "reject-mix-multi-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-mix-multi-yellow.log"
+    },
+    {
+      "name": "reject-mix-multi-blue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-reject-mix-multi-blue.log"
+    },
+    {
+      "name": "build-Multicolour_Follow_v0_17_D25_T8_NO_DRIVE",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-build-Multicolour_Follow_v0_17_D25_T8_NO_DRIVE.log"
+    },
+    {
+      "name": "build-Multicolour_Follow_v0_17_D25_T8",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/multi25-20261119-build-Multicolour_Follow_v0_17_D25_T8.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8_NO_DRIVE.uf2",
+      "sha256": "a8c6cb323ed7016e56388f382cff7b08b82391eebe3029d9d90983b5953c83ca"
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8_NO_DRIVE.elf",
+      "sha256": "b600b6a1967fc294a6f01a6fea86e7ecc6eb1f6d57eb9c775a17c10551b522d7"
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8_NO_DRIVE.map",
+      "sha256": "be31b6dffc943ddab2073178cd77fc2e55a7991fa3557e1c76d7d4640a3bd789"
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8.uf2",
+      "sha256": "84fa41614d3839f8aa27509010b33c2f6bec30c8ae90d83919fe2f3837d3a2a7"
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8.elf",
+      "sha256": "9482ef3879109f8b53a1b82e1454b4dd588eef353df465552da1928b796ee10e"
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8.map",
+      "sha256": "485c0457c1839c0aefa82c1c52a25e16b882f7a571aea8a3760e43637467d53d"
+    }
+  ],
+  "old_uf2s": 143,
+  "old_uf2s_unchanged": true
+}

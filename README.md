@@ -1,15 +1,82 @@
 # AAI05 robot firmware
 
+New software component: **per-colour route distance measurement**. Standalone
+C functions convert calibrated encoder counts, match timestamped colour windows,
+and produce section estimates/ranges and per-colour totals. No actual section
+lengths or wheel calibration are supplied. Strict host tests and RP2040 ARM
+library compilation pass; powered route integration remains pending.
+[Functions, test command and calibration workflow](docs/ROUTE_MEASUREMENT.md).
+
+New target: **red corridor v0.15 D35/T8**, RGB modelR4, preserving yellow and
+all earlier calibration bounds. Uses the142 recorded red positions; default
+follow duty is now35% as requested. The user reports yellow following passed
+with smoother motion than black. Red motion and yellow at35% remain to test.
+Black is the intended final border, not an interior lane colour; the third
+interior colour is still to be selected. [Red35 test guide](docs/RED_FOLLOW_TEST.md).
+
+New local mode: **yellow corridor v0.14 D40/T8**, RGB model R3. Explicit
+build-selected geometry follows yellow between black borders with the opposite
+IR steering sign from a plain black stripe. Replay covers109 new RGB rows,
+108 paired positions and584 earlier colour cases. The user now reports a
+successful short yellow trial; longer routes remain unqualified.
+[Earlier yellow40 check](docs/YELLOW_FOLLOW_TEST.md).
+
+Latest black ground evidence: three observed one-second runs completed; user
+reports reduced weaving and a small end turn. One captured early IR ambiguity
+stop remains unexplained physically. See the [recorded trial](testing/calibration/2026-11-17-black-follow-r2-ground-findings.md).
+
+The entries below describe earlier milestones and their evidence at the time.
+
+Prepared recognition correction: **v0.13.3 D40/T8, black model R2**. Latest
+known-black RGB samples exposed one-count profile-boundary flicker. Black
+chromatic coverage now uses177 labelled observations with32/4095 margins;
+clear/other classes and all controller settings stay unchanged. Recorded584
+replay cases pass; new R2 live confirmation is pending. [Quick recognition check](docs/BLACK_PROFILE_R2.md).
+
+Prepared steering comparison: **v0.13.2 D40/T8**. Moving logs show repeated
+maximum-strength reversals at D40/T20, with valid sensing and COMPLETE stops.
+Only nominal proportional steering20→8 changes; duty40, calibration and safety
+rules stay fixed. New ground behavior remains untested. [Gentler steering trial](docs/FOLLOW_STEERING_TUNING.md).
+
+Prepared tuning case: **black follow v0.13.1, duty limit40%**. User reports
+v0.13 moves but weaves on the ground. Both wheel commands now scale together
+under a configurable30/35/40/45/50% cap; steering and safety policies remain.
+This is an experiment, not demonstrated smoother tracking or measured speed.
+The local image has no live Wi-Fi speed commands. [Duty comparison](docs/FOLLOW_SPEED_TUNING.md).
+
+Prepared milestone: **bounded local black following v0.13**. Separate FOLLOW
+profile combines IR steering and fresh RGB BLACK presence with the existing
+motor driver, GP20 start, GP21 STOP and a nominal one-second run. Absolute
+hardware deadlines protect run/data expiry against delayed application.
+NO_DRIVE and powered images are distinct; v0.13 moved but weaved in the user's
+ground attempt. Tracking acceptance remains pending. MQTT
+following is a later integration step. [Test guide](docs/BLACK_FOLLOW_TEST.md).
+
+Prepared milestone: **RGB classifier v0.12.1**, with provisional profiles for
+BLACK, WHITE TAPE 1 and YELLOW, plus BACKGROUND/UNKNOWN. It adds readable
+`RGB_CLASS[...]` output to the read-only USB diagnostic; motors remain disabled.
+The user reported basic v0.12 recognition, then actual-track black/background
+captures exposed two profile coverage limits. v0.12.1 corrects those red-fraction
+bounds only; its live check, moving recognition and automatic following remain
+pending. [Stationary test and limits](docs/RGB_CLASSIFIER_TEST.md).
+
+Previous milestone: **TCS34725 read-only RGB diagnostic v0.11**. A separate
+`RGB_DIAG=1` USB profile reads fixed-exposure RGBC through I2C1 on GP2/GP3,
+with motor output disabled and no MQTT/network application. It preserves IR
+acquisition and existing remote-motion interfaces. No RGB hardware acceptance,
+colour labels or target following is claimed. [Wiring, upload and first test](docs/RGB_DIAGNOSTIC_TEST.md).
+
 Latest car result: **v0.10 basic stationary uncalibrated reporting passed**.
 Serial shows valid IR, both results7/1, no reported colour queue drops and
 motor output OFF. Colour MQTT snapshots and a fresh v2 STATUS OK are observed;
 the user confirmed deliberate shutdown. Actual calibration and moving-colour
 acceptance remain pending. [Result and limits](testing/integration/logs/2026-11-09-colour-runtime-car-result.md).
 
-Latest prepared case: **IR colour runtime/reporting v0.10**. The IR owner now
+Previous prepared case: **IR colour runtime/reporting v0.10**. The IR owner now
 classifies each acquisition, retains bounded class/reason transitions and
 exposes a separate read-only MQTT colour stream and serial results. The boot
-model is deliberately uncalibrated: no real tapes or thresholds are available.
+model remains deliberately uncalibrated: later IR captures found overlap and
+do not justify a complete deployment model. RGB calibration is a separate step.
 Existing v2 motion commands remain compatible; this does not enable automatic
 target following. The v0.10 BROKER210 image has now passed the scoped reporting check.
 [Runtime guide and limits](docs/COLOUR_RUNTIME.md).

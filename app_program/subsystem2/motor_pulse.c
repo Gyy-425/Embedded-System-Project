@@ -28,7 +28,7 @@ _Static_assert(CLK_PLL_SYS_FREQ == 125000000U,
 
 static motor_pulse_status_t g_motor_pulse_status;
 static uint32_t g_motor_pulse_started_us;
-static int8_t g_motor_drive_duty[2];
+static int16_t g_motor_drive_duty[2]; /* Signed half-percentage points. */
 static bool g_motor_drive_is_continuous;
 static bool g_motor_drive_expired;
 static uint32_t g_motor_drive_lease_us;
@@ -251,8 +251,8 @@ static ER motor_pulse_start_locked(uint8_t wheel, uint8_t direction,
     g_motor_pulse_status.wheel = wheel;
     g_motor_pulse_status.direction = direction;
     g_motor_pulse_status.duty = duty;
-    g_motor_drive_duty[wheel - 1U] = (int8_t)(
-        (direction == 1U) ? (int32_t)duty : -(int32_t)duty);
+    g_motor_drive_duty[wheel - 1U] = (int16_t)(
+        (direction == 1U) ? 2 * (int32_t)duty : -2 * (int32_t)duty);
     g_motor_pulse_status.elapsed_us = 0U;
     g_motor_pulse_status.active = true;
     out_w(TIMER_INTR, 1U);
@@ -327,19 +327,19 @@ void motor_pulse_read(motor_pulse_status_t *p_status)
     motor_pulse_unlock(saved);
 }
 
-static uint32_t motor_drive_magnitude(int8_t duty)
+static uint32_t motor_drive_magnitude(int16_t duty)
 {
     return (uint32_t)((duty < 0) ? -(int32_t)duty : (int32_t)duty);
 }
 
-static void motor_drive_configure_wheel(uint32_t wheel, int8_t duty)
+static void motor_drive_configure_wheel(uint32_t wheel, int16_t duty_half_pct)
 {
-    if (duty != 0)
+    if (duty_half_pct != 0)
     {
         uint32_t base = PULSE_PWM_BASE(wheel + 4U);
         uint32_t pin_a = 8U + wheel * 2U;
-        uint32_t cc = MOTOR_PWM_PERIOD * motor_drive_magnitude(duty) / 100U;
-        uint32_t cc_pair = (duty > 0) ? cc : cc << 16U;
+        uint32_t cc = (MOTOR_PWM_PERIOD * motor_drive_magnitude(duty_half_pct) + 100U) / 200U;
+        uint32_t cc_pair = (duty_half_pct > 0) ? cc : cc << 16U;
 
         out_w(base + 4U, 16U);
         out_w(base + 8U, 0U);
@@ -350,50 +350,75 @@ static void motor_drive_configure_wheel(uint32_t wheel, int8_t duty)
     }
 }
 
-static void motor_drive_release_wheel(uint32_t wheel, int8_t duty)
+static void motor_drive_release_wheel(uint32_t wheel, int16_t duty_half_pct)
 {
 #if !MOTOR_TEST_PROBE
-    if (duty != 0)
+    if (duty_half_pct != 0)
     {
         uint32_t pin_a = 8U + wheel * 2U;
-        uint32_t pwm_pin = (duty > 0) ? pin_a : pin_a + 1U;
-        uint32_t low_pin = (duty > 0) ? pin_a + 1U : pin_a;
+        uint32_t pwm_pin = (duty_half_pct > 0) ? pin_a : pin_a + 1U;
+        uint32_t low_pin = (duty_half_pct > 0) ? pin_a + 1U : pin_a;
         out_w(GPIO_CTRL(low_pin), GPIO_CTRL_FUNCSEL_PWM);
         out_w(GPIO_CTRL(pwm_pin), GPIO_CTRL_FUNCSEL_PWM);
     }
 #else
     (void)wheel;
-    (void)duty;
+    (void)duty_half_pct;
 #endif
 }
 
-static ER motor_drive_start_locked(int8_t left_pct, int8_t right_pct,
-                                    uint32_t lease_us)
+static uint32_t constrain_deadline(uint32_t anchor_us, uint32_t lease_us,
+                                    bool absolute, uint32_t deadline_us)
+{
+    if (absolute)
+    {
+        uint32_t remaining = deadline_us - anchor_us;
+        if ((remaining == 0U) ||
+            (remaining > MOTOR_DRIVE_MAX_LEASE_MS * 1000U))
+        {
+            return 0U; /* Includes expired deadlines across timer wrap. */
+        }
+        if (lease_us > remaining) {lease_us = remaining;}
+    }
+    return lease_us;
+}
+
+static ER motor_drive_start_locked(int16_t left_half_pct, int16_t right_half_pct,
+                                    uint32_t lease_us, bool absolute,
+                                    uint32_t deadline_us)
 {
     uint32_t started_us = (uint32_t)in_w(TIMER_TIMERAWL);
+    lease_us = constrain_deadline(started_us, lease_us, absolute, deadline_us);
+    if (lease_us == 0U)
+    {
+        g_motor_drive_expired = true;
+        motor_pulse_stop_locked();
+        return E_TMOUT;
+    }
     motor_pulse_stop_locked();
-    motor_drive_configure_wheel(0U, left_pct);
-    motor_drive_configure_wheel(1U, right_pct);
-    g_motor_drive_duty[0] = left_pct;
-    g_motor_drive_duty[1] = right_pct;
+    motor_drive_configure_wheel(0U, left_half_pct);
+    motor_drive_configure_wheel(1U, right_half_pct);
+    g_motor_drive_duty[0] = left_half_pct;
+    g_motor_drive_duty[1] = right_half_pct;
     g_motor_drive_is_continuous = true;
     g_motor_drive_lease_us = lease_us;
     g_motor_pulse_started_us = started_us;
     g_motor_pulse_status.wheel = 0U;
     g_motor_pulse_status.direction = 0U;
+    uint32_t left_magnitude = motor_drive_magnitude(left_half_pct);
+    uint32_t right_magnitude = motor_drive_magnitude(right_half_pct);
     g_motor_pulse_status.duty = (uint8_t)(
-        motor_drive_magnitude(left_pct) > motor_drive_magnitude(right_pct) ?
-        motor_drive_magnitude(left_pct) : motor_drive_magnitude(right_pct));
+        (left_magnitude > right_magnitude ? left_magnitude : right_magnitude) / 2U);
     g_motor_pulse_status.elapsed_us = 0U;
     g_motor_pulse_status.active = true;
     out_w(TIMER_INTR, 1U);
     out_w(TIMER_ALARM0, g_motor_pulse_started_us + lease_us);
     out_w(PULSE_TIMER_SET, 1U);
-    if (left_pct != 0)
+    if (left_half_pct != 0)
     {
         out_w(PULSE_PWM_BASE(4U), 1U);
     }
-    if (right_pct != 0)
+    if (right_half_pct != 0)
     {
         out_w(PULSE_PWM_BASE(5U), 1U);
     }
@@ -403,8 +428,8 @@ static ER motor_drive_start_locked(int8_t left_pct, int8_t right_pct,
         motor_pulse_stop_locked();
         return E_TMOUT;
     }
-    motor_drive_release_wheel(0U, left_pct);
-    motor_drive_release_wheel(1U, right_pct);
+    motor_drive_release_wheel(0U, left_half_pct);
+    motor_drive_release_wheel(1U, right_half_pct);
     if (motor_pulse_missed_deadline(lease_us))
     {
         g_motor_drive_expired = true;
@@ -414,13 +439,16 @@ static ER motor_drive_start_locked(int8_t left_pct, int8_t right_pct,
     return E_OK;
 }
 
-static ER motor_drive_renew_locked(uint32_t lease_us)
+static ER motor_drive_renew_locked(uint32_t lease_us, bool absolute,
+                                    uint32_t deadline_us)
 {
     uint32_t previous_started_us = g_motor_pulse_started_us;
     uint32_t previous_lease_us = g_motor_drive_lease_us;
     uint32_t renewed_us = (uint32_t)in_w(TIMER_TIMERAWL);
+    lease_us = constrain_deadline(renewed_us, lease_us, absolute, deadline_us);
 
-    if (((uint32_t)(renewed_us - previous_started_us) >= previous_lease_us) ||
+    if ((lease_us == 0U) ||
+        ((uint32_t)(renewed_us - previous_started_us) >= previous_lease_us) ||
         ((in_w(TIMER_ARMED) & 1U) == 0U))
     {
         g_motor_drive_expired = true;
@@ -482,10 +510,13 @@ int32_t motor_drive_rearm(void)
     return error;
 }
 
-int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms)
+static int32_t motor_drive_set_internal(int16_t left_half_pct, int16_t right_half_pct,
+                                         uint32_t lease_ms, bool absolute,
+                                         uint32_t deadline_us)
 {
     UINT saved = motor_pulse_lock();
     ER error = E_OK;
+    const int32_t max_half_pct = 2 * (int32_t)MOTOR_PULSE_MAX_DUTY;
 
     if (!g_motor_pulse_status.ready)
     {
@@ -501,10 +532,8 @@ int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms)
     {
         error = E_BUSY;
     }
-    else if ((left_pct < -(int32_t)MOTOR_PULSE_MAX_DUTY) ||
-             (left_pct > (int32_t)MOTOR_PULSE_MAX_DUTY) ||
-             (right_pct < -(int32_t)MOTOR_PULSE_MAX_DUTY) ||
-             (right_pct > (int32_t)MOTOR_PULSE_MAX_DUTY) ||
+    else if ((left_half_pct < -max_half_pct) || (left_half_pct > max_half_pct) ||
+             (right_half_pct < -max_half_pct) || (right_half_pct > max_half_pct) ||
              (lease_ms == 0U) || (lease_ms > MOTOR_DRIVE_MAX_LEASE_MS))
     {
         motor_pulse_stop_locked();
@@ -518,21 +547,47 @@ int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms)
         motor_pulse_stop_locked();
         error = E_TMOUT;
     }
-    else if ((left_pct == 0) && (right_pct == 0))
+    else if ((left_half_pct == 0) && (right_half_pct == 0))
     {
         motor_pulse_stop_locked();
     }
     else if (g_motor_pulse_status.active &&
-             (left_pct == g_motor_drive_duty[0]) &&
-             (right_pct == g_motor_drive_duty[1]))
+             (left_half_pct == g_motor_drive_duty[0]) &&
+             (right_half_pct == g_motor_drive_duty[1]))
     {
-        error = motor_drive_renew_locked(lease_ms * 1000U);
+        error = motor_drive_renew_locked(lease_ms * 1000U, absolute, deadline_us);
     }
     else
     {
-        error = motor_drive_start_locked(left_pct, right_pct, lease_ms * 1000U);
+        error = motor_drive_start_locked(left_half_pct, right_half_pct, lease_ms * 1000U,
+                                          absolute, deadline_us);
     }
     g_motor_pulse_status.error = error;
     motor_pulse_unlock(saved);
     return error;
+}
+
+int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms)
+{
+    return motor_drive_set_internal((int16_t)(2 * left_pct), (int16_t)(2 * right_pct),
+                                    lease_ms, false, 0U);
+}
+
+uint32_t motor_drive_now_us(void)
+{
+    return (uint32_t)in_w(TIMER_TIMERAWL);
+}
+
+int32_t motor_drive_set_until(int8_t left_pct, int8_t right_pct,
+                               uint32_t deadline_us)
+{
+    return motor_drive_set_internal((int16_t)(2 * left_pct), (int16_t)(2 * right_pct),
+                                    MOTOR_DRIVE_MAX_LEASE_MS, true, deadline_us);
+}
+
+int32_t motor_drive_set_until_half_pct(int8_t left_half_pct, int8_t right_half_pct,
+                                       uint32_t deadline_us)
+{
+    return motor_drive_set_internal(left_half_pct, right_half_pct,
+                                    MOTOR_DRIVE_MAX_LEASE_MS, true, deadline_us);
 }

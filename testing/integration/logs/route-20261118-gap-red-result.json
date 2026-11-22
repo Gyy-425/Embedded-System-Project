@@ -1,0 +1,27 @@
+{
+  "status": "FAILED",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "calibration-cli",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-gap-red-calibration-cli.log"
+    },
+    {
+      "name": "host-compile",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-gap-red-host-compile.log"
+    },
+    {
+      "name": "behaviour",
+      "exit_code": -6,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-gap-red-behaviour.log"
+    }
+  ],
+  "error": "behaviour failed/warned",
+  "old_uf2s": 141,
+  "old_uf2s_unchanged": true
+}

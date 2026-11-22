@@ -1,0 +1,128 @@
+{
+  "label": "follow-20261117-rgb-regression",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-classifier-compile.log"
+    },
+    {
+      "name": "classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-classifier.log"
+    },
+    {
+      "name": "classifier-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-classifier-replay-compile.log"
+    },
+    {
+      "name": "classifier-replay",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-classifier-replay.log"
+    },
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-core.log"
+    },
+    {
+      "name": "task-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-task-compile.log"
+    },
+    {
+      "name": "task",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-task.log"
+    },
+    {
+      "name": "adapter-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-adapter-compile.log"
+    },
+    {
+      "name": "adapter",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-adapter.log"
+    },
+    {
+      "name": "colour-regression-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-colour-regression-compile.log"
+    },
+    {
+      "name": "colour-regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-colour-regression.log"
+    },
+    {
+      "name": "runtime-regression-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-runtime-regression-compile.log"
+    },
+    {
+      "name": "runtime-regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-runtime-regression.log"
+    },
+    {
+      "name": "rgb_sensor-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-rgb_sensor-target-compile.log"
+    },
+    {
+      "name": "rgb_classifier-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-rgb_classifier-target-compile.log"
+    },
+    {
+      "name": "rgb_calibration-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-rgb-regression-rgb_calibration-target-compile.log"
+    }
+  ],
+  "status": "PASS",
+  "old_uf2s": 90,
+  "old_uf2s_unchanged": true
+}

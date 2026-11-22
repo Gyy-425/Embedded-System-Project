@@ -1,0 +1,208 @@
+{
+  "label": "rgbtrack-20261117-release",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-classifier-compile.log"
+    },
+    {
+      "name": "classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-classifier.log"
+    },
+    {
+      "name": "classifier-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-classifier-replay-compile.log"
+    },
+    {
+      "name": "classifier-replay",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-classifier-replay.log"
+    },
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-core.log"
+    },
+    {
+      "name": "task-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-task-compile.log"
+    },
+    {
+      "name": "task",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-task.log"
+    },
+    {
+      "name": "adapter-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-adapter-compile.log"
+    },
+    {
+      "name": "adapter",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-adapter.log"
+    },
+    {
+      "name": "colour-regression-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-colour-regression-compile.log"
+    },
+    {
+      "name": "colour-regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-colour-regression.log"
+    },
+    {
+      "name": "runtime-regression-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-runtime-regression-compile.log"
+    },
+    {
+      "name": "runtime-regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-runtime-regression.log"
+    },
+    {
+      "name": "rgb_sensor-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-rgb_sensor-target-compile.log"
+    },
+    {
+      "name": "rgb_classifier-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-rgb_classifier-target-compile.log"
+    },
+    {
+      "name": "rgb_calibration-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-rgb_calibration-target-compile.log"
+    },
+    {
+      "name": "reject-powered",
+      "exit_code": 2,
+      "expected_failure": true,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-reject-powered.log"
+    },
+    {
+      "name": "reject-remote",
+      "exit_code": 2,
+      "expected_failure": true,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-reject-remote.log"
+    },
+    {
+      "name": "reject-uart",
+      "exit_code": 2,
+      "expected_failure": true,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-reject-uart.log"
+    },
+    {
+      "name": "build-RGB_Classifier_v0_12_1",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-build-RGB_Classifier_v0_12_1.log"
+    },
+    {
+      "name": "build-RGB_Classifier_v0_12_1_TEST",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-build-RGB_Classifier_v0_12_1_TEST.log"
+    },
+    {
+      "name": "build-Remote_PIO_Regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-release-build-Remote_PIO_Regression.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1.uf2",
+      "sha256": "f7d1b722129488427fa85028d619a028eebeffcdb1c7953f83ea712cc34eb59b"
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1.elf",
+      "sha256": "e5d45832f39fef96e15e7a7f5221e89ec8b7059948b27a59e943328f031aefcd"
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1.map",
+      "sha256": "068a669cd28d62920d9a00fe68cddb2a6b50b9160938093aa25dcbc1c28da5fc"
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1_TEST.uf2",
+      "sha256": "0edd7fb33f2c16db9cf7a5b4b8e65ccd8f49afd984845c1255ef6b06831753c6"
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1_TEST.elf",
+      "sha256": "7f05b9b788dd8f67bd62b0f4340a47db916c76d2972a86ae1f6a5949e95d7266"
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1_TEST.map",
+      "sha256": "37fa80d91cccfdb563fa994a32e6faf54ebcc627b202ba687d41636b32f3d21d"
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1"
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_Remote_PIO_Regression.elf",
+      "sha256": "e31387ca76781275b325a62e04023d6614efad2dc705e39914e7aabbab97ad96"
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_Remote_PIO_Regression.map",
+      "sha256": "946619eafa2842386c3f4fd271dc2d8bdb30c767e19a5ae6ab556dc3b7e6194d"
+    }
+  ],
+  "status": "PASS",
+  "old_uf2s": 77,
+  "old_uf2s_unchanged": true
+}

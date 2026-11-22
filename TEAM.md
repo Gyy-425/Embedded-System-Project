@@ -6,7 +6,7 @@ The coordinator requested a solo development workflow for all three logical modu
 
 | Module | Development owner | Responsibilities | Code |
 |---|---|---|---|
-| 1 IR | You Yan, with coding-assistant support | ADC acquisition, later calibration/classification | app_program/subsystem1 |
+| 1 IR/RGB | You Yan, with coding-assistant support | ADC acquisition, TCS34725 acquisition, portable calibrated RGB classifier | app_program/subsystem1 |
 | 2 Motion | You Yan, with coding-assistant support | Motor outputs, encoders, later navigation/STOP | app_program/subsystem2 |
 | 3 Communications | You Yan, with coding-assistant support | Diagnostic reporting, later command/telemetry encoding | app_program/subsystem3 |
 
@@ -24,7 +24,8 @@ Drivers live with their owning module. The kernel, BSP and built-in radio stack 
 | GP10 / GP11 | Motion | Internal M2 driver A/B |
 | GP23, GP24, GP25, GP29 | Kernel radio service | Reserved Pico W nets; never reuse |
 | GP0/GP1 | Unused in current profile | Reserved if UART/crash console is selected later |
-| GP2/GP3, GP6, GP28 | Unused by current application | IMU, barcode and third IR omitted |
+| GP2/GP3 | RGB owner when RGB_DIAG=1; otherwise unused | TCS34725 I2C1 SDA/SCL; kernel I2C driver stays disabled |
+| GP6, GP28 | Unused by current application | Barcode and third IR omitted; Grove5 GP26 duplicates the left IR net |
 | GP12-15 | Unused by current application | Servo header disconnected |
 | GP20 / GP21 | Motion | Programmable NEXT / latched STOP buttons, input pull-ups |
 | GP18, GP22 | Carrier facilities, unused | RGB LED and buzzer |
@@ -40,6 +41,7 @@ IR task alone opens/reads the existing adca device. The kernel driver implements
 | Kernel Wi-Fi service | 4 | Existing port configuration | Radio polling |
 | Motion diagnostics | 12 | Processor 1 / core 0 | Handle buttons/faults and motor controller, publish snapshot, then requested 10 ms delay |
 | IR acquisition | 14 | Any | Paired ADC read, then 10 ms delay |
+| RGB acquisition (RGB_DIAG only) | 15 | Any | Sole I2C1 owner, bounded transfers, fixed-exposure RGBC cycles, requested10ms polling delay |
 | Report | 16 | Any | Status line, then requested 250 ms delay |
 
 These are configured priorities and requested delays, not measured deadlines or WCET. Motion's requested 10 ms delay normally yields approximately 20 ms between snapshot publications, and the 250 ms report delay yields approximately 260 ms. v0.1's task-side polling was too coarse for faster hand rotation; its user-run records reached bad=66/60. v0.2 capture runs independently in GPIO IRQ13 at external interrupt priority 2 on core 0 (not task priority 2). The shared port vector table requires rejecting any pre-existing GPIO event owner on either core. Each task requests 2048 stack bytes; stack high-water and maximum encoder edge-rate measurements remain pending.
@@ -53,6 +55,20 @@ These are configured priorities and requested delays, not measured deadlines or 
 | Radio status | Kernel service | Report | cyw43_utk_get_status safe accessor |
 
 Readers use TMO_POL and explicitly report a failed snapshot acquisition. No console output or ADC operation occurs while holding a snapshot mutex. All objects are created before application tasks start. Timestamp ages use unsigned 32-bit subtraction, valid for diagnostic ages across a timer wrap. Counters are signed 32-bit and saturate with a sticky flag; invalid-transition counters also saturate.
+
+RGB classifier v0.12 adds report-time classification of the copied RGB snapshot
+using an immutable black/white/yellow/background model. It introduces no task,
+mutex, motor writer or MQTT format change. Unknown, ambiguous and unhealthy
+observations do not receive a known label. Report-time labels are not a
+transition queue or navigation interface. See docs/RGB_CLASSIFIER_TEST.md.
+
+FOLLOW_APP v0.13 is a mutually exclusive local Motion-owner branch. It reuses
+RGB acquisition/I2C1 and PIO encoders, classifies copied RGB at control time,
+and remains the single runtime motor writer. Cached successful observations
+retain original timestamps; invalid/expired data stops. Report reads copied
+follow/Motion status through a copy-only SMP spinlock. Existing legacy snapshot
+policies and MQTT formats are unchanged. GP20 starts one nominal1000ms run;
+GP21 stops. Later Wi-Fi following is separate. See docs/BLACK_FOLLOW_TEST.md.
 
 ## Network and future phases
 

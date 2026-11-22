@@ -1,0 +1,933 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "rgb_profile": "home",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-rgb-report-powered.log"
+    },
+    {
+      "name": "yellow-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-yellow-core-compile.log"
+    },
+    {
+      "name": "yellow-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-yellow-core.log"
+    },
+    {
+      "name": "yellow-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-yellow-replay-compile.log"
+    },
+    {
+      "name": "yellow-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-yellow-replay.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty40-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-duty40-compile.log"
+    },
+    {
+      "name": "owner-duty40",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-duty40.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-duty50.log"
+    },
+    {
+      "name": "yellow-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-yellow-owner-compile.log"
+    },
+    {
+      "name": "yellow-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-yellow-owner.log"
+    },
+    {
+      "name": "yellow-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-yellow-startup-compile.log"
+    },
+    {
+      "name": "yellow-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-yellow-startup.log"
+    },
+    {
+      "name": "red-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-red-core-compile.log"
+    },
+    {
+      "name": "red-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-red-core.log"
+    },
+    {
+      "name": "red-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-red-replay-compile.log"
+    },
+    {
+      "name": "red-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-red-replay.log"
+    },
+    {
+      "name": "red-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-red-owner35-compile.log"
+    },
+    {
+      "name": "red-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-red-owner35.log"
+    },
+    {
+      "name": "red-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-red-startup-compile.log"
+    },
+    {
+      "name": "red-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-red-startup.log"
+    },
+    {
+      "name": "blue-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-replay-compile.log"
+    },
+    {
+      "name": "blue-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-replay.log"
+    },
+    {
+      "name": "blue-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-owner35-compile.log"
+    },
+    {
+      "name": "blue-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-owner35.log"
+    },
+    {
+      "name": "blue-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-startup-compile.log"
+    },
+    {
+      "name": "blue-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-startup.log"
+    },
+    {
+      "name": "multi-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-multi-owner25-compile.log"
+    },
+    {
+      "name": "multi-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-multi-owner25.log"
+    },
+    {
+      "name": "multi-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-multi-startup-compile.log"
+    },
+    {
+      "name": "multi-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-multi-startup.log"
+    },
+    {
+      "name": "corner-left-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-corner-left-owner25-compile.log"
+    },
+    {
+      "name": "corner-left-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-corner-left-owner25.log"
+    },
+    {
+      "name": "corner-left-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-corner-left-startup-compile.log"
+    },
+    {
+      "name": "corner-left-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-corner-left-startup.log"
+    },
+    {
+      "name": "corner-right-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-corner-right-owner25-compile.log"
+    },
+    {
+      "name": "corner-right-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-corner-right-owner25.log"
+    },
+    {
+      "name": "corner-right-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-corner-right-startup-compile.log"
+    },
+    {
+      "name": "corner-right-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-corner-right-startup.log"
+    },
+    {
+      "name": "clipped-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-clipped-owner25-compile.log"
+    },
+    {
+      "name": "clipped-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-clipped-owner25.log"
+    },
+    {
+      "name": "clipped-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-clipped-startup-compile.log"
+    },
+    {
+      "name": "clipped-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-clipped-startup.log"
+    },
+    {
+      "name": "blue-bend-right-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-bend-right-owner25-compile.log"
+    },
+    {
+      "name": "blue-bend-right-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-bend-right-owner25.log"
+    },
+    {
+      "name": "blue-bend-right-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-bend-right-startup-compile.log"
+    },
+    {
+      "name": "blue-bend-right-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-bend-right-startup.log"
+    },
+    {
+      "name": "loop-clockwise-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-loop-clockwise-owner25-compile.log"
+    },
+    {
+      "name": "loop-clockwise-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-loop-clockwise-owner25.log"
+    },
+    {
+      "name": "loop-clockwise-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-loop-clockwise-startup-compile.log"
+    },
+    {
+      "name": "loop-clockwise-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-loop-clockwise-startup.log"
+    },
+    {
+      "name": "loop-anticlockwise-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-loop-anticlockwise-owner25-compile.log"
+    },
+    {
+      "name": "loop-anticlockwise-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-loop-anticlockwise-owner25.log"
+    },
+    {
+      "name": "loop-anticlockwise-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-loop-anticlockwise-startup-compile.log"
+    },
+    {
+      "name": "loop-anticlockwise-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-loop-anticlockwise-startup.log"
+    },
+    {
+      "name": "early-bend-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-early-bend-owner25-compile.log"
+    },
+    {
+      "name": "early-bend-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-early-bend-owner25.log"
+    },
+    {
+      "name": "early-bend-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-early-bend-startup-compile.log"
+    },
+    {
+      "name": "early-bend-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-early-bend-startup.log"
+    },
+    {
+      "name": "home-track-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-home-track-owner25-compile.log"
+    },
+    {
+      "name": "home-track-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-home-track-owner25.log"
+    },
+    {
+      "name": "home-track-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-home-track-startup-compile.log"
+    },
+    {
+      "name": "home-track-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-home-track-startup.log"
+    },
+    {
+      "name": "blue-steer-ramp-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-steer-ramp-owner25-compile.log"
+    },
+    {
+      "name": "blue-steer-ramp-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-steer-ramp-owner25.log"
+    },
+    {
+      "name": "blue-steer-ramp-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-steer-ramp-startup-compile.log"
+    },
+    {
+      "name": "blue-steer-ramp-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-blue-steer-ramp-startup.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-owner-original50-turn20.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-duty.log"
+    },
+    {
+      "name": "reject-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-turn.log"
+    },
+    {
+      "name": "reject-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-geometry.log"
+    },
+    {
+      "name": "reject-orphan-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-yellow.log"
+    },
+    {
+      "name": "reject-red-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-red-geometry.log"
+    },
+    {
+      "name": "reject-orphan-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-red.log"
+    },
+    {
+      "name": "reject-mixed-colour",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-mixed-colour.log"
+    },
+    {
+      "name": "reject-blue-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-blue-geometry.log"
+    },
+    {
+      "name": "reject-orphan-blue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-blue.log"
+    },
+    {
+      "name": "reject-mix-blue-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-mix-blue-red.log"
+    },
+    {
+      "name": "reject-mix-blue-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-mix-blue-yellow.log"
+    },
+    {
+      "name": "reject-multi-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-multi-geometry.log"
+    },
+    {
+      "name": "reject-orphan-multi",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-multi.log"
+    },
+    {
+      "name": "reject-multi-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-multi-duty.log"
+    },
+    {
+      "name": "reject-corner-direction",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-corner-direction.log"
+    },
+    {
+      "name": "reject-orphan-corner",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-corner.log"
+    },
+    {
+      "name": "reject-clipped-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-clipped-value.log"
+    },
+    {
+      "name": "reject-orphan-clipped",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-clipped.log"
+    },
+    {
+      "name": "reject-clipped-pivot",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-clipped-pivot.log"
+    },
+    {
+      "name": "reject-clipped-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-clipped-turn.log"
+    },
+    {
+      "name": "reject-orphan-blue-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-blue-bend.log"
+    },
+    {
+      "name": "reject-blue-bend-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-blue-bend-value.log"
+    },
+    {
+      "name": "reject-orphan-loop-recovery",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-loop-recovery.log"
+    },
+    {
+      "name": "reject-loop-recovery-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-loop-recovery-value.log"
+    },
+    {
+      "name": "reject-loop-recovery-blue-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-loop-recovery-blue-bend.log"
+    },
+    {
+      "name": "reject-orphan-early-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-early-bend.log"
+    },
+    {
+      "name": "reject-early-bend-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-early-bend-value.log"
+    },
+    {
+      "name": "reject-early-bend-reverse",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-early-bend-reverse.log"
+    },
+    {
+      "name": "reject-orphan-home-track",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-home-track.log"
+    },
+    {
+      "name": "reject-home-track-no-rgb-home",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-home-track-no-rgb-home.log"
+    },
+    {
+      "name": "reject-orphan-blue-steer-ramp",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-orphan-blue-steer-ramp.log"
+    },
+    {
+      "name": "reject-rgb-profile",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-rgb-profile.log"
+    },
+    {
+      "name": "reject-mix-multi-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-mix-multi-red.log"
+    },
+    {
+      "name": "reject-mix-multi-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-mix-multi-yellow.log"
+    },
+    {
+      "name": "reject-mix-multi-blue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-reject-mix-multi-blue.log"
+    },
+    {
+      "name": "build-Home_Track_Blue_Ramp_v0_26_D25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueramp26-20261120-final-build-Home_Track_Blue_Ramp_v0_26_D25.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/multi_follow_blueramp26-20261120-final/AAI05_Home_Track_Blue_Ramp_v0_26_D25.uf2",
+      "sha256": "8d890be5988858cc22301bc3745937020482e9557777f453086e7b84c6e16d7e"
+    },
+    {
+      "path": "output/firmware/multi_follow_blueramp26-20261120-final/AAI05_Home_Track_Blue_Ramp_v0_26_D25.elf",
+      "sha256": "759f67204ee3a8a178353f4289402169beed50df458fe2b903c7ca5d1fac5ede"
+    },
+    {
+      "path": "output/firmware/multi_follow_blueramp26-20261120-final/AAI05_Home_Track_Blue_Ramp_v0_26_D25.map",
+      "sha256": "75cd77aa3e7ec199521f4f9a4bdb57365a98c848130924a0556cffa505c94aca"
+    }
+  ],
+  "old_uf2s": 167,
+  "old_uf2s_unchanged": true
+}

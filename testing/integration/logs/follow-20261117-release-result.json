@@ -1,0 +1,231 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-rgb-report-powered.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-reject-single.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_NO_DRIVE",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-build-Black_Follow_v0_13_NO_DRIVE.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-build-Black_Follow_v0_13.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_TEST",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-build-Black_Follow_v0_13_TEST.log"
+    },
+    {
+      "name": "build-RGB_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-build-RGB_Compatibility.log"
+    },
+    {
+      "name": "build-Remote_PIO_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/follow-20261117-release-build-Remote_PIO_Compatibility.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "68396e8920140f4f685b73a506e3e5d80bd292e6264e03b1b89798e2c24e2990"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_NO_DRIVE.elf",
+      "sha256": "c1157794c8e8d037da38be294f02eeb8ba4aa36e03672f0122fb69b6e6c07ef4"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_NO_DRIVE.map",
+      "sha256": "0cc85d7018d17210f062b7376eb74680eb35afa7bc42e991cb993ae5e5119570"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "f304fb6e3e403ba920f613e9f57d2ffe55cc905d2263cf1cbb33d1154b9e8ba7"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13.elf",
+      "sha256": "5d699ee366dc01a9e8ebc86462764626b9798a33d816b072ec17647dbc2394c7"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13.map",
+      "sha256": "3bb9422793bab5ff737752b9a245c8f89ae69bf170b6de1812b102a7398a7a27"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_TEST.uf2",
+      "sha256": "17a6d3b2e2d9c331f0f3bc8363add779f1e77fa9c78bae40b004ef83f83835e1"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_TEST.elf",
+      "sha256": "794fa24dd840b2f1a126b47b7998056980afbce7c5dba66e3ad53a47531b59fb"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_TEST.map",
+      "sha256": "0c6cc99cbdfd7082a419df653967dc26bc5f2cce43368e3130cb47f44ae1cef5"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_RGB_Compatibility.elf",
+      "sha256": "f089e527e14bb6ed2b8acf14b92a8c0de12955f04b06485331eea6310d52a5a3"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_RGB_Compatibility.map",
+      "sha256": "bbbc5cd8d0cacff825362364cb40214f042e6627c1f873866d0711bf04dffd25"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Remote_PIO_Compatibility.elf",
+      "sha256": "36034d462bce309a0965c00bb0890015619b0bfc0b1ca11dffd7360e46b50a64"
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Remote_PIO_Compatibility.map",
+      "sha256": "5118d04ed9707cf558742e78ebce5fd09fac1e4f4b30b9a860cdfc74125378f9"
+    }
+  ],
+  "old_uf2s": 89,
+  "old_uf2s_unchanged": true
+}

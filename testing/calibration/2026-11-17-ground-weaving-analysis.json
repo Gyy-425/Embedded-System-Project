@@ -1,0 +1,276 @@
+{
+  "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\f818ef1d-fe68-430b-9be0-78472d84e076\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+  "sha256": "03f513ab5844a01117ba0e1be1b188fd09da9decfacf86e08bfdc2c75af50f92",
+  "frames": 68,
+  "running_frames": [
+    {
+      "t": 33280,
+      "ir_report": {
+        "L": 2773,
+        "R": 231,
+        "valid": 1,
+        "err": 0,
+        "age": 10
+      },
+      "follow": {
+        "state": "RUNNING",
+        "reason": "NONE",
+        "ready": "1",
+        "norm": "1000/0",
+        "limit": "40",
+        "turn": "-20",
+        "elapsed": "100",
+        "L": "-16",
+        "R": "40",
+        "lease": "70",
+        "age": "10",
+        "ENC": "-154/55",
+        "PIO_BAD": "0",
+        "inhibit": "0",
+        "DRIVE": "ON"
+      }
+    },
+    {
+      "t": 33540,
+      "ir_report": {
+        "L": 204,
+        "R": 2264,
+        "valid": 1,
+        "err": 0,
+        "age": 10
+      },
+      "follow": {
+        "state": "RUNNING",
+        "reason": "NONE",
+        "ready": "1",
+        "norm": "0/1000",
+        "limit": "40",
+        "turn": "20",
+        "elapsed": "360",
+        "L": "-40",
+        "R": "16",
+        "lease": "70",
+        "age": "10",
+        "ENC": "-705/740",
+        "PIO_BAD": "0",
+        "inhibit": "0",
+        "DRIVE": "ON"
+      }
+    },
+    {
+      "t": 33800,
+      "ir_report": {
+        "L": 245,
+        "R": 2244,
+        "valid": 1,
+        "err": 0,
+        "age": 10
+      },
+      "follow": {
+        "state": "RUNNING",
+        "reason": "NONE",
+        "ready": "1",
+        "norm": "0/307",
+        "limit": "40",
+        "turn": "6",
+        "elapsed": "620",
+        "L": "-40",
+        "R": "31",
+        "lease": "70",
+        "age": "10",
+        "ENC": "-1325/1431",
+        "PIO_BAD": "0",
+        "inhibit": "0",
+        "DRIVE": "ON"
+      }
+    },
+    {
+      "t": 34060,
+      "ir_report": {
+        "L": 3030,
+        "R": 224,
+        "valid": 1,
+        "err": 0,
+        "age": 10
+      },
+      "follow": {
+        "state": "RUNNING",
+        "reason": "NONE",
+        "ready": "1",
+        "norm": "1000/0",
+        "limit": "40",
+        "turn": "-20",
+        "elapsed": "880",
+        "L": "-16",
+        "R": "40",
+        "lease": "70",
+        "age": "10",
+        "ENC": "-2059/2017",
+        "PIO_BAD": "0",
+        "inhibit": "0",
+        "DRIVE": "ON"
+      }
+    },
+    {
+      "t": 40560,
+      "ir_report": {
+        "L": 216,
+        "R": 1683,
+        "valid": 1,
+        "err": 0,
+        "age": 10
+      },
+      "follow": {
+        "state": "RUNNING",
+        "reason": "NONE",
+        "ready": "1",
+        "norm": "0/1000",
+        "limit": "40",
+        "turn": "20",
+        "elapsed": "20",
+        "L": "-40",
+        "R": "16",
+        "lease": "70",
+        "age": "10",
+        "ENC": "-2446/2664",
+        "PIO_BAD": "0",
+        "inhibit": "0",
+        "DRIVE": "ON"
+      }
+    },
+    {
+      "t": 40820,
+      "ir_report": {
+        "L": 186,
+        "R": 3009,
+        "valid": 1,
+        "err": 0,
+        "age": 10
+      },
+      "follow": {
+        "state": "RUNNING",
+        "reason": "NONE",
+        "ready": "1",
+        "norm": "0/1000",
+        "limit": "40",
+        "turn": "20",
+        "elapsed": "280",
+        "L": "-40",
+        "R": "16",
+        "lease": "70",
+        "age": "10",
+        "ENC": "-2953/3267",
+        "PIO_BAD": "0",
+        "inhibit": "0",
+        "DRIVE": "ON"
+      }
+    },
+    {
+      "t": 41080,
+      "ir_report": {
+        "L": 2980,
+        "R": 201,
+        "valid": 1,
+        "err": 0,
+        "age": 10
+      },
+      "follow": {
+        "state": "RUNNING",
+        "reason": "NONE",
+        "ready": "1",
+        "norm": "1000/0",
+        "limit": "40",
+        "turn": "-20",
+        "elapsed": "540",
+        "L": "-16",
+        "R": "40",
+        "lease": "70",
+        "age": "10",
+        "ENC": "-3678/3855",
+        "PIO_BAD": "0",
+        "inhibit": "0",
+        "DRIVE": "ON"
+      }
+    },
+    {
+      "t": 41340,
+      "ir_report": {
+        "L": 3029,
+        "R": 208,
+        "valid": 1,
+        "err": 0,
+        "age": 10
+      },
+      "follow": {
+        "state": "RUNNING",
+        "reason": "NONE",
+        "ready": "1",
+        "norm": "1000/0",
+        "limit": "40",
+        "turn": "-20",
+        "elapsed": "800",
+        "L": "-16",
+        "R": "40",
+        "lease": "70",
+        "age": "10",
+        "ENC": "-4346/4493",
+        "PIO_BAD": "0",
+        "inhibit": "0",
+        "DRIVE": "ON"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "captured_turns": [
+        -20,
+        20,
+        6,
+        -20
+      ],
+      "elapsed": [
+        100,
+        360,
+        620,
+        880
+      ]
+    },
+    {
+      "captured_turns": [
+        20,
+        20,
+        -20,
+        -20
+      ],
+      "elapsed": [
+        20,
+        280,
+        540,
+        800
+      ]
+    }
+  ],
+  "states": {
+    "IDLE": 22,
+    "RUNNING": 8,
+    "STOPPED": 38
+  },
+  "stops": {
+    "COMPLETE": 38
+  },
+  "RGB_class_counts": {
+    "BLACK": 63,
+    "BACKGROUND": 3,
+    "UNKNOWN": 2
+  },
+  "bad_rgb": 0,
+  "PIO_bad_frames": 0,
+  "report_interval_ms": [
+    260
+  ],
+  "notes": [
+    "IR report and FOLLOW norms are separate snapshots; do not recompute one from the other as if atomic.",
+    "Data supports control-output oscillation, not a measured count of5 cycles.",
+    "Proposed next isolated experiment: retain D40, reduce nominal steering maximum20 to8; do not change RGB or raw black/background thresholds."
+  ]
+}

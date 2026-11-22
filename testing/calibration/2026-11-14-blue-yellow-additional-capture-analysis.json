@@ -1,0 +1,100 @@
+{
+  "source_original": "C:\\Users\\Guo YouYan\\Downloads\\blue.txt",
+  "source_sha256": "e73dd021f82f9b385b12d686343a5ebe98cff6e5adb6a6f56ad9f5e3e7d959cc",
+  "received_date": "2026-11-14",
+  "setup": "Not recorded in this file. Previous capture was confirmed indoor, left 7mm/right 9mm; not assumed for this capture.",
+  "material": "Same tape material reported by user; composition not independently established.",
+  "sections": {
+    "BLUE": {
+      "n": 118,
+      "invalid_error_stale_or_drive_on": 0,
+      "left": {
+        "min": 154,
+        "max": 201,
+        "mean": 178.3051,
+        "sd": 14.7077
+      },
+      "right": {
+        "min": 166,
+        "max": 198,
+        "mean": 182.1441,
+        "sd": 11.2526
+      }
+    },
+    "YELLOW": {
+      "n": 113,
+      "invalid_error_stale_or_drive_on": 0,
+      "left": {
+        "min": 108,
+        "max": 188,
+        "mean": 162.354,
+        "sd": 15.991
+      },
+      "right": {
+        "min": 148,
+        "max": 189,
+        "mean": 166.708,
+        "sd": 11.7729
+      }
+    }
+  },
+  "single_channel_overlap": {
+    "left": {
+      "range": [
+        154,
+        188
+      ],
+      "blue_count": 76,
+      "yellow_count": 76
+    },
+    "right": {
+      "range": [
+        166,
+        189
+      ],
+      "blue_count": 81,
+      "yellow_count": 56
+    }
+  },
+  "threshold_fit": {
+    "left": {
+      "blue_if_above": 183.5,
+      "balanced_accuracy": 0.7111144442777861,
+      "correct_blue": 54,
+      "correct_yellow": 109,
+      "correct_total": 163,
+      "total": 231,
+      "accuracy": 0.7056277056277056
+    },
+    "right": {
+      "blue_if_above": 165.5,
+      "balanced_accuracy": 0.752212389380531,
+      "correct_blue": 118,
+      "correct_yellow": 57,
+      "correct_total": 175,
+      "total": 231,
+      "accuracy": 0.7575757575757576
+    }
+  },
+  "limitations": [
+    "One labelled block per colour, no independent repositioned repeat in this file.",
+    "Thresholds fitted and scored on the same samples: descriptive fit, not independent recognition validation.",
+    "Single-threshold results are not an upper bound on other classifiers or temporal methods.",
+    "No white, black, background or moving recognition trial included."
+  ],
+  "exact_shared_pairs": [
+    [
+      173,
+      171
+    ],
+    [
+      184,
+      166
+    ]
+  ],
+  "quality": {
+    "total": 231,
+    "duplicate_timestamps": 0,
+    "malformed_lines": []
+  }
+}

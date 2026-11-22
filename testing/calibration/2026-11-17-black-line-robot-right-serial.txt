@@ -1,0 +1,120 @@
+t=171340 IR[L=1425 R=334 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=171320 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=171340 ready=1 id=0x44 seq=1713 R=205 G=215 B=198 C=531 has=1 valid=1 sat=0 age=40 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=171340 sample=171300 seq=1713 class=BLACK reason=MATCH code=0x00 read=1 age=40 model=BWY_20261117 DRIVE=OFF]
+t=171600 IR[L=1376 R=227 valid=1 err=0 age=0] COLOUR[read=1 L=7/1 R=7/1 t=171600 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=171600 ready=1 id=0x44 seq=1715 R=205 G=215 B=198 C=531 has=1 valid=1 sat=0 age=100 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=171600 sample=171500 seq=1715 class=BLACK reason=MATCH code=0x00 read=1 age=100 model=BWY_20261117 DRIVE=OFF]
+t=171860 IR[L=1383 R=257 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=171840 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=171860 ready=1 id=0x44 seq=1718 R=205 G=214 B=197 C=530 has=1 valid=1 sat=0 age=60 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=171860 sample=171800 seq=1718 class=BLACK reason=MATCH code=0x00 read=1 age=60 model=BWY_20261117 DRIVE=OFF]
+t=172120 IR[L=1401 R=234 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=172120 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=172120 ready=1 id=0x44 seq=1721 R=206 G=215 B=198 C=533 has=1 valid=1 sat=0 age=20 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=172120 sample=172100 seq=1721 class=BLACK reason=MATCH code=0x00 read=1 age=20 model=BWY_20261117 DRIVE=OFF]
+t=172380 IR[L=1396 R=239 valid=1 err=0 age=10] COLOUR[read=1 L=7/1 R=7/1 t=172370 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=172380 ready=1 id=0x44 seq=1723 R=207 G=216 B=198 C=535 has=1 valid=1 sat=0 age=80 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=172380 sample=172300 seq=1723 class=BLACK reason=MATCH code=0x00 read=1 age=80 model=BWY_20261117 DRIVE=OFF]
+t=172640 IR[L=1367 R=227 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=172620 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=172640 ready=1 id=0x44 seq=1726 R=206 G=215 B=198 C=533 has=1 valid=1 sat=0 age=40 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=172640 sample=172600 seq=1726 class=BLACK reason=MATCH code=0x00 read=1 age=40 model=BWY_20261117 DRIVE=OFF]
+t=172900 IR[L=1373 R=228 valid=1 err=0 age=0] COLOUR[read=1 L=7/1 R=7/1 t=172900 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=172900 ready=1 id=0x44 seq=1728 R=208 G=217 B=199 C=539 has=1 valid=1 sat=0 age=100 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=172900 sample=172800 seq=1728 class=BLACK reason=MATCH code=0x00 read=1 age=100 model=BWY_20261117 DRIVE=OFF]
+t=173160 IR[L=1380 R=243 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=173140 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=173160 ready=1 id=0x44 seq=1731 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=60 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=173160 sample=173100 seq=1731 class=BLACK reason=MATCH code=0x00 read=1 age=60 model=BWY_20261117 DRIVE=OFF]
+t=173420 IR[L=1345 R=226 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=173420 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=173420 ready=1 id=0x44 seq=1734 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=20 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=173420 sample=173400 seq=1734 class=BLACK reason=MATCH code=0x00 read=1 age=20 model=BWY_20261117 DRIVE=OFF]
+t=173680 IR[L=1378 R=227 valid=1 err=0 age=10] COLOUR[read=1 L=7/1 R=7/1 t=173670 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=173680 ready=1 id=0x44 seq=1736 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=80 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=173680 sample=173600 seq=1736 class=BLACK reason=MATCH code=0x00 read=1 age=80 model=BWY_20261117 DRIVE=OFF]
+t=173940 IR[L=1369 R=219 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=173920 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=173940 ready=1 id=0x44 seq=1739 R=208 G=218 B=200 C=540 has=1 valid=1 sat=0 age=40 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=173940 sample=173900 seq=1739 class=BLACK reason=MATCH code=0x00 read=1 age=40 model=BWY_20261117 DRIVE=OFF]
+t=174200 IR[L=1345 R=225 valid=1 err=0 age=0] COLOUR[read=1 L=7/1 R=7/1 t=174200 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=174200 ready=1 id=0x44 seq=1741 R=208 G=218 B=200 C=540 has=1 valid=1 sat=0 age=100 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=174200 sample=174100 seq=1741 class=BLACK reason=MATCH code=0x00 read=1 age=100 model=BWY_20261117 DRIVE=OFF]
+t=174460 IR[L=1343 R=236 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=174440 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=174460 ready=1 id=0x44 seq=1744 R=208 G=218 B=200 C=540 has=1 valid=1 sat=0 age=60 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=174460 sample=174400 seq=1744 class=BLACK reason=MATCH code=0x00 read=1 age=60 model=BWY_20261117 DRIVE=OFF]
+t=174720 IR[L=1378 R=229 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=174720 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=174720 ready=1 id=0x44 seq=1747 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=20 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=174720 sample=174700 seq=1747 class=BLACK reason=MATCH code=0x00 read=1 age=20 model=BWY_20261117 DRIVE=OFF]
+t=174980 IR[L=1362 R=225 valid=1 err=0 age=10] COLOUR[read=1 L=7/1 R=7/1 t=174970 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=174980 ready=1 id=0x44 seq=1749 R=208 G=218 B=200 C=540 has=1 valid=1 sat=0 age=80 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=174980 sample=174900 seq=1749 class=BLACK reason=MATCH code=0x00 read=1 age=80 model=BWY_20261117 DRIVE=OFF]
+t=175240 IR[L=1370 R=227 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=175220 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=175240 ready=1 id=0x44 seq=1752 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=40 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=175240 sample=175200 seq=1752 class=BLACK reason=MATCH code=0x00 read=1 age=40 model=BWY_20261117 DRIVE=OFF]
+t=175500 IR[L=1341 R=236 valid=1 err=0 age=0] COLOUR[read=1 L=7/1 R=7/1 t=175500 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=175500 ready=1 id=0x44 seq=1754 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=100 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=175500 sample=175400 seq=1754 class=BLACK reason=MATCH code=0x00 read=1 age=100 model=BWY_20261117 DRIVE=OFF]
+t=175760 IR[L=1374 R=239 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=175740 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=175760 ready=1 id=0x44 seq=1757 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=60 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=175760 sample=175700 seq=1757 class=BLACK reason=MATCH code=0x00 read=1 age=60 model=BWY_20261117 DRIVE=OFF]
+t=176020 IR[L=1354 R=231 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=176020 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=176020 ready=1 id=0x44 seq=1760 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=20 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=176020 sample=176000 seq=1760 class=BLACK reason=MATCH code=0x00 read=1 age=20 model=BWY_20261117 DRIVE=OFF]
+t=176280 IR[L=1350 R=243 valid=1 err=0 age=10] COLOUR[read=1 L=7/1 R=7/1 t=176270 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=176280 ready=1 id=0x44 seq=1762 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=80 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=176280 sample=176200 seq=1762 class=BLACK reason=MATCH code=0x00 read=1 age=80 model=BWY_20261117 DRIVE=OFF]
+t=176540 IR[L=1341 R=266 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=176520 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=176540 ready=1 id=0x44 seq=1765 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=40 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=176540 sample=176500 seq=1765 class=BLACK reason=MATCH code=0x00 read=1 age=40 model=BWY_20261117 DRIVE=OFF]
+t=176800 IR[L=1376 R=250 valid=1 err=0 age=0] COLOUR[read=1 L=7/1 R=7/1 t=176800 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=176800 ready=1 id=0x44 seq=1767 R=208 G=217 B=199 C=539 has=1 valid=1 sat=0 age=100 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=176800 sample=176700 seq=1767 class=BLACK reason=MATCH code=0x00 read=1 age=100 model=BWY_20261117 DRIVE=OFF]
+t=177060 IR[L=1358 R=227 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=177040 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=177060 ready=1 id=0x44 seq=1770 R=208 G=217 B=199 C=539 has=1 valid=1 sat=0 age=60 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=177060 sample=177000 seq=1770 class=BLACK reason=MATCH code=0x00 read=1 age=60 model=BWY_20261117 DRIVE=OFF]
+t=177320 IR[L=1377 R=246 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=177320 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=177320 ready=1 id=0x44 seq=1773 R=208 G=217 B=199 C=539 has=1 valid=1 sat=0 age=20 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=177320 sample=177300 seq=1773 class=BLACK reason=MATCH code=0x00 read=1 age=20 model=BWY_20261117 DRIVE=OFF]
+t=177580 IR[L=1370 R=254 valid=1 err=0 age=10] COLOUR[read=1 L=7/1 R=7/1 t=177570 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=177580 ready=1 id=0x44 seq=1775 R=208 G=217 B=199 C=539 has=1 valid=1 sat=0 age=80 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=177580 sample=177500 seq=1775 class=BLACK reason=MATCH code=0x00 read=1 age=80 model=BWY_20261117 DRIVE=OFF]
+t=177840 IR[L=1346 R=242 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=177820 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=177840 ready=1 id=0x44 seq=1778 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=40 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=177840 sample=177800 seq=1778 class=BLACK reason=MATCH code=0x00 read=1 age=40 model=BWY_20261117 DRIVE=OFF]
+t=178100 IR[L=1370 R=234 valid=1 err=0 age=0] COLOUR[read=1 L=7/1 R=7/1 t=178100 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=178100 ready=1 id=0x44 seq=1780 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=100 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=178100 sample=178000 seq=1780 class=BLACK reason=MATCH code=0x00 read=1 age=100 model=BWY_20261117 DRIVE=OFF]
+t=178360 IR[L=1370 R=226 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=178340 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=178360 ready=1 id=0x44 seq=1783 R=208 G=217 B=199 C=539 has=1 valid=1 sat=0 age=60 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=178360 sample=178300 seq=1783 class=BLACK reason=MATCH code=0x00 read=1 age=60 model=BWY_20261117 DRIVE=OFF]
+t=178620 IR[L=1344 R=243 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=178620 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=178620 ready=1 id=0x44 seq=1786 R=208 G=217 B=199 C=539 has=1 valid=1 sat=0 age=20 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=178620 sample=178600 seq=1786 class=BLACK reason=MATCH code=0x00 read=1 age=20 model=BWY_20261117 DRIVE=OFF]
+t=178880 IR[L=1377 R=255 valid=1 err=0 age=10] COLOUR[read=1 L=7/1 R=7/1 t=178870 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=178880 ready=1 id=0x44 seq=1788 R=208 G=217 B=199 C=540 has=1 valid=1 sat=0 age=80 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=178880 sample=178800 seq=1788 class=BLACK reason=MATCH code=0x00 read=1 age=80 model=BWY_20261117 DRIVE=OFF]
+t=179140 IR[L=1356 R=217 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=179120 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=179140 ready=1 id=0x44 seq=1791 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=40 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=179140 sample=179100 seq=1791 class=BLACK reason=MATCH code=0x00 read=1 age=40 model=BWY_20261117 DRIVE=OFF]
+t=179400 IR[L=1365 R=234 valid=1 err=0 age=0] COLOUR[read=1 L=7/1 R=7/1 t=179400 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=179400 ready=1 id=0x44 seq=1793 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=100 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=179400 sample=179300 seq=1793 class=BLACK reason=MATCH code=0x00 read=1 age=100 model=BWY_20261117 DRIVE=OFF]
+t=179660 IR[L=1350 R=251 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=179640 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=179660 ready=1 id=0x44 seq=1796 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=60 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=179660 sample=179600 seq=1796 class=BLACK reason=MATCH code=0x00 read=1 age=60 model=BWY_20261117 DRIVE=OFF]
+t=179920 IR[L=1357 R=227 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=179920 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=179920 ready=1 id=0x44 seq=1799 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=20 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=179920 sample=179900 seq=1799 class=BLACK reason=MATCH code=0x00 read=1 age=20 model=BWY_20261117 DRIVE=OFF]
+t=180180 IR[L=1357 R=243 valid=1 err=0 age=10] COLOUR[read=1 L=7/1 R=7/1 t=180170 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=180180 ready=1 id=0x44 seq=1801 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=80 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=180180 sample=180100 seq=1801 class=BLACK reason=MATCH code=0x00 read=1 age=80 model=BWY_20261117 DRIVE=OFF]
+t=180440 IR[L=1377 R=219 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=180420 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=180440 ready=1 id=0x44 seq=1804 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=40 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=180440 sample=180400 seq=1804 class=BLACK reason=MATCH code=0x00 read=1 age=40 model=BWY_20261117 DRIVE=OFF]
+t=180700 IR[L=1372 R=256 valid=1 err=0 age=0] COLOUR[read=1 L=7/1 R=7/1 t=180700 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=180700 ready=1 id=0x44 seq=1806 R=208 G=218 B=200 C=540 has=1 valid=1 sat=0 age=100 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=180700 sample=180600 seq=1806 class=BLACK reason=MATCH code=0x00 read=1 age=100 model=BWY_20261117 DRIVE=OFF]
+t=180960 IR[L=1369 R=254 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=180940 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=180960 ready=1 id=0x44 seq=1809 R=208 G=218 B=200 C=540 has=1 valid=1 sat=0 age=60 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=180960 sample=180900 seq=1809 class=BLACK reason=MATCH code=0x00 read=1 age=60 model=BWY_20261117 DRIVE=OFF]
+t=181220 IR[L=1368 R=253 valid=1 err=0 age=20] COLOUR[read=1 L=7/1 R=7/1 t=181220 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=181220 ready=1 id=0x44 seq=1812 R=208 G=218 B=199 C=540 has=1 valid=1 sat=0 age=20 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=181220 sample=181200 seq=1812 class=BLACK reason=MATCH code=0x00 read=1 age=20 model=BWY_20261117 DRIVE=OFF]
+t=181480 IR[L=1349 R=230 valid=1 err=0 age=10] COLOUR[read=1 L=7/1 R=7/1 t=181470 drop=0] ENC[L=2 R=-382 AB=1/2 bad=0/0 sat=0 age=0] ENC_READY=1 err=0 irq=418 over=0/0 ENC_UNCERTAIN=0 MOTOR_MODE=PROBE MOTOR[phase=IDLE next=1 M=0 D=0 pct=0 us=0 cutoff=0 stop=0 err=0] DRIVE=OFF RADIO_READY=1
+RGB[t=181480 ready=1 id=0x44 seq=1814 R=208 G=218 B=200 C=540 has=1 valid=1 sat=0 age=80 status=0 errors=0 gain=4x integration_us=50400 DRIVE=OFF]
+RGB_CLASS[t=181480 sample=181400 seq=1814 class=BLACK reason=MATCH code=0x00 read=1 age=80 model=BWY_20261117 DRIVE=OFF]

@@ -1,0 +1,102 @@
+{
+  "label": "rgb-20261116-a",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-core.log"
+    },
+    {
+      "name": "adapter-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-adapter-compile.log"
+    },
+    {
+      "name": "adapter",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-adapter.log"
+    },
+    {
+      "name": "colour-regression-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-colour-regression-compile.log"
+    },
+    {
+      "name": "colour-regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-colour-regression.log"
+    },
+    {
+      "name": "runtime-regression-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-runtime-regression-compile.log"
+    },
+    {
+      "name": "runtime-regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-runtime-regression.log"
+    },
+    {
+      "name": "core-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-core-target-compile.log"
+    },
+    {
+      "name": "reject-powered",
+      "exit_code": 2,
+      "expected_failure": true,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-reject-powered.log"
+    },
+    {
+      "name": "reject-remote",
+      "exit_code": 2,
+      "expected_failure": true,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-reject-remote.log"
+    },
+    {
+      "name": "reject-uart",
+      "exit_code": 2,
+      "expected_failure": true,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-reject-uart.log"
+    },
+    {
+      "name": "build-RGB_Diagnostic_v0_11",
+      "exit_code": 2,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgb-20261116-a-build-RGB_Diagnostic_v0_11.log"
+    }
+  ],
+  "artifacts": [],
+  "status": "FAILED",
+  "error": "build-RGB_Diagnostic_v0_11 failed or warned",
+  "old_uf2s": 60,
+  "old_uf2s_unchanged": true
+}

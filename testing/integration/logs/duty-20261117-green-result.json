@@ -1,0 +1,294 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-rgb-report-powered.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-duty35-compile.log"
+    },
+    {
+      "name": "owner-duty35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-duty35.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-owner-duty50.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-reject-duty.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_1_D40_NO_DRIVE",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-build-Black_Follow_v0_13_1_D40_NO_DRIVE.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_1_D40",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-build-Black_Follow_v0_13_1_D40.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_1_D40_TEST",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-build-Black_Follow_v0_13_1_D40_TEST.log"
+    },
+    {
+      "name": "build-RGB_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-build-RGB_Compatibility.log"
+    },
+    {
+      "name": "build-Remote_PIO_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-green-build-Remote_PIO_Compatibility.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_NO_DRIVE.uf2",
+      "sha256": "a4de67c8e78579584d24f8f710c44d3bd8a2cba5e95d095109f8f4ed14a38def"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_NO_DRIVE.elf",
+      "sha256": "8829a05754effc41a7f919b5bd97c175b5b2bed30943612800e8638714e1ff36"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_NO_DRIVE.map",
+      "sha256": "ee023291ded67a243afda45707bdaf88316ab754e6e3c10c4e92610ffab84b46"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40.uf2",
+      "sha256": "5f05d9a399a957b654b6d7821239d5ace4bbd604c6c2ed424b4e9ff101296a67"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40.elf",
+      "sha256": "6440c884235eed5386ad2151c00fa3a56a817ca079351c916b3151263d8eceb0"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40.map",
+      "sha256": "794e68ea916f340a866dd0a1d3355cdbf3b085642b1da3b186218b135d9ac63e"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_TEST.uf2",
+      "sha256": "6e044f6d6adb02b0cfa8fbfaae8e14206078967aaf93868aa2e9d396a6819b9a"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_TEST.elf",
+      "sha256": "2d6e6dc9775fea5f11e33cecdd06656c1a50546cff7d437d7fdd23ac15d65aee"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_TEST.map",
+      "sha256": "7b7a88e35803d82adaecaaee952805e13c6a645dc9ae515ecbb22e99a91a3993"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_RGB_Compatibility.elf",
+      "sha256": "c89bfef62bce59c7bba14c3376bdc27fbae78a570fecdf4736942b2184456e59"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_RGB_Compatibility.map",
+      "sha256": "5e4da3b2591931533b8d0a82cf7e87270a6bab262b2f2ccc93b0bccb7350eaa4"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Remote_PIO_Compatibility.elf",
+      "sha256": "e63f3466705caa0f81465f7a991a89530459e625f29e4b60c0dd9f2f00be869f"
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Remote_PIO_Compatibility.map",
+      "sha256": "099397612ba71c056eda58a310d44cbc41a92502abbedf6105df0d39596983be"
+    }
+  ],
+  "old_uf2s": 96,
+  "old_uf2s_unchanged": true
+}

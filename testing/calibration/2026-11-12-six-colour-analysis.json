@@ -1,0 +1,1129 @@
+{
+  "source": "testing\\calibration\\2026-11-12-six-colour-serial.txt",
+  "sha256": "8b37e56343c03e1b8a79d25d6c16a9e0014c5da899cf3f5d360221398121826f",
+  "sections": [
+    {
+      "section": "BLACK repeat 1",
+      "n": 46,
+      "t_start": 184600,
+      "t_end": 196300,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 2502,
+        "max": 2592,
+        "mean": 2532.76,
+        "sd": 17.64,
+        "median": 2536.5,
+        "rail": 0
+      },
+      "R": {
+        "min": 2671,
+        "max": 2707,
+        "mean": 2688.17,
+        "sd": 10.57,
+        "median": 2689.5,
+        "rail": 0
+      }
+    },
+    {
+      "section": "BLACK repeat 2",
+      "n": 47,
+      "t_start": 327080,
+      "t_end": 339040,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 2492,
+        "max": 2589,
+        "mean": 2521.19,
+        "sd": 19.17,
+        "median": 2519,
+        "rail": 0
+      },
+      "R": {
+        "min": 2514,
+        "max": 2545,
+        "mean": 2530.57,
+        "sd": 11.11,
+        "median": 2533,
+        "rail": 0
+      }
+    },
+    {
+      "section": "RED repeat 1",
+      "n": 45,
+      "t_start": 431600,
+      "t_end": 443040,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 178,
+        "max": 228,
+        "mean": 204.33,
+        "sd": 15.75,
+        "median": 203,
+        "rail": 0
+      },
+      "R": {
+        "min": 196,
+        "max": 230,
+        "mean": 212.04,
+        "sd": 9.54,
+        "median": 211,
+        "rail": 0
+      }
+    },
+    {
+      "section": "RED repeat 2",
+      "n": 60,
+      "t_start": 476840,
+      "t_end": 492180,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 173,
+        "max": 228,
+        "mean": 201.52,
+        "sd": 16.12,
+        "median": 201.0,
+        "rail": 0
+      },
+      "R": {
+        "min": 197,
+        "max": 231,
+        "mean": 211.12,
+        "sd": 9.95,
+        "median": 208.5,
+        "rail": 0
+      }
+    },
+    {
+      "section": "GREEN repeat 1",
+      "n": 58,
+      "t_start": 548600,
+      "t_end": 563420,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 182,
+        "max": 241,
+        "mean": 212.48,
+        "sd": 17.33,
+        "median": 219.0,
+        "rail": 0
+      },
+      "R": {
+        "min": 206,
+        "max": 249,
+        "mean": 219.79,
+        "sd": 10.81,
+        "median": 216.0,
+        "rail": 0
+      }
+    },
+    {
+      "section": "GREEN repeat 2",
+      "n": 57,
+      "t_start": 590460,
+      "t_end": 605020,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 181,
+        "max": 249,
+        "mean": 205.88,
+        "sd": 17.23,
+        "median": 201,
+        "rail": 0
+      },
+      "R": {
+        "min": 205,
+        "max": 237,
+        "mean": 219.18,
+        "sd": 10.09,
+        "median": 217,
+        "rail": 0
+      }
+    },
+    {
+      "section": "BLUE repeat 1",
+      "n": 51,
+      "t_start": 636220,
+      "t_end": 649220,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 189,
+        "max": 265,
+        "mean": 218.57,
+        "sd": 17.65,
+        "median": 218,
+        "rail": 0
+      },
+      "R": {
+        "min": 216,
+        "max": 250,
+        "mean": 230.88,
+        "sd": 10.2,
+        "median": 233,
+        "rail": 0
+      }
+    },
+    {
+      "section": "BLUE repeat 2",
+      "n": 44,
+      "t_start": 674700,
+      "t_end": 685880,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 193,
+        "max": 241,
+        "mean": 215.09,
+        "sd": 16.12,
+        "median": 213.0,
+        "rail": 0
+      },
+      "R": {
+        "min": 217,
+        "max": 253,
+        "mean": 233.27,
+        "sd": 10.87,
+        "median": 233.0,
+        "rail": 0
+      }
+    },
+    {
+      "section": "ORANGE repeat 1",
+      "n": 43,
+      "t_start": 721760,
+      "t_end": 732680,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 179,
+        "max": 228,
+        "mean": 206.35,
+        "sd": 17.16,
+        "median": 206,
+        "rail": 0
+      },
+      "R": {
+        "min": 203,
+        "max": 246,
+        "mean": 219.4,
+        "sd": 10.92,
+        "median": 222,
+        "rail": 0
+      }
+    },
+    {
+      "section": "ORANGE repeat 2",
+      "n": 42,
+      "t_start": 758680,
+      "t_end": 769340,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 174,
+        "max": 260,
+        "mean": 205.45,
+        "sd": 18.87,
+        "median": 204.5,
+        "rail": 0
+      },
+      "R": {
+        "min": 198,
+        "max": 229,
+        "mean": 212.36,
+        "sd": 11.63,
+        "median": 216.0,
+        "rail": 0
+      }
+    },
+    {
+      "section": "YELLOW repeat 1",
+      "n": 45,
+      "t_start": 795080,
+      "t_end": 806520,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 171,
+        "max": 228,
+        "mean": 201,
+        "sd": 17.98,
+        "median": 203,
+        "rail": 0
+      },
+      "R": {
+        "min": 197,
+        "max": 227,
+        "mean": 209.44,
+        "sd": 9.79,
+        "median": 209,
+        "rail": 0
+      }
+    },
+    {
+      "section": "YELLOW repeat 2",
+      "n": 51,
+      "t_start": 827060,
+      "t_end": 840060,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 140,
+        "max": 228,
+        "mean": 199.61,
+        "sd": 18.41,
+        "median": 200,
+        "rail": 0
+      },
+      "R": {
+        "min": 195,
+        "max": 227,
+        "mean": 211.63,
+        "sd": 10.66,
+        "median": 214,
+        "rail": 0
+      }
+    },
+    {
+      "section": "BARE CARDBOARD repeat 1 -- BACKGROUND",
+      "n": 50,
+      "t_start": 865540,
+      "t_end": 878280,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 187,
+        "max": 260,
+        "mean": 214.98,
+        "sd": 17.46,
+        "median": 219.0,
+        "rail": 0
+      },
+      "R": {
+        "min": 209,
+        "max": 261,
+        "mean": 223.54,
+        "sd": 11.08,
+        "median": 220.0,
+        "rail": 0
+      }
+    },
+    {
+      "section": "BARE CARDBOARD repeat 2 -- BACKGROUND",
+      "n": 41,
+      "t_start": 900120,
+      "t_end": 910520,
+      "invalid": 0,
+      "drive_on": 0,
+      "phases": [
+        "READY"
+      ],
+      "nonforward": 0,
+      "L": {
+        "min": 190,
+        "max": 240,
+        "mean": 214.83,
+        "sd": 15.67,
+        "median": 216,
+        "rail": 0
+      },
+      "R": {
+        "min": 214,
+        "max": 251,
+        "mean": 233.17,
+        "sd": 11.61,
+        "median": 235,
+        "rail": 0
+      }
+    }
+  ],
+  "pooled": {
+    "BLACK": {
+      "L": {
+        "min": 2492,
+        "max": 2592,
+        "mean": 2526.91,
+        "sd": 19.23
+      },
+      "R": {
+        "min": 2514,
+        "max": 2707,
+        "mean": 2608.53,
+        "sd": 79.95
+      }
+    },
+    "RED": {
+      "L": {
+        "min": 173,
+        "max": 228,
+        "mean": 202.72,
+        "sd": 15.95
+      },
+      "R": {
+        "min": 196,
+        "max": 231,
+        "mean": 211.51,
+        "sd": 9.74
+      }
+    },
+    "GREEN": {
+      "L": {
+        "min": 181,
+        "max": 249,
+        "mean": 209.21,
+        "sd": 17.52
+      },
+      "R": {
+        "min": 205,
+        "max": 249,
+        "mean": 219.49,
+        "sd": 10.42
+      }
+    },
+    "BLUE": {
+      "L": {
+        "min": 189,
+        "max": 265,
+        "mean": 216.96,
+        "sd": 16.96
+      },
+      "R": {
+        "min": 216,
+        "max": 253,
+        "mean": 231.99,
+        "sd": 10.53
+      }
+    },
+    "ORANGE": {
+      "L": {
+        "min": 174,
+        "max": 260,
+        "mean": 205.91,
+        "sd": 17.93
+      },
+      "R": {
+        "min": 198,
+        "max": 246,
+        "mean": 215.92,
+        "sd": 11.76
+      }
+    },
+    "YELLOW": {
+      "L": {
+        "min": 140,
+        "max": 228,
+        "mean": 200.26,
+        "sd": 18.13
+      },
+      "R": {
+        "min": 195,
+        "max": 227,
+        "mean": 210.6,
+        "sd": 10.27
+      }
+    },
+    "BARE CARDBOARD": {
+      "L": {
+        "min": 187,
+        "max": 260,
+        "mean": 214.91,
+        "sd": 16.58
+      },
+      "R": {
+        "min": 209,
+        "max": 261,
+        "mean": 227.88,
+        "sd": 12.25
+      }
+    }
+  },
+  "overlaps": {
+    "L": [
+      {
+        "pair": [
+          "RED",
+          "GREEN"
+        ],
+        "intersection": [
+          181,
+          228
+        ]
+      },
+      {
+        "pair": [
+          "RED",
+          "BLUE"
+        ],
+        "intersection": [
+          189,
+          228
+        ]
+      },
+      {
+        "pair": [
+          "RED",
+          "ORANGE"
+        ],
+        "intersection": [
+          174,
+          228
+        ]
+      },
+      {
+        "pair": [
+          "RED",
+          "YELLOW"
+        ],
+        "intersection": [
+          173,
+          228
+        ]
+      },
+      {
+        "pair": [
+          "RED",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          187,
+          228
+        ]
+      },
+      {
+        "pair": [
+          "GREEN",
+          "BLUE"
+        ],
+        "intersection": [
+          189,
+          249
+        ]
+      },
+      {
+        "pair": [
+          "GREEN",
+          "ORANGE"
+        ],
+        "intersection": [
+          181,
+          249
+        ]
+      },
+      {
+        "pair": [
+          "GREEN",
+          "YELLOW"
+        ],
+        "intersection": [
+          181,
+          228
+        ]
+      },
+      {
+        "pair": [
+          "GREEN",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          187,
+          249
+        ]
+      },
+      {
+        "pair": [
+          "BLUE",
+          "ORANGE"
+        ],
+        "intersection": [
+          189,
+          260
+        ]
+      },
+      {
+        "pair": [
+          "BLUE",
+          "YELLOW"
+        ],
+        "intersection": [
+          189,
+          228
+        ]
+      },
+      {
+        "pair": [
+          "BLUE",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          189,
+          260
+        ]
+      },
+      {
+        "pair": [
+          "ORANGE",
+          "YELLOW"
+        ],
+        "intersection": [
+          174,
+          228
+        ]
+      },
+      {
+        "pair": [
+          "ORANGE",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          187,
+          260
+        ]
+      },
+      {
+        "pair": [
+          "YELLOW",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          187,
+          228
+        ]
+      }
+    ],
+    "R": [
+      {
+        "pair": [
+          "RED",
+          "GREEN"
+        ],
+        "intersection": [
+          205,
+          231
+        ]
+      },
+      {
+        "pair": [
+          "RED",
+          "BLUE"
+        ],
+        "intersection": [
+          216,
+          231
+        ]
+      },
+      {
+        "pair": [
+          "RED",
+          "ORANGE"
+        ],
+        "intersection": [
+          198,
+          231
+        ]
+      },
+      {
+        "pair": [
+          "RED",
+          "YELLOW"
+        ],
+        "intersection": [
+          196,
+          227
+        ]
+      },
+      {
+        "pair": [
+          "RED",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          209,
+          231
+        ]
+      },
+      {
+        "pair": [
+          "GREEN",
+          "BLUE"
+        ],
+        "intersection": [
+          216,
+          249
+        ]
+      },
+      {
+        "pair": [
+          "GREEN",
+          "ORANGE"
+        ],
+        "intersection": [
+          205,
+          246
+        ]
+      },
+      {
+        "pair": [
+          "GREEN",
+          "YELLOW"
+        ],
+        "intersection": [
+          205,
+          227
+        ]
+      },
+      {
+        "pair": [
+          "GREEN",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          209,
+          249
+        ]
+      },
+      {
+        "pair": [
+          "BLUE",
+          "ORANGE"
+        ],
+        "intersection": [
+          216,
+          246
+        ]
+      },
+      {
+        "pair": [
+          "BLUE",
+          "YELLOW"
+        ],
+        "intersection": [
+          216,
+          227
+        ]
+      },
+      {
+        "pair": [
+          "BLUE",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          216,
+          253
+        ]
+      },
+      {
+        "pair": [
+          "ORANGE",
+          "YELLOW"
+        ],
+        "intersection": [
+          198,
+          227
+        ]
+      },
+      {
+        "pair": [
+          "ORANGE",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          209,
+          246
+        ]
+      },
+      {
+        "pair": [
+          "YELLOW",
+          "BARE CARDBOARD"
+        ],
+        "intersection": [
+          209,
+          227
+        ]
+      }
+    ]
+  },
+  "duplicate_records": [],
+  "malformed_records": [],
+  "total_records": 680,
+  "exact_pair_collisions": [
+    {
+      "L": 224,
+      "R": 220,
+      "labels": [
+        "ORANGE",
+        "RED"
+      ]
+    },
+    {
+      "L": 192,
+      "R": 220,
+      "labels": [
+        "RED",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 193,
+      "R": 217,
+      "labels": [
+        "BARE CARDBOARD",
+        "RED"
+      ]
+    },
+    {
+      "L": 206,
+      "R": 227,
+      "labels": [
+        "BLUE",
+        "RED"
+      ]
+    },
+    {
+      "L": 212,
+      "R": 200,
+      "labels": [
+        "RED",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 195,
+      "R": 224,
+      "labels": [
+        "BLUE",
+        "RED"
+      ]
+    },
+    {
+      "L": 206,
+      "R": 209,
+      "labels": [
+        "GREEN",
+        "RED"
+      ]
+    },
+    {
+      "L": 205,
+      "R": 202,
+      "labels": [
+        "ORANGE",
+        "RED"
+      ]
+    },
+    {
+      "L": 194,
+      "R": 218,
+      "labels": [
+        "BARE CARDBOARD",
+        "RED"
+      ]
+    },
+    {
+      "L": 196,
+      "R": 209,
+      "labels": [
+        "RED",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 224,
+      "R": 201,
+      "labels": [
+        "ORANGE",
+        "RED"
+      ]
+    },
+    {
+      "L": 229,
+      "R": 238,
+      "labels": [
+        "BLUE",
+        "GREEN"
+      ]
+    },
+    {
+      "L": 184,
+      "R": 210,
+      "labels": [
+        "GREEN",
+        "ORANGE"
+      ]
+    },
+    {
+      "L": 226,
+      "R": 233,
+      "labels": [
+        "GREEN",
+        "ORANGE"
+      ]
+    },
+    {
+      "L": 220,
+      "R": 211,
+      "labels": [
+        "GREEN",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 230,
+      "R": 214,
+      "labels": [
+        "BARE CARDBOARD",
+        "GREEN"
+      ]
+    },
+    {
+      "L": 218,
+      "R": 227,
+      "labels": [
+        "BARE CARDBOARD",
+        "GREEN"
+      ]
+    },
+    {
+      "L": 194,
+      "R": 222,
+      "labels": [
+        "GREEN",
+        "ORANGE"
+      ]
+    },
+    {
+      "L": 193,
+      "R": 224,
+      "labels": [
+        "BLUE",
+        "GREEN"
+      ]
+    },
+    {
+      "L": 201,
+      "R": 223,
+      "labels": [
+        "GREEN",
+        "ORANGE"
+      ]
+    },
+    {
+      "L": 204,
+      "R": 235,
+      "labels": [
+        "BARE CARDBOARD",
+        "GREEN"
+      ]
+    },
+    {
+      "L": 225,
+      "R": 224,
+      "labels": [
+        "BARE CARDBOARD",
+        "GREEN",
+        "ORANGE"
+      ]
+    },
+    {
+      "L": 185,
+      "R": 218,
+      "labels": [
+        "GREEN",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 182,
+      "R": 229,
+      "labels": [
+        "GREEN",
+        "ORANGE"
+      ]
+    },
+    {
+      "L": 195,
+      "R": 218,
+      "labels": [
+        "BARE CARDBOARD",
+        "BLUE"
+      ]
+    },
+    {
+      "L": 214,
+      "R": 219,
+      "labels": [
+        "BLUE",
+        "ORANGE"
+      ]
+    },
+    {
+      "L": 200,
+      "R": 245,
+      "labels": [
+        "BARE CARDBOARD",
+        "BLUE"
+      ]
+    },
+    {
+      "L": 196,
+      "R": 217,
+      "labels": [
+        "BLUE",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 204,
+      "R": 223,
+      "labels": [
+        "BLUE",
+        "ORANGE"
+      ]
+    },
+    {
+      "L": 236,
+      "R": 221,
+      "labels": [
+        "BARE CARDBOARD",
+        "BLUE"
+      ]
+    },
+    {
+      "L": 204,
+      "R": 238,
+      "labels": [
+        "BARE CARDBOARD",
+        "BLUE"
+      ]
+    },
+    {
+      "L": 194,
+      "R": 224,
+      "labels": [
+        "ORANGE",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 228,
+      "R": 205,
+      "labels": [
+        "ORANGE",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 216,
+      "R": 226,
+      "labels": [
+        "ORANGE",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 220,
+      "R": 198,
+      "labels": [
+        "ORANGE",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 216,
+      "R": 200,
+      "labels": [
+        "ORANGE",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 203,
+      "R": 200,
+      "labels": [
+        "ORANGE",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 228,
+      "R": 219,
+      "labels": [
+        "BARE CARDBOARD",
+        "YELLOW"
+      ]
+    },
+    {
+      "L": 211,
+      "R": 213,
+      "labels": [
+        "BARE CARDBOARD",
+        "YELLOW"
+      ]
+    }
+  ],
+  "other_flag_counts": {
+    "PIO_BAD=0/1": 680,
+    "ENC_UNCERTAIN=1": 680,
+    "WIFI_LINK=-2": 615,
+    "WIFI_LINK=1": 65,
+    "WIFI_LINK=3": 0
+  }
+}

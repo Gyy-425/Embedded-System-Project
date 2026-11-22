@@ -1,0 +1,163 @@
+{
+  "label": "clipped20-rgb-20261120",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-classifier-compile.log"
+    },
+    {
+      "name": "classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-classifier.log"
+    },
+    {
+      "name": "classifier-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-classifier-replay-compile.log"
+    },
+    {
+      "name": "classifier-replay",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-classifier-replay.log"
+    },
+    {
+      "name": "home-classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-home-classifier-compile.log"
+    },
+    {
+      "name": "home-classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-home-classifier.log"
+    },
+    {
+      "name": "home-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-home-replay-compile.log"
+    },
+    {
+      "name": "home-replay",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-home-replay.log"
+    },
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-core.log"
+    },
+    {
+      "name": "task-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-task-compile.log"
+    },
+    {
+      "name": "task",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-task.log"
+    },
+    {
+      "name": "adapter-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-adapter-compile.log"
+    },
+    {
+      "name": "adapter",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-adapter.log"
+    },
+    {
+      "name": "colour-regression-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-colour-regression-compile.log"
+    },
+    {
+      "name": "colour-regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-colour-regression.log"
+    },
+    {
+      "name": "runtime-regression-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-runtime-regression-compile.log"
+    },
+    {
+      "name": "runtime-regression",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-runtime-regression.log"
+    },
+    {
+      "name": "rgb_sensor-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-rgb_sensor-target-compile.log"
+    },
+    {
+      "name": "rgb_classifier-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-rgb_classifier-target-compile.log"
+    },
+    {
+      "name": "rgb_calibration-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-rgb_calibration-target-compile.log"
+    },
+    {
+      "name": "home-calibration-target-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/clipped20-rgb-20261120-home-calibration-target-compile.log"
+    }
+  ],
+  "status": "PASS",
+  "old_uf2s": 155,
+  "old_uf2s_unchanged": true
+}

@@ -1,0 +1,38 @@
+{
+  "label": "yellowrgb-20261117-red",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellowrgb-20261117-red-classifier-compile.log"
+    },
+    {
+      "name": "classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellowrgb-20261117-red-classifier.log"
+    },
+    {
+      "name": "classifier-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellowrgb-20261117-red-classifier-replay-compile.log"
+    },
+    {
+      "name": "classifier-replay",
+      "exit_code": 1,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/yellowrgb-20261117-red-classifier-replay.log"
+    }
+  ],
+  "status": "FAILED",
+  "error": "classifier-replay failed or warned",
+  "old_uf2s": 117,
+  "old_uf2s_unchanged": true
+}

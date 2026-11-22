@@ -1,0 +1,856 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "rgb_profile": "home",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-rgb-report-powered.log"
+    },
+    {
+      "name": "yellow-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-yellow-core-compile.log"
+    },
+    {
+      "name": "yellow-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-yellow-core.log"
+    },
+    {
+      "name": "yellow-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-yellow-replay-compile.log"
+    },
+    {
+      "name": "yellow-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-yellow-replay.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty40-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-duty40-compile.log"
+    },
+    {
+      "name": "owner-duty40",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-duty40.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-duty50.log"
+    },
+    {
+      "name": "yellow-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-yellow-owner-compile.log"
+    },
+    {
+      "name": "yellow-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-yellow-owner.log"
+    },
+    {
+      "name": "yellow-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-yellow-startup-compile.log"
+    },
+    {
+      "name": "yellow-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-yellow-startup.log"
+    },
+    {
+      "name": "red-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-red-core-compile.log"
+    },
+    {
+      "name": "red-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-red-core.log"
+    },
+    {
+      "name": "red-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-red-replay-compile.log"
+    },
+    {
+      "name": "red-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-red-replay.log"
+    },
+    {
+      "name": "red-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-red-owner35-compile.log"
+    },
+    {
+      "name": "red-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-red-owner35.log"
+    },
+    {
+      "name": "red-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-red-startup-compile.log"
+    },
+    {
+      "name": "red-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-red-startup.log"
+    },
+    {
+      "name": "blue-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-replay-compile.log"
+    },
+    {
+      "name": "blue-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-replay.log"
+    },
+    {
+      "name": "blue-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-owner35-compile.log"
+    },
+    {
+      "name": "blue-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-owner35.log"
+    },
+    {
+      "name": "blue-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-startup-compile.log"
+    },
+    {
+      "name": "blue-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-startup.log"
+    },
+    {
+      "name": "multi-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-multi-owner25-compile.log"
+    },
+    {
+      "name": "multi-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-multi-owner25.log"
+    },
+    {
+      "name": "multi-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-multi-startup-compile.log"
+    },
+    {
+      "name": "multi-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-multi-startup.log"
+    },
+    {
+      "name": "corner-left-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-corner-left-owner25-compile.log"
+    },
+    {
+      "name": "corner-left-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-corner-left-owner25.log"
+    },
+    {
+      "name": "corner-left-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-corner-left-startup-compile.log"
+    },
+    {
+      "name": "corner-left-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-corner-left-startup.log"
+    },
+    {
+      "name": "corner-right-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-corner-right-owner25-compile.log"
+    },
+    {
+      "name": "corner-right-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-corner-right-owner25.log"
+    },
+    {
+      "name": "corner-right-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-corner-right-startup-compile.log"
+    },
+    {
+      "name": "corner-right-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-corner-right-startup.log"
+    },
+    {
+      "name": "clipped-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-clipped-owner25-compile.log"
+    },
+    {
+      "name": "clipped-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-clipped-owner25.log"
+    },
+    {
+      "name": "clipped-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-clipped-startup-compile.log"
+    },
+    {
+      "name": "clipped-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-clipped-startup.log"
+    },
+    {
+      "name": "blue-bend-right-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-bend-right-owner25-compile.log"
+    },
+    {
+      "name": "blue-bend-right-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-bend-right-owner25.log"
+    },
+    {
+      "name": "blue-bend-right-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-bend-right-startup-compile.log"
+    },
+    {
+      "name": "blue-bend-right-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-blue-bend-right-startup.log"
+    },
+    {
+      "name": "loop-clockwise-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-loop-clockwise-owner25-compile.log"
+    },
+    {
+      "name": "loop-clockwise-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-loop-clockwise-owner25.log"
+    },
+    {
+      "name": "loop-clockwise-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-loop-clockwise-startup-compile.log"
+    },
+    {
+      "name": "loop-clockwise-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-loop-clockwise-startup.log"
+    },
+    {
+      "name": "loop-anticlockwise-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-loop-anticlockwise-owner25-compile.log"
+    },
+    {
+      "name": "loop-anticlockwise-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-loop-anticlockwise-owner25.log"
+    },
+    {
+      "name": "loop-anticlockwise-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-loop-anticlockwise-startup-compile.log"
+    },
+    {
+      "name": "loop-anticlockwise-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-loop-anticlockwise-startup.log"
+    },
+    {
+      "name": "early-bend-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-early-bend-owner25-compile.log"
+    },
+    {
+      "name": "early-bend-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-early-bend-owner25.log"
+    },
+    {
+      "name": "early-bend-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-early-bend-startup-compile.log"
+    },
+    {
+      "name": "early-bend-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-early-bend-startup.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-owner-original50-turn20.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-duty.log"
+    },
+    {
+      "name": "reject-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-turn.log"
+    },
+    {
+      "name": "reject-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-geometry.log"
+    },
+    {
+      "name": "reject-orphan-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-yellow.log"
+    },
+    {
+      "name": "reject-red-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-red-geometry.log"
+    },
+    {
+      "name": "reject-orphan-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-red.log"
+    },
+    {
+      "name": "reject-mixed-colour",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-mixed-colour.log"
+    },
+    {
+      "name": "reject-blue-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-blue-geometry.log"
+    },
+    {
+      "name": "reject-orphan-blue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-blue.log"
+    },
+    {
+      "name": "reject-mix-blue-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-mix-blue-red.log"
+    },
+    {
+      "name": "reject-mix-blue-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-mix-blue-yellow.log"
+    },
+    {
+      "name": "reject-multi-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-multi-geometry.log"
+    },
+    {
+      "name": "reject-orphan-multi",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-multi.log"
+    },
+    {
+      "name": "reject-multi-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-multi-duty.log"
+    },
+    {
+      "name": "reject-corner-direction",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-corner-direction.log"
+    },
+    {
+      "name": "reject-orphan-corner",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-corner.log"
+    },
+    {
+      "name": "reject-clipped-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-clipped-value.log"
+    },
+    {
+      "name": "reject-orphan-clipped",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-clipped.log"
+    },
+    {
+      "name": "reject-clipped-pivot",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-clipped-pivot.log"
+    },
+    {
+      "name": "reject-clipped-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-clipped-turn.log"
+    },
+    {
+      "name": "reject-orphan-blue-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-blue-bend.log"
+    },
+    {
+      "name": "reject-blue-bend-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-blue-bend-value.log"
+    },
+    {
+      "name": "reject-orphan-loop-recovery",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-loop-recovery.log"
+    },
+    {
+      "name": "reject-loop-recovery-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-loop-recovery-value.log"
+    },
+    {
+      "name": "reject-loop-recovery-blue-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-loop-recovery-blue-bend.log"
+    },
+    {
+      "name": "reject-orphan-early-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-orphan-early-bend.log"
+    },
+    {
+      "name": "reject-early-bend-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-early-bend-value.log"
+    },
+    {
+      "name": "reject-early-bend-reverse",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-early-bend-reverse.log"
+    },
+    {
+      "name": "reject-rgb-profile",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-rgb-profile.log"
+    },
+    {
+      "name": "reject-mix-multi-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-mix-multi-red.log"
+    },
+    {
+      "name": "reject-mix-multi-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-mix-multi-yellow.log"
+    },
+    {
+      "name": "reject-mix-multi-blue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-reject-mix-multi-blue.log"
+    },
+    {
+      "name": "build-Early_Bend_Clockwise_v0_24_D25_HOME",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/earlybend24-20261120-build-Early_Bend_Clockwise_v0_24_D25_HOME.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/multi_follow_earlybend24-20261120/AAI05_Early_Bend_Clockwise_v0_24_D25_HOME.uf2",
+      "sha256": "835982b8022583650b42eec5405ecf6188dac6bceed2599d5c7c644c6a18add7"
+    },
+    {
+      "path": "output/firmware/multi_follow_earlybend24-20261120/AAI05_Early_Bend_Clockwise_v0_24_D25_HOME.elf",
+      "sha256": "8b95f3d473849d4b5ff5b2f2f07b246dbff1ceed7b03eff351035dda80bed54f"
+    },
+    {
+      "path": "output/firmware/multi_follow_earlybend24-20261120/AAI05_Early_Bend_Clockwise_v0_24_D25_HOME.map",
+      "sha256": "ebb710de28e9d9e9774380a210681cf5871dbf9d14ce466f5209b72dc23fe8b7"
+    }
+  ],
+  "old_uf2s": 165,
+  "old_uf2s_unchanged": true
+}

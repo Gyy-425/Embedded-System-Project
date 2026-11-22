@@ -1,0 +1,1889 @@
+{
+  "status": "PASS",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "assembler",
+      "command": [
+        "/usr/bin/python3",
+        "tools/assemble_encoder_pio.py",
+        "--sdk",
+        "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0",
+        "--check"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-assembler.log"
+    },
+    {
+      "name": "pio-count-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_pio_count.c",
+        "app_program/subsystem2/encoder_pio_count.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/pio-count"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-count-compile.log"
+    },
+    {
+      "name": "pio-count-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-count"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-count-0.log"
+    },
+    {
+      "name": "pio-io-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_ENCODER_PIO=1",
+        "-Itesting/host/pio_fixture",
+        "testing/host/test_encoder_pio_io.c",
+        "app_program/subsystem2/encoder_pio_io_rp2040.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/pio-io"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-io-compile.log"
+    },
+    {
+      "name": "pio-io-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-io",
+        "success"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-io-0.log"
+    },
+    {
+      "name": "pio-io-1",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-io",
+        "busy"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-io-1.log"
+    },
+    {
+      "name": "pio-io-2",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-io",
+        "programbusy"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-io-2.log"
+    },
+    {
+      "name": "pio-io-3",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-io",
+        "unclaimedactive"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-io-3.log"
+    },
+    {
+      "name": "pio-io-4",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-io",
+        "initfail"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-io-4.log"
+    },
+    {
+      "name": "pio-io-5",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-io",
+        "disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-io-5.log"
+    },
+    {
+      "name": "pio-io-6",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-io",
+        "frozen"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-io-6.log"
+    },
+    {
+      "name": "pio-adapter-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_ENCODER_PIO=1",
+        "testing/host/test_encoder_capture_pio.c",
+        "app_program/subsystem2/encoder_pio_count.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/pio-adapter"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-adapter-compile.log"
+    },
+    {
+      "name": "pio-adapter-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-adapter",
+        "success"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-adapter-0.log"
+    },
+    {
+      "name": "pio-adapter-1",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-adapter",
+        "startfail"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-adapter-1.log"
+    },
+    {
+      "name": "pio-adapter-2",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/pio-adapter",
+        "half"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-pio-adapter-2.log"
+    },
+    {
+      "name": "gpio-deferred-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_gpio_deferred.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/gpio-deferred"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-gpio-deferred-compile.log"
+    },
+    {
+      "name": "gpio-deferred-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/gpio-deferred"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-gpio-deferred-0.log"
+    },
+    {
+      "name": "encoder-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/encoder"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-encoder-compile.log"
+    },
+    {
+      "name": "encoder-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/encoder"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-encoder-0.log"
+    },
+    {
+      "name": "gpio-capture-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_capture.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/gpio-capture"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-gpio-capture-compile.log"
+    },
+    {
+      "name": "gpio-capture-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/gpio-capture"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-gpio-capture-0.log"
+    },
+    {
+      "name": "gpio-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_startup.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/gpio-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-gpio-startup-compile.log"
+    },
+    {
+      "name": "gpio-startup-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/gpio-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-gpio-startup-0.log"
+    },
+    {
+      "name": "registers-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_rp2040_registers.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/registers"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-registers-compile.log"
+    },
+    {
+      "name": "registers-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/registers"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-registers-0.log"
+    },
+    {
+      "name": "motor-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_startup.c",
+        "app_program/subsystem2/drv_motor.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/motor-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motor-startup-compile.log"
+    },
+    {
+      "name": "motor-startup-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/motor-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motor-startup-0.log"
+    },
+    {
+      "name": "motor-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_control.c",
+        "app_program/subsystem2/motor_test.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/motor-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motor-control-compile.log"
+    },
+    {
+      "name": "motor-control-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/motor-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motor-control-0.log"
+    },
+    {
+      "name": "motor-pulse-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/motor-pulse"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motor-pulse-compile.log"
+    },
+    {
+      "name": "motor-pulse-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/motor-pulse"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motor-pulse-0.log"
+    },
+    {
+      "name": "motor-probe-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DMOTOR_TEST_PROBE=1",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/motor-probe"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motor-probe-compile.log"
+    },
+    {
+      "name": "motor-probe-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/motor-probe"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motor-probe-0.log"
+    },
+    {
+      "name": "motion-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_control.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/motion"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motion-compile.log"
+    },
+    {
+      "name": "motion-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/motion"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motion-0.log"
+    },
+    {
+      "name": "chassis-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_chassis.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/chassis"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-chassis-compile.log"
+    },
+    {
+      "name": "chassis-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/chassis",
+        "--vectors"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-chassis-0.log"
+    },
+    {
+      "name": "chassis-disabled-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_chassis_disabled.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/chassis-disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-chassis-disabled-compile.log"
+    },
+    {
+      "name": "chassis-disabled-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/chassis-disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-chassis-disabled-0.log"
+    },
+    {
+      "name": "motion-runtime0-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-pthread",
+        "-Iinclude",
+        "-DAAI05_REMOTE_APP=0",
+        "testing/host/test_motion_runtime.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/motion-runtime0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motion-runtime0-compile.log"
+    },
+    {
+      "name": "motion-runtime0-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/motion-runtime0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motion-runtime0-0.log"
+    },
+    {
+      "name": "motion-runtime1-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-pthread",
+        "-Iinclude",
+        "-DAAI05_REMOTE_APP=1",
+        "testing/host/test_motion_runtime.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/motion-runtime1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motion-runtime1-compile.log"
+    },
+    {
+      "name": "motion-runtime1-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/motion-runtime1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-motion-runtime1-0.log"
+    },
+    {
+      "name": "drive-capture-fault-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "-Ilib/libwifi/sysdepend/pico_rp2040",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "testing/host/test_drive_capture_fault.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/drive-capture-fault"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-drive-capture-fault-compile.log"
+    },
+    {
+      "name": "drive-capture-fault-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/drive-capture-fault"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-drive-capture-fault-0.log"
+    },
+    {
+      "name": "drive-protocol-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_drive_protocol.c",
+        "app_program/subsystem3/drive_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/drive-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-drive-protocol-compile.log"
+    },
+    {
+      "name": "drive-protocol-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/drive-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-drive-protocol-0.log"
+    },
+    {
+      "name": "drive-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_drive_control.c",
+        "app_program/subsystem3/drive_control.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/drive-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-drive-control-compile.log"
+    },
+    {
+      "name": "drive-control-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/drive-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-drive-control-0.log"
+    },
+    {
+      "name": "drive-service-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "testing/host/test_drive_service.c",
+        "app_program/subsystem3/mqtt_drive_app.c",
+        "app_program/subsystem3/drive_control.c",
+        "app_program/subsystem3/drive_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/drive-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-drive-service-compile.log"
+    },
+    {
+      "name": "drive-service-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/drive-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-drive-service-0.log"
+    },
+    {
+      "name": "comm-protocol-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_comm_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/comm-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-comm-protocol-compile.log"
+    },
+    {
+      "name": "comm-protocol-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/comm-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-comm-protocol-0.log"
+    },
+    {
+      "name": "colour-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_classifier.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/colour"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-colour-compile.log"
+    },
+    {
+      "name": "colour-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/colour"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-colour-0.log"
+    },
+    {
+      "name": "colour-runtime-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_runtime.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "app_program/subsystem1/colour_runtime.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/colour-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-colour-runtime-compile.log"
+    },
+    {
+      "name": "colour-runtime-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/colour-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-colour-runtime-0.log"
+    },
+    {
+      "name": "ir-runtime-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_ir_runtime.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "app_program/subsystem1/colour_runtime.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/ir-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-ir-runtime-compile.log"
+    },
+    {
+      "name": "ir-runtime-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/ir-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-ir-runtime-0.log"
+    },
+    {
+      "name": "colour-wire-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_protocol.c",
+        "app_program/subsystem3/colour_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/colour-wire"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-colour-wire-compile.log"
+    },
+    {
+      "name": "colour-wire-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/colour-wire"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-colour-wire-0.log"
+    },
+    {
+      "name": "colour-service-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_service.c",
+        "app_program/subsystem3/colour_service.c",
+        "app_program/subsystem3/colour_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/colour-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-colour-service-compile.log"
+    },
+    {
+      "name": "colour-service-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/colour-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-colour-service-0.log"
+    },
+    {
+      "name": "mqtt-ingress0-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=0",
+        "-DAAI05_COMMS_APP=1",
+        "-Itesting/host/mqtt_fixture",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "-I/tmp/aai05-sdk-3eb0f28287/lib/lwip/src/include",
+        "testing/host/test_mqtt_ingress.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/mqtt-ingress0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-mqtt-ingress0-compile.log"
+    },
+    {
+      "name": "mqtt-ingress0-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/mqtt-ingress0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-mqtt-ingress0-0.log"
+    },
+    {
+      "name": "mqtt-ingress1-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "-DAAI05_COMMS_APP=0",
+        "-Itesting/host/mqtt_fixture",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "-I/tmp/aai05-sdk-3eb0f28287/lib/lwip/src/include",
+        "testing/host/test_mqtt_ingress.c",
+        "-o",
+        "/tmp/aai05-pio-check-enpgcoak/mqtt-ingress1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-mqtt-ingress1-compile.log"
+    },
+    {
+      "name": "mqtt-ingress1-0",
+      "command": [
+        "/tmp/aai05-pio-check-enpgcoak/mqtt-ingress1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-mqtt-ingress1-0.log"
+    },
+    {
+      "name": "all-python-except-tcl",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "testing.host.test_calibrate_distance",
+        "testing.host.test_chassis_cli",
+        "testing.host.test_colour_codec",
+        "testing.host.test_colour_sanitizer_gate",
+        "testing.host.test_comm_cli",
+        "testing.host.test_drive_cli",
+        "testing.host.test_drive_codec",
+        "testing.host.test_encoder_pio_program",
+        "testing.host.test_network_config",
+        "testing.host.test_tape_calibration"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-all-python-except-tcl.log"
+    },
+    {
+      "name": "windows-tcl-debug",
+      "command": [
+        "/mnt/c/Users/Guo YouYan/AppData/Local/Programs/Python/Python312/python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "testing/host",
+        "-p",
+        "test_debug_capture.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/join500-legacy-20261119-windows-tcl-debug.log"
+    }
+  ],
+  "source_commit": "13f5b5eb9e4eaf9c2c7bb49615543f7391655146",
+  "old_artifacts": [
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "f304fb6e3e403ba920f613e9f57d2ffe55cc905d2263cf1cbb33d1154b9e8ba7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_1_D40.uf2",
+      "sha256": "5f05d9a399a957b654b6d7821239d5ace4bbd604c6c2ed424b4e9ff101296a67",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_1_D40_NO_DRIVE.uf2",
+      "sha256": "a4de67c8e78579584d24f8f710c44d3bd8a2cba5e95d095109f8f4ed14a38def",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_2_D40_T8.uf2",
+      "sha256": "ac99f27ef5027174051d825f4c28e48ae5b2098b75d1b293002c41c684ffc8fb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_2_D40_T8_NO_DRIVE.uf2",
+      "sha256": "7eaebb9d12bcfe29e65ac0d5ad1e2868165fd87ae67a6077345a80eec9b6bd20",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_3_D40_T8.uf2",
+      "sha256": "a4a1103f6edaeea3f8a476d985d58aaeb5f7ab17c2ef0638b0e2b2f832182bf0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_3_D40_T8_NO_DRIVE.uf2",
+      "sha256": "2d4e43b6bc16a0f1f6c99c50efee7f1f075e44b06d99a0c430fb43d08c245fe6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "68396e8920140f4f685b73a506e3e5d80bd292e6264e03b1b89798e2c24e2990",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Colour_Runtime_v0_10_BROKER210.uf2",
+      "sha256": "197c62cd63949268ad926984ea493c4641d6a30d381be5d90c152177874847f3",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Colour_Runtime_v0_10_HOTSPOT_campus-20261110-141643.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "c9d6e1c45331a83d9c928f436f6cbf8c37c6bbf5539fe9ca898d0f10788d8189",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "61cd30108754d4f87be228328178c55f56cfdb8d7ddeab7bcd097955f2aef79c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_1.uf2",
+      "sha256": "167bae49cdd11484e3123128089df513605df3cc3de18f3437586896a4e1a1ce",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_1_TEST.uf2",
+      "sha256": "3213a6f2798faf706bb943215faaff39e3feeb8382d762577d70b260d28ece1a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_2.uf2",
+      "sha256": "c662dc2f4159267287bba2170baf5244ff7241fb743a3fa59ab1824c25d81c51",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_2_TEST.uf2",
+      "sha256": "b332da2a6a76c683dc59268c8bb09a7e54cea1ccceadfc53012d5378459e1c35",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "0a5e865299d594d4f4a338d387df4c5754e7047d52a9c7191b26acb8eb17b6eb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "e7ba61620019d0eb51f9f5135cf896c9fedfa56465fb840d6ff06c83490fb5b2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motion_v0_7_LOCAL.uf2",
+      "sha256": "24cdbbbbdaaa4c167262be38d422b7b2034806d47b180bf1d61cf052eba0b347",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motion_v0_7_LOCAL_TEST.uf2",
+      "sha256": "cce14a9ea09c1ba823af7181a0ddf3df267162b34d7061001a1d964d14ed3f5a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE.uf2",
+      "sha256": "ddaca6a73eac1ced8e80ba64c2808c55a3d84b84d9e39b06e370c2cbb4f1d805",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE_TEST.uf2",
+      "sha256": "906fdb154eebe99c82ba3c95ad0e7ea9808f7b8f92ccc5639eb60e36491f2fac",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6.uf2",
+      "sha256": "e1062112cfc0860a67b2f062ae56948be7f47fd8f5c29180d93b5e1e3cfb3a9f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_1.uf2",
+      "sha256": "018a41bc4f56955218c0d227ac367771cee20a38790792316b13244c2da71b09",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_1_TEST.uf2",
+      "sha256": "5b33b5fdfc9b363a070644329efd34787367ab6776f21d40bdf6a6e5b8d8943b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_TEST.uf2",
+      "sha256": "cc4bddf1472e134e36ffa3beb965488a805fe8de67bed4373907b38305caf48e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206.uf2",
+      "sha256": "d34dd070d9ed2723eacefb24f45b4039f6363130b6a093e04c5971b5b3208a29",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206_TEST.uf2",
+      "sha256": "cf84fce3e261bd612e157216a83e76660819d422e63a0f8de68d30cbf0e5241b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3.uf2",
+      "sha256": "4a1af5d9b09026536aa1239bfb2ce1b7c5d3a6897837919c0c09a48aef4002e0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_1.uf2",
+      "sha256": "30abbae451e37d54b6734c802a2ada3c38902ec979d5d3816ab15b01f288c9a1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_1_TEST.uf2",
+      "sha256": "1c1e4d1318d990ef8a06ee67c27ecca6bfb7c5df98eb5b6889c02412da33f76d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_2.uf2",
+      "sha256": "72c224beb09b5f388e99c64e6e5c8e8cc3dceb27b2eac23187267beda3d0caef",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_2_TEST.uf2",
+      "sha256": "6fa36cc2d339193fb09bde2919009b3bbe00bfaa24350055965ce6ddc079139f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_TEST.uf2",
+      "sha256": "16fc127da7f60f1fd6a11beb0064405f34c573b2fd505770ff39010052bc4a79",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2",
+      "sha256": "d80d95ad4b7c364198e293942cef1bb8a46bf8202fb138b580460092dae5ba0a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE_TEST.uf2",
+      "sha256": "0b002d4b11266aedf3ec4a1fd947e63e20ec38cd465e409b3c9d0999ca0b7728",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE.uf2",
+      "sha256": "e9427de33eb385c6b9d49a86647022126bd9be49bfdf30ee507737ee735abe99",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE_TEST.uf2",
+      "sha256": "bde20006b0da9ac28d54380debdec1beb7fce91965c0df255c638b030f63c49d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Red_Follow_v0_15_D35_T8.uf2",
+      "sha256": "3a1e82dedd9c4d386de7b759107a5c2b3b7872d596d84984a61fffd011667564",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Red_Follow_v0_15_D35_T8_NO_DRIVE.uf2",
+      "sha256": "b0cee807411b5be9f66a0a118db5f5c3f17b6dec80b91084db175a765ed6ea89",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_RGB_Classifier_v0_12.uf2",
+      "sha256": "dc0b5c64940cc8c566f05d0e6d6000f5df920e3ab930cf36cf9ea1e9b873c62d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_RGB_Classifier_v0_12_1.uf2",
+      "sha256": "f7d1b722129488427fa85028d619a028eebeffcdb1c7953f83ea712cc34eb59b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "6bf00159a89b6463e98e11deb1c0b6aa4f884f26cfe374a19db7ca6a822bb227",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Yellow_Follow_v0_14_D35_T8.uf2",
+      "sha256": "d7cfe712fb7dbc602fa46316d4709b6c4b77ffe748122fdf21c04070eb96f126",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Yellow_Follow_v0_14_D40_T8.uf2",
+      "sha256": "1b9fe3b171086e8eeb45b788779f0dfd0a1a0091e5e4e36c4574266a747b2e71",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.uf2",
+      "sha256": "b66d8257768721650f855dc237d86f6cdbe802a15b6c02a775e24c66a6f33305",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8.uf2",
+      "sha256": "a4a1103f6edaeea3f8a476d985d58aaeb5f7ab17c2ef0638b0e2b2f832182bf0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_NO_DRIVE.uf2",
+      "sha256": "2d4e43b6bc16a0f1f6c99c50efee7f1f075e44b06d99a0c430fb43d08c245fe6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_TEST.uf2",
+      "sha256": "1d801a2659e6ff86e3797b3732185920b38e5aa5ae6a2390ce69be3e2c4c2a3a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_RGB_Compatibility.uf2",
+      "sha256": "9017481c40a483482ac96441f6730f9012f8b83bfacde7050fd9fbe6b3c7faa3",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40.uf2",
+      "sha256": "5f05d9a399a957b654b6d7821239d5ace4bbd604c6c2ed424b4e9ff101296a67",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_NO_DRIVE.uf2",
+      "sha256": "a4de67c8e78579584d24f8f710c44d3bd8a2cba5e95d095109f8f4ed14a38def",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_TEST.uf2",
+      "sha256": "6e044f6d6adb02b0cfa8fbfaae8e14206078967aaf93868aa2e9d396a6819b9a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-build2/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "e44e1355d9b156bf6198d8650daebcfbb6daed19f793275784dcb2e1ea324c3f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-build2/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "f676f10c9e97a614830a3cd99d83b77dc633034c96b5f48b6c6125a56ef5156d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-build2/AAI05_Black_Follow_v0_13_TEST.uf2",
+      "sha256": "aef095ccb002e494bfe91f673febaf6cb69ff069ca4b9322a72ed4bde1fc54bc",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "1841c92679d0175b89b890d198f07babf234435cdc57df904788adcfd279f252",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "e317434893e40dab855cb6981abbd743f23bb0308ab2ca2c08f318b3d5afdbc2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_Black_Follow_v0_13_TEST.uf2",
+      "sha256": "e23fb4eabf4629548d67647ac494a508a49dc3a6f28c860d48b0f53d0aba699d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "f304fb6e3e403ba920f613e9f57d2ffe55cc905d2263cf1cbb33d1154b9e8ba7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "68396e8920140f4f685b73a506e3e5d80bd292e6264e03b1b89798e2c24e2990",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_TEST.uf2",
+      "sha256": "17a6d3b2e2d9c331f0f3bc8363add779f1e77fa9c78bae40b004ef83f83835e1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8.uf2",
+      "sha256": "ac99f27ef5027174051d825f4c28e48ae5b2098b75d1b293002c41c684ffc8fb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_NO_DRIVE.uf2",
+      "sha256": "7eaebb9d12bcfe29e65ac0d5ad1e2868165fd87ae67a6077345a80eec9b6bd20",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_TEST.uf2",
+      "sha256": "0c81a37d407e247c11d414a4ba30e1fbea75745f20b2139618fdf4d66f6f5052",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/blue_follow_bluefollow-20261119/AAI05_Blue_Follow_v0_16_D35_T8.uf2",
+      "sha256": "d51bb9f9a56c52db015a7ce18e1ffe0141eba413eb73a6cb744c37dad10a5b50",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/blue_follow_bluefollow-20261119/AAI05_Blue_Follow_v0_16_D35_T8_NO_DRIVE.uf2",
+      "sha256": "cc270b07b01324514ad0d2655cd1d48af47ee4f5235383906cab07fa74a17a19",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check.uf2",
+      "sha256": "d80d95ad4b7c364198e293942cef1bb8a46bf8202fb138b580460092dae5ba0a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check_TEST.uf2",
+      "sha256": "0b002d4b11266aedf3ec4a1fd947e63e20ec38cd465e409b3c9d0999ca0b7728",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-08-motor-qual-broker206/AAI05_Colour_Core_Compile_Check.uf2",
+      "sha256": "d34dd070d9ed2723eacefb24f45b4039f6363130b6a093e04c5971b5b3208a29",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-08-motor-qual-broker206/AAI05_Colour_Core_Compile_Check_TEST.uf2",
+      "sha256": "cf84fce3e261bd612e157216a83e76660819d422e63a0f8de68d30cbf0e5241b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "755d08a2246ac1e23fe1e21e782a64ae1b33aebbc051c0d0cb39f455511dd158",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "ed1f42ab340c1483cc14b70ea1998911b5f7c2d549d879b75d9b32616efdaca5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "0de06426e29c5b4ef3a8d5608cf467b380a7c2d2c8c0a97ba751c7a6d5db0b59",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "f98e6cfcacb2421d34931faa3cec4b6901b9be7526d0ba47a67fb44f6460946c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "755d08a2246ac1e23fe1e21e782a64ae1b33aebbc051c0d0cb39f455511dd158",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "ed1f42ab340c1483cc14b70ea1998911b5f7c2d549d879b75d9b32616efdaca5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "0de06426e29c5b4ef3a8d5608cf467b380a7c2d2c8c0a97ba751c7a6d5db0b59",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "f98e6cfcacb2421d34931faa3cec4b6901b9be7526d0ba47a67fb44f6460946c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "f2a06b48976a7b35ce630f3975f73c2d59e7d5e466b124729ee677ec5d90ceaa",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "7a53caabe80d6173ce974c1448dc0ecf9fa4f3d16e4fb23b1b93cc212413dfb1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "d333263c3e1e6ab56bb0744e97e630ec521fb6467e524f75626f9eab6a7d7291",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "abcd06caba0653917d837f2247342d0adada062434779489aabddadefdc5b0a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "0a5e865299d594d4f4a338d387df4c5754e7047d52a9c7191b26acb8eb17b6eb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "e7ba61620019d0eb51f9f5135cf896c9fedfa56465fb840d6ff06c83490fb5b2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "74d69eb6994262dcd6dbe12d187657c252511124daf43a1e27186fef6ab364a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "d73d5a4189957aa1856eef2aee7645763325469b559e8c81e0d668725122d8b0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "e403aae3ce735508127641323c8c1d2a8d198a6bb825d7a084a9a4de7ede2f9d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "ed7416ea00ca36a15f5e7dfa19ad60895be80abf50d04eb98234fd645ea0ba01",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "65fc992409340d5d4f642f7112102013dfd77da1047f6269e4cd07a0dc0d88d4",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "9f2908d4c55254ba341eb08b2f94d21e224fe98e840bff7a86f70334e9fe95de",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "8c16e60e021106e5c5d90e93bfe8dc84026abfae536433b3a700a42e76451d0c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "037915e6c2d91a2c10e4b2b3ec7ff0f961bd682252bbdad116ab7e5b641cc21c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "41b2d7e5f27920380364b6d17f592433a20d4baf7fd4add22065673048cadcd5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "edb2eaf64055714c10e527e63c246bdaf42df510780f6cec38735c3ea767dada",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8.uf2",
+      "sha256": "84fa41614d3839f8aa27509010b33c2f6bec30c8ae90d83919fe2f3837d3a2a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8_NO_DRIVE.uf2",
+      "sha256": "a8c6cb323ed7016e56388f382cff7b08b82391eebe3029d9d90983b5953c83ca",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Black_Follow_Compatibility.uf2",
+      "sha256": "1e35248f365ccc8739766ecd84818d7cbf551916aea37c92d69ba31b8e0690d2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8.uf2",
+      "sha256": "3a1e82dedd9c4d386de7b759107a5c2b3b7872d596d84984a61fffd011667564",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_NO_DRIVE.uf2",
+      "sha256": "b0cee807411b5be9f66a0a118db5f5c3f17b6dec80b91084db175a765ed6ea89",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_TEST.uf2",
+      "sha256": "c503cb8b34b317211e09ef0f0122a348120c06fa20dbca5e66579088c909b6ae",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_RGB_Compatibility.uf2",
+      "sha256": "8310e51232c301c42542cb069cc0051fe176d68a29d0b1371811109f26fb2d58",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Yellow_Follow_v0_14_D35_T8.uf2",
+      "sha256": "d7cfe712fb7dbc602fa46316d4709b6c4b77ffe748122fdf21c04070eb96f126",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "b9e0582f9f102985e7756c8b62d8e159bd99db96abe38d2bc09ba7f8d35c25e8",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "0be4d7db247d3c8eaa4f907cb70fc82da0f1dd350a3d1c0195c4011a5511bec1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "aaebe16f22d842c3e8c725cede20258cb2ce270de5a525b8c0b5544c5cb70e1c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "39e28bfd5357da7b63061e53b776933cb99a3bd5148a8b5c843dca60eb9775a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "6bf00159a89b6463e98e11deb1c0b6aa4f884f26cfe374a19db7ca6a822bb227",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "821bd36e7dd5a5a41f855782cd39e0f22d8c3de4c2a39a937431709b5dd0de33",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-build/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-build/AAI05_RGB_Classifier_v0_12.uf2",
+      "sha256": "f31ff5bc85d8d60ea7e513cc6a3478dedfbf3bde5a8cbde41869a78b5e138287",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-build/AAI05_RGB_Classifier_v0_12_TEST.uf2",
+      "sha256": "93259bc9de15f9f28c9ac7b45964a8ef2393c1f9a5289fc4bf7d4ba82eec2c93",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-final/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-final/AAI05_RGB_Classifier_v0_12.uf2",
+      "sha256": "dc0b5c64940cc8c566f05d0e6d6000f5df920e3ab930cf36cf9ea1e9b873c62d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-final/AAI05_RGB_Classifier_v0_12_TEST.uf2",
+      "sha256": "5952f94789e870c033cc3e7cf0576ed9df1879c6a63de6a6f88f173ac7bede09",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1.uf2",
+      "sha256": "f7d1b722129488427fa85028d619a028eebeffcdb1c7953f83ea712cc34eb59b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1_TEST.uf2",
+      "sha256": "0edd7fb33f2c16db9cf7a5b4b8e65ccd8f49afd984845c1255ef6b06831753c6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Black_Follow_Compatibility.uf2",
+      "sha256": "989a16a1c33631883338f257663fef5470fe56f289328da330100e9e31b5cb0c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_RGB_Compatibility.uf2",
+      "sha256": "287440c3dfc8a8cc30700cb2e410f7d4e8a7707d007430448d2c8503e9385647",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8.uf2",
+      "sha256": "1b9fe3b171086e8eeb45b788779f0dfd0a1a0091e5e4e36c4574266a747b2e71",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.uf2",
+      "sha256": "b66d8257768721650f855dc237d86f6cdbe802a15b6c02a775e24c66a6f33305",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_TEST.uf2",
+      "sha256": "810e561b58f9ea3e8949023d5353fb9e8d0cb6e7f408366965ff5d5b0390f68e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Black_Follow_Compatibility.uf2",
+      "sha256": "989a16a1c33631883338f257663fef5470fe56f289328da330100e9e31b5cb0c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_RGB_Compatibility.uf2",
+      "sha256": "287440c3dfc8a8cc30700cb2e410f7d4e8a7707d007430448d2c8503e9385647",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Yellow_Follow_v0_14_D40_T8.uf2",
+      "sha256": "fbe1cec86d01f7b39c98e0b1fed792af9ccb06db27f4f3b3179d2fb78940614f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.uf2",
+      "sha256": "01c76af72b3899be24670ee9ab87239e8210a52ba1b7c38a6c6c3618441d16ef",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Yellow_Follow_v0_14_D40_T8_TEST.uf2",
+      "sha256": "8f45ec8df13cbc9f1323084ae592f344cc6927afd7183ab1adc580e4c0981838",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/archive/v0_5-broker-192_168_1_196/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "67e97ef38a396a087b382852037a648274e8aa1a4c0fc987d9a667494af024f0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/archive/v0_5-broker-192_168_1_196/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "2191644fa13d43d01001152f8d092c908bdaeb160f663e889c8e93dfad3e2766",
+      "unchanged": true
+    }
+  ]
+}

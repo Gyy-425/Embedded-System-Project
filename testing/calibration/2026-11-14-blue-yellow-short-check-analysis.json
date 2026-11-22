@@ -1,0 +1,53 @@
+{
+  "source_original": "C:\\Users\\Guo YouYan\\Downloads\\blue.txt",
+  "source_sha256": "95c74e509613c7b030ff8e9b61d750c0ed8b30be77b1783db299681982641ede",
+  "received_date": "2026-11-14",
+  "lighting_and_gaps": "Confirmed by user: left optical-face-to-tape gap 7 mm, right 9 mm; indoor lighting, no direct sunlight.",
+  "sections": {
+    "BLUE": {
+      "n": 21,
+      "invalid_error_stale_or_drive_on": 0,
+      "left": {
+        "min": 156,
+        "max": 201,
+        "mean": 174.9048,
+        "sd": 14.1701
+      },
+      "right": {
+        "min": 158,
+        "max": 192,
+        "mean": 174.2381,
+        "sd": 10.266
+      }
+    },
+    "YELLOW": {
+      "n": 19,
+      "invalid_error_stale_or_drive_on": 0,
+      "left": {
+        "min": 141,
+        "max": 183,
+        "mean": 155.7895,
+        "sd": 13.6079
+      },
+      "right": {
+        "min": 146,
+        "max": 180,
+        "mean": 162.7368,
+        "sd": 11.3031
+      }
+    }
+  },
+  "repeatability": "One labelled capture per colour; no separate repositioned repeat provided.",
+  "exact_shared_pairs": [
+    [
+      168,
+      166
+    ]
+  ],
+  "user_confirmed_setup": {
+    "left_gap_mm": 7,
+    "right_gap_mm": 9,
+    "lighting": "Indoor lighting; not direct sunlight",
+    "power": "Not reconfirmed in reply; prior instruction was laptop USB"
+  }
+}

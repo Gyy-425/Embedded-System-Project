@@ -1,0 +1,93 @@
+{
+  "fixture_sha256": "558ea0f76ddf02bc8e90d7ff417c7131b135828042b9a0d15030adaea0fb1601",
+  "sources": [
+    {
+      "archive": "testing/calibration/2026-11-19-blue-corridor-original.txt",
+      "sha256": "a9fc0a0af4fa247ab6a79b0780372a328d2dea59d061d5b1d3b92a04f4301fc2"
+    }
+  ],
+  "role": "Stationary calibration/replay on the assembled blue corridor",
+  "position_labels": {
+    "center": "blue-centre",
+    "left": "blue-robot-left",
+    "right": "blue-robot-right"
+  },
+  "positions": {
+    "blue-centre": {
+      "rows": 57,
+      "left_ir_range": [
+        313,
+        349
+      ],
+      "right_ir_range": [
+        297,
+        333
+      ],
+      "left_ir_median": 331,
+      "right_ir_median": 315
+    },
+    "blue-robot-left": {
+      "rows": 62,
+      "left_ir_range": [
+        511,
+        548
+      ],
+      "right_ir_range": [
+        269,
+        304
+      ],
+      "left_ir_median": 529.0,
+      "right_ir_median": 285.0
+    },
+    "blue-robot-right": {
+      "rows": 77,
+      "left_ir_range": [
+        254,
+        290
+      ],
+      "right_ir_range": [
+        511,
+        552
+      ],
+      "left_ir_median": 269,
+      "right_ir_median": 524
+    }
+  },
+  "fraction_min": [
+    1235,
+    1403,
+    1442
+  ],
+  "fraction_max": [
+    1241,
+    1414,
+    1456
+  ],
+  "fraction_margin": 32,
+  "lower": [
+    1203,
+    1371,
+    1410
+  ],
+  "upper": [
+    1273,
+    1446,
+    1488
+  ],
+  "clear_range": [
+    608,
+    621
+  ],
+  "clear_margin_percent": 25,
+  "clear_bounds": [
+    456,
+    777
+  ],
+  "ir_centre_baselines": [
+    331,
+    315
+  ],
+  "ir_border_full_scale": 500,
+  "capture_mode": "RED_CORRIDOR R4 powered image, IDLE / DRIVE=OFF throughout",
+  "capture_encoder_note": "Sticky PIO_BAD=2 throughout; stationary sensor calibration only"
+}

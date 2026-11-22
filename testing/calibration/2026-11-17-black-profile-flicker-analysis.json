@@ -1,0 +1,77 @@
+{
+  "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\d5709bae-1436-4bdc-9222-8f338ee25b8d\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+  "sha256": "c7f758c9e1dd7b1347c734c26978d0702b126e9c3829f68b8bcf1b5f00ca2692",
+  "records": 22,
+  "fraction_ranges": {
+    "R": [
+      1351,
+      1356
+    ],
+    "G": [
+      1421,
+      1428
+    ],
+    "B": [
+      1313,
+      1320
+    ]
+  },
+  "rejections": {
+    "B": 2,
+    "R": 16,
+    "MATCH": 4
+  },
+  "unique_values": [
+    [
+      201,
+      212,
+      195,
+      524,
+      1354,
+      1428,
+      1313,
+      ""
+    ],
+    [
+      200,
+      211,
+      195,
+      522,
+      1351,
+      1426,
+      1318,
+      "R"
+    ],
+    [
+      201,
+      211,
+      195,
+      524,
+      1356,
+      1423,
+      1316,
+      ""
+    ],
+    [
+      200,
+      211,
+      195,
+      523,
+      1351,
+      1426,
+      1318,
+      "R"
+    ],
+    [
+      200,
+      210,
+      195,
+      522,
+      1354,
+      1421,
+      1320,
+      "B"
+    ]
+  ],
+  "note": "Same BWY_20261117 profile as prior release; all22 valid/fresh, no acquisition errors. PIO_BAD1 is separate sticky encoder-quality warning; no powered run in this capture."
+}

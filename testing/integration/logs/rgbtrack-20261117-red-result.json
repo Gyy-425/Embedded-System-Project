@@ -1,0 +1,24 @@
+{
+  "label": "rgbtrack-20261117-red",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-red-classifier-compile.log"
+    },
+    {
+      "name": "classifier",
+      "exit_code": -6,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/rgbtrack-20261117-red-classifier.log"
+    }
+  ],
+  "status": "FAILED",
+  "error": "classifier failed or warned",
+  "old_uf2s": 77,
+  "old_uf2s_unchanged": true
+}

@@ -1,0 +1,37 @@
+{
+  "status": "FAILED",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-red-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-red-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-red-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": -6,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/duty-20261117-red-owner.log"
+    }
+  ],
+  "error": "owner failed/warned",
+  "old_uf2s": 96,
+  "old_uf2s_unchanged": true
+}

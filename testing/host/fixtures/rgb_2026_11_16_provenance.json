@@ -1,0 +1,307 @@
+{
+  "source": "AAI05_Firmware\\testing\\calibration\\2026-11-16-rgb-calibration-template.txt",
+  "source_sha256": "0a27fc36c62323a577baffe65ac7ad35041e9a84d4437a30ce989376f3baff66",
+  "fixture_sha256": "78dcb0fdf543e2da4b28cfb95a2f9ca090bd12333855595074b3c4ec1195e0cb",
+  "calibration_n": 205,
+  "model": [
+    {
+      "lower": [
+        1367,
+        1377,
+        1255
+      ],
+      "upper": [
+        1431,
+        1441,
+        1319
+      ],
+      "clear_lower": 495,
+      "clear_upper": 828
+    },
+    {
+      "lower": [
+        1337,
+        1372,
+        1286
+      ],
+      "upper": [
+        1404,
+        1438,
+        1352
+      ],
+      "clear_lower": 1071,
+      "clear_upper": 1787
+    },
+    {
+      "lower": [
+        1520,
+        1393,
+        1080
+      ],
+      "upper": [
+        1588,
+        1461,
+        1149
+      ],
+      "clear_lower": 737,
+      "clear_upper": 1230
+    },
+    {
+      "lower": [
+        1414,
+        1348,
+        1225
+      ],
+      "upper": [
+        1486,
+        1417,
+        1300
+      ],
+      "clear_lower": 583,
+      "clear_upper": 1027
+    }
+  ],
+  "margins_note": "Engineering settings chosen after exploratory inspection; no blinded accuracy claim. Profiles fitted only from calibration rows.",
+  "extra_capture_sources": [
+    {
+      "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\542c8de3-2189-4197-bae8-9d9313259cb0\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+      "sha256": "fdc5dd821da76b99bfae0962e987e69334baed240a63e5959a8536b0749976a3",
+      "position": "centred (assumed order)",
+      "IR_L": {
+        "n": 21,
+        "min": 185,
+        "max": 221,
+        "mean": 203,
+        "sd": 13.088
+      },
+      "IR_R": {
+        "n": 21,
+        "min": 196,
+        "max": 232,
+        "mean": 209.952,
+        "sd": 14.235
+      },
+      "L_minus_R": {
+        "n": 21,
+        "min": -45,
+        "max": 24,
+        "mean": -6.952,
+        "sd": 18.664
+      },
+      "ir_bad": 0,
+      "ir_max_age": 20,
+      "RGB": {
+        "R": {
+          "n": 21,
+          "min": 328,
+          "max": 328,
+          "mean": 328,
+          "sd": 0.0
+        },
+        "G": {
+          "n": 21,
+          "min": 274,
+          "max": 275,
+          "mean": 274.905,
+          "sd": 0.301
+        },
+        "B": {
+          "n": 21,
+          "min": 272,
+          "max": 272,
+          "mean": 272,
+          "sd": 0.0
+        },
+        "C": {
+          "n": 21,
+          "min": 643,
+          "max": 644,
+          "mean": 643.714,
+          "sd": 0.463
+        }
+      },
+      "rgb_bad": 0,
+      "non_log_lines": []
+    },
+    {
+      "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\e2d9eeb0-a8e2-4267-8c71-2d42ec0d44ff\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+      "sha256": "9a799f9c84136154668cdf6383b6e67828a64281d897e7d6291cd87e3cdaf2f1",
+      "position": "shifted left (assumed order)",
+      "IR_L": {
+        "n": 20,
+        "min": 191,
+        "max": 226,
+        "mean": 207.75,
+        "sd": 11.986
+      },
+      "IR_R": {
+        "n": 20,
+        "min": 192,
+        "max": 227,
+        "mean": 209.15,
+        "sd": 12.032
+      },
+      "L_minus_R": {
+        "n": 20,
+        "min": -32,
+        "max": 29,
+        "mean": -1.4,
+        "sd": 15.316
+      },
+      "ir_bad": 0,
+      "ir_max_age": 20,
+      "RGB": {
+        "R": {
+          "n": 20,
+          "min": 324,
+          "max": 324,
+          "mean": 324,
+          "sd": 0.0
+        },
+        "G": {
+          "n": 20,
+          "min": 272,
+          "max": 272,
+          "mean": 272,
+          "sd": 0.0
+        },
+        "B": {
+          "n": 20,
+          "min": 266,
+          "max": 266,
+          "mean": 266,
+          "sd": 0.0
+        },
+        "C": {
+          "n": 20,
+          "min": 625,
+          "max": 626,
+          "mean": 625.95,
+          "sd": 0.224
+        }
+      },
+      "rgb_bad": 0,
+      "non_log_lines": []
+    },
+    {
+      "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\b467a616-b6c1-483b-9862-98854c2a1369\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+      "sha256": "445d1cce194d998cc48d77c9609fbb7ffbf7d6a474c4c13b5eeac3ffee14263a",
+      "position": "shifted right (assumed order)",
+      "IR_L": {
+        "n": 20,
+        "min": 187,
+        "max": 227,
+        "mean": 206.6,
+        "sd": 14.848
+      },
+      "IR_R": {
+        "n": 20,
+        "min": 200,
+        "max": 235,
+        "mean": 217.55,
+        "sd": 11.651
+      },
+      "L_minus_R": {
+        "n": 20,
+        "min": -44,
+        "max": 27,
+        "mean": -10.95,
+        "sd": 17.452
+      },
+      "ir_bad": 0,
+      "ir_max_age": 30,
+      "RGB": {
+        "R": {
+          "n": 20,
+          "min": 321,
+          "max": 321,
+          "mean": 321,
+          "sd": 0.0
+        },
+        "G": {
+          "n": 20,
+          "min": 270,
+          "max": 270,
+          "mean": 270,
+          "sd": 0.0
+        },
+        "B": {
+          "n": 20,
+          "min": 266,
+          "max": 266,
+          "mean": 266,
+          "sd": 0.0
+        },
+        "C": {
+          "n": 20,
+          "min": 626,
+          "max": 627,
+          "mean": 626.05,
+          "sd": 0.224
+        }
+      },
+      "rgb_bad": 0,
+      "non_log_lines": []
+    },
+    {
+      "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\615f8d4e-5188-4376-970e-86363053ccd2\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+      "sha256": "4848c96feadf3c7138fe73671ae5e566490b052af7a08eaebf2b2a0bb6d8375a",
+      "position": "cardboard (assumed order)",
+      "IR_L": {
+        "n": 23,
+        "min": 191,
+        "max": 228,
+        "mean": 207.261,
+        "sd": 13.545
+      },
+      "IR_R": {
+        "n": 23,
+        "min": 198,
+        "max": 426,
+        "mean": 224.87,
+        "sd": 45.428
+      },
+      "L_minus_R": {
+        "n": 23,
+        "min": -222,
+        "max": 22,
+        "mean": -17.609,
+        "sd": 46.766
+      },
+      "ir_bad": 0,
+      "ir_max_age": 20,
+      "RGB": {
+        "R": {
+          "n": 23,
+          "min": 329,
+          "max": 329,
+          "mean": 329,
+          "sd": 0.0
+        },
+        "G": {
+          "n": 23,
+          "min": 311,
+          "max": 311,
+          "mean": 311,
+          "sd": 0.0
+        },
+        "B": {
+          "n": 23,
+          "min": 293,
+          "max": 293,
+          "mean": 293,
+          "sd": 0.0
+        },
+        "C": {
+          "n": 23,
+          "min": 706,
+          "max": 707,
+          "mean": 706.826,
+          "sd": 0.388
+        }
+      },
+      "rgb_bad": 0,
+      "non_log_lines": []
+    }
+  ]
+}

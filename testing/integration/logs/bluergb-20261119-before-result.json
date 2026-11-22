@@ -1,0 +1,38 @@
+{
+  "label": "bluergb-20261119-before",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/bluergb-20261119-before-classifier-compile.log"
+    },
+    {
+      "name": "classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/bluergb-20261119-before-classifier.log"
+    },
+    {
+      "name": "classifier-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/bluergb-20261119-before-classifier-replay-compile.log"
+    },
+    {
+      "name": "classifier-replay",
+      "exit_code": 1,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/bluergb-20261119-before-classifier-replay.log"
+    }
+  ],
+  "status": "FAILED",
+  "error": "classifier-replay failed or warned",
+  "old_uf2s": 141,
+  "old_uf2s_unchanged": true
+}

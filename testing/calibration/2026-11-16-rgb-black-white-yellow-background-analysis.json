@@ -1,0 +1,662 @@
+{
+  "source": "AAI05_Firmware\\testing\\calibration\\2026-11-16-rgb-calibration-template.txt",
+  "source_sha256": "0a27fc36c62323a577baffe65ac7ad35041e9a84d4437a30ce989376f3baff66",
+  "source_note": "The old PENDING heading is obsolete; populated original preserved unchanged.",
+  "selected_tapes": [
+    "BLACK",
+    "WHITE TAPE 1",
+    "YELLOW"
+  ],
+  "setup_user_recorded": {
+    "RGB_gap_mm": 25.37,
+    "IR_gaps_mm_approx": [
+      15.8,
+      15.8
+    ],
+    "IR_head_spacing_mm": 34,
+    "RGB_offset_mm": 13.5,
+    "RGB_offset_direction": "behind IR row",
+    "reported_total_sensor_width_mm": 44.63,
+    "tape_widths": "Not measured; request for suitable actual-track width recorded in source",
+    "lighting": "Indoor",
+    "RGB_LED": "ON",
+    "power": "Laptop USB only",
+    "mount_unchanged": true,
+    "background_matches_track": true
+  },
+  "quality": {
+    "records": 405,
+    "malformed_RGB_lines": [],
+    "invalid_ready_id_validity_saturation_age_status_errors_drive": 0,
+    "duplicate_timestamps": 0,
+    "duplicate_sequence_ids": 0,
+    "gain_values": [
+      4
+    ],
+    "integration_us_values": [
+      50400
+    ]
+  },
+  "sections": [
+    {
+      "surface": "BLACK",
+      "capture_pass": "CALIBRATION",
+      "source_line": 40,
+      "n": 53,
+      "R": {
+        "min": 274,
+        "max": 274,
+        "mean": 274,
+        "sd": 0.0
+      },
+      "G": {
+        "min": 276,
+        "max": 276,
+        "mean": 276,
+        "sd": 0.0
+      },
+      "B": {
+        "min": 252,
+        "max": 252,
+        "mean": 252,
+        "sd": 0.0
+      },
+      "C": {
+        "min": 661,
+        "max": 662,
+        "mean": 661.867925,
+        "sd": 0.341813
+      },
+      "R_fraction_per_mille": {
+        "min": 341.645885286783,
+        "max": 341.645885286783,
+        "mean": 341.6459
+      },
+      "G_fraction_per_mille": {
+        "min": 344.139650872818,
+        "max": 344.139650872818,
+        "mean": 344.1397
+      },
+      "B_fraction_per_mille": {
+        "min": 314.214463840399,
+        "max": 314.214463840399,
+        "mean": 314.2145
+      }
+    },
+    {
+      "surface": "WHITE TAPE 1",
+      "capture_pass": "CALIBRATION",
+      "source_line": 148,
+      "n": 52,
+      "R": {
+        "min": 563,
+        "max": 564,
+        "mean": 563.096154,
+        "sd": 0.297678
+      },
+      "G": {
+        "min": 577,
+        "max": 578,
+        "mean": 577.596154,
+        "sd": 0.495454
+      },
+      "B": {
+        "min": 542,
+        "max": 543,
+        "mean": 542.038462,
+        "sd": 0.194184
+      },
+      "C": {
+        "min": 1428,
+        "max": 1429,
+        "mean": 1428.5,
+        "sd": 0.504878
+      },
+      "R_fraction_per_mille": {
+        "min": 334.32304038004753,
+        "max": 335.11586452762924,
+        "mean": 334.6324
+      },
+      "G_fraction_per_mille": {
+        "min": 342.8401663695781,
+        "max": 343.4343434343434,
+        "mean": 343.2493
+      },
+      "B_fraction_per_mille": {
+        "min": 321.85273159144896,
+        "max": 322.44655581947745,
+        "mean": 322.1184
+      }
+    },
+    {
+      "surface": "YELLOW",
+      "capture_pass": "CALIBRATION",
+      "source_line": 253,
+      "n": 50,
+      "R": {
+        "min": 448,
+        "max": 449,
+        "mean": 448.04,
+        "sd": 0.197949
+      },
+      "G": {
+        "min": 411,
+        "max": 412,
+        "mean": 411.2,
+        "sd": 0.404061
+      },
+      "B": {
+        "min": 321,
+        "max": 322,
+        "mean": 321.16,
+        "sd": 0.370328
+      },
+      "C": {
+        "min": 983,
+        "max": 984,
+        "mean": 983.78,
+        "sd": 0.418452
+      },
+      "R_fraction_per_mille": {
+        "min": 379.0186125211506,
+        "max": 379.86463620981385,
+        "mean": 379.5664
+      },
+      "G_fraction_per_mille": {
+        "min": 348.01016088060965,
+        "max": 348.85690093141403,
+        "mean": 348.3564
+      },
+      "B_fraction_per_mille": {
+        "min": 271.5736040609137,
+        "max": 272.6502963590178,
+        "mean": 272.0772
+      }
+    },
+    {
+      "surface": "CARDBOARD",
+      "capture_pass": "CALIBRATION",
+      "source_line": 355,
+      "n": 50,
+      "R": {
+        "min": 341,
+        "max": 357,
+        "mean": 354.3,
+        "sd": 4.126816
+      },
+      "G": {
+        "min": 326,
+        "max": 340,
+        "mean": 337.44,
+        "sd": 3.855343
+      },
+      "B": {
+        "min": 299,
+        "max": 310,
+        "mean": 307.22,
+        "sd": 2.786923
+      },
+      "C": {
+        "min": 778,
+        "max": 821,
+        "mean": 812.22,
+        "sd": 11.751318
+      },
+      "R_fraction_per_mille": {
+        "min": 353.00207039337477,
+        "max": 355.0,
+        "mean": 354.6655
+      },
+      "G_fraction_per_mille": {
+        "min": 337.04453441295544,
+        "max": 338.32335329341316,
+        "mean": 337.7889
+      },
+      "B_fraction_per_mille": {
+        "min": 307.0,
+        "max": 309.5238095238095,
+        "mean": 307.5455
+      }
+    },
+    {
+      "surface": "CARDBOARD",
+      "capture_pass": "VALIDATION",
+      "source_line": 457,
+      "n": 50,
+      "R": {
+        "min": 349,
+        "max": 349,
+        "mean": 349,
+        "sd": 0.0
+      },
+      "G": {
+        "min": 336,
+        "max": 337,
+        "mean": 336.5,
+        "sd": 0.505076
+      },
+      "B": {
+        "min": 303,
+        "max": 304,
+        "mean": 303.98,
+        "sd": 0.141421
+      },
+      "C": {
+        "min": 818,
+        "max": 819,
+        "mean": 818.12,
+        "sd": 0.328261
+      },
+      "R_fraction_per_mille": {
+        "min": 352.52525252525254,
+        "max": 353.2388663967611,
+        "mean": 352.7106
+      },
+      "G_fraction_per_mille": {
+        "min": 339.737108190091,
+        "max": 340.4040404040404,
+        "mean": 340.0775
+      },
+      "B_fraction_per_mille": {
+        "min": 306.68016194331983,
+        "max": 307.38119312436805,
+        "mean": 307.2119
+      }
+    },
+    {
+      "surface": "YELLOW",
+      "capture_pass": "VALIDATION",
+      "source_line": 559,
+      "n": 51,
+      "R": {
+        "min": 450,
+        "max": 451,
+        "mean": 450.666667,
+        "sd": 0.476095
+      },
+      "G": {
+        "min": 413,
+        "max": 413,
+        "mean": 413,
+        "sd": 0.0
+      },
+      "B": {
+        "min": 323,
+        "max": 323,
+        "mean": 323,
+        "sd": 0.0
+      },
+      "C": {
+        "min": 981,
+        "max": 983,
+        "mean": 981.960784,
+        "sd": 0.398034
+      },
+      "R_fraction_per_mille": {
+        "min": 379.4266441821248,
+        "max": 379.94945240101094,
+        "mean": 379.7752
+      },
+      "G_fraction_per_mille": {
+        "min": 347.93597304128053,
+        "max": 348.2293423271501,
+        "mean": 348.0338
+      },
+      "B_fraction_per_mille": {
+        "min": 272.1145745577085,
+        "max": 272.3440134907251,
+        "mean": 272.1911
+      }
+    },
+    {
+      "surface": "WHITE TAPE 1",
+      "capture_pass": "VALIDATION",
+      "source_line": 663,
+      "n": 48,
+      "R": {
+        "min": 572,
+        "max": 573,
+        "mean": 572.354167,
+        "sd": 0.483321
+      },
+      "G": {
+        "min": 581,
+        "max": 582,
+        "mean": 581.9375,
+        "sd": 0.244623
+      },
+      "B": {
+        "min": 549,
+        "max": 550,
+        "mean": 549.145833,
+        "sd": 0.356674
+      },
+      "C": {
+        "min": 1434,
+        "max": 1435,
+        "mean": 1434.541667,
+        "sd": 0.503534
+      },
+      "R_fraction_per_mille": {
+        "min": 335.6807511737089,
+        "max": 336.46506165590137,
+        "mean": 335.9995
+      },
+      "G_fraction_per_mille": {
+        "min": 341.1626541397534,
+        "max": 341.7498532002349,
+        "mean": 341.6254
+      },
+      "B_fraction_per_mille": {
+        "min": 322.1830985915493,
+        "max": 322.7699530516432,
+        "mean": 322.3751
+      }
+    },
+    {
+      "surface": "BLACK",
+      "capture_pass": "VALIDATION",
+      "source_line": 761,
+      "n": 51,
+      "R": {
+        "min": 255,
+        "max": 267,
+        "mean": 257.705882,
+        "sd": 2.540032
+      },
+      "G": {
+        "min": 256,
+        "max": 268,
+        "mean": 258.588235,
+        "sd": 2.585935
+      },
+      "B": {
+        "min": 238,
+        "max": 246,
+        "mean": 239.431373,
+        "sd": 1.791702
+      },
+      "C": {
+        "min": 605,
+        "max": 639,
+        "mean": 611.156863,
+        "sd": 7.444119
+      },
+      "R_fraction_per_mille": {
+        "min": 340.4255319148936,
+        "max": 341.90231362467864,
+        "mean": 341.0025
+      },
+      "G_fraction_per_mille": {
+        "min": 341.3014608233732,
+        "max": 343.1876606683805,
+        "mean": 342.1696
+      },
+      "B_fraction_per_mille": {
+        "min": 314.91002570694087,
+        "max": 317.8191489361702,
+        "mean": 316.8279
+      }
+    }
+  ],
+  "pooled": {
+    "BLACK": {
+      "n": 104,
+      "R": {
+        "min": 255,
+        "max": 274,
+        "mean": 266.009615,
+        "sd": 8.374134
+      },
+      "G": {
+        "min": 256,
+        "max": 276,
+        "mean": 267.461538,
+        "sd": 8.930066
+      },
+      "B": {
+        "min": 238,
+        "max": 252,
+        "mean": 245.836538,
+        "sd": 6.435808
+      },
+      "C": {
+        "min": 605,
+        "max": 662,
+        "mean": 637,
+        "sd": 25.997386
+      },
+      "R_fraction_per_mille": {
+        "min": 340.4255319148936,
+        "max": 341.90231362467864,
+        "mean": 341.3304
+      },
+      "G_fraction_per_mille": {
+        "min": 341.3014608233732,
+        "max": 344.139650872818,
+        "mean": 343.1736
+      },
+      "B_fraction_per_mille": {
+        "min": 314.214463840399,
+        "max": 317.8191489361702,
+        "mean": 315.4961
+      }
+    },
+    "WHITE TAPE 1": {
+      "n": 100,
+      "R": {
+        "min": 563,
+        "max": 573,
+        "mean": 567.54,
+        "sd": 4.665411
+      },
+      "G": {
+        "min": 577,
+        "max": 582,
+        "mean": 579.68,
+        "sd": 2.2151
+      },
+      "B": {
+        "min": 542,
+        "max": 550,
+        "mean": 545.45,
+        "sd": 3.579896
+      },
+      "C": {
+        "min": 1428,
+        "max": 1435,
+        "mean": 1431.4,
+        "sd": 3.074824
+      },
+      "R_fraction_per_mille": {
+        "min": 334.32304038004753,
+        "max": 336.46506165590137,
+        "mean": 335.2886
+      },
+      "G_fraction_per_mille": {
+        "min": 341.1626541397534,
+        "max": 343.4343434343434,
+        "mean": 342.4698
+      },
+      "B_fraction_per_mille": {
+        "min": 321.85273159144896,
+        "max": 322.7699530516432,
+        "mean": 322.2416
+      }
+    },
+    "YELLOW": {
+      "n": 101,
+      "R": {
+        "min": 448,
+        "max": 451,
+        "mean": 449.366337,
+        "sd": 1.369108
+      },
+      "G": {
+        "min": 411,
+        "max": 413,
+        "mean": 412.108911,
+        "sd": 0.947639
+      },
+      "B": {
+        "min": 321,
+        "max": 323,
+        "mean": 322.089109,
+        "sd": 0.960198
+      },
+      "C": {
+        "min": 981,
+        "max": 984,
+        "mean": 982.861386,
+        "sd": 1.000297
+      },
+      "R_fraction_per_mille": {
+        "min": 379.0186125211506,
+        "max": 379.94945240101094,
+        "mean": 379.6718
+      },
+      "G_fraction_per_mille": {
+        "min": 347.93597304128053,
+        "max": 348.85690093141403,
+        "mean": 348.1935
+      },
+      "B_fraction_per_mille": {
+        "min": 271.5736040609137,
+        "max": 272.6502963590178,
+        "mean": 272.1347
+      }
+    },
+    "CARDBOARD": {
+      "n": 100,
+      "R": {
+        "min": 341,
+        "max": 357,
+        "mean": 351.65,
+        "sd": 3.939889
+      },
+      "G": {
+        "min": 326,
+        "max": 340,
+        "mean": 336.97,
+        "sd": 2.775997
+      },
+      "B": {
+        "min": 299,
+        "max": 310,
+        "mean": 305.6,
+        "sd": 2.5505
+      },
+      "C": {
+        "min": 778,
+        "max": 821,
+        "mean": 815.17,
+        "sd": 8.785956
+      },
+      "R_fraction_per_mille": {
+        "min": 352.52525252525254,
+        "max": 355.0,
+        "mean": 353.6881
+      },
+      "G_fraction_per_mille": {
+        "min": 337.04453441295544,
+        "max": 340.4040404040404,
+        "mean": 338.9332
+      },
+      "B_fraction_per_mille": {
+        "min": 306.68016194331983,
+        "max": 309.5238095238095,
+        "mean": 307.3787
+      }
+    }
+  },
+  "exploratory_classifier": {
+    "method": "Nearest class centroid using raw R,G,B,C squared Euclidean distance. Means fitted only to calibration pass; no tuning to validation, no rejection or temporal filtering. Classifier family was selected after examining the dataset: not a blinded final assessment.",
+    "centroids": {
+      "BLACK": {
+        "R": 274,
+        "G": 276,
+        "B": 252,
+        "C": 661.8679245283018
+      },
+      "WHITE TAPE 1": {
+        "R": 563.0961538461538,
+        "G": 577.5961538461538,
+        "B": 542.0384615384615,
+        "C": 1428.5
+      },
+      "YELLOW": {
+        "R": 448.04,
+        "G": 411.2,
+        "B": 321.16,
+        "C": 983.78
+      },
+      "CARDBOARD": {
+        "R": 354.3,
+        "G": 337.44,
+        "B": 307.22,
+        "C": 812.22
+      }
+    },
+    "validation_confusion": {
+      "BLACK": {
+        "BLACK": 51,
+        "WHITE TAPE 1": 0,
+        "YELLOW": 0,
+        "CARDBOARD": 0
+      },
+      "WHITE TAPE 1": {
+        "BLACK": 0,
+        "WHITE TAPE 1": 48,
+        "YELLOW": 0,
+        "CARDBOARD": 0
+      },
+      "YELLOW": {
+        "BLACK": 0,
+        "WHITE TAPE 1": 0,
+        "YELLOW": 51,
+        "CARDBOARD": 0
+      },
+      "CARDBOARD": {
+        "BLACK": 0,
+        "WHITE TAPE 1": 0,
+        "YELLOW": 0,
+        "CARDBOARD": 50
+      }
+    },
+    "correct": 200,
+    "validation_total": 200,
+    "misclassified": [],
+    "cardboard_behavior": "Explicit background reference class for this offline check, not a fourth tape colour.",
+    "clear_only_mean_midpoints_for_explanation": [
+      {
+        "between": [
+          "BLACK",
+          "CARDBOARD"
+        ],
+        "calibration_mean_midpoint": 737.0439622641509
+      },
+      {
+        "between": [
+          "CARDBOARD",
+          "YELLOW"
+        ],
+        "calibration_mean_midpoint": 898.0
+      },
+      {
+        "between": [
+          "YELLOW",
+          "WHITE TAPE 1"
+        ],
+        "calibration_mean_midpoint": 1206.1399999999999
+      }
+    ],
+    "deployment": "NONE; no firmware or calibration configuration modified"
+  },
+  "limits": [
+    "Stationary, fixed setup and one repositioned validation pass per class only.",
+    "Different height, lighting, LED state, exposure, new tape or backing can change profiles.",
+    "No mixed-edge, moving, shortest-segment, target-following, false-positive or open-set UNKNOWN validation.",
+    "Nearest-centroid baseline always chooses a known class; an operational classifier needs rejection/invalid handling.",
+    "Previous IR contrast problem remains; RGB calibration does not qualify IR steering."
+  ]
+}

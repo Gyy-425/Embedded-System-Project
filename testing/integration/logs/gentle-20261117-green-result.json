@@ -1,0 +1,343 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-rgb-report-powered.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-duty35-compile.log"
+    },
+    {
+      "name": "owner-duty35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-duty35.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-duty50.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-owner-original50-turn20.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-reject-duty.log"
+    },
+    {
+      "name": "reject-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-reject-turn.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_2_D40_T8_NO_DRIVE",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-build-Black_Follow_v0_13_2_D40_T8_NO_DRIVE.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_2_D40_T8",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-build-Black_Follow_v0_13_2_D40_T8.log"
+    },
+    {
+      "name": "build-Black_Follow_v0_13_2_D40_T8_TEST",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-build-Black_Follow_v0_13_2_D40_T8_TEST.log"
+    },
+    {
+      "name": "build-RGB_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-build-RGB_Compatibility.log"
+    },
+    {
+      "name": "build-Remote_PIO_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/gentle-20261117-green-build-Remote_PIO_Compatibility.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_NO_DRIVE.uf2",
+      "sha256": "7eaebb9d12bcfe29e65ac0d5ad1e2868165fd87ae67a6077345a80eec9b6bd20"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_NO_DRIVE.elf",
+      "sha256": "4dbc53b9111f7169bc6fb16c451475eca289a995b5d58881eefc3d73db718b05"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_NO_DRIVE.map",
+      "sha256": "beb643d0c3a74d6d6851f24c7c4e69d3acc557d106caa73edbd3ad12f53e96aa"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8.uf2",
+      "sha256": "ac99f27ef5027174051d825f4c28e48ae5b2098b75d1b293002c41c684ffc8fb"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8.elf",
+      "sha256": "1137f1a12d98ff5c763ed2e2a53ed5d2c0d802efe281c60221ea938b4d8812bb"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8.map",
+      "sha256": "52ef300dd0f38939a667f03bd0fc10c51e135fccd7fdd8921a11739becdd05b3"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_TEST.uf2",
+      "sha256": "0c81a37d407e247c11d414a4ba30e1fbea75745f20b2139618fdf4d66f6f5052"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_TEST.elf",
+      "sha256": "41e872f7dd92671ae61ecf94eaf901ac2798359c432b07d42c99ff698d395e5b"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_TEST.map",
+      "sha256": "d98c8dc3ed8aad781f9210b3bca6a9c38e2c14358299d39c3ccba7924925281f"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_RGB_Compatibility.elf",
+      "sha256": "5ff5c4472bbacb7d78d17e23782821b278e75f67266c520edb50be64044298ab"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_RGB_Compatibility.map",
+      "sha256": "3d2a6b101efff2e55a23954fd96426bf93a18d5378b0397b9f3d8e4705376a4c"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Remote_PIO_Compatibility.elf",
+      "sha256": "e26318c672e0d32ea90cadc46b097f1b2917623a1027caf5cf8c3b644e4c70f4"
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Remote_PIO_Compatibility.map",
+      "sha256": "a5cfb29b1ca37d7135d3104ed71707e557f966155c8f7692dade89736145ecc4"
+    }
+  ],
+  "old_uf2s": 103,
+  "old_uf2s_unchanged": true
+}

@@ -1,0 +1,66 @@
+{
+  "label": "home-rgb-before-20261119",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/home-rgb-before-20261119-classifier-compile.log"
+    },
+    {
+      "name": "classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/home-rgb-before-20261119-classifier.log"
+    },
+    {
+      "name": "classifier-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/home-rgb-before-20261119-classifier-replay-compile.log"
+    },
+    {
+      "name": "classifier-replay",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/home-rgb-before-20261119-classifier-replay.log"
+    },
+    {
+      "name": "home-classifier-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/home-rgb-before-20261119-home-classifier-compile.log"
+    },
+    {
+      "name": "home-classifier",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/home-rgb-before-20261119-home-classifier.log"
+    },
+    {
+      "name": "home-replay-compile",
+      "exit_code": 0,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/home-rgb-before-20261119-home-replay-compile.log"
+    },
+    {
+      "name": "home-replay",
+      "exit_code": 1,
+      "expected_failure": false,
+      "warnings": [],
+      "log": "testing/integration/logs/home-rgb-before-20261119-home-replay.log"
+    }
+  ],
+  "status": "FAILED",
+  "error": "home-replay failed or warned",
+  "old_uf2s": 151,
+  "old_uf2s_unchanged": true
+}

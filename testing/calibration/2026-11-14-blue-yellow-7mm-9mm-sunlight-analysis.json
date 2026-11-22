@@ -1,0 +1,164 @@
+{
+  "source_original": "C:\\Users\\Guo YouYan\\Downloads\\Date.txt",
+  "sha256": "84d11dc4cee2370aa8761b9b7500e2553cba4e7fd93ce6242be4a29c9fcf9da0",
+  "capture_date": "Not filled in source; received 2026-11-14",
+  "user_reported_setup": {
+    "left_gap_mm": 7,
+    "right_gap_mm": 9,
+    "power": "Laptop USB",
+    "lighting": "direct strong sunlight from window, no room light",
+    "source_change_note": "nil; heights and lighting differ from previous capture records"
+  },
+  "sections": [
+    {
+      "colour": "BLUE",
+      "repeat": 1,
+      "n": 60,
+      "left": {
+        "min": 151,
+        "max": 200,
+        "mean": 174.5167,
+        "sd": 15.2276
+      },
+      "right": {
+        "min": 159,
+        "max": 193,
+        "mean": 172.5833,
+        "sd": 11.2977
+      }
+    },
+    {
+      "colour": "BLUE",
+      "repeat": 2,
+      "n": 68,
+      "left": {
+        "min": 152,
+        "max": 212,
+        "mean": 175.7647,
+        "sd": 15.8313
+      },
+      "right": {
+        "min": 162,
+        "max": 196,
+        "mean": 177.4412,
+        "sd": 11.2321
+      }
+    },
+    {
+      "colour": "YELLOW",
+      "repeat": 1,
+      "n": 57,
+      "left": {
+        "min": 144,
+        "max": 202,
+        "mean": 166.8421,
+        "sd": 14.9389
+      },
+      "right": {
+        "min": 152,
+        "max": 188,
+        "mean": 165.7895,
+        "sd": 11.6201
+      }
+    },
+    {
+      "colour": "YELLOW",
+      "repeat": 2,
+      "n": 58,
+      "left": {
+        "min": 134,
+        "max": 184,
+        "mean": 155.3448,
+        "sd": 15.0596
+      },
+      "right": {
+        "min": 142,
+        "max": 178,
+        "mean": 158.6207,
+        "sd": 11.9279
+      }
+    }
+  ],
+  "pooled_all_records": {
+    "BLUE": {
+      "n": 128,
+      "left": {
+        "min": 151,
+        "max": 212,
+        "mean": 175.1797,
+        "sd": 15.5028
+      },
+      "right": {
+        "min": 159,
+        "max": 196,
+        "mean": 175.1641,
+        "sd": 11.4794
+      }
+    },
+    "YELLOW": {
+      "n": 115,
+      "left": {
+        "min": 134,
+        "max": 202,
+        "mean": 161.0435,
+        "sd": 16.0112
+      },
+      "right": {
+        "min": 142,
+        "max": 188,
+        "mean": 162.1739,
+        "sd": 12.2648
+      }
+    }
+  },
+  "exact_shared_left_right_pairs": [
+    [
+      160,
+      161
+    ],
+    [
+      179,
+      166
+    ]
+  ],
+  "quality": {
+    "total_records": 243,
+    "malformed_timestamp_lines": [],
+    "duplicate_timestamps": 0,
+    "invalid_error_or_stale": 0,
+    "drive_on": 0
+  },
+  "selection_rule": "Per colour: first 50 valid, error-free, age<=100ms, DRIVE OFF rows from repeat 1, then first 50 from repeat 2. Original retains every row.",
+  "selected_100_stats": {
+    "BLUE": {
+      "n": 100,
+      "left": {
+        "min": 151,
+        "max": 212,
+        "mean": 174.76,
+        "sd": 15.4031
+      },
+      "right": {
+        "min": 159,
+        "max": 196,
+        "mean": 175.36,
+        "sd": 11.5623
+      }
+    },
+    "YELLOW": {
+      "n": 100,
+      "left": {
+        "min": 134,
+        "max": 202,
+        "mean": 160.58,
+        "sd": 15.9812
+      },
+      "right": {
+        "min": 142,
+        "max": 188,
+        "mean": 162.38,
+        "sd": 12.425
+      }
+    }
+  }
+}

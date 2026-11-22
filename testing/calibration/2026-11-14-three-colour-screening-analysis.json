@@ -1,0 +1,609 @@
+{
+  "sources": [
+    {
+      "original": "C:\\Users\\Guo YouYan\\Downloads\\black.txt",
+      "sha256": "baed16dc96470c308802ad424817ccbc087792411a57715851a5dfefbdb91d46"
+    },
+    {
+      "original": "C:\\Users\\Guo YouYan\\Downloads\\white tape1.txt",
+      "sha256": "ecd2f2125da73af85a229f1db633e81760d9fc35b741aac8356a499b008c1d94"
+    }
+  ],
+  "received_date": "2026-11-14",
+  "setup": "User confirmed same heights, lighting and power for all samples, both sensors fully over each same tape. Exact heights and lighting details not supplied for this session.",
+  "total_records": 731,
+  "statistics": {
+    "black": {
+      "n": 85,
+      "invalid_error_stale_or_drive_on": 0,
+      "duplicate_timestamps_within_block": 0,
+      "L": {
+        "min": 2523,
+        "max": 2562,
+        "mean": 2545.4588,
+        "sd": 12.5096
+      },
+      "R": {
+        "min": 2864,
+        "max": 2910,
+        "mean": 2884.8,
+        "sd": 13.394
+      }
+    },
+    "blue": {
+      "n": 108,
+      "invalid_error_stale_or_drive_on": 0,
+      "duplicate_timestamps_within_block": 0,
+      "L": {
+        "min": 170,
+        "max": 229,
+        "mean": 203.0833,
+        "sd": 12.8377
+      },
+      "R": {
+        "min": 190,
+        "max": 238,
+        "mean": 211.8426,
+        "sd": 12.3411
+      }
+    },
+    "yellow": {
+      "n": 110,
+      "invalid_error_stale_or_drive_on": 0,
+      "duplicate_timestamps_within_block": 0,
+      "L": {
+        "min": 173,
+        "max": 219,
+        "mean": 194.9455,
+        "sd": 14.0587
+      },
+      "R": {
+        "min": 180,
+        "max": 225,
+        "mean": 201.6455,
+        "sd": 13.7204
+      }
+    },
+    "whitetape1": {
+      "n": 147,
+      "invalid_error_stale_or_drive_on": 0,
+      "duplicate_timestamps_within_block": 0,
+      "L": {
+        "min": 162,
+        "max": 203,
+        "mean": 181.9048,
+        "sd": 12.7227
+      },
+      "R": {
+        "min": 135,
+        "max": 249,
+        "mean": 189.9116,
+        "sd": 15.9554
+      }
+    },
+    "whitetape2": {
+      "n": 140,
+      "invalid_error_stale_or_drive_on": 0,
+      "duplicate_timestamps_within_block": 0,
+      "L": {
+        "min": 165,
+        "max": 208,
+        "mean": 186.6786,
+        "sd": 13.0209
+      },
+      "R": {
+        "min": 165,
+        "max": 214,
+        "mean": 187.5571,
+        "sd": 14.742
+      }
+    },
+    "whitetape3": {
+      "n": 141,
+      "invalid_error_stale_or_drive_on": 0,
+      "duplicate_timestamps_within_block": 0,
+      "L": {
+        "min": 161,
+        "max": 205,
+        "mean": 183.8511,
+        "sd": 13.4419
+      },
+      "R": {
+        "min": 171,
+        "max": 216,
+        "mean": 190.9007,
+        "sd": 14.0353
+      }
+    }
+  },
+  "candidate_comparisons": [
+    {
+      "white": "whitetape1",
+      "third_colour": "blue",
+      "shared_exact_pairs": [],
+      "mean_gaps": {
+        "L": 21.1785,
+        "R": 21.931
+      },
+      "overlap": {
+        "L": [
+          170,
+          203
+        ],
+        "R": [
+          190,
+          238
+        ]
+      },
+      "splits": [
+        {
+          "train_second_half": false,
+          "confusion": {
+            "black": {
+              "black": 43,
+              "whitetape1": 0,
+              "blue": 0
+            },
+            "whitetape1": {
+              "black": 0,
+              "whitetape1": 65,
+              "blue": 9
+            },
+            "blue": {
+              "black": 0,
+              "whitetape1": 12,
+              "blue": 42
+            }
+          },
+          "balanced_accuracy": 0.8853853853853854
+        },
+        {
+          "train_second_half": true,
+          "confusion": {
+            "black": {
+              "black": 42,
+              "whitetape1": 0,
+              "blue": 0
+            },
+            "whitetape1": {
+              "black": 0,
+              "whitetape1": 59,
+              "blue": 14
+            },
+            "blue": {
+              "black": 0,
+              "whitetape1": 3,
+              "blue": 51
+            }
+          },
+          "balanced_accuracy": 0.9175545408422121
+        }
+      ],
+      "combined_two_direction_sample_accuracy": 0.888235294117647,
+      "white_and_third_colour_only_sample_accuracy": 0.8509803921568627
+    },
+    {
+      "white": "whitetape1",
+      "third_colour": "yellow",
+      "shared_exact_pairs": [
+        [
+          180,
+          185
+        ],
+        [
+          195,
+          208
+        ],
+        [
+          198,
+          208
+        ]
+      ],
+      "mean_gaps": {
+        "L": 13.0407,
+        "R": 11.7339
+      },
+      "overlap": {
+        "L": [
+          173,
+          203
+        ],
+        "R": [
+          180,
+          225
+        ]
+      },
+      "splits": [
+        {
+          "train_second_half": false,
+          "confusion": {
+            "black": {
+              "black": 43,
+              "whitetape1": 0,
+              "yellow": 0
+            },
+            "whitetape1": {
+              "black": 0,
+              "whitetape1": 53,
+              "yellow": 21
+            },
+            "yellow": {
+              "black": 0,
+              "whitetape1": 23,
+              "yellow": 32
+            }
+          },
+          "balanced_accuracy": 0.766011466011466
+        },
+        {
+          "train_second_half": true,
+          "confusion": {
+            "black": {
+              "black": 42,
+              "whitetape1": 0,
+              "yellow": 0
+            },
+            "whitetape1": {
+              "black": 0,
+              "whitetape1": 50,
+              "yellow": 23
+            },
+            "yellow": {
+              "black": 0,
+              "whitetape1": 13,
+              "yellow": 42
+            }
+          },
+          "balanced_accuracy": 0.8161892901618929
+        }
+      ],
+      "combined_two_direction_sample_accuracy": 0.7660818713450293,
+      "white_and_third_colour_only_sample_accuracy": 0.688715953307393
+    },
+    {
+      "white": "whitetape2",
+      "third_colour": "blue",
+      "shared_exact_pairs": [
+        [
+          184,
+          210
+        ],
+        [
+          187,
+          206
+        ],
+        [
+          197,
+          202
+        ],
+        [
+          202,
+          196
+        ]
+      ],
+      "mean_gaps": {
+        "L": 16.4047,
+        "R": 24.2855
+      },
+      "overlap": {
+        "L": [
+          170,
+          208
+        ],
+        "R": [
+          190,
+          214
+        ]
+      },
+      "splits": [
+        {
+          "train_second_half": false,
+          "confusion": {
+            "black": {
+              "black": 43,
+              "whitetape2": 0,
+              "blue": 0
+            },
+            "whitetape2": {
+              "black": 0,
+              "whitetape2": 63,
+              "blue": 7
+            },
+            "blue": {
+              "black": 0,
+              "whitetape2": 11,
+              "blue": 43
+            }
+          },
+          "balanced_accuracy": 0.8987654320987655
+        },
+        {
+          "train_second_half": true,
+          "confusion": {
+            "black": {
+              "black": 42,
+              "whitetape2": 0,
+              "blue": 0
+            },
+            "whitetape2": {
+              "black": 0,
+              "whitetape2": 50,
+              "blue": 20
+            },
+            "blue": {
+              "black": 0,
+              "whitetape2": 3,
+              "blue": 51
+            }
+          },
+          "balanced_accuracy": 0.8862433862433863
+        }
+      ],
+      "combined_two_direction_sample_accuracy": 0.8768768768768769,
+      "white_and_third_colour_only_sample_accuracy": 0.8346774193548387
+    },
+    {
+      "white": "whitetape2",
+      "third_colour": "yellow",
+      "shared_exact_pairs": [
+        [
+          186,
+          183
+        ],
+        [
+          195,
+          185
+        ],
+        [
+          195,
+          208
+        ],
+        [
+          202,
+          206
+        ]
+      ],
+      "mean_gaps": {
+        "L": 8.2669,
+        "R": 14.0884
+      },
+      "overlap": {
+        "L": [
+          173,
+          208
+        ],
+        "R": [
+          180,
+          214
+        ]
+      },
+      "splits": [
+        {
+          "train_second_half": false,
+          "confusion": {
+            "black": {
+              "black": 43,
+              "whitetape2": 0,
+              "yellow": 0
+            },
+            "whitetape2": {
+              "black": 0,
+              "whitetape2": 56,
+              "yellow": 14
+            },
+            "yellow": {
+              "black": 0,
+              "whitetape2": 17,
+              "yellow": 38
+            }
+          },
+          "balanced_accuracy": 0.8303030303030303
+        },
+        {
+          "train_second_half": true,
+          "confusion": {
+            "black": {
+              "black": 42,
+              "whitetape2": 0,
+              "yellow": 0
+            },
+            "whitetape2": {
+              "black": 0,
+              "whitetape2": 41,
+              "yellow": 29
+            },
+            "yellow": {
+              "black": 0,
+              "whitetape2": 12,
+              "yellow": 43
+            }
+          },
+          "balanced_accuracy": 0.7891774891774892
+        }
+      ],
+      "combined_two_direction_sample_accuracy": 0.7850746268656716,
+      "white_and_third_colour_only_sample_accuracy": 0.712
+    },
+    {
+      "white": "whitetape3",
+      "third_colour": "blue",
+      "shared_exact_pairs": [
+        [
+          190,
+          190
+        ],
+        [
+          192,
+          216
+        ],
+        [
+          194,
+          195
+        ],
+        [
+          195,
+          211
+        ],
+        [
+          197,
+          202
+        ],
+        [
+          200,
+          216
+        ]
+      ],
+      "mean_gaps": {
+        "L": 19.2322,
+        "R": 20.9419
+      },
+      "overlap": {
+        "L": [
+          170,
+          205
+        ],
+        "R": [
+          190,
+          216
+        ]
+      },
+      "splits": [
+        {
+          "train_second_half": false,
+          "confusion": {
+            "black": {
+              "black": 43,
+              "whitetape3": 0,
+              "blue": 0
+            },
+            "whitetape3": {
+              "black": 0,
+              "whitetape3": 61,
+              "blue": 10
+            },
+            "blue": {
+              "black": 0,
+              "whitetape3": 11,
+              "blue": 43
+            }
+          },
+          "balanced_accuracy": 0.885150408624587
+        },
+        {
+          "train_second_half": true,
+          "confusion": {
+            "black": {
+              "black": 42,
+              "whitetape3": 0,
+              "blue": 0
+            },
+            "whitetape3": {
+              "black": 0,
+              "whitetape3": 56,
+              "blue": 14
+            },
+            "blue": {
+              "black": 0,
+              "whitetape3": 4,
+              "blue": 50
+            }
+          },
+          "balanced_accuracy": 0.908641975308642
+        }
+      ],
+      "combined_two_direction_sample_accuracy": 0.8832335329341318,
+      "white_and_third_colour_only_sample_accuracy": 0.8433734939759037
+    },
+    {
+      "white": "whitetape3",
+      "third_colour": "yellow",
+      "shared_exact_pairs": [
+        [
+          179,
+          209
+        ],
+        [
+          179,
+          210
+        ],
+        [
+          186,
+          204
+        ],
+        [
+          195,
+          211
+        ]
+      ],
+      "mean_gaps": {
+        "L": 11.0944,
+        "R": 10.7448
+      },
+      "overlap": {
+        "L": [
+          173,
+          205
+        ],
+        "R": [
+          180,
+          216
+        ]
+      },
+      "splits": [
+        {
+          "train_second_half": false,
+          "confusion": {
+            "black": {
+              "black": 43,
+              "whitetape3": 0,
+              "yellow": 0
+            },
+            "whitetape3": {
+              "black": 0,
+              "whitetape3": 53,
+              "yellow": 18
+            },
+            "yellow": {
+              "black": 0,
+              "whitetape3": 17,
+              "yellow": 38
+            }
+          },
+          "balanced_accuracy": 0.8124626547161758
+        },
+        {
+          "train_second_half": true,
+          "confusion": {
+            "black": {
+              "black": 42,
+              "whitetape3": 0,
+              "yellow": 0
+            },
+            "whitetape3": {
+              "black": 0,
+              "whitetape3": 47,
+              "yellow": 23
+            },
+            "yellow": {
+              "black": 0,
+              "whitetape3": 15,
+              "yellow": 40
+            }
+          },
+          "balanced_accuracy": 0.7995670995670996
+        }
+      ],
+      "combined_two_direction_sample_accuracy": 0.7827380952380952,
+      "white_and_third_colour_only_sample_accuracy": 0.7091633466135459
+    }
+  ],
+  "exploratory_method": "For each combination, fit a pooled-within-class channel-scaled nearest-centroid classifier to the first half of each class and score second half; reverse direction as a sensitivity check. Paired L/R readings. No window averaging, no deployment.",
+  "limitations": [
+    "Contiguous halves are from the same captures, not independent repositioned or moving validation.",
+    "Candidate selection uses these same captures; ranking may change on fresh data.",
+    "Black is much easier and inflates three-class accuracy; inspect white/third-colour accuracy separately.",
+    "No background sample provided.",
+    "Pair-based model assumes both sensors view the same class; track steering can violate that assumption."
+  ],
+  "provisional_recommendation": "Black + blue + white tape 1; white tape 2 backup; no clean instantaneous range-based separation, not deployment-ready."
+}

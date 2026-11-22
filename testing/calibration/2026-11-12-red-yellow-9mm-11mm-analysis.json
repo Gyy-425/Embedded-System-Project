@@ -1,0 +1,205 @@
+{
+  "source_original": "C:\\Users\\Guo YouYan\\Downloads\\red.txt",
+  "sha256": "d5daa515eaa0e976c5096fb0290ae2ece6612e0c7faa9a5cee83ec7675e1aadf",
+  "height_mm_user_reported": {
+    "left": 9,
+    "right": 11
+  },
+  "height_reference": "Optical-face-to-tape reference requested; not explicitly restated in user reply.",
+  "sections": [
+    {
+      "surface": "red",
+      "repeat": 1,
+      "n": 45,
+      "L": {
+        "min": 143,
+        "max": 192,
+        "mean": 167.7556,
+        "sd": 15.172
+      },
+      "R": {
+        "min": 158,
+        "max": 194,
+        "mean": 176.0889,
+        "sd": 11.2489
+      }
+    },
+    {
+      "surface": "red",
+      "repeat": 2,
+      "n": 38,
+      "L": {
+        "min": 148,
+        "max": 194,
+        "mean": 170.4211,
+        "sd": 14.9262
+      },
+      "R": {
+        "min": 158,
+        "max": 194,
+        "mean": 175.4474,
+        "sd": 12.6911
+      }
+    },
+    {
+      "surface": "yellow",
+      "repeat": 1,
+      "n": 38,
+      "L": {
+        "min": 113,
+        "max": 194,
+        "mean": 164.8684,
+        "sd": 19.3979
+      },
+      "R": {
+        "min": 159,
+        "max": 197,
+        "mean": 170.9474,
+        "sd": 10.7877
+      }
+    },
+    {
+      "surface": "yellow",
+      "repeat": 2,
+      "n": 39,
+      "L": {
+        "min": 142,
+        "max": 197,
+        "mean": 175.0256,
+        "sd": 16.3506
+      },
+      "R": {
+        "min": 163,
+        "max": 195,
+        "mean": 180.641,
+        "sd": 10.9772
+      }
+    },
+    {
+      "surface": "black",
+      "repeat": 1,
+      "n": 21,
+      "L": {
+        "min": 1211,
+        "max": 1262,
+        "mean": 1230.0952,
+        "sd": 17.7564
+      },
+      "R": {
+        "min": 1363,
+        "max": 1397,
+        "mean": 1374.8571,
+        "sd": 11.1143
+      }
+    },
+    {
+      "surface": "cardboard",
+      "repeat": 1,
+      "n": 20,
+      "L": {
+        "min": 147,
+        "max": 196,
+        "mean": 172.5,
+        "sd": 15.028
+      },
+      "R": {
+        "min": 162,
+        "max": 196,
+        "mean": 179.7,
+        "sd": 12.0398
+      }
+    }
+  ],
+  "pooled": {
+    "red": {
+      "n": 83,
+      "L": {
+        "min": 143,
+        "max": 194,
+        "mean": 168.9759,
+        "sd": 15.0276
+      },
+      "R": {
+        "min": 158,
+        "max": 194,
+        "mean": 175.7952,
+        "sd": 11.8607
+      }
+    },
+    "yellow": {
+      "n": 77,
+      "L": {
+        "min": 113,
+        "max": 197,
+        "mean": 170.013,
+        "sd": 18.5199
+      },
+      "R": {
+        "min": 159,
+        "max": 197,
+        "mean": 175.8571,
+        "sd": 11.8618
+      }
+    },
+    "black": {
+      "n": 21,
+      "L": {
+        "min": 1211,
+        "max": 1262,
+        "mean": 1230.0952,
+        "sd": 17.7564
+      },
+      "R": {
+        "min": 1363,
+        "max": 1397,
+        "mean": 1374.8571,
+        "sd": 11.1143
+      }
+    },
+    "cardboard": {
+      "n": 20,
+      "L": {
+        "min": 147,
+        "max": 196,
+        "mean": 172.5,
+        "sd": 15.028
+      },
+      "R": {
+        "min": 162,
+        "max": 196,
+        "mean": 179.7,
+        "sd": 12.0398
+      }
+    }
+  },
+  "exact_shared_pairs": {
+    "red/yellow": [
+      [
+        160,
+        161
+      ],
+      [
+        162,
+        165
+      ],
+      [
+        168,
+        192
+      ],
+      [
+        192,
+        185
+      ]
+    ],
+    "red/cardboard": [
+      [
+        192,
+        177
+      ]
+    ],
+    "yellow/cardboard": []
+  },
+  "total_records": 201,
+  "invalid_or_stale": 0,
+  "drive_on": 0
+}

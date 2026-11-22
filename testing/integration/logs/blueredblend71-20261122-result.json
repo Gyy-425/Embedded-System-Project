@@ -1,0 +1,2536 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "rgb_profile": "home",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-rgb-report-powered.log"
+    },
+    {
+      "name": "yellow-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-core-compile.log"
+    },
+    {
+      "name": "yellow-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-core.log"
+    },
+    {
+      "name": "yellow-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-replay-compile.log"
+    },
+    {
+      "name": "yellow-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-replay.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty40-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-duty40-compile.log"
+    },
+    {
+      "name": "owner-duty40",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-duty40.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-duty50.log"
+    },
+    {
+      "name": "yellow-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-owner-compile.log"
+    },
+    {
+      "name": "yellow-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-owner.log"
+    },
+    {
+      "name": "yellow-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-startup-compile.log"
+    },
+    {
+      "name": "yellow-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-startup.log"
+    },
+    {
+      "name": "red-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-core-compile.log"
+    },
+    {
+      "name": "red-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-core.log"
+    },
+    {
+      "name": "red-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-replay-compile.log"
+    },
+    {
+      "name": "red-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-replay.log"
+    },
+    {
+      "name": "red-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-owner35-compile.log"
+    },
+    {
+      "name": "red-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-owner35.log"
+    },
+    {
+      "name": "red-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-startup-compile.log"
+    },
+    {
+      "name": "red-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-startup.log"
+    },
+    {
+      "name": "blue-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-replay-compile.log"
+    },
+    {
+      "name": "blue-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-replay.log"
+    },
+    {
+      "name": "blue-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-owner35-compile.log"
+    },
+    {
+      "name": "blue-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-owner35.log"
+    },
+    {
+      "name": "blue-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-startup-compile.log"
+    },
+    {
+      "name": "blue-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-startup.log"
+    },
+    {
+      "name": "multi-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-multi-owner25-compile.log"
+    },
+    {
+      "name": "multi-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-multi-owner25.log"
+    },
+    {
+      "name": "multi-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-multi-startup-compile.log"
+    },
+    {
+      "name": "multi-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-multi-startup.log"
+    },
+    {
+      "name": "corner-left-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-corner-left-owner25-compile.log"
+    },
+    {
+      "name": "corner-left-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-corner-left-owner25.log"
+    },
+    {
+      "name": "corner-left-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-corner-left-startup-compile.log"
+    },
+    {
+      "name": "corner-left-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-corner-left-startup.log"
+    },
+    {
+      "name": "corner-right-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-corner-right-owner25-compile.log"
+    },
+    {
+      "name": "corner-right-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-corner-right-owner25.log"
+    },
+    {
+      "name": "corner-right-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-corner-right-startup-compile.log"
+    },
+    {
+      "name": "corner-right-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-corner-right-startup.log"
+    },
+    {
+      "name": "clipped-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-clipped-owner25-compile.log"
+    },
+    {
+      "name": "clipped-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-clipped-owner25.log"
+    },
+    {
+      "name": "clipped-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-clipped-startup-compile.log"
+    },
+    {
+      "name": "clipped-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-clipped-startup.log"
+    },
+    {
+      "name": "blue-bend-right-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-bend-right-owner25-compile.log"
+    },
+    {
+      "name": "blue-bend-right-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-bend-right-owner25.log"
+    },
+    {
+      "name": "blue-bend-right-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-bend-right-startup-compile.log"
+    },
+    {
+      "name": "blue-bend-right-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-bend-right-startup.log"
+    },
+    {
+      "name": "loop-clockwise-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-loop-clockwise-owner25-compile.log"
+    },
+    {
+      "name": "loop-clockwise-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-loop-clockwise-owner25.log"
+    },
+    {
+      "name": "loop-clockwise-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-loop-clockwise-startup-compile.log"
+    },
+    {
+      "name": "loop-clockwise-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-loop-clockwise-startup.log"
+    },
+    {
+      "name": "loop-anticlockwise-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-loop-anticlockwise-owner25-compile.log"
+    },
+    {
+      "name": "loop-anticlockwise-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-loop-anticlockwise-owner25.log"
+    },
+    {
+      "name": "loop-anticlockwise-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-loop-anticlockwise-startup-compile.log"
+    },
+    {
+      "name": "loop-anticlockwise-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-loop-anticlockwise-startup.log"
+    },
+    {
+      "name": "early-bend-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-early-bend-owner25-compile.log"
+    },
+    {
+      "name": "early-bend-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-early-bend-owner25.log"
+    },
+    {
+      "name": "early-bend-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-early-bend-startup-compile.log"
+    },
+    {
+      "name": "early-bend-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-early-bend-startup.log"
+    },
+    {
+      "name": "home-track-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-home-track-owner25-compile.log"
+    },
+    {
+      "name": "home-track-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-home-track-owner25.log"
+    },
+    {
+      "name": "home-track-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-home-track-startup-compile.log"
+    },
+    {
+      "name": "home-track-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-home-track-startup.log"
+    },
+    {
+      "name": "blue-steer-ramp-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-steer-ramp-owner25-compile.log"
+    },
+    {
+      "name": "blue-steer-ramp-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-steer-ramp-owner25.log"
+    },
+    {
+      "name": "blue-steer-ramp-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-steer-ramp-startup-compile.log"
+    },
+    {
+      "name": "blue-steer-ramp-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-steer-ramp-startup.log"
+    },
+    {
+      "name": "blue-gentle-owner25-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-gentle-owner25-compile.log"
+    },
+    {
+      "name": "blue-gentle-owner25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-gentle-owner25.log"
+    },
+    {
+      "name": "blue-gentle-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-gentle-startup-compile.log"
+    },
+    {
+      "name": "blue-gentle-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-gentle-startup.log"
+    },
+    {
+      "name": "blue-gentle-27p5-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-gentle-27p5-owner-compile.log"
+    },
+    {
+      "name": "blue-gentle-27p5-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-gentle-27p5-owner.log"
+    },
+    {
+      "name": "blue-gentle-27p5-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-gentle-27p5-startup-compile.log"
+    },
+    {
+      "name": "blue-gentle-27p5-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-gentle-27p5-startup.log"
+    },
+    {
+      "name": "yellow-approach-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-approach-owner-compile.log"
+    },
+    {
+      "name": "yellow-approach-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-approach-owner.log"
+    },
+    {
+      "name": "yellow-approach-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-approach-startup-compile.log"
+    },
+    {
+      "name": "yellow-approach-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-approach-startup.log"
+    },
+    {
+      "name": "yellow-lead-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-lead-owner-compile.log"
+    },
+    {
+      "name": "yellow-lead-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-lead-owner.log"
+    },
+    {
+      "name": "yellow-lead-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-lead-startup-compile.log"
+    },
+    {
+      "name": "yellow-lead-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-yellow-lead-startup.log"
+    },
+    {
+      "name": "blue-damped-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-damped-owner-compile.log"
+    },
+    {
+      "name": "blue-damped-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-damped-owner.log"
+    },
+    {
+      "name": "blue-damped-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-damped-startup-compile.log"
+    },
+    {
+      "name": "blue-damped-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-damped-startup.log"
+    },
+    {
+      "name": "blue-wide-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-wide-owner-compile.log"
+    },
+    {
+      "name": "blue-wide-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-wide-owner.log"
+    },
+    {
+      "name": "blue-wide-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-wide-startup-compile.log"
+    },
+    {
+      "name": "blue-wide-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-wide-startup.log"
+    },
+    {
+      "name": "stop-trace-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-stop-trace-owner-compile.log"
+    },
+    {
+      "name": "stop-trace-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-stop-trace-owner.log"
+    },
+    {
+      "name": "stop-trace-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-stop-trace-startup-compile.log"
+    },
+    {
+      "name": "stop-trace-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-stop-trace-startup.log"
+    },
+    {
+      "name": "blue-red-handoff-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-handoff-owner-compile.log"
+    },
+    {
+      "name": "blue-red-handoff-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-handoff-owner.log"
+    },
+    {
+      "name": "blue-red-handoff-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-handoff-startup-compile.log"
+    },
+    {
+      "name": "blue-red-handoff-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-handoff-startup.log"
+    },
+    {
+      "name": "blue-outer-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-outer-owner-compile.log"
+    },
+    {
+      "name": "blue-outer-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-outer-owner.log"
+    },
+    {
+      "name": "blue-outer-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-outer-startup-compile.log"
+    },
+    {
+      "name": "blue-outer-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-outer-startup.log"
+    },
+    {
+      "name": "blue-outer-recovery-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-outer-recovery-owner-compile.log"
+    },
+    {
+      "name": "blue-outer-recovery-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-outer-recovery-owner.log"
+    },
+    {
+      "name": "blue-outer-recovery-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-outer-recovery-startup-compile.log"
+    },
+    {
+      "name": "blue-outer-recovery-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-outer-recovery-startup.log"
+    },
+    {
+      "name": "blue-bend-slow-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-bend-slow-owner-compile.log"
+    },
+    {
+      "name": "blue-bend-slow-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-bend-slow-owner.log"
+    },
+    {
+      "name": "blue-bend-slow-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-bend-slow-startup-compile.log"
+    },
+    {
+      "name": "blue-bend-slow-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-bend-slow-startup.log"
+    },
+    {
+      "name": "blue-confirm-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-confirm-owner-compile.log"
+    },
+    {
+      "name": "blue-confirm-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-confirm-owner.log"
+    },
+    {
+      "name": "blue-confirm-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-confirm-startup-compile.log"
+    },
+    {
+      "name": "blue-confirm-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-confirm-startup.log"
+    },
+    {
+      "name": "bend-trace-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-bend-trace-owner-compile.log"
+    },
+    {
+      "name": "bend-trace-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-bend-trace-owner.log"
+    },
+    {
+      "name": "bend-trace-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-bend-trace-startup-compile.log"
+    },
+    {
+      "name": "bend-trace-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-bend-trace-startup.log"
+    },
+    {
+      "name": "blue-exit-lead-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-lead-owner-compile.log"
+    },
+    {
+      "name": "blue-exit-lead-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-lead-owner.log"
+    },
+    {
+      "name": "blue-exit-lead-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-lead-startup-compile.log"
+    },
+    {
+      "name": "blue-exit-lead-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-lead-startup.log"
+    },
+    {
+      "name": "blue-exit-tight-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-tight-owner-compile.log"
+    },
+    {
+      "name": "blue-exit-tight-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-tight-owner.log"
+    },
+    {
+      "name": "blue-exit-tight-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-tight-startup-compile.log"
+    },
+    {
+      "name": "blue-exit-tight-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-tight-startup.log"
+    },
+    {
+      "name": "blue-exit-early-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-early-owner-compile.log"
+    },
+    {
+      "name": "blue-exit-early-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-early-owner.log"
+    },
+    {
+      "name": "blue-exit-early-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-early-startup-compile.log"
+    },
+    {
+      "name": "blue-exit-early-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-early-startup.log"
+    },
+    {
+      "name": "blue-red-confirm-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-confirm-owner-compile.log"
+    },
+    {
+      "name": "blue-red-confirm-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-confirm-owner.log"
+    },
+    {
+      "name": "blue-red-confirm-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-confirm-startup-compile.log"
+    },
+    {
+      "name": "blue-red-confirm-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-confirm-startup.log"
+    },
+    {
+      "name": "blue-exit-after-recovery-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-after-recovery-owner-compile.log"
+    },
+    {
+      "name": "blue-exit-after-recovery-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-after-recovery-owner.log"
+    },
+    {
+      "name": "blue-exit-after-recovery-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-after-recovery-startup-compile.log"
+    },
+    {
+      "name": "blue-exit-after-recovery-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-after-recovery-startup.log"
+    },
+    {
+      "name": "red-exit-lead-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-lead-owner-compile.log"
+    },
+    {
+      "name": "red-exit-lead-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-lead-owner.log"
+    },
+    {
+      "name": "red-exit-lead-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-lead-startup-compile.log"
+    },
+    {
+      "name": "red-exit-lead-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-lead-startup.log"
+    },
+    {
+      "name": "red-exit-early-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-early-owner-compile.log"
+    },
+    {
+      "name": "red-exit-early-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-early-owner.log"
+    },
+    {
+      "name": "red-exit-early-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-early-startup-compile.log"
+    },
+    {
+      "name": "red-exit-early-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-early-startup.log"
+    },
+    {
+      "name": "blue-red-bends-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-bends-owner-compile.log"
+    },
+    {
+      "name": "blue-red-bends-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-bends-owner.log"
+    },
+    {
+      "name": "blue-red-bends-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-bends-startup-compile.log"
+    },
+    {
+      "name": "blue-red-bends-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-bends-startup.log"
+    },
+    {
+      "name": "blue-red-bend-cues-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-bend-cues-owner-compile.log"
+    },
+    {
+      "name": "blue-red-bend-cues-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-bend-cues-owner.log"
+    },
+    {
+      "name": "blue-red-bend-cues-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-bend-cues-startup-compile.log"
+    },
+    {
+      "name": "blue-red-bend-cues-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-bend-cues-startup.log"
+    },
+    {
+      "name": "red-second-pivot-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-pivot-owner-compile.log"
+    },
+    {
+      "name": "red-second-pivot-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-pivot-owner.log"
+    },
+    {
+      "name": "red-second-pivot-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-pivot-startup-compile.log"
+    },
+    {
+      "name": "red-second-pivot-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-pivot-startup.log"
+    },
+    {
+      "name": "red-second-slow-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-slow-owner-compile.log"
+    },
+    {
+      "name": "red-second-slow-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-slow-owner.log"
+    },
+    {
+      "name": "red-second-slow-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-slow-startup-compile.log"
+    },
+    {
+      "name": "red-second-slow-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-slow-startup.log"
+    },
+    {
+      "name": "red-bend-after-handoff-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-bend-after-handoff-owner-compile.log"
+    },
+    {
+      "name": "red-bend-after-handoff-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-bend-after-handoff-owner.log"
+    },
+    {
+      "name": "red-bend-after-handoff-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-bend-after-handoff-startup-compile.log"
+    },
+    {
+      "name": "red-bend-after-handoff-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-bend-after-handoff-startup.log"
+    },
+    {
+      "name": "red-first-bend-boost-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-first-bend-boost-owner-compile.log"
+    },
+    {
+      "name": "red-first-bend-boost-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-first-bend-boost-owner.log"
+    },
+    {
+      "name": "red-first-bend-boost-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-first-bend-boost-startup-compile.log"
+    },
+    {
+      "name": "red-first-bend-boost-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-first-bend-boost-startup.log"
+    },
+    {
+      "name": "red-first-bend-tighter-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-first-bend-tighter-owner-compile.log"
+    },
+    {
+      "name": "red-first-bend-tighter-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-first-bend-tighter-owner.log"
+    },
+    {
+      "name": "red-first-bend-tighter-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-first-bend-tighter-startup-compile.log"
+    },
+    {
+      "name": "red-first-bend-tighter-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-first-bend-tighter-startup.log"
+    },
+    {
+      "name": "blue-red-join-refinement-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-join-refinement-owner-compile.log"
+    },
+    {
+      "name": "blue-red-join-refinement-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-join-refinement-owner.log"
+    },
+    {
+      "name": "blue-red-join-refinement-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-join-refinement-startup-compile.log"
+    },
+    {
+      "name": "blue-red-join-refinement-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-join-refinement-startup.log"
+    },
+    {
+      "name": "bend-cue-refinement-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-bend-cue-refinement-owner-compile.log"
+    },
+    {
+      "name": "bend-cue-refinement-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-bend-cue-refinement-owner.log"
+    },
+    {
+      "name": "bend-cue-refinement-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-bend-cue-refinement-startup-compile.log"
+    },
+    {
+      "name": "bend-cue-refinement-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-bend-cue-refinement-startup.log"
+    },
+    {
+      "name": "red-second-exit-refinement-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-exit-refinement-owner-compile.log"
+    },
+    {
+      "name": "red-second-exit-refinement-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-exit-refinement-owner.log"
+    },
+    {
+      "name": "red-second-exit-refinement-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-exit-refinement-startup-compile.log"
+    },
+    {
+      "name": "red-second-exit-refinement-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-second-exit-refinement-startup.log"
+    },
+    {
+      "name": "blue-diagonal-exit-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-diagonal-exit-owner-compile.log"
+    },
+    {
+      "name": "blue-diagonal-exit-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-diagonal-exit-owner.log"
+    },
+    {
+      "name": "blue-diagonal-exit-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-diagonal-exit-startup-compile.log"
+    },
+    {
+      "name": "blue-diagonal-exit-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-diagonal-exit-startup.log"
+    },
+    {
+      "name": "red-handoff-align-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-handoff-align-owner-compile.log"
+    },
+    {
+      "name": "red-handoff-align-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-handoff-align-owner.log"
+    },
+    {
+      "name": "red-handoff-align-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-handoff-align-startup-compile.log"
+    },
+    {
+      "name": "red-handoff-align-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-handoff-align-startup.log"
+    },
+    {
+      "name": "red-exit-align-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-align-owner-compile.log"
+    },
+    {
+      "name": "red-exit-align-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-align-owner.log"
+    },
+    {
+      "name": "red-exit-align-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-align-startup-compile.log"
+    },
+    {
+      "name": "red-exit-align-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-align-startup.log"
+    },
+    {
+      "name": "red-between-bends-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-between-bends-owner-compile.log"
+    },
+    {
+      "name": "red-between-bends-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-between-bends-owner.log"
+    },
+    {
+      "name": "red-between-bends-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-between-bends-startup-compile.log"
+    },
+    {
+      "name": "red-between-bends-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-between-bends-startup.log"
+    },
+    {
+      "name": "red-inside-release-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-inside-release-owner-compile.log"
+    },
+    {
+      "name": "red-inside-release-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-inside-release-owner.log"
+    },
+    {
+      "name": "red-inside-release-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-inside-release-startup-compile.log"
+    },
+    {
+      "name": "red-inside-release-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-inside-release-startup.log"
+    },
+    {
+      "name": "red-exit-turn-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-owner-compile.log"
+    },
+    {
+      "name": "red-exit-turn-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-owner.log"
+    },
+    {
+      "name": "red-exit-turn-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-startup-compile.log"
+    },
+    {
+      "name": "red-exit-turn-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-startup.log"
+    },
+    {
+      "name": "red-exit-turn-early-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-early-owner-compile.log"
+    },
+    {
+      "name": "red-exit-turn-early-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-early-owner.log"
+    },
+    {
+      "name": "red-exit-turn-early-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-early-startup-compile.log"
+    },
+    {
+      "name": "red-exit-turn-early-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-early-startup.log"
+    },
+    {
+      "name": "red-exit-turn-tighter-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-tighter-owner-compile.log"
+    },
+    {
+      "name": "red-exit-turn-tighter-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-tighter-owner.log"
+    },
+    {
+      "name": "red-exit-turn-tighter-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-tighter-startup-compile.log"
+    },
+    {
+      "name": "red-exit-turn-tighter-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-tighter-startup.log"
+    },
+    {
+      "name": "red-return-grace-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-return-grace-owner-compile.log"
+    },
+    {
+      "name": "red-return-grace-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-return-grace-owner.log"
+    },
+    {
+      "name": "red-return-grace-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-return-grace-startup-compile.log"
+    },
+    {
+      "name": "red-return-grace-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-return-grace-startup.log"
+    },
+    {
+      "name": "red-exit-turn-strong-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-strong-owner-compile.log"
+    },
+    {
+      "name": "red-exit-turn-strong-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-strong-owner.log"
+    },
+    {
+      "name": "red-exit-turn-strong-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-strong-startup-compile.log"
+    },
+    {
+      "name": "red-exit-turn-strong-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-strong-startup.log"
+    },
+    {
+      "name": "red-exit-turn-hold-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-hold-owner-compile.log"
+    },
+    {
+      "name": "red-exit-turn-hold-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-hold-owner.log"
+    },
+    {
+      "name": "red-exit-turn-hold-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-hold-startup-compile.log"
+    },
+    {
+      "name": "red-exit-turn-hold-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-red-exit-turn-hold-startup.log"
+    },
+    {
+      "name": "blue-exit-pivot-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-pivot-owner-compile.log"
+    },
+    {
+      "name": "blue-exit-pivot-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-pivot-owner.log"
+    },
+    {
+      "name": "blue-exit-pivot-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-pivot-startup-compile.log"
+    },
+    {
+      "name": "blue-exit-pivot-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-exit-pivot-startup.log"
+    },
+    {
+      "name": "blue-red-late-confirm-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-late-confirm-owner-compile.log"
+    },
+    {
+      "name": "blue-red-late-confirm-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-late-confirm-owner.log"
+    },
+    {
+      "name": "blue-red-late-confirm-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-late-confirm-startup-compile.log"
+    },
+    {
+      "name": "blue-red-late-confirm-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-late-confirm-startup.log"
+    },
+    {
+      "name": "blue-red-blend-grace-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-blend-grace-owner-compile.log"
+    },
+    {
+      "name": "blue-red-blend-grace-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-blend-grace-owner.log"
+    },
+    {
+      "name": "blue-red-blend-grace-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-blend-grace-startup-compile.log"
+    },
+    {
+      "name": "blue-red-blend-grace-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-blue-red-blend-grace-startup.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-owner-original50-turn20.log"
+    },
+    {
+      "name": "motor-pulse-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-motor-pulse-compile.log"
+    },
+    {
+      "name": "motor-pulse",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-motor-pulse.log"
+    },
+    {
+      "name": "motor-probe-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-motor-probe-compile.log"
+    },
+    {
+      "name": "motor-probe",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-motor-probe.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-duty.log"
+    },
+    {
+      "name": "reject-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-turn.log"
+    },
+    {
+      "name": "reject-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-geometry.log"
+    },
+    {
+      "name": "reject-orphan-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-yellow.log"
+    },
+    {
+      "name": "reject-red-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-red-geometry.log"
+    },
+    {
+      "name": "reject-orphan-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red.log"
+    },
+    {
+      "name": "reject-mixed-colour",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-mixed-colour.log"
+    },
+    {
+      "name": "reject-blue-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-blue-geometry.log"
+    },
+    {
+      "name": "reject-orphan-blue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue.log"
+    },
+    {
+      "name": "reject-mix-blue-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-mix-blue-red.log"
+    },
+    {
+      "name": "reject-mix-blue-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-mix-blue-yellow.log"
+    },
+    {
+      "name": "reject-multi-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-multi-geometry.log"
+    },
+    {
+      "name": "reject-orphan-multi",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-multi.log"
+    },
+    {
+      "name": "reject-multi-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-multi-duty.log"
+    },
+    {
+      "name": "reject-corner-direction",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-corner-direction.log"
+    },
+    {
+      "name": "reject-orphan-corner",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-corner.log"
+    },
+    {
+      "name": "reject-clipped-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-clipped-value.log"
+    },
+    {
+      "name": "reject-orphan-clipped",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-clipped.log"
+    },
+    {
+      "name": "reject-clipped-pivot",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-clipped-pivot.log"
+    },
+    {
+      "name": "reject-clipped-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-clipped-turn.log"
+    },
+    {
+      "name": "reject-orphan-blue-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-bend.log"
+    },
+    {
+      "name": "reject-blue-bend-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-blue-bend-value.log"
+    },
+    {
+      "name": "reject-orphan-loop-recovery",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-loop-recovery.log"
+    },
+    {
+      "name": "reject-loop-recovery-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-loop-recovery-value.log"
+    },
+    {
+      "name": "reject-loop-recovery-blue-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-loop-recovery-blue-bend.log"
+    },
+    {
+      "name": "reject-orphan-early-bend",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-early-bend.log"
+    },
+    {
+      "name": "reject-early-bend-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-early-bend-value.log"
+    },
+    {
+      "name": "reject-early-bend-reverse",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-early-bend-reverse.log"
+    },
+    {
+      "name": "reject-orphan-home-track",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-home-track.log"
+    },
+    {
+      "name": "reject-home-track-no-rgb-home",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-home-track-no-rgb-home.log"
+    },
+    {
+      "name": "reject-orphan-blue-steer-ramp",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-steer-ramp.log"
+    },
+    {
+      "name": "reject-orphan-blue-ramp-start",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-ramp-start.log"
+    },
+    {
+      "name": "reject-blue-ramp-start-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-blue-ramp-start-value.log"
+    },
+    {
+      "name": "reject-orphan-two-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-two-turn.log"
+    },
+    {
+      "name": "reject-two-turn-value",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-two-turn-value.log"
+    },
+    {
+      "name": "reject-multi-30-without-supported-profile",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-multi-30-without-supported-profile.log"
+    },
+    {
+      "name": "reject-orphan-half-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-half-duty.log"
+    },
+    {
+      "name": "reject-orphan-yellow-exit-cue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-yellow-exit-cue.log"
+    },
+    {
+      "name": "reject-orphan-yellow-lead-cue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-yellow-lead-cue.log"
+    },
+    {
+      "name": "reject-orphan-blue-reversal-damping",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-reversal-damping.log"
+    },
+    {
+      "name": "reject-orphan-blue-steer-wide-range",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-steer-wide-range.log"
+    },
+    {
+      "name": "reject-orphan-stop-trace",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-stop-trace.log"
+    },
+    {
+      "name": "reject-orphan-blue-red-handoff",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-red-handoff.log"
+    },
+    {
+      "name": "reject-orphan-blue-second-boost",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-second-boost.log"
+    },
+    {
+      "name": "reject-orphan-blue-outer-edge",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-outer-edge.log"
+    },
+    {
+      "name": "reject-orphan-blue-outer-recovery",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-outer-recovery.log"
+    },
+    {
+      "name": "reject-orphan-blue-bend-slow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-bend-slow.log"
+    },
+    {
+      "name": "reject-orphan-blue-confirm-grace",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-confirm-grace.log"
+    },
+    {
+      "name": "reject-orphan-bend-trace",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-bend-trace.log"
+    },
+    {
+      "name": "reject-orphan-blue-exit-lead",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-exit-lead.log"
+    },
+    {
+      "name": "reject-orphan-blue-exit-tight",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-exit-tight.log"
+    },
+    {
+      "name": "reject-orphan-blue-exit-early",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-exit-early.log"
+    },
+    {
+      "name": "reject-orphan-blue-red-confirm-grace",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-red-confirm-grace.log"
+    },
+    {
+      "name": "reject-orphan-blue-exit-after-recovery",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-exit-after-recovery.log"
+    },
+    {
+      "name": "reject-orphan-red-exit-lead",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-exit-lead.log"
+    },
+    {
+      "name": "reject-orphan-red-exit-early",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-exit-early.log"
+    },
+    {
+      "name": "reject-orphan-blue-red-bend-trial",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-red-bend-trial.log"
+    },
+    {
+      "name": "reject-orphan-blue-red-bend-cues",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-red-bend-cues.log"
+    },
+    {
+      "name": "reject-orphan-red-second-pivot",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-second-pivot.log"
+    },
+    {
+      "name": "reject-orphan-red-second-slow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-second-slow.log"
+    },
+    {
+      "name": "reject-orphan-red-bend-after-handoff",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-bend-after-handoff.log"
+    },
+    {
+      "name": "reject-orphan-red-first-bend-boost",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-first-bend-boost.log"
+    },
+    {
+      "name": "reject-orphan-red-first-bend-tighter",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-first-bend-tighter.log"
+    },
+    {
+      "name": "reject-orphan-blue-red-join-refinement",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-red-join-refinement.log"
+    },
+    {
+      "name": "reject-orphan-bend-cue-refinement",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-bend-cue-refinement.log"
+    },
+    {
+      "name": "reject-orphan-red-second-exit-refinement",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-second-exit-refinement.log"
+    },
+    {
+      "name": "reject-orphan-blue-diagonal-exit",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-diagonal-exit.log"
+    },
+    {
+      "name": "reject-orphan-red-handoff-align",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-handoff-align.log"
+    },
+    {
+      "name": "reject-orphan-red-exit-align",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-exit-align.log"
+    },
+    {
+      "name": "reject-orphan-red-between-bends",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-between-bends.log"
+    },
+    {
+      "name": "reject-orphan-red-inside-release",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-inside-release.log"
+    },
+    {
+      "name": "reject-orphan-red-exit-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-exit-turn.log"
+    },
+    {
+      "name": "reject-orphan-red-exit-turn-early",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-exit-turn-early.log"
+    },
+    {
+      "name": "reject-orphan-red-exit-turn-tighter",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-exit-turn-tighter.log"
+    },
+    {
+      "name": "reject-orphan-red-return-grace",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-return-grace.log"
+    },
+    {
+      "name": "reject-orphan-red-exit-turn-strong",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-exit-turn-strong.log"
+    },
+    {
+      "name": "reject-orphan-red-exit-turn-hold",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-red-exit-turn-hold.log"
+    },
+    {
+      "name": "reject-orphan-blue-exit-pivot",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-exit-pivot.log"
+    },
+    {
+      "name": "reject-orphan-blue-red-late-confirm",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-red-late-confirm.log"
+    },
+    {
+      "name": "reject-orphan-blue-red-blend-grace",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-orphan-blue-red-blend-grace.log"
+    },
+    {
+      "name": "reject-rgb-profile",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-rgb-profile.log"
+    },
+    {
+      "name": "reject-mix-multi-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-mix-multi-red.log"
+    },
+    {
+      "name": "reject-mix-multi-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-mix-multi-yellow.log"
+    },
+    {
+      "name": "reject-mix-multi-blue",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-reject-mix-multi-blue.log"
+    },
+    {
+      "name": "build-Home_Track_Blue_Red_Blend_Grace_v0_71_D25",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/blueredblend71-20261122-build-Home_Track_Blue_Red_Blend_Grace_v0_71_D25.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/multi_follow_blueredblend71-20261122/AAI05_Home_Track_Blue_Red_Blend_Grace_v0_71_D25.uf2",
+      "sha256": "10b96f78bb9e3dd64e6824a5f2238b80a631c502c0dfdf3583a12f3e4d7abcbe"
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredblend71-20261122/AAI05_Home_Track_Blue_Red_Blend_Grace_v0_71_D25.elf",
+      "sha256": "3179370d71fbf70ee71008eab9271a94fe2cd2a2785a6bbd6f9e3ed11ccbe308"
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredblend71-20261122/AAI05_Home_Track_Blue_Red_Blend_Grace_v0_71_D25.map",
+      "sha256": "9818cc542d82c8dd9e96d3336ea945d27891d769fbb1c67c2aedd3fe0d66ce4f"
+    }
+  ],
+  "old_uf2s": 214,
+  "old_uf2s_unchanged": true
+}

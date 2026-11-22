@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "calibration-cli",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-release-calibration-cli.log"
+    },
+    {
+      "name": "host-compile",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-release-host-compile.log"
+    },
+    {
+      "name": "behaviour",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-release-behaviour.log"
+    },
+    {
+      "name": "arm-compile",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-release-arm-compile.log"
+    },
+    {
+      "name": "arm-library",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-release-arm-library.log"
+    }
+  ],
+  "software_directory": "output/software/route-20261118-release",
+  "old_uf2s": 141,
+  "old_uf2s_unchanged": true
+}

@@ -1,0 +1,528 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-core-compile.log"
+    },
+    {
+      "name": "core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-core.log"
+    },
+    {
+      "name": "owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-compile.log"
+    },
+    {
+      "name": "owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner.log"
+    },
+    {
+      "name": "snapshot-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-snapshot-compile.log"
+    },
+    {
+      "name": "snapshot",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-snapshot.log"
+    },
+    {
+      "name": "startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-startup-compile.log"
+    },
+    {
+      "name": "startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-startup.log"
+    },
+    {
+      "name": "replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-replay-compile.log"
+    },
+    {
+      "name": "replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-replay.log"
+    },
+    {
+      "name": "rgb-report-powered-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-rgb-report-powered-compile.log"
+    },
+    {
+      "name": "rgb-report-powered",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-rgb-report-powered.log"
+    },
+    {
+      "name": "yellow-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-yellow-core-compile.log"
+    },
+    {
+      "name": "yellow-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-yellow-core.log"
+    },
+    {
+      "name": "yellow-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-yellow-replay-compile.log"
+    },
+    {
+      "name": "yellow-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-yellow-replay.log"
+    },
+    {
+      "name": "owner-duty30-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-duty30-compile.log"
+    },
+    {
+      "name": "owner-duty30",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-duty30.log"
+    },
+    {
+      "name": "owner-duty40-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-duty40-compile.log"
+    },
+    {
+      "name": "owner-duty40",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-duty40.log"
+    },
+    {
+      "name": "owner-duty45-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-duty45-compile.log"
+    },
+    {
+      "name": "owner-duty45",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-duty45.log"
+    },
+    {
+      "name": "owner-duty50-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-duty50-compile.log"
+    },
+    {
+      "name": "owner-duty50",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-duty50.log"
+    },
+    {
+      "name": "yellow-owner-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-yellow-owner-compile.log"
+    },
+    {
+      "name": "yellow-owner",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-yellow-owner.log"
+    },
+    {
+      "name": "yellow-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-yellow-startup-compile.log"
+    },
+    {
+      "name": "yellow-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-yellow-startup.log"
+    },
+    {
+      "name": "red-core-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-red-core-compile.log"
+    },
+    {
+      "name": "red-core",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-red-core.log"
+    },
+    {
+      "name": "red-replay-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-red-replay-compile.log"
+    },
+    {
+      "name": "red-replay",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-red-replay.log"
+    },
+    {
+      "name": "red-owner35-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-red-owner35-compile.log"
+    },
+    {
+      "name": "red-owner35",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-red-owner35.log"
+    },
+    {
+      "name": "red-startup-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-red-startup-compile.log"
+    },
+    {
+      "name": "red-startup",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-red-startup.log"
+    },
+    {
+      "name": "core-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-core-turn20-compile.log"
+    },
+    {
+      "name": "core-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-core-turn20.log"
+    },
+    {
+      "name": "owner-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-turn20-compile.log"
+    },
+    {
+      "name": "owner-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-turn20.log"
+    },
+    {
+      "name": "owner-original50-turn20-compile",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-original50-turn20-compile.log"
+    },
+    {
+      "name": "owner-original50-turn20",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-owner-original50-turn20.log"
+    },
+    {
+      "name": "core-target",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-core-target.log"
+    },
+    {
+      "name": "reject-network",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-network.log"
+    },
+    {
+      "name": "reject-motion",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-motion.log"
+    },
+    {
+      "name": "reject-rgbdiag",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-rgbdiag.log"
+    },
+    {
+      "name": "reject-pio",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-pio.log"
+    },
+    {
+      "name": "reject-single",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-single.log"
+    },
+    {
+      "name": "reject-duty",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-duty.log"
+    },
+    {
+      "name": "reject-turn",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-turn.log"
+    },
+    {
+      "name": "reject-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-geometry.log"
+    },
+    {
+      "name": "reject-orphan-yellow",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-orphan-yellow.log"
+    },
+    {
+      "name": "reject-red-geometry",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-red-geometry.log"
+    },
+    {
+      "name": "reject-orphan-red",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-orphan-red.log"
+    },
+    {
+      "name": "reject-mixed-colour",
+      "exit_code": 2,
+      "expected_rejection": true,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-reject-mixed-colour.log"
+    },
+    {
+      "name": "build-Red_Follow_v0_15_D35_T8_NO_DRIVE",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-build-Red_Follow_v0_15_D35_T8_NO_DRIVE.log"
+    },
+    {
+      "name": "build-Red_Follow_v0_15_D35_T8",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-build-Red_Follow_v0_15_D35_T8.log"
+    },
+    {
+      "name": "build-Red_Follow_v0_15_D35_T8_TEST",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-build-Red_Follow_v0_15_D35_T8_TEST.log"
+    },
+    {
+      "name": "build-Black_Follow_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-build-Black_Follow_Compatibility.log"
+    },
+    {
+      "name": "build-Yellow_Follow_v0_14_D35_T8",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-build-Yellow_Follow_v0_14_D35_T8.log"
+    },
+    {
+      "name": "build-RGB_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-build-RGB_Compatibility.log"
+    },
+    {
+      "name": "build-Remote_PIO_Compatibility",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "warnings": [],
+      "log": "testing/integration/logs/redfollow-20261117-final-build-Remote_PIO_Compatibility.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_NO_DRIVE.uf2",
+      "sha256": "b0cee807411b5be9f66a0a118db5f5c3f17b6dec80b91084db175a765ed6ea89"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_NO_DRIVE.elf",
+      "sha256": "aa060120b668d66599c45e51bc57f2fcfcbae20aa796efe4e151549cc5c4290e"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_NO_DRIVE.map",
+      "sha256": "fb23ddaa0ac517c5c388f99893fc1df8fddb452af9a9f8eb86b0e9984d7d0b32"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8.uf2",
+      "sha256": "3a1e82dedd9c4d386de7b759107a5c2b3b7872d596d84984a61fffd011667564"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8.elf",
+      "sha256": "af674232938adf53f6398eb8ee71356f88ab62144419b889456bfaa90e1ce8cc"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8.map",
+      "sha256": "f6dfb2ca3366815e6ca9d85d387138f6c9e17084cbc77215056c38a16ac11dcf"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_TEST.uf2",
+      "sha256": "c503cb8b34b317211e09ef0f0122a348120c06fa20dbca5e66579088c909b6ae"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_TEST.elf",
+      "sha256": "bd50b19512321797bb5eec24150398c8c908b8821e6c9d447a89f73281d514ef"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_TEST.map",
+      "sha256": "f833d8ee3f3b226cc726e83337452bef311118afd858bee1eaab0c2a92573bbf"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Black_Follow_Compatibility.uf2",
+      "sha256": "1e35248f365ccc8739766ecd84818d7cbf551916aea37c92d69ba31b8e0690d2"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Black_Follow_Compatibility.elf",
+      "sha256": "2e1e2b83325d41d8b21bd82e091a714a10f93c7091dce07020e31c50f9ce968d"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Black_Follow_Compatibility.map",
+      "sha256": "58b372ed8aa0af6835b70e6466593d95a8ebbd90d5c1f9f1ec358c13931c7da8"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Yellow_Follow_v0_14_D35_T8.uf2",
+      "sha256": "d7cfe712fb7dbc602fa46316d4709b6c4b77ffe748122fdf21c04070eb96f126"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Yellow_Follow_v0_14_D35_T8.elf",
+      "sha256": "c824c340468c094be58904ce0f5079b24b678411ffa8947019fe658e1a8d890b"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Yellow_Follow_v0_14_D35_T8.map",
+      "sha256": "c372cd9e001b472d30bd87e0caf8bb74e889319166c2702149d2330da256035f"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_RGB_Compatibility.uf2",
+      "sha256": "8310e51232c301c42542cb069cc0051fe176d68a29d0b1371811109f26fb2d58"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_RGB_Compatibility.elf",
+      "sha256": "7d0ef27d084b0dffcac64bf07329a1d77b98937a7d12eb194ff119c07e01e8bf"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_RGB_Compatibility.map",
+      "sha256": "538e9bb1d8b8c6e16d360a94a6f1429de5b19e3c15f0e3991acba8154b7c5f8b"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Remote_PIO_Compatibility.elf",
+      "sha256": "ca28491b829ba661d1fe550d1bb1a48624d20fff2317ceaa9a10726fa57bbfcd"
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Remote_PIO_Compatibility.map",
+      "sha256": "6c86250b98785e4d42d4439722139d8ae6a5cef868cf0a06eff64a3ffdc5c3fc"
+    }
+  ],
+  "old_uf2s": 131,
+  "old_uf2s_unchanged": true
+}

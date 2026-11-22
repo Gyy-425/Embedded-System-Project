@@ -1,0 +1,221 @@
+{
+  "position_note": "User explicitly confirmed moving the ROBOT left/right relative to a fixed black strip. Attachments in order: centred, robot-left, robot-right.",
+  "captures": [
+    {
+      "position_label": "centred",
+      "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\93b7d9f7-151f-4891-8724-87e9a0d5ee7f\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+      "L": {
+        "n": 39,
+        "min": 250,
+        "max": 287,
+        "mean": 268.15,
+        "sd": 11.31
+      },
+      "R": {
+        "n": 39,
+        "min": 289,
+        "max": 323,
+        "mean": 304.36,
+        "sd": 11.29
+      },
+      "L_minus_R": {
+        "n": 39,
+        "min": -71,
+        "max": -4,
+        "mean": -36.21,
+        "sd": 16.87
+      },
+      "invalid_ir": 0,
+      "max_ir_age": 20,
+      "rgb_raw": {
+        "R": {
+          "n": 39,
+          "min": 200,
+          "max": 207,
+          "mean": 205.72,
+          "sd": 2.5
+        },
+        "G": {
+          "n": 39,
+          "min": 210,
+          "max": 216,
+          "mean": 214.77,
+          "sd": 2.45
+        },
+        "B": {
+          "n": 39,
+          "min": 194,
+          "max": 199,
+          "mean": 197.62,
+          "sd": 1.48
+        },
+        "C": {
+          "n": 39,
+          "min": 517,
+          "max": 536,
+          "mean": 532.03,
+          "sd": 6.92
+        }
+      },
+      "rgb_classes": {
+        "BLACK": 39
+      },
+      "model_ids": [
+        "BWY_20261117"
+      ],
+      "archive": "AAI05_Firmware\\testing\\calibration\\2026-11-17-black-line-centred-serial.txt",
+      "invalid_rgb": 0,
+      "motion_snapshot_unavailable_reports": 0,
+      "RGB_capture_n": 39
+    },
+    {
+      "position_label": "robot-left",
+      "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\a8eaba5c-1c51-42b9-913e-d0f1743ccd91\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+      "L": {
+        "n": 18,
+        "min": 213,
+        "max": 249,
+        "mean": 235.5,
+        "sd": 11.23
+      },
+      "R": {
+        "n": 18,
+        "min": 1428,
+        "max": 1456,
+        "mean": 1442.44,
+        "sd": 9.3
+      },
+      "L_minus_R": {
+        "n": 18,
+        "min": -1237,
+        "max": -1184,
+        "mean": -1206.94,
+        "sd": 15.46
+      },
+      "invalid_ir": 0,
+      "max_ir_age": 10,
+      "rgb_raw": {
+        "R": {
+          "n": 45,
+          "min": 206,
+          "max": 207,
+          "mean": 206.78,
+          "sd": 0.42
+        },
+        "G": {
+          "n": 45,
+          "min": 216,
+          "max": 216,
+          "mean": 216,
+          "sd": 0.0
+        },
+        "B": {
+          "n": 45,
+          "min": 199,
+          "max": 199,
+          "mean": 199,
+          "sd": 0.0
+        },
+        "C": {
+          "n": 45,
+          "min": 530,
+          "max": 531,
+          "mean": 530.84,
+          "sd": 0.37
+        }
+      },
+      "rgb_classes": {
+        "BLACK": 45
+      },
+      "model_ids": [
+        "BWY_20261117"
+      ],
+      "archive": "AAI05_Firmware\\testing\\calibration\\2026-11-17-black-line-robot-left-serial.txt",
+      "invalid_rgb": 0,
+      "motion_snapshot_unavailable_reports": 27,
+      "RGB_capture_n": 45
+    },
+    {
+      "position_label": "robot-right",
+      "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\a47a7fe9-4762-4531-ae5b-b4fb4ad9834a\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+      "L": {
+        "n": 40,
+        "min": 1341,
+        "max": 1425,
+        "mean": 1366.47,
+        "sd": 17.54
+      },
+      "R": {
+        "n": 40,
+        "min": 217,
+        "max": 334,
+        "mean": 239.47,
+        "sd": 19.6
+      },
+      "L_minus_R": {
+        "n": 40,
+        "min": 1075,
+        "max": 1167,
+        "mean": 1127,
+        "sd": 19.81
+      },
+      "invalid_ir": 0,
+      "max_ir_age": 20,
+      "rgb_raw": {
+        "R": {
+          "n": 40,
+          "min": 205,
+          "max": 208,
+          "mean": 207.65,
+          "sd": 0.89
+        },
+        "G": {
+          "n": 40,
+          "min": 214,
+          "max": 218,
+          "mean": 217.35,
+          "sd": 1.1
+        },
+        "B": {
+          "n": 40,
+          "min": 197,
+          "max": 200,
+          "mean": 199,
+          "sd": 0.64
+        },
+        "C": {
+          "n": 40,
+          "min": 530,
+          "max": 540,
+          "mean": 538.65,
+          "sd": 2.86
+        }
+      },
+      "rgb_classes": {
+        "BLACK": 40
+      },
+      "model_ids": [
+        "BWY_20261117"
+      ],
+      "archive": "AAI05_Firmware\\testing\\calibration\\2026-11-17-black-line-robot-right-serial.txt",
+      "invalid_rgb": 0,
+      "motion_snapshot_unavailable_reports": 0,
+      "RGB_capture_n": 40
+    }
+  ],
+  "prior_background_reference": {
+    "source": "AAI05_Firmware\\testing\\calibration\\2026-11-17-cardboard-repositioned-serial.txt",
+    "n": 22,
+    "L_range": [
+      186,
+      224
+    ],
+    "R_range": [
+      12,
+      235
+    ],
+    "L_mean": 202.73,
+    "R_mean": 199.95,
+    "note": "Prior capture, not a simultaneous fourth position in the new three-capture run."
+  }
+}

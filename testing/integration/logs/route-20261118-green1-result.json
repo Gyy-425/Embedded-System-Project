@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "hardware": "NOT RUN",
+  "results": [
+    {
+      "name": "host-compile",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-green1-host-compile.log"
+    },
+    {
+      "name": "behaviour",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-green1-behaviour.log"
+    },
+    {
+      "name": "demo",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-green1-demo.log"
+    },
+    {
+      "name": "arm-compile",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-green1-arm-compile.log"
+    },
+    {
+      "name": "arm-library",
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/route-20261118-green1-arm-library.log"
+    }
+  ],
+  "software_directory": "output/software/route-20261118-green1",
+  "old_uf2s": 141,
+  "old_uf2s_unchanged": true
+}

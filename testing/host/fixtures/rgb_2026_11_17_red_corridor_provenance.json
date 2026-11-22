@@ -1,0 +1,103 @@
+{
+  "fixture_sha256": "1dc4236653a2e529ac0d3713f1132b8639fac6523ed914035ce030ffd18c6eb9",
+  "sources": [
+    {
+      "archive": "testing/calibration/2026-11-17-red-corridor-original.txt",
+      "sha256": "572e35de94fc51e6c182dd99ef7b768bfc18eb2e69a09cc15310d5c465a9ec5a"
+    },
+    {
+      "position": "centre",
+      "archive": "testing/calibration/2026-11-17-red-corridor-centre-serial.txt",
+      "sha256": "81a0e4afe11d7eeda14592ecdab3efbddba040ccefe78638dd0071c0b9c13740"
+    },
+    {
+      "position": "robot-left",
+      "archive": "testing/calibration/2026-11-17-red-corridor-robot-left-serial.txt",
+      "sha256": "f5f2661777664e2f2599b8959b7665e0e5dbdf7f8b76f1c04da47ba6c97444a1"
+    },
+    {
+      "position": "robot-right",
+      "archive": "testing/calibration/2026-11-17-red-corridor-robot-right-serial.txt",
+      "sha256": "144819a55dec45febb1260d2f493b58bb544e3489e5a459b73c58f76864b4614"
+    }
+  ],
+  "counts": {
+    "red-centre": 39,
+    "red-robot-left": 53,
+    "red-robot-right": 50
+  },
+  "role": "Calibration/adaptation only; not held-out accuracy",
+  "fraction_min": [
+    1681,
+    1220,
+    1178
+  ],
+  "fraction_max": [
+    1696,
+    1227,
+    1188
+  ],
+  "margin": 32,
+  "lower": [
+    1649,
+    1188,
+    1146
+  ],
+  "upper": [
+    1728,
+    1259,
+    1220
+  ],
+  "clear_range": [
+    699,
+    710
+  ],
+  "clear_bounds": [
+    524,
+    888
+  ],
+  "summary": {
+    "centre": {
+      "rgb_count": 39,
+      "ir_count": 39,
+      "ir_range": {
+        "L": [
+          243,
+          283
+        ],
+        "R": [
+          229,
+          261
+        ]
+      }
+    },
+    "robot-left": {
+      "rgb_count": 53,
+      "ir_count": 53,
+      "ir_range": {
+        "L": [
+          510,
+          540
+        ],
+        "R": [
+          203,
+          240
+        ]
+      }
+    },
+    "robot-right": {
+      "rgb_count": 50,
+      "ir_count": 50,
+      "ir_range": {
+        "L": [
+          204,
+          244
+        ],
+        "R": [
+          494,
+          520
+        ]
+      }
+    }
+  }
+}

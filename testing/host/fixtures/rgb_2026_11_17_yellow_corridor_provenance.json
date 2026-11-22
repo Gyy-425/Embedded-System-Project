@@ -1,0 +1,109 @@
+{
+  "fixture_sha256": "018bae1904f26675a2e351e925050dd74939b1027b6ee9c2035f086d58c640ac",
+  "sources": [
+    {
+      "position": "centre",
+      "archive": "testing\\calibration\\2026-11-17-yellow-corridor-centre-serial.txt",
+      "sha256": "f903d834aa66758fcef6c15ce09ec570d0a89a0ba8edde4b54aba2289193bac6"
+    },
+    {
+      "position": "robot-left",
+      "archive": "testing\\calibration\\2026-11-17-yellow-corridor-robot-left-serial.txt",
+      "sha256": "69aed027bda4e1012cb683a2f42d43cb2920e1d01ebe082e8987751efbbc0e23"
+    },
+    {
+      "position": "robot-right",
+      "archive": "testing\\calibration\\2026-11-17-yellow-corridor-robot-right-serial.txt",
+      "sha256": "d940553c0e8db00a7251674b29a12311b464eb604b76a4709de554fcb61ad788"
+    }
+  ],
+  "counts": {
+    "yellow-centre": 30,
+    "yellow-robot-left": 40,
+    "yellow-robot-right": 39
+  },
+  "role": "Adaptation only; not held-out accuracy",
+  "yellow_adaptation_rows": 210,
+  "original_yellow_rows": 101,
+  "new_yellow_rows": 109,
+  "fraction_min": [
+    1552,
+    1425,
+    1075
+  ],
+  "fraction_max": [
+    1588,
+    1433,
+    1117
+  ],
+  "margin": 32,
+  "new_lower": [
+    1520,
+    1393,
+    1043
+  ],
+  "new_upper": [
+    1620,
+    1465,
+    1149
+  ],
+  "yellow_clear_unchanged": [
+    737,
+    1230
+  ],
+  "capture_summary": {
+    "centre": {
+      "rgb_count": 30,
+      "ir_count": 29,
+      "ir_ranges": [
+        [
+          240,
+          274
+        ],
+        [
+          224,
+          256
+        ]
+      ],
+      "old_results": {
+        "YELLOW/MATCH": 30
+      }
+    },
+    "robot-left": {
+      "rgb_count": 40,
+      "ir_count": 40,
+      "ir_ranges": [
+        [
+          470,
+          511
+        ],
+        [
+          209,
+          242
+        ]
+      ],
+      "old_results": {
+        "UNKNOWN/NO_MATCH": 11,
+        "YELLOW/MATCH": 29
+      }
+    },
+    "robot-right": {
+      "rgb_count": 39,
+      "ir_count": 39,
+      "ir_ranges": [
+        [
+          203,
+          238
+        ],
+        [
+          480,
+          511
+        ]
+      ],
+      "old_results": {
+        "YELLOW/MATCH": 21,
+        "UNKNOWN/NO_MATCH": 18
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "fixture_sha256": "55d3fd0eb22a5dde2c80fb08b89bf2cde290ddb629a1454a324e3b783b753e8d",
+  "sources": [
+    {
+      "split": "track-black-initial",
+      "source": "testing\\calibration\\2026-11-17-black-track-rgb-serial.txt",
+      "sha256": "6d8e3ad3bf82bc3846637b1395fdc719facaab06273f909e87a684b25e309474",
+      "records": 26,
+      "expected": 0
+    },
+    {
+      "split": "track-black-repositioned",
+      "source": "testing\\calibration\\2026-11-17-black-repositioned-serial.txt",
+      "sha256": "e75d1cc1f750e02eac0165447f5c26c8fdf455e0b1f84f4839ee974c61a7ce66",
+      "records": 25,
+      "expected": 0
+    },
+    {
+      "split": "track-cardboard",
+      "source": "testing\\calibration\\2026-11-17-cardboard-repositioned-serial.txt",
+      "sha256": "b3e57975f2a35b416deb63eaae7377d34344c836d79e0d5beca0002ed423e9ed",
+      "records": 22,
+      "expected": 3
+    }
+  ],
+  "base_profile_sha256": "e1cb0c12e5af69d0d915f52ae37b38d961d79825965e62358b06704f26dc0ba8",
+  "changes": {
+    "BLACK.red_lower": {
+      "old": 1367,
+      "new": 1352
+    },
+    "BACKGROUND.red_upper": {
+      "old": 1486,
+      "new": 1495
+    }
+  },
+  "policy": "8/4095 one-sided allowance beyond new observed red extrema; all other bounds unchanged. Engineering allowance, not statistical confidence.",
+  "evidence_role": "All73 rows inform profile adaptation; do not call them independent held-out accuracy."
+}

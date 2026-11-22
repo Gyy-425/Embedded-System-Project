@@ -42,6 +42,15 @@ void motor_pulse_read(motor_pulse_status_t *p_status);
 /* Motion-owner only. Signed electrical duty, zero=coast, lease1..100ms.
  * Same-duty updates renew the alarm without interrupting PWM. */
 int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms);
+/* Follower only: read initialized hardware time, then submit an absolute
+ * deadline at most100000us ahead. Checked inside the motor lock at actual
+ * start/renew time; expired deadlines coast/latch rather than start late. */
+uint32_t motor_drive_now_us(void);
+int32_t motor_drive_set_until(int8_t left_pct, int8_t right_pct,
+                               uint32_t deadline_us);
+/* Same deadline contract. Each signed unit is half a percentage point. */
+int32_t motor_drive_set_until_half_pct(int8_t left_half_pct, int8_t right_half_pct,
+                                       uint32_t deadline_us);
 /* Owner only, explicit rearm after a verified stop/coast; never starts output. */
 int32_t motor_drive_rearm(void);
 #endif

@@ -1,8 +1,13 @@
 #include "subsystem2.h"
 #include "motor_io.h"
+#if AAI05_FOLLOW_APP
+#include "black_follow_owner.h"
+#include "follow_snapshot.h"
+#else
 
 static ID snapshot_mutex;
 static motion_snapshot_t latest;
+#endif
 
 static ER configure_test_buttons(void)
 {
@@ -22,7 +27,9 @@ static void motion_task(INT start_code, void *extra)
 {
     motion_snapshot_t next = {0};
     encoder_capture_t capture = {.pio_block = UINT8_MAX};
-#if !AAI05_MOTION_APP
+#if AAI05_FOLLOW_APP
+    black_follow_owner_t follower;
+#elif !AAI05_MOTION_APP
     motor_test_t test;
 #endif
     motor_pulse_status_t motor;
@@ -34,7 +41,9 @@ static void motion_task(INT start_code, void *extra)
     next.capture_ready = (next.capture_error == E_OK);
     buttons_error = configure_test_buttons();
     motor_error = (ER)motor_pulse_init();
-#if !AAI05_MOTION_APP
+#if AAI05_FOLLOW_APP
+    black_follow_owner_init(&follower);
+#elif !AAI05_MOTION_APP
     motor_test_init(&test, app_now_ms());
 #endif
     for (;;) {
@@ -46,7 +55,7 @@ static void motion_task(INT start_code, void *extra)
         motor_pulse_read(&motor);
         uint32_t now = app_now_ms();
         UW buttons = in_w(GPIO_IN);
-#if AAI05_REMOTE_APP
+#if AAI05_REMOTE_APP || AAI05_FOLLOW_APP
         bool healthy = next.capture_ready && (next.capture_error == E_OK) && motor.ready &&
             ((motor.error == E_OK) || (motor.error == E_TMOUT)) &&
             (buttons_error == E_OK) && (motor_error == E_OK) &&
@@ -55,7 +64,10 @@ static void motion_task(INT start_code, void *extra)
         bool healthy = motor_test_inputs_ready(&capture, &motor,
                             next.capture_ready, buttons_error, motor_error);
 #endif
-#if AAI05_MOTION_APP
+#if AAI05_FOLLOW_APP
+        black_follow_owner_step(&follower, (uint32_t)buttons, healthy, &motor,
+                                  &next.follow, &next.motion);
+#elif AAI05_MOTION_APP
         motion_runtime_step(now, (uint32_t)buttons, healthy, motor.active,
                               &next.motion);
 #else
@@ -79,7 +91,7 @@ static void motion_task(INT start_code, void *extra)
         if (buttons_error < E_OK || motor_error < E_OK) {
             next.motor.error = buttons_error < E_OK ? buttons_error : motor_error;
         }
-#if !AAI05_MOTION_APP
+#if !AAI05_MOTION_APP && !AAI05_FOLLOW_APP
         next.motor_phase = test.phase;
         next.motor_step = test.step;
         next.motor_stop_reason = test.stop_reason;
@@ -98,10 +110,15 @@ static void motion_task(INT start_code, void *extra)
         next.pio_block = capture.pio_block;
         next.sampled_ms = now;
         ++next.sequence;
+#if AAI05_FOLLOW_APP
+        next.sampled_ms = app_now_ms();
+        follow_snapshot_publish(&next);
+#else
         if (tk_loc_mtx(snapshot_mutex, TMO_FEVR) == E_OK) {
             latest = next;
             (void)tk_unl_mtx(snapshot_mutex);
         }
+#endif
         /* Snapshot publication; acquisition runs in GPIO IRQ or PIO hardware. */
         (void)tk_dly_tsk(10);
     }
@@ -109,7 +126,9 @@ static void motion_task(INT start_code, void *extra)
 
 EXPORT ER subsystem2_init(void)
 {
+#if !AAI05_FOLLOW_APP
     T_CMTX attributes = {0};
+#endif
     drv_motor_coast_init();
     ER timer_error = (ER)motor_timebase_init();
     if (timer_error < E_OK) {
@@ -119,9 +138,13 @@ EXPORT ER subsystem2_init(void)
     if (runtime_error < E_OK) {
         return runtime_error;
     }
+#if AAI05_FOLLOW_APP
+    return (ER)follow_snapshot_init();
+#else
     attributes.mtxatr = TA_INHERIT;
     snapshot_mutex = tk_cre_mtx(&attributes);
     return (snapshot_mutex < E_OK) ? snapshot_mutex : E_OK;
+#endif
 }
 
 EXPORT ER subsystem2_start(void)
@@ -132,6 +155,9 @@ EXPORT ER subsystem2_start(void)
 
 EXPORT ER subsystem2_get_snapshot(motion_snapshot_t *snapshot)
 {
+#if AAI05_FOLLOW_APP
+    return (ER)follow_snapshot_read(snapshot);
+#else
     ER error;
     if (snapshot == NULL) {
         return E_PAR;
@@ -142,4 +168,5 @@ EXPORT ER subsystem2_get_snapshot(motion_snapshot_t *snapshot)
         (void)tk_unl_mtx(snapshot_mutex);
     }
     return error;
+#endif
 }

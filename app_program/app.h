@@ -19,6 +19,29 @@
 #ifndef AAI05_REMOTE_APP
 #define AAI05_REMOTE_APP 0
 #endif
+#ifndef AAI05_RGB_DIAG
+#define AAI05_RGB_DIAG 0
+#endif
+#ifndef AAI05_FOLLOW_APP
+#define AAI05_FOLLOW_APP 0
+#endif
+#if AAI05_FOLLOW_APP
+#include "../config/follow_config.h"
+#endif
+#define AAI05_RGB_ACTIVE (AAI05_RGB_DIAG || AAI05_FOLLOW_APP)
+#include "subsystem2/black_follow.h"
+#if AAI05_RGB_ACTIVE && (CNF_TIMER_PERIOD != 10)
+#error RGB diagnostic delay margins require the reviewed 10ms kernel tick
+#endif
+#if AAI05_RGB_DIAG && (!MOTOR_TEST_PROBE || AAI05_MOTION_APP || \
+    AAI05_REMOTE_APP || AAI05_COMMS_APP || AAI05_FOLLOW_APP || TM_NET_LWIP || TM_MQTT)
+#error RGB diagnostic requires no-drive and no network application
+#endif
+#if AAI05_FOLLOW_APP && (AAI05_RGB_DIAG || AAI05_MOTION_APP || \
+    AAI05_REMOTE_APP || AAI05_COMMS_APP || TM_NET_LWIP || TM_MQTT || \
+    !TK_SUPPORT_SMP || !AAI05_ENCODER_PIO)
+#error FOLLOW requires isolated local SMP/PIO profile
+#endif
 
 #if AAI05_MOTION_APP && (MOTOR_TEST_PROBE || AAI05_COMMS_APP)
 #error Local Motion profile requires motor output and no network application
@@ -37,6 +60,7 @@
 #define TASK_STACK_SIZE 2048
 #define APP_PRI_MOTION  12
 #define APP_PRI_IR      14
+#define APP_PRI_RGB     15
 #define APP_PRI_REPORT  16
 #define APP_IR_LEFT_PIN 26U
 #define APP_IR_RIGHT_PIN 27U
@@ -74,6 +98,9 @@ typedef struct {
     uint8_t motor_step;
     uint8_t motor_stop_reason;
     motion_status_t motion;
+#if AAI05_FOLLOW_APP
+    black_follow_status_t follow;
+#endif
 } motion_snapshot_t;
 
 IMPORT ID app_start_task(FP entry, PRI priority, UW processor, const char *name);

@@ -1,0 +1,98 @@
+{
+  "source": "C:\\Users\\Guo YouYan\\.codex\\attachments\\239dc466-c798-4a46-9a2f-e14bf061983e\\\u5df2\u7c98\u8d34\u7684\u6587\u672c.txt",
+  "sha256": "6d8e3ad3bf82bc3846637b1395fdc719facaab06273f909e87a684b25e309474",
+  "RGB": {
+    "R": {
+      "n": 26,
+      "min": 202,
+      "max": 202,
+      "mean": 202
+    },
+    "G": {
+      "n": 26,
+      "min": 211,
+      "max": 211,
+      "mean": 211
+    },
+    "B": {
+      "n": 26,
+      "min": 193,
+      "max": 193,
+      "mean": 193
+    },
+    "C": {
+      "n": 26,
+      "min": 528,
+      "max": 529,
+      "mean": 528.1154
+    },
+    "age": {
+      "n": 26,
+      "min": 20,
+      "max": 100,
+      "mean": 60
+    }
+  },
+  "fractions_4095": {
+    "R": {
+      "n": 26,
+      "min": 1365,
+      "max": 1365,
+      "mean": 1365
+    },
+    "G": {
+      "n": 26,
+      "min": 1426,
+      "max": 1426,
+      "mean": 1426
+    },
+    "B": {
+      "n": 26,
+      "min": 1304,
+      "max": 1304,
+      "mean": 1304
+    }
+  },
+  "black_bounds": {
+    "lower": [
+      1367,
+      1377,
+      1255
+    ],
+    "upper": [
+      1431,
+      1441,
+      1319
+    ],
+    "clear": [
+      495,
+      828
+    ]
+  },
+  "rejection_reasons": {
+    "['red_fraction']": 26
+  },
+  "bad_rgb": 0,
+  "classification_counts": {
+    "UNKNOWN": 26
+  },
+  "exposure": [
+    [
+      "4x",
+      "50400"
+    ]
+  ],
+  "IR_L": {
+    "n": 26,
+    "min": 227,
+    "max": 265,
+    "mean": 253.2308
+  },
+  "IR_R": {
+    "n": 26,
+    "min": 1635,
+    "max": 1676,
+    "mean": 1654.6154
+  },
+  "interpretation": "Known-black user label; optical centring/setup changes pending user confirmation. No firmware/model changes."
+}

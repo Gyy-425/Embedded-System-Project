@@ -1,0 +1,2355 @@
+{
+  "status": "PASS",
+  "hardware_tests": "NOT RUN",
+  "results": [
+    {
+      "name": "assembler",
+      "command": [
+        "/usr/bin/python3",
+        "tools/assemble_encoder_pio.py",
+        "--sdk",
+        "/mnt/c/Users/Guo YouYan/.pico-sdk/sdk/2.3.0",
+        "--check"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-assembler.log"
+    },
+    {
+      "name": "pio-count-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_pio_count.c",
+        "app_program/subsystem2/encoder_pio_count.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-count"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-count-compile.log"
+    },
+    {
+      "name": "pio-count-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-count"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-count-0.log"
+    },
+    {
+      "name": "pio-io-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_ENCODER_PIO=1",
+        "-Itesting/host/pio_fixture",
+        "testing/host/test_encoder_pio_io.c",
+        "app_program/subsystem2/encoder_pio_io_rp2040.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-io"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-io-compile.log"
+    },
+    {
+      "name": "pio-io-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-io",
+        "success"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-io-0.log"
+    },
+    {
+      "name": "pio-io-1",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-io",
+        "busy"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-io-1.log"
+    },
+    {
+      "name": "pio-io-2",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-io",
+        "programbusy"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-io-2.log"
+    },
+    {
+      "name": "pio-io-3",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-io",
+        "unclaimedactive"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-io-3.log"
+    },
+    {
+      "name": "pio-io-4",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-io",
+        "initfail"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-io-4.log"
+    },
+    {
+      "name": "pio-io-5",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-io",
+        "disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-io-5.log"
+    },
+    {
+      "name": "pio-io-6",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-io",
+        "frozen"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-io-6.log"
+    },
+    {
+      "name": "pio-adapter-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_ENCODER_PIO=1",
+        "testing/host/test_encoder_capture_pio.c",
+        "app_program/subsystem2/encoder_pio_count.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-adapter"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-adapter-compile.log"
+    },
+    {
+      "name": "pio-adapter-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-adapter",
+        "success"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-adapter-0.log"
+    },
+    {
+      "name": "pio-adapter-1",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-adapter",
+        "startfail"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-adapter-1.log"
+    },
+    {
+      "name": "pio-adapter-2",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/pio-adapter",
+        "half"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-pio-adapter-2.log"
+    },
+    {
+      "name": "gpio-deferred-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_gpio_deferred.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/gpio-deferred"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-gpio-deferred-compile.log"
+    },
+    {
+      "name": "gpio-deferred-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/gpio-deferred"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-gpio-deferred-0.log"
+    },
+    {
+      "name": "encoder-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/encoder"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-encoder-compile.log"
+    },
+    {
+      "name": "encoder-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/encoder"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-encoder-0.log"
+    },
+    {
+      "name": "gpio-capture-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_capture.c",
+        "app_program/subsystem2/encoder_capture.c",
+        "app_program/subsystem2/encoder_logic.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/gpio-capture"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-gpio-capture-compile.log"
+    },
+    {
+      "name": "gpio-capture-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/gpio-capture"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-gpio-capture-0.log"
+    },
+    {
+      "name": "gpio-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_encoder_startup.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/gpio-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-gpio-startup-compile.log"
+    },
+    {
+      "name": "gpio-startup-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/gpio-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-gpio-startup-0.log"
+    },
+    {
+      "name": "registers-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_rp2040_registers.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/registers"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-registers-compile.log"
+    },
+    {
+      "name": "registers-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/registers"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-registers-0.log"
+    },
+    {
+      "name": "motor-startup-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_startup.c",
+        "app_program/subsystem2/drv_motor.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/motor-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motor-startup-compile.log"
+    },
+    {
+      "name": "motor-startup-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/motor-startup"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motor-startup-0.log"
+    },
+    {
+      "name": "motor-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_control.c",
+        "app_program/subsystem2/motor_test.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/motor-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motor-control-compile.log"
+    },
+    {
+      "name": "motor-control-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/motor-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motor-control-0.log"
+    },
+    {
+      "name": "motor-pulse-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/motor-pulse"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motor-pulse-compile.log"
+    },
+    {
+      "name": "motor-pulse-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/motor-pulse"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motor-pulse-0.log"
+    },
+    {
+      "name": "motor-probe-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DMOTOR_TEST_PROBE=1",
+        "testing/host/test_motor_pulse.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/motor-probe"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motor-probe-compile.log"
+    },
+    {
+      "name": "motor-probe-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/motor-probe"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motor-probe-0.log"
+    },
+    {
+      "name": "motion-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_control.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/motion"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motion-compile.log"
+    },
+    {
+      "name": "motion-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/motion"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motion-0.log"
+    },
+    {
+      "name": "chassis-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_chassis.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/chassis"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-chassis-compile.log"
+    },
+    {
+      "name": "chassis-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/chassis",
+        "--vectors"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-chassis-0.log"
+    },
+    {
+      "name": "chassis-disabled-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_motion_chassis_disabled.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/chassis-disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-chassis-disabled-compile.log"
+    },
+    {
+      "name": "chassis-disabled-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/chassis-disabled"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-chassis-disabled-0.log"
+    },
+    {
+      "name": "motion-runtime0-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-pthread",
+        "-Iinclude",
+        "-DAAI05_REMOTE_APP=0",
+        "testing/host/test_motion_runtime.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/motion-runtime0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motion-runtime0-compile.log"
+    },
+    {
+      "name": "motion-runtime0-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/motion-runtime0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motion-runtime0-0.log"
+    },
+    {
+      "name": "motion-runtime1-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-pthread",
+        "-Iinclude",
+        "-DAAI05_REMOTE_APP=1",
+        "testing/host/test_motion_runtime.c",
+        "app_program/subsystem2/motion_control.c",
+        "app_program/subsystem2/motion_chassis.c",
+        "app_program/subsystem2/motion_button.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/motion-runtime1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motion-runtime1-compile.log"
+    },
+    {
+      "name": "motion-runtime1-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/motion-runtime1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-motion-runtime1-0.log"
+    },
+    {
+      "name": "drive-capture-fault-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "-Ilib/libwifi/sysdepend/pico_rp2040",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "testing/host/test_drive_capture_fault.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/drive-capture-fault"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-drive-capture-fault-compile.log"
+    },
+    {
+      "name": "drive-capture-fault-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/drive-capture-fault"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-drive-capture-fault-0.log"
+    },
+    {
+      "name": "drive-protocol-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_drive_protocol.c",
+        "app_program/subsystem3/drive_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/drive-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-drive-protocol-compile.log"
+    },
+    {
+      "name": "drive-protocol-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/drive-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-drive-protocol-0.log"
+    },
+    {
+      "name": "drive-control-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_drive_control.c",
+        "app_program/subsystem3/drive_control.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/drive-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-drive-control-compile.log"
+    },
+    {
+      "name": "drive-control-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/drive-control"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-drive-control-0.log"
+    },
+    {
+      "name": "drive-service-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "testing/host/test_drive_service.c",
+        "app_program/subsystem3/mqtt_drive_app.c",
+        "app_program/subsystem3/drive_control.c",
+        "app_program/subsystem3/drive_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/drive-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-drive-service-compile.log"
+    },
+    {
+      "name": "drive-service-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/drive-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-drive-service-0.log"
+    },
+    {
+      "name": "comm-protocol-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_comm_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/comm-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-comm-protocol-compile.log"
+    },
+    {
+      "name": "comm-protocol-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/comm-protocol"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-comm-protocol-0.log"
+    },
+    {
+      "name": "colour-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_classifier.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/colour"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-colour-compile.log"
+    },
+    {
+      "name": "colour-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/colour"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-colour-0.log"
+    },
+    {
+      "name": "colour-runtime-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_runtime.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "app_program/subsystem1/colour_runtime.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/colour-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-colour-runtime-compile.log"
+    },
+    {
+      "name": "colour-runtime-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/colour-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-colour-runtime-0.log"
+    },
+    {
+      "name": "ir-runtime-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_ir_runtime.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "app_program/subsystem1/colour_runtime.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/ir-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-ir-runtime-compile.log"
+    },
+    {
+      "name": "ir-runtime-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/ir-runtime"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-ir-runtime-0.log"
+    },
+    {
+      "name": "colour-wire-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_protocol.c",
+        "app_program/subsystem3/colour_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/colour-wire"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-colour-wire-compile.log"
+    },
+    {
+      "name": "colour-wire-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/colour-wire"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-colour-wire-0.log"
+    },
+    {
+      "name": "colour-service-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-Wstrict-prototypes",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "testing/host/test_colour_service.c",
+        "app_program/subsystem3/colour_service.c",
+        "app_program/subsystem3/colour_protocol.c",
+        "app_program/subsystem3/comm_protocol.c",
+        "app_program/subsystem1/colour_classifier.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/colour-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-colour-service-compile.log"
+    },
+    {
+      "name": "colour-service-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/colour-service"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-colour-service-0.log"
+    },
+    {
+      "name": "mqtt-ingress0-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=0",
+        "-DAAI05_COMMS_APP=1",
+        "-Itesting/host/mqtt_fixture",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "-I/tmp/aai05-sdk-3eb0f28287/lib/lwip/src/include",
+        "testing/host/test_mqtt_ingress.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/mqtt-ingress0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-mqtt-ingress0-compile.log"
+    },
+    {
+      "name": "mqtt-ingress0-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/mqtt-ingress0"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-mqtt-ingress0-0.log"
+    },
+    {
+      "name": "mqtt-ingress1-compile",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=undefined,address",
+        "-fno-sanitize-recover=all",
+        "-Iapp_program/subsystem2",
+        "-Iapp_program/subsystem3",
+        "-Iapp_program/subsystem1",
+        "-Itesting/host",
+        "-DAAI05_REMOTE_APP=1",
+        "-DAAI05_COMMS_APP=0",
+        "-Itesting/host/mqtt_fixture",
+        "-Ilib/liblwip/sysdepend/pico_rp2040",
+        "-I/tmp/aai05-sdk-3eb0f28287/lib/lwip/src/include",
+        "testing/host/test_mqtt_ingress.c",
+        "-o",
+        "/tmp/aai05-pio-check-kjqpzjhs/mqtt-ingress1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-mqtt-ingress1-compile.log"
+    },
+    {
+      "name": "mqtt-ingress1-0",
+      "command": [
+        "/tmp/aai05-pio-check-kjqpzjhs/mqtt-ingress1"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-mqtt-ingress1-0.log"
+    },
+    {
+      "name": "all-python-except-tcl",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "testing.host.test_calibrate_distance",
+        "testing.host.test_chassis_cli",
+        "testing.host.test_colour_codec",
+        "testing.host.test_colour_sanitizer_gate",
+        "testing.host.test_comm_cli",
+        "testing.host.test_drive_cli",
+        "testing.host.test_drive_codec",
+        "testing.host.test_encoder_pio_program",
+        "testing.host.test_follow_cli",
+        "testing.host.test_network_config",
+        "testing.host.test_tape_calibration"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-all-python-except-tcl.log"
+    },
+    {
+      "name": "windows-tcl-debug",
+      "command": [
+        "/mnt/c/Users/Guo YouYan/AppData/Local/Programs/Python/Python312/python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "testing/host",
+        "-p",
+        "test_debug_capture.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "warnings": [],
+      "log": "testing/integration/logs/mqttfollow-20261122-suite2-windows-tcl-debug.log"
+    }
+  ],
+  "source_commit": "d05af2b0db9cdbc33e9602d60482f5ff9ac34662",
+  "old_artifacts": [
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "f304fb6e3e403ba920f613e9f57d2ffe55cc905d2263cf1cbb33d1154b9e8ba7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_1_D40.uf2",
+      "sha256": "5f05d9a399a957b654b6d7821239d5ace4bbd604c6c2ed424b4e9ff101296a67",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_1_D40_NO_DRIVE.uf2",
+      "sha256": "a4de67c8e78579584d24f8f710c44d3bd8a2cba5e95d095109f8f4ed14a38def",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_2_D40_T8.uf2",
+      "sha256": "ac99f27ef5027174051d825f4c28e48ae5b2098b75d1b293002c41c684ffc8fb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_2_D40_T8_NO_DRIVE.uf2",
+      "sha256": "7eaebb9d12bcfe29e65ac0d5ad1e2868165fd87ae67a6077345a80eec9b6bd20",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_3_D40_T8.uf2",
+      "sha256": "a4a1103f6edaeea3f8a476d985d58aaeb5f7ab17c2ef0638b0e2b2f832182bf0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_3_D40_T8_NO_DRIVE.uf2",
+      "sha256": "2d4e43b6bc16a0f1f6c99c50efee7f1f075e44b06d99a0c430fb43d08c245fe6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "68396e8920140f4f685b73a506e3e5d80bd292e6264e03b1b89798e2c24e2990",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Colour_Runtime_v0_10_BROKER210.uf2",
+      "sha256": "197c62cd63949268ad926984ea493c4641d6a30d381be5d90c152177874847f3",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Colour_Runtime_v0_10_HOTSPOT_campus-20261110-141643.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "c9d6e1c45331a83d9c928f436f6cbf8c37c6bbf5539fe9ca898d0f10788d8189",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "61cd30108754d4f87be228328178c55f56cfdb8d7ddeab7bcd097955f2aef79c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_1.uf2",
+      "sha256": "167bae49cdd11484e3123128089df513605df3cc3de18f3437586896a4e1a1ce",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_1_TEST.uf2",
+      "sha256": "3213a6f2798faf706bb943215faaff39e3feeb8382d762577d70b260d28ece1a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_2.uf2",
+      "sha256": "c662dc2f4159267287bba2170baf5244ff7241fb743a3fa59ab1824c25d81c51",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Diagnostics_v0_2_TEST.uf2",
+      "sha256": "b332da2a6a76c683dc59268c8bb09a7e54cea1ccceadfc53012d5378459e1c35",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "0a5e865299d594d4f4a338d387df4c5754e7047d52a9c7191b26acb8eb17b6eb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "e7ba61620019d0eb51f9f5135cf896c9fedfa56465fb840d6ff06c83490fb5b2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motion_v0_7_LOCAL.uf2",
+      "sha256": "24cdbbbbdaaa4c167262be38d422b7b2034806d47b180bf1d61cf052eba0b347",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motion_v0_7_LOCAL_TEST.uf2",
+      "sha256": "cce14a9ea09c1ba823af7181a0ddf3df267162b34d7061001a1d964d14ed3f5a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE.uf2",
+      "sha256": "ddaca6a73eac1ced8e80ba64c2808c55a3d84b84d9e39b06e370c2cbb4f1d805",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Probe_v0_3p_NO_DRIVE_TEST.uf2",
+      "sha256": "906fdb154eebe99c82ba3c95ad0e7ea9808f7b8f92ccc5639eb60e36491f2fac",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6.uf2",
+      "sha256": "e1062112cfc0860a67b2f062ae56948be7f47fd8f5c29180d93b5e1e3cfb3a9f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_1.uf2",
+      "sha256": "018a41bc4f56955218c0d227ac367771cee20a38790792316b13244c2da71b09",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_1_TEST.uf2",
+      "sha256": "5b33b5fdfc9b363a070644329efd34787367ab6776f21d40bdf6a6e5b8d8943b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_PWM_v0_6_TEST.uf2",
+      "sha256": "cc4bddf1472e134e36ffa3beb965488a805fe8de67bed4373907b38305caf48e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206.uf2",
+      "sha256": "d34dd070d9ed2723eacefb24f45b4039f6363130b6a093e04c5971b5b3208a29",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Qualification_v0_8_BROKER206_TEST.uf2",
+      "sha256": "cf84fce3e261bd612e157216a83e76660819d422e63a0f8de68d30cbf0e5241b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3.uf2",
+      "sha256": "4a1af5d9b09026536aa1239bfb2ce1b7c5d3a6897837919c0c09a48aef4002e0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_1.uf2",
+      "sha256": "30abbae451e37d54b6734c802a2ada3c38902ec979d5d3816ab15b01f288c9a1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_1_TEST.uf2",
+      "sha256": "1c1e4d1318d990ef8a06ee67c27ecca6bfb7c5df98eb5b6889c02412da33f76d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_2.uf2",
+      "sha256": "72c224beb09b5f388e99c64e6e5c8e8cc3dceb27b2eac23187267beda3d0caef",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_2_TEST.uf2",
+      "sha256": "6fa36cc2d339193fb09bde2919009b3bbe00bfaa24350055965ce6ddc079139f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Motor_Test_v0_3_TEST.uf2",
+      "sha256": "16fc127da7f60f1fd6a11beb0064405f34c573b2fd505770ff39010052bc4a79",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE.uf2",
+      "sha256": "d80d95ad4b7c364198e293942cef1bb8a46bf8202fb138b580460092dae5ba0a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_MQTT_Motion_v0_8_REMOTE_TEST.uf2",
+      "sha256": "0b002d4b11266aedf3ec4a1fd947e63e20ec38cd465e409b3c9d0999ca0b7728",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE.uf2",
+      "sha256": "e9427de33eb385c6b9d49a86647022126bd9be49bfdf30ee507737ee735abe99",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Network_Probe_v0_4_NO_DRIVE_TEST.uf2",
+      "sha256": "bde20006b0da9ac28d54380debdec1beb7fce91965c0df255c638b030f63c49d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Red_Follow_v0_15_D35_T8.uf2",
+      "sha256": "3a1e82dedd9c4d386de7b759107a5c2b3b7872d596d84984a61fffd011667564",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Red_Follow_v0_15_D35_T8_NO_DRIVE.uf2",
+      "sha256": "b0cee807411b5be9f66a0a118db5f5c3f17b6dec80b91084db175a765ed6ea89",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_RGB_Classifier_v0_12.uf2",
+      "sha256": "dc0b5c64940cc8c566f05d0e6d6000f5df920e3ab930cf36cf9ea1e9b873c62d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_RGB_Classifier_v0_12_1.uf2",
+      "sha256": "f7d1b722129488427fa85028d619a028eebeffcdb1c7953f83ea712cc34eb59b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "6bf00159a89b6463e98e11deb1c0b6aa4f884f26cfe374a19db7ca6a822bb227",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Yellow_Follow_v0_14_D35_T8.uf2",
+      "sha256": "d7cfe712fb7dbc602fa46316d4709b6c4b77ffe748122fdf21c04070eb96f126",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Yellow_Follow_v0_14_D40_T8.uf2",
+      "sha256": "1b9fe3b171086e8eeb45b788779f0dfd0a1a0091e5e4e36c4574266a747b2e71",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.uf2",
+      "sha256": "b66d8257768721650f855dc237d86f6cdbe802a15b6c02a775e24c66a6f33305",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8.uf2",
+      "sha256": "a4a1103f6edaeea3f8a476d985d58aaeb5f7ab17c2ef0638b0e2b2f832182bf0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_NO_DRIVE.uf2",
+      "sha256": "2d4e43b6bc16a0f1f6c99c50efee7f1f075e44b06d99a0c430fb43d08c245fe6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Black_Follow_v0_13_3_D40_T8_TEST.uf2",
+      "sha256": "1d801a2659e6ff86e3797b3732185920b38e5aa5ae6a2390ce69be3e2c4c2a3a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_blackcov-20261117-release/AAI05_RGB_Compatibility.uf2",
+      "sha256": "9017481c40a483482ac96441f6730f9012f8b83bfacde7050fd9fbe6b3c7faa3",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40.uf2",
+      "sha256": "5f05d9a399a957b654b6d7821239d5ace4bbd604c6c2ed424b4e9ff101296a67",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_NO_DRIVE.uf2",
+      "sha256": "a4de67c8e78579584d24f8f710c44d3bd8a2cba5e95d095109f8f4ed14a38def",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Black_Follow_v0_13_1_D40_TEST.uf2",
+      "sha256": "6e044f6d6adb02b0cfa8fbfaae8e14206078967aaf93868aa2e9d396a6819b9a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_duty-20261117-green/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-build2/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "e44e1355d9b156bf6198d8650daebcfbb6daed19f793275784dcb2e1ea324c3f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-build2/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "f676f10c9e97a614830a3cd99d83b77dc633034c96b5f48b6c6125a56ef5156d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-build2/AAI05_Black_Follow_v0_13_TEST.uf2",
+      "sha256": "aef095ccb002e494bfe91f673febaf6cb69ff069ca4b9322a72ed4bde1fc54bc",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "1841c92679d0175b89b890d198f07babf234435cdc57df904788adcfd279f252",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "e317434893e40dab855cb6981abbd743f23bb0308ab2ca2c08f318b3d5afdbc2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_Black_Follow_v0_13_TEST.uf2",
+      "sha256": "e23fb4eabf4629548d67647ac494a508a49dc3a6f28c860d48b0f53d0aba699d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-final/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13.uf2",
+      "sha256": "f304fb6e3e403ba920f613e9f57d2ffe55cc905d2263cf1cbb33d1154b9e8ba7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_NO_DRIVE.uf2",
+      "sha256": "68396e8920140f4f685b73a506e3e5d80bd292e6264e03b1b89798e2c24e2990",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Black_Follow_v0_13_TEST.uf2",
+      "sha256": "17a6d3b2e2d9c331f0f3bc8363add779f1e77fa9c78bae40b004ef83f83835e1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_follow-20261117-release/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8.uf2",
+      "sha256": "ac99f27ef5027174051d825f4c28e48ae5b2098b75d1b293002c41c684ffc8fb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_NO_DRIVE.uf2",
+      "sha256": "7eaebb9d12bcfe29e65ac0d5ad1e2868165fd87ae67a6077345a80eec9b6bd20",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Black_Follow_v0_13_2_D40_T8_TEST.uf2",
+      "sha256": "0c81a37d407e247c11d414a4ba30e1fbea75745f20b2139618fdf4d66f6f5052",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/black_follow_gentle-20261117-green/AAI05_RGB_Compatibility.uf2",
+      "sha256": "6c5d6b0425aa93525fcf17f9d6beb5ccc5dee37267247f4ef67f9249ff0efe18",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/blue_follow_bluefollow-20261119/AAI05_Blue_Follow_v0_16_D35_T8.uf2",
+      "sha256": "d51bb9f9a56c52db015a7ce18e1ffe0141eba413eb73a6cb744c37dad10a5b50",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/blue_follow_bluefollow-20261119/AAI05_Blue_Follow_v0_16_D35_T8_NO_DRIVE.uf2",
+      "sha256": "cc270b07b01324514ad0d2655cd1d48af47ee4f5235383906cab07fa74a17a19",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check.uf2",
+      "sha256": "d80d95ad4b7c364198e293942cef1bb8a46bf8202fb138b580460092dae5ba0a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-07-colour-core-verify/AAI05_Colour_Core_Compile_Check_TEST.uf2",
+      "sha256": "0b002d4b11266aedf3ec4a1fd947e63e20ec38cd465e409b3c9d0999ca0b7728",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-08-motor-qual-broker206/AAI05_Colour_Core_Compile_Check.uf2",
+      "sha256": "d34dd070d9ed2723eacefb24f45b4039f6363130b6a093e04c5971b5b3208a29",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/colour_core_2026-11-08-motor-qual-broker206/AAI05_Colour_Core_Compile_Check_TEST.uf2",
+      "sha256": "cf84fce3e261bd612e157216a83e76660819d422e63a0f8de68d30cbf0e5241b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/distance_straight_20261122/AAI05_Distance_Straight_2s_D25.uf2",
+      "sha256": "1c76ee2913c6c976b8327dd09719aa27fa3a8c49d500ef0a8788151dad206a5d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/distance_straight_20261122/AAI05_Distance_Straight_2s_D25_R2.uf2",
+      "sha256": "88041217c4dee1338a859892b42b80607c416542049c1188313fc3cc187a41a6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "755d08a2246ac1e23fe1e21e782a64ae1b33aebbc051c0d0cb39f455511dd158",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "ed1f42ab340c1483cc14b70ea1998911b5f7c2d549d879b75d9b32616efdaca5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "0de06426e29c5b4ef3a8d5608cf467b380a7c2d2c8c0a97ba751c7a6d5db0b59",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-ready/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "f98e6cfcacb2421d34931faa3cec4b6901b9be7526d0ba47a67fb44f6460946c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "755d08a2246ac1e23fe1e21e782a64ae1b33aebbc051c0d0cb39f455511dd158",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "ed1f42ab340c1483cc14b70ea1998911b5f7c2d549d879b75d9b32616efdaca5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "0de06426e29c5b4ef3a8d5608cf467b380a7c2d2c8c0a97ba751c7a6d5db0b59",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-chassis-reviewed/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "f98e6cfcacb2421d34931faa3cec4b6901b9be7526d0ba47a67fb44f6460946c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "f2a06b48976a7b35ce630f3975f73c2d59e7d5e466b124729ee677ec5d90ceaa",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "7a53caabe80d6173ce974c1448dc0ecf9fa4f3d16e4fb23b1b93cc212413dfb1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "d333263c3e1e6ab56bb0744e97e630ec521fb6467e524f75626f9eab6a7d7291",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-colour-runtime/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "abcd06caba0653917d837f2247342d0adada062434779489aabddadefdc5b0a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_Encoder_PIO_v0_9_REMOTE.uf2",
+      "sha256": "0a5e865299d594d4f4a338d387df4c5754e7047d52a9c7191b26acb8eb17b6eb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_Encoder_PIO_v0_9_REMOTE_TEST.uf2",
+      "sha256": "e7ba61620019d0eb51f9f5135cf896c9fedfa56465fb840d6ff06c83490fb5b2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_GPIO_Compatibility.uf2",
+      "sha256": "74d69eb6994262dcd6dbe12d187657c252511124daf43a1e27186fef6ab364a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_2026-11-08-pio-ready/AAI05_GPIO_Compatibility_TEST.uf2",
+      "sha256": "d73d5a4189957aa1856eef2aee7645763325469b559e8c81e0d668725122d8b0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "e403aae3ce735508127641323c8c1d2a8d198a6bb825d7a084a9a4de7ede2f9d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "ed7416ea00ca36a15f5e7dfa19ad60895be80abf50d04eb98234fd645ea0ba01",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "65fc992409340d5d4f642f7112102013dfd77da1047f6269e4cd07a0dc0d88d4",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_home-demo-20261110-120251/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "9f2908d4c55254ba341eb08b2f94d21e224fe98e840bff7a86f70334e9fe95de",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE.uf2",
+      "sha256": "8c16e60e021106e5c5d90e93bfe8dc84026abfae536433b3a700a42e76451d0c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_GPIO_REMOTE_TEST.uf2",
+      "sha256": "037915e6c2d91a2c10e4b2b3ec7ff0f961bd682252bbdad116ab7e5b641cc21c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_PIO_REMOTE.uf2",
+      "sha256": "41b2d7e5f27920380364b6d17f592433a20d4baf7fd4add22065673048cadcd5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/encoder_pio_school-demo-20261110-110640/AAI05_Colour_Runtime_v0_10_PIO_REMOTE_TEST.uf2",
+      "sha256": "edb2eaf64055714c10e527e63c246bdaf42df510780f6cec38735c3ea767dada",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/follow_mqtt_v1_20261122/AAI05_MQTT_Follow_Distance_v1.uf2",
+      "sha256": "e0be41540c4b65da7165b98479941f2c639d9472cb3059092ffffca6b51a42ec",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/follow_mqtt_v1_wifi_20261122/AAI05_MQTT_Follow_Distance_v1.uf2",
+      "sha256": "cda47ba9bae6d2465c148ac36f034c9042e0ecd2d2a55b25b97600cf7555e5c9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/follow_mqtt_v1_wifi_straight_20261122/AAI05_MQTT_Follow_Distance_v1_WPA3_Straight.uf2",
+      "sha256": "733c3781ea5e310d282748cc0314723e7fa742801cdcc323c6964679b9c99999",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/follow_mqtt_v1_wifi_wpa3_20261122/AAI05_MQTT_Follow_Distance_v1_WPA3.uf2",
+      "sha256": "bf14bda08c5745529c6e2887945ab3a658f420abe6d50763a2ec40b11ebe8ae1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/follow_mqtt_v1_wifi_wpa3_r2_20261122/AAI05_MQTT_Follow_Distance_v1_WPA3_R2.uf2",
+      "sha256": "19bfbaccaaab91ca17d2e0ed5ab786354bad03a4d100ed008ece70e0022638a1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bendcuerefine56-20261121/AAI05_Home_Track_Bend_Cue_Refinement_v0_56_D25.uf2",
+      "sha256": "1b38e73455758e18bdb1b1b6f89071d198f7a690cc93d2a941e98c342b75bfb5",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bendpower75-20261122/AAI05_Home_Track_Bend_Power_v0_75_D25.uf2",
+      "sha256": "c2733be2d51031a1a101b17731f60350825a9cdefe2fa9b2c78c3ad99f6cffa6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bendtrace40-20261121/AAI05_Home_Track_Bend_Trace_v0_40_D27p5.uf2",
+      "sha256": "9c01f907120693e0b742bb44ebdd5db629e0cbe69e6d22b86d58b93df607699b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueafterrecovery45-20261121/AAI05_Home_Track_Blue_Exit_After_Recovery_v0_45_D27p5.uf2",
+      "sha256": "a7a9f1e49696c60bfb72729497f426abda2ce06356c9e3221da7de820cd570c6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluebend22-20261120-final/AAI05_Blue_Bend_Right_v0_22_D25_HOME.uf2",
+      "sha256": "5437a78e5547f5ab2732237adaa25063d04a7304d16ff7eb8b58fbac5215e76b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluebend22-20261120-final/AAI05_Blue_Bend_Right_v0_22_D25_HOME_NO_DRIVE.uf2",
+      "sha256": "85f9e268db01ce872b9e087936564573e035d3dea7813201639c4f1a9ab41572",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluebendslow38-20261121/AAI05_Home_Track_Blue_Bend_Slow_v0_38_D27p5.uf2",
+      "sha256": "ed6caa7609f49188aa21a3f348880993251ba72fc164f4263a020978f7cd84e4",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueconfirm39-20261121/AAI05_Home_Track_Blue_Confirm_v0_39_D27p5.uf2",
+      "sha256": "beeaf58d0f7e1f2e5f7c0783746b3dcc168377e4b50efb8431b8e72ae0037622",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluedamped31-20261121/AAI05_Home_Track_Blue_Damped_v0_31_D27p5.uf2",
+      "sha256": "11e53fb5d3707a4e67282efdb86b5a3d170fb1ca004ab0ed3c6ecd1c44237c5b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluediagonalexit58-20261121/AAI05_Home_Track_Blue_Diagonal_Exit_v0_58_D25.uf2",
+      "sha256": "f27daa9cd75995d1fab3b4ef1d765752f312d9b702eba12a77469f9ffff105f7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueedgeconfirm77-20261122/AAI05_Home_Track_Blue_Exit_Edge_Confirm_v0_77_D25.uf2",
+      "sha256": "3a8521826781a7df3ebb6474457abaabffa054706b3234411e8eafe570d39d77",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueexitearly43-20261121/AAI05_Home_Track_Blue_Exit_Early_v0_43_D27p5.uf2",
+      "sha256": "a60d1b88de664831986c28b7d7d13652aaf0940978b8d8b8c7ff43dbf4a93342",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueexitlead41-20261121/AAI05_Home_Track_Blue_Exit_Lead_v0_41_D27p5.uf2",
+      "sha256": "907b3e476a4f635ac5b59b466714e50e47b77d7bd720eae775d12be721d93493",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueexitpivot69-20261122/AAI05_Home_Track_Blue_Exit_Pivot_v0_69_D25.uf2",
+      "sha256": "e6f65888765b2a89f537a81086240f487fd5d3e3dfd3a96d4833790d3bd237a0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueexittight42-20261121/AAI05_Home_Track_Blue_Exit_Tight_v0_42_D27p5.uf2",
+      "sha256": "187684f65f6b29384a2567e81846167810fcc0d863e7d66dd039bd476a32eb2b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluegentle27-20261120/AAI05_Home_Track_Blue_Gentle_v0_27_D25.uf2",
+      "sha256": "00083dfca1f7d30991808198120080f6f26191695ef73bed65c9efda2f863e10",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluegentle27-d27p5-20261120/AAI05_Home_Track_Blue_Gentle_v0_27_D27p5.uf2",
+      "sha256": "2b851727617781a940d7832d31eec3bc67245f9d6580fb273f500d5a78dc2f4a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluegentle27-d30-20261120/AAI05_Home_Track_Blue_Gentle_v0_27_D30.uf2",
+      "sha256": "80b0028f64a43e35db92f41c5e97ee230c87fa9d5f1a83aa7464cfe8fbc01d93",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueleftboost73-20261122/AAI05_Home_Track_Blue_Exit_Left_Boost_v0_73_D25.uf2",
+      "sha256": "f219871fa73cd6ab0d953947b04af0014a7ff5904201bcdb19046e1de6e48c27",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueouter36-20261121/AAI05_Home_Track_Blue_Outer_Edge_v0_36_D27p5.uf2",
+      "sha256": "9211383e20fcabd33d0143b11d81970858da6547c8ad9714280826426c7a64ab",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueouterrecovery37-20261121/AAI05_Home_Track_Blue_Outer_Recovery_v0_37_D27p5.uf2",
+      "sha256": "4a76135b9651aff37225ee6f17418e049e8065e5ec7453c0d3493260fa7f1d32",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueramp26-20261120-final/AAI05_Home_Track_Blue_Ramp_v0_26_D25.uf2",
+      "sha256": "8d890be5988858cc22301bc3745937020482e9557777f453086e7b84c6e16d7e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredapproach78-20261122/AAI05_Home_Track_Blue_Red_Late_Approach_v0_78_D25.uf2",
+      "sha256": "e1736cdcc20ec3e6c69212a9552575144e855607c82ee3f0c56f40fa4b9d8e46",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredbendcues49-20261121/AAI05_Home_Track_Blue_Red_Bend_Cues_v0_49_D27p5.uf2",
+      "sha256": "b5d289b8812c5781076bd878638bd002ea507dea149b1e2f858e9e2b4b073446",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredbends48-20261121/AAI05_Home_Track_Blue_Red_Bends_v0_48_D27p5.uf2",
+      "sha256": "93e334a2276cb8f24ef8b6195cd02f58d06a0d0e38aba461a35d769e61fa7688",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredblend71-20261122/AAI05_Home_Track_Blue_Red_Blend_Grace_v0_71_D25.uf2",
+      "sha256": "10b96f78bb9e3dd64e6824a5f2238b80a631c502c0dfdf3583a12f3e4d7abcbe",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredhandoff34-20261121/AAI05_Home_Track_Blue_Red_Handoff_v0_34_D27p5.uf2",
+      "sha256": "a390d59cafeaaa3315a0d8e1a70eb8ae8ea077fa01bddc74ba1056454777ef11",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredlate70-20261122/AAI05_Home_Track_Blue_Red_Late_Confirm_v0_70_D25.uf2",
+      "sha256": "db97767d404a466741eeb4170e5f41981a21d0ab4f76636e71a37248a40d0b03",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredmargin72-20261122/AAI05_Home_Track_Blue_Red_Blend_Margin_v0_72_D25.uf2",
+      "sha256": "8decc981ad781f0983cf6e199f248da4614422d794dd7aa99ad73add54aba4e4",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_blueredrefine55-20261121/AAI05_Home_Track_Blue_Red_Join_Refinement_v0_55_D25.uf2",
+      "sha256": "6156bd20465c9f06a7da4ba7e129916590323dd9eb8209e45748e058de168cae",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluesecond35-20261121/AAI05_Home_Track_Blue_Second_Boost_v0_35_D27p5.uf2",
+      "sha256": "3b5b1fa22af609bb45be4446171e5f620e83e010fd871e02a2db3fb67d4663e0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_bluewiderange32-20261121/AAI05_Home_Track_Blue_Wide_Range_v0_32_D27p5.uf2",
+      "sha256": "aaa5348e85bb5bebbcfc0cd760cc6cfecc8e52e5f4a4cf5cef973c2fb7b532ec",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_clipped20-20261120/AAI05_Clipped_Loop_v0_20_D25_T8to20_HOME.uf2",
+      "sha256": "ea35620e0b43f09f3ae0efad98627d8e05d181bfd35679c6ffa66eb309b76a69",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_clipped20-20261120/AAI05_Clipped_Loop_v0_20_D25_T8to20_HOME_NO_DRIVE.uf2",
+      "sha256": "bf065f73e2b8f3ac94bcf9791a7c779428f0cdedea85a110b819b2d451e67af3",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_clipped21-20261120/AAI05_Clipped_Loop_v0_21_D25_T8to14_HOME.uf2",
+      "sha256": "46ae0440ebc1e2f58a4519d13cb1f50719a3d97905a70317f5a0210ada284f40",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_clipped21-20261120/AAI05_Clipped_Loop_v0_21_D25_T8to14_HOME_NO_DRIVE.uf2",
+      "sha256": "db4ed3d53cc49a0f6758d52f5f4d1bc8b5dc2cb75d2d4c43e6c019968505a744",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_corner19-20261119/AAI05_Corner_Left_v0_19_D25_T8.uf2",
+      "sha256": "7dabcbcf87b70dde141f6bbd21cc2bb85e1f287433215b781205ad11ee9fdd72",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_corner19-20261119/AAI05_Corner_Left_v0_19_D25_T8_NO_DRIVE.uf2",
+      "sha256": "4fd4f334b3b0fe8d9e021856a9a10a14a24a26bc239e0229ae1a6a1bd76fb96e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_corner19-20261119/AAI05_Corner_Right_v0_19_D25_T8.uf2",
+      "sha256": "a92d3dc244c2085131f176d66f6c773d99a4b4366fd7c2780bda22e03c3a9fb1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_corner19-20261119/AAI05_Corner_Right_v0_19_D25_T8_NO_DRIVE.uf2",
+      "sha256": "2d68c16bc72978f9985c413475b50a0be14f1f6b1b09768e3b9609e082d6c7b7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_cornerrefine86-20261122/AAI05_Home_Track_Red_Corner_Refine_v0_86_D25.uf2",
+      "sha256": "12e0250ec2a143e30216747145ebd2f68538cfc4586d7fe95f90e7fc2436f374",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_earlybend24-20261120/AAI05_Early_Bend_Clockwise_v0_24_D25_HOME.uf2",
+      "sha256": "835982b8022583650b42eec5405ecf6188dac6bceed2599d5c7c644c6a18add7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_homecorners-20261119/AAI05_Corner_Left_v0_19_D25_T8_HOME.uf2",
+      "sha256": "9a1e6cd35d94a3cce25f764a5e3ac2300d75a5ec94c15d55270457ea038c3980",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_homecorners-20261119/AAI05_Corner_Left_v0_19_D25_T8_HOME_NO_DRIVE.uf2",
+      "sha256": "93ad5bf97e4535e4432a984260a201110ef8fc8d130e850071cde76c7f6357c4",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_homecorners-20261119/AAI05_Corner_Right_v0_19_D25_T8_HOME.uf2",
+      "sha256": "72e46b180a3a017afa42e1efbca5c8c793f8a4fb954375a811bba57623ae3035",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_homecorners-20261119/AAI05_Corner_Right_v0_19_D25_T8_HOME_NO_DRIVE.uf2",
+      "sha256": "c91cf7919f9a9ddc5def2abb98788991566689e12754235adbeea37110062b2e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_hometrack25-20261120-final/AAI05_Home_Track_Clockwise_v0_25_D25.uf2",
+      "sha256": "db7aa8083c8b9b350240e0e933cd04c68f0e18c6492d3645b4eb75c8f074563b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_insiderelease83-20261122/AAI05_Home_Track_Red_Pivot_Inside_Release_v0_83_D25.uf2",
+      "sha256": "a73b753cd38c7255d77c5ecdabc78e03e44e356fc1143001566092bd42f00672",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_join500-20261119/AAI05_Multicolour_Follow_v0_18_D25_T8.uf2",
+      "sha256": "c3835480f47ddb75c9e995566c127a027365c6d47224d90e6a22e36e1f0b5e83",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_join500-20261119/AAI05_Multicolour_Follow_v0_18_D25_T8_NO_DRIVE.uf2",
+      "sha256": "88812c325ad87c219dae1e33c8dc6b092afc6a19dfbaca99be035711cee4654f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_joinextend82-20261122/AAI05_Home_Track_Blue_Red_Join_Extend_v0_82_D25.uf2",
+      "sha256": "2d788a889b6dc40e4d1904744c1110a7504c1dc12b2b1d5e9490748f2ee98ae3",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_loop23-20261120/AAI05_Loop_Anticlockwise_v0_23_D25_HOME.uf2",
+      "sha256": "9523dd338ba0b662b94332c02c9774b7c0ee5f1eacc50e15576f5f288c7d0ca7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_loop23-20261120/AAI05_Loop_Anticlockwise_v0_23_D25_HOME_NO_DRIVE.uf2",
+      "sha256": "63367934d68c7d1d0db36bcade30a711edf2a9183e49bdb05c2a278d44339ead",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_loop23-20261120/AAI05_Loop_Clockwise_v0_23_D25_HOME.uf2",
+      "sha256": "40e396c69da668e7d52e8898f7c801468651db4164de81b10bcce16a6ed748a1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_loop23-20261120/AAI05_Loop_Clockwise_v0_23_D25_HOME_NO_DRIVE.uf2",
+      "sha256": "262a348b5328ee8f6190ce1be195734710d842945c4307e467aa3b6b9172f044",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8.uf2",
+      "sha256": "84fa41614d3839f8aa27509010b33c2f6bec30c8ae90d83919fe2f3837d3a2a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_multi25-20261119/AAI05_Multicolour_Follow_v0_17_D25_T8_NO_DRIVE.uf2",
+      "sha256": "a8c6cb323ed7016e56388f382cff7b08b82391eebe3029d9d90983b5953c83ca",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_outsiderecovery84-20261122/AAI05_Home_Track_Red_Outside_Recovery_v0_84_D25.uf2",
+      "sha256": "1e6d8e1a21f45bcb154fa658efdc0c7c280da97fa9a7ec703f9eee0651b0f426",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redarcext80-20261122/AAI05_Home_Track_Red_Final_Arc_Extend_v0_80_D25.uf2",
+      "sha256": "49a1e06ca3bcde839c3c29d3146e1046edd13725ffdbabf871194bbe02e37cd7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redbendafterhandoff52-20261121/AAI05_Home_Track_Red_Bend_After_Handoff_v0_52_D25.uf2",
+      "sha256": "f415151eef4df6ddcb59ef77b306bcd8cfc17e4343a0104046589c7a89fc6c47",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redbetweenbends61-20261121/AAI05_Home_Track_Red_Between_Bends_v0_61_D25.uf2",
+      "sha256": "708368b34663577f3bb24da4e54aea56e502b3c960b4abcfb198161c7fa5c675",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redconfirm44-20261121/AAI05_Home_Track_Red_Confirm_v0_44_D27p5.uf2",
+      "sha256": "47166d57ffd6cab2d152ad6fad2033225b24181ddae3d142d37da979a2cc3f34",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_reddiagonal79-20261122/AAI05_Home_Track_Red_Diagonal_Reacquire_v0_79_D25.uf2",
+      "sha256": "9950606c5fba8af7aa6970e96042233183d091b0613073dcc79620c45aaee8e0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redexitalign60-20261121/AAI05_Home_Track_Red_Exit_Align_v0_60_D25.uf2",
+      "sha256": "3597289be166b97e53511a5538be7dccbcbc98e38cbdfad8918ddff234cf1b4a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redexitearly47-20261121/AAI05_Home_Track_Red_Exit_Early_v0_47_D27p5.uf2",
+      "sha256": "3ee7248a942fcac39ac99ec79bafff7fdc59e4ced61fa6f56add19dcf499204e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redexithold68-20261122/AAI05_Home_Track_Red_Exit_Turn_Hold_v0_68_D25.uf2",
+      "sha256": "5f74663bd1708a1094b29be32e4dc561c12714ee8c6cbd2f946c2a613261b8bf",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redexitlead46-20261121/AAI05_Home_Track_Red_Exit_Lead_v0_46_D27p5.uf2",
+      "sha256": "b9f2f479fd5bd753fbf54862eee4166f4202e2df1259bd9c0a4911f83e3a1cdb",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redexitstrong67-20261122/AAI05_Home_Track_Red_Exit_Turn_Strong_v0_67_D25.uf2",
+      "sha256": "f7b475270336c9bf90bbdc813be1a5816f6bfa4c16241d3d441965f8028d1571",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redexitturn63-20261121/AAI05_Home_Track_Red_Exit_Turn_v0_63_D25.uf2",
+      "sha256": "8e5c3b8fc3f6da451c43badad3b2c48ac244f19eb01df4418338bcc846be05c1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redexitturnearly64-20261121/AAI05_Home_Track_Red_Exit_Turn_Early_v0_64_D25.uf2",
+      "sha256": "f87a41a2d1bf3f8e7309506bcf44b08a5f1e89628e9cb4fba9dce2b1de6c2163",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redexitturntighter65-20261122/AAI05_Home_Track_Red_Exit_Turn_Tighter_v0_65_D25.uf2",
+      "sha256": "bcb17ad459d20f4a9b48eb39ac68fc99f11610ec49e9606de8b1be769a92b7d1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redfinalleft76-20261122/AAI05_Home_Track_Red_Final_Left_Boost_v0_76_D25.uf2",
+      "sha256": "ff097607be7efe14ba25d194838a26936aeac05fb3da03386772ca7371b2b07a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redfirst53-20261121/AAI05_Home_Track_Red_First_Bend_Boost_v0_53_D25.uf2",
+      "sha256": "1182874426d9cae63fb9404d1008ef0d81b976b32ba8170f8d3003e875c865a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redfirst54-20261121/AAI05_Home_Track_Red_First_Bend_Tighter_v0_54_D25.uf2",
+      "sha256": "4e1072b3356b2e939c17a64a3e4f764807ddeee3a0001025b10942f5474961bd",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redfirstleft74-20261122/AAI05_Home_Track_Red_First_Left_Boost_v0_74_D25.uf2",
+      "sha256": "88d4f9e49c55c3c6da3294011b7fd6c272b692c74cc0bab8dc4ddd96ad7bca7a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redhandoffalign59-20261121/AAI05_Home_Track_Red_Handoff_Align_v0_59_D25.uf2",
+      "sha256": "e2ee7fa52431e99c5e8f343de5df0d2bd1484ae4a00b51f5f935327b4d8d44e0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redinsiderelease62-20261121/AAI05_Home_Track_Red_Inside_Release_v0_62_D25.uf2",
+      "sha256": "0c4663357be307c2d0f68f5988a9a59e11a7b692169c7fc52cf2061347a8b01f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redreturngrace66-20261122/AAI05_Home_Track_Red_Return_Grace_v0_66_D25.uf2",
+      "sha256": "d4af6f92cc0edf85f57e541824f0ba2beb333cb7e4c9bc78daee3d24a6316af9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redsecondexit57-20261121/AAI05_Home_Track_Red_Second_Exit_Refinement_v0_57_D25.uf2",
+      "sha256": "2039731612387a19ed59c37798f5c8a907f6897d05ee7b0254deaa82d001c855",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redsecondpivot50-20261121/AAI05_Home_Track_Red_Second_Pivot_v0_50_D27p5.uf2",
+      "sha256": "9918aff4cf674f71c80dfe5671ac117eb519522e6d21515de7f67c12770d4aaf",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_redsecondslow51-20261121/AAI05_Home_Track_Red_Second_Slow_v0_51_D25.uf2",
+      "sha256": "d705f25c14bdf384d51e34f4899e3f3ff43905c52bbcf31481d5bef7186c0028",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_rightedge85b-20261122/AAI05_Home_Track_Red_Right_Edge_Outside_v0_85_D25.uf2",
+      "sha256": "bcfaa15bf98474c086a8388b2e1ff30d1037e3cb7f76252e3532e23f1046af4b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_room2arc80d-20261122/AAI05_Home_Track_Red_Final_Arc_Extend_v0_80_D25_ROOM2.uf2",
+      "sha256": "f4f88031f62692e04dc80964de9873e37d449ecc08eb1ba4d3719c660b334135",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_spinhold87-20261122/AAI05_Home_Track_Red_Spin_Hold_v0_87_D25.uf2",
+      "sha256": "1b56d3cfa7828abe1abe009c968f721e21c705141376708e31cfd016b2a06656",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_stoptrace33-20261121/AAI05_Home_Track_Stop_Trace_v0_33_D27p5.uf2",
+      "sha256": "b4a88c0a2cab36f0048e957127f0987e9294e5b0299d1cd50e9c97fe28e4d67a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_twoturn28-20261120/AAI05_Home_Track_Two_Turn_v0_28_D30.uf2",
+      "sha256": "5ee99cc4c14d95b21d8e4b093faa8880b7059159daf059be28985284c5f37d1a",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_yellowapproach29-20261120/AAI05_Home_Track_Yellow_Approach_v0_29_D27p5.uf2",
+      "sha256": "9e433e5a386167f531e4b96a7d0da0564564782a97cf31944e6b29d0a69095a1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/multi_follow_yellowlead30-20261121/AAI05_Home_Track_Yellow_Lead_v0_30_D27p5.uf2",
+      "sha256": "8bba1cf8fa458858b522a70dda233d7521ecb689245451659f8202aff2c7d6de",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Black_Follow_Compatibility.uf2",
+      "sha256": "1e35248f365ccc8739766ecd84818d7cbf551916aea37c92d69ba31b8e0690d2",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8.uf2",
+      "sha256": "3a1e82dedd9c4d386de7b759107a5c2b3b7872d596d84984a61fffd011667564",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_NO_DRIVE.uf2",
+      "sha256": "b0cee807411b5be9f66a0a118db5f5c3f17b6dec80b91084db175a765ed6ea89",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Red_Follow_v0_15_D35_T8_TEST.uf2",
+      "sha256": "c503cb8b34b317211e09ef0f0122a348120c06fa20dbca5e66579088c909b6ae",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_RGB_Compatibility.uf2",
+      "sha256": "8310e51232c301c42542cb069cc0051fe176d68a29d0b1371811109f26fb2d58",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/red_follow_redfollow-20261117-final/AAI05_Yellow_Follow_v0_14_D35_T8.uf2",
+      "sha256": "d7cfe712fb7dbc602fa46316d4709b6c4b77ffe748122fdf21c04070eb96f126",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "b9e0582f9f102985e7756c8b62d8e159bd99db96abe38d2bc09ba7f8d35c25e8",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-c/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "0be4d7db247d3c8eaa4f907cb70fc82da0f1dd350a3d1c0195c4011a5511bec1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "aaebe16f22d842c3e8c725cede20258cb2ce270de5a525b8c0b5544c5cb70e1c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-final/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "39e28bfd5357da7b63061e53b776933cb99a3bd5148a8b5c843dca60eb9775a7",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_RGB_Diagnostic_v0_11.uf2",
+      "sha256": "6bf00159a89b6463e98e11deb1c0b6aa4f884f26cfe374a19db7ca6a822bb227",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgb-20261116-release/AAI05_RGB_Diagnostic_v0_11_TEST.uf2",
+      "sha256": "821bd36e7dd5a5a41f855782cd39e0f22d8c3de4c2a39a937431709b5dd0de33",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-build/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-build/AAI05_RGB_Classifier_v0_12.uf2",
+      "sha256": "f31ff5bc85d8d60ea7e513cc6a3478dedfbf3bde5a8cbde41869a78b5e138287",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-build/AAI05_RGB_Classifier_v0_12_TEST.uf2",
+      "sha256": "93259bc9de15f9f28c9ac7b45964a8ef2393c1f9a5289fc4bf7d4ba82eec2c93",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-final/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-final/AAI05_RGB_Classifier_v0_12.uf2",
+      "sha256": "dc0b5c64940cc8c566f05d0e6d6000f5df920e3ab930cf36cf9ea1e9b873c62d",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbclass-20261116-final/AAI05_RGB_Classifier_v0_12_TEST.uf2",
+      "sha256": "5952f94789e870c033cc3e7cf0576ed9df1879c6a63de6a6f88f173ac7bede09",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_Remote_PIO_Regression.uf2",
+      "sha256": "7f35c5a71b24652e96f0ddd5d55e935d91fe5b85e1b479c91a2efaafd14ec2b1",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1.uf2",
+      "sha256": "f7d1b722129488427fa85028d619a028eebeffcdb1c7953f83ea712cc34eb59b",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/rgbdiag_rgbtrack-20261117-release/AAI05_RGB_Classifier_v0_12_1_TEST.uf2",
+      "sha256": "0edd7fb33f2c16db9cf7a5b4b8e65ccd8f49afd984845c1255ef6b06831753c6",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Black_Follow_Compatibility.uf2",
+      "sha256": "989a16a1c33631883338f257663fef5470fe56f289328da330100e9e31b5cb0c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_RGB_Compatibility.uf2",
+      "sha256": "287440c3dfc8a8cc30700cb2e410f7d4e8a7707d007430448d2c8503e9385647",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8.uf2",
+      "sha256": "1b9fe3b171086e8eeb45b788779f0dfd0a1a0091e5e4e36c4574266a747b2e71",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.uf2",
+      "sha256": "b66d8257768721650f855dc237d86f6cdbe802a15b6c02a775e24c66a6f33305",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-final/AAI05_Yellow_Follow_v0_14_D40_T8_TEST.uf2",
+      "sha256": "810e561b58f9ea3e8949023d5353fb9e8d0cb6e7f408366965ff5d5b0390f68e",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Black_Follow_Compatibility.uf2",
+      "sha256": "989a16a1c33631883338f257663fef5470fe56f289328da330100e9e31b5cb0c",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Remote_PIO_Compatibility.uf2",
+      "sha256": "7d149392e73a8183dc5f6cf1fd1b454132f97f252a2687e3763c7ba985d4acc9",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_RGB_Compatibility.uf2",
+      "sha256": "287440c3dfc8a8cc30700cb2e410f7d4e8a7707d007430448d2c8503e9385647",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Yellow_Follow_v0_14_D40_T8.uf2",
+      "sha256": "fbe1cec86d01f7b39c98e0b1fed792af9ccb06db27f4f3b3179d2fb78940614f",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Yellow_Follow_v0_14_D40_T8_NO_DRIVE.uf2",
+      "sha256": "01c76af72b3899be24670ee9ab87239e8210a52ba1b7c38a6c6c3618441d16ef",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/yellow_follow_yellow-20261117-release/AAI05_Yellow_Follow_v0_14_D40_T8_TEST.uf2",
+      "sha256": "8f45ec8df13cbc9f1323084ae592f344cc6927afd7183ab1adc580e4c0981838",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/archive/v0_5-broker-192_168_1_196/AAI05_Comms_v0_5_NO_DRIVE.uf2",
+      "sha256": "67e97ef38a396a087b382852037a648274e8aa1a4c0fc987d9a667494af024f0",
+      "unchanged": true
+    },
+    {
+      "path": "output/firmware/archive/v0_5-broker-192_168_1_196/AAI05_Comms_v0_5_NO_DRIVE_TEST.uf2",
+      "sha256": "2191644fa13d43d01001152f8d092c908bdaeb160f663e889c8e93dfad3e2766",
+      "unchanged": true
+    }
+  ]
+}

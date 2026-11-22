@@ -948,6 +948,10 @@ def main():
                 cases.extend([
                     ('red-spin-hold-owner', owner_files, spin_hold_config),
                     ('red-spin-hold-startup', ['testing/host/test_follow_startup.c'], spin_hold_config),
+                    # The MQTT follow image reuses this v0.87 steering with a remote
+                    # start; its STRAIGHT mode must bypass every bend manoeuvre.
+                    ('straight-follow', ['testing/host/test_straight_follow.c', *core],
+                     [*spin_hold_config, '-DAAI05_FOLLOW_MQTT=1']),
                 ])
             core_files = next(files for name,files,extra in cases if name=='core')
             cases.append(('core-turn20',core_files,['-DFOLLOW_TURN_LIMIT_PCT=20']))

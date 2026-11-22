@@ -102,6 +102,13 @@ def main():
             for remote in (0, 1):
                 c_test("motion-runtime" + str(remote), ["testing/host/test_motion_runtime.c", "app_program/subsystem2/motion_control.c", "app_program/subsystem2/motion_chassis.c", "app_program/subsystem2/motion_button.c"],
                        ["-pthread", "-Iinclude", "-DAAI05_REMOTE_APP=" + str(remote)])
+            # AAI05_DISTANCE_RUN: bounded 2 s straight calibration run.
+            c_test("motion-runtime-distance", ["testing/host/test_motion_runtime.c", "app_program/subsystem2/motion_control.c", "app_program/subsystem2/motion_chassis.c", "app_program/subsystem2/motion_button.c"],
+                   ["-pthread", "-Iinclude", "-DAAI05_DISTANCE_RUN=1"])
+            # AAI05_FOLLOW_MQTT: remote FOLLOW/STRAIGHT permission and encoder route report.
+            c_test("follow-remote", ["testing/host/test_follow_remote.c"], ["-Iinclude"])
+            c_test("follow-route", ["testing/host/test_follow_route.c", "app_program/subsystem2/follow_route.c",
+                                    "app_program/subsystem2/route_measurement.c"])
             c_test("drive-capture-fault", ["testing/host/test_drive_capture_fault.c"],
                    ["-DAAI05_REMOTE_APP=1", "-Ilib/libwifi/sysdepend/pico_rp2040", "-Ilib/liblwip/sysdepend/pico_rp2040"])
             vector = c_test("drive-protocol", ["testing/host/test_drive_protocol.c", "app_program/subsystem3/drive_protocol.c", "app_program/subsystem3/comm_protocol.c"])
@@ -109,6 +116,10 @@ def main():
             c_test("drive-control", ["testing/host/test_drive_control.c", "app_program/subsystem3/drive_control.c"])
             c_test("drive-service", ["testing/host/test_drive_service.c", "app_program/subsystem3/mqtt_drive_app.c", "app_program/subsystem3/drive_control.c",
                                      "app_program/subsystem3/drive_protocol.c", "app_program/subsystem3/comm_protocol.c"], ["-DAAI05_REMOTE_APP=1"])
+            c_test("drive-service-follow-mqtt", ["testing/host/test_drive_service.c", "app_program/subsystem3/mqtt_drive_app.c",
+                                                 "app_program/subsystem3/drive_control.c", "app_program/subsystem3/drive_protocol.c",
+                                                 "app_program/subsystem3/comm_protocol.c"],
+                   ["-DAAI05_REMOTE_APP=1", "-DAAI05_FOLLOW_MQTT=1"])
             vector = c_test("comm-protocol", ["testing/host/test_comm_protocol.c", "app_program/subsystem3/comm_protocol.c"])
             env["COMM_VECTOR_FILE"] = str(vector)
             c_test("colour", ["testing/host/test_colour_classifier.c", "app_program/subsystem1/colour_classifier.c"])

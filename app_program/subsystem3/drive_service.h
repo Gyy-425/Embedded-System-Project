@@ -9,6 +9,10 @@
 #define DRIVE_TOPIC_COMMAND "aai05/v2/" COMM_DEVICE_ID "/command"
 #define DRIVE_TOPIC_ACK "aai05/v2/" COMM_DEVICE_ID "/ack"
 #define DRIVE_TOPIC_TELEMETRY "aai05/v2/" COMM_DEVICE_ID "/telemetry"
+#if AAI05_FOLLOW_MQTT
+#include "../subsystem2/follow_route.h"
+#define DRIVE_TOPIC_ROUTE "aai05/v2/" COMM_DEVICE_ID "/route"
+#endif
 
 typedef struct
 {
@@ -18,6 +22,13 @@ typedef struct
     bool is_ir_valid;
     bool is_ir_stale;
     bool is_wifi_up;
+#if AAI05_FOLLOW_MQTT
+    follow_route_report_t route;
+    uint16_t route_epoch;
+    uint8_t follow_phase;
+    uint8_t follow_reason;
+    bool can_follow;
+#endif
 } drive_input_t;
 
 /* Platform boundary, called only by the existing network-owner task. */

@@ -18,7 +18,9 @@ motion_result_t subsystem2_motion_submit_chassis(
     return result;
 }
 
-#if AAI05_MOTION_APP
+#if AAI05_FOLLOW_MQTT
+/* follow_remote.c owns this profile's Motion command boundary. */
+#elif AAI05_MOTION_APP
 #if TK_SUPPORT_SMP
 #include <tk/smp.h>
 static T_SPLOCK g_motion_runtime_lock;
@@ -32,6 +34,9 @@ static bool g_motion_runtime_arm_pending;
 static uint16_t g_motion_runtime_epoch;
 static bool g_motion_runtime_initialized;
 static bool g_motion_runtime_available;
+#if AAI05_DISTANCE_RUN
+static uint32_t g_distance_deadline_us;
+#endif
 
 _Static_assert(MOTION_COMMAND_TTL_MS == MOTOR_DRIVE_MAX_LEASE_MS,
                "Motion and driver lease limits must match");
@@ -195,6 +200,14 @@ void motion_runtime_step(uint32_t now_ms, uint32_t buttons,
     if (motion_button_update(&g_motion_runtime_button, now_ms,
                               is_next_pressed, is_available, &command))
     {
+#if AAI05_DISTANCE_RUN
+        if (command.sequence == 1U)
+        {
+            /* Later renewals can never extend the hardware beyond this bound. */
+            g_distance_deadline_us = motor_drive_now_us() +
+                                     MOTION_BUTTON_RUN_MS * 1000U;
+        }
+#endif
         (void)motion_control_submit(&g_motion_runtime_control, &command,
                                      now_ms);
     }
@@ -207,8 +220,34 @@ void motion_runtime_step(uint32_t now_ms, uint32_t buttons,
     }
     else
     {
-        int32_t error = motor_drive_set(output.left_pct, output.right_pct,
-                                         output.lease_ms);
+        int32_t error;
+#if AAI05_DISTANCE_RUN
+        if (g_motion_runtime_button.was_started)
+        {
+            uint32_t now_us = motor_drive_now_us();
+            uint32_t remaining_us = g_distance_deadline_us - now_us;
+            uint32_t lease_us = (uint32_t)output.lease_ms * 1000U;
+            if (remaining_us == 0U || remaining_us > MOTION_BUTTON_RUN_MS * 1000U)
+            {
+                error = E_TMOUT;
+            }
+            else
+            {
+                /* The driver rejects deadlines more than one lease away. */
+                if (lease_us > remaining_us)
+                {
+                    lease_us = remaining_us;
+                }
+                error = motor_drive_set_until(output.left_pct, output.right_pct,
+                                               now_us + lease_us);
+            }
+        }
+        else
+#endif
+        {
+            error = motor_drive_set(output.left_pct, output.right_pct,
+                                     output.lease_ms);
+        }
         if (error != E_OK)
         {
             if (error == E_TMOUT)

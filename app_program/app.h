@@ -25,6 +25,12 @@
 #ifndef AAI05_FOLLOW_APP
 #define AAI05_FOLLOW_APP 0
 #endif
+#ifndef AAI05_FOLLOW_MQTT
+#define AAI05_FOLLOW_MQTT 0
+#endif
+#if AAI05_FOLLOW_MQTT
+#include "subsystem2/follow_route.h"
+#endif
 #if AAI05_FOLLOW_APP
 #include "../config/follow_config.h"
 #endif
@@ -37,10 +43,17 @@
     AAI05_REMOTE_APP || AAI05_COMMS_APP || AAI05_FOLLOW_APP || TM_NET_LWIP || TM_MQTT)
 #error RGB diagnostic requires no-drive and no network application
 #endif
-#if AAI05_FOLLOW_APP && (AAI05_RGB_DIAG || AAI05_MOTION_APP || \
-    AAI05_REMOTE_APP || AAI05_COMMS_APP || TM_NET_LWIP || TM_MQTT || \
+#if AAI05_FOLLOW_APP && (AAI05_RGB_DIAG || AAI05_COMMS_APP || \
     !TK_SUPPORT_SMP || !AAI05_ENCODER_PIO)
-#error FOLLOW requires isolated local SMP/PIO profile
+#error FOLLOW requires an SMP/PIO profile with exclusive sensor ownership
+#endif
+#if AAI05_FOLLOW_APP && !AAI05_FOLLOW_MQTT && (AAI05_MOTION_APP || \
+    AAI05_REMOTE_APP || TM_NET_LWIP || TM_MQTT)
+#error Local FOLLOW requires an isolated profile
+#endif
+#if AAI05_FOLLOW_MQTT && (!AAI05_FOLLOW_APP || !AAI05_REMOTE_APP || \
+    !FOLLOW_MULTICOLOUR_CORRIDOR)
+#error MQTT FOLLOW requires the multicolour follower and remote transport
 #endif
 
 #if AAI05_MOTION_APP && (MOTOR_TEST_PROBE || AAI05_COMMS_APP)
@@ -100,6 +113,10 @@ typedef struct {
     motion_status_t motion;
 #if AAI05_FOLLOW_APP
     black_follow_status_t follow;
+#endif
+#if AAI05_FOLLOW_MQTT
+    follow_route_report_t route;
+    uint16_t route_epoch;
 #endif
 } motion_snapshot_t;
 

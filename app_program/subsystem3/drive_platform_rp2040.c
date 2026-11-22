@@ -46,6 +46,20 @@ void drive_io_snapshot(drive_input_t *p_input, uint32_t now_ms)
         p_motion->motor.ready &&
         !p_motion->count_saturated &&
         ((p_motion->motor.error == E_OK) || (p_motion->motor.error == E_TMOUT));
+#if AAI05_FOLLOW_MQTT
+    p_input->route = p_motion->route;
+    if (!g_drive_platform_has_motion)
+    {
+        p_input->route.status = UINT8_MAX;
+        p_input->route.colour = ROUTE_UNKNOWN;
+    }
+    p_input->route_epoch = p_motion->route_epoch;
+    p_input->follow_phase = p_motion->follow.phase;
+    p_input->follow_reason = p_motion->follow.reason;
+    p_input->can_follow = p_input->motion.is_available && p_motion->follow.ready &&
+        !p_motion->motor.active && p_motion->follow.phase != FOLLOW_RUNNING &&
+        (p_motion->route.status == UINT8_MAX || p_motion->route.finished);
+#endif
     p_input->is_ir_stale = !g_drive_platform_has_ir ||
         ((uint32_t)(now_ms - p_ir->sampled_ms) > 100U);
     p_input->is_ir_valid = !p_input->is_ir_stale && p_ir->valid &&

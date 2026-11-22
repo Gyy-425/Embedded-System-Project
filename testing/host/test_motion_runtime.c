@@ -70,6 +70,24 @@ int32_t motor_drive_set(int8_t left_pct, int8_t right_pct, uint32_t lease_ms)
     return E_OK;
 }
 
+#if AAI05_DISTANCE_RUN
+uint32_t motor_drive_now_us(void)
+{
+    return test_now * 1000U;
+}
+
+int32_t motor_drive_set_until(int8_t left_pct, int8_t right_pct,
+                               uint32_t deadline_us)
+{
+    uint32_t remaining_us = deadline_us - motor_drive_now_us();
+    if (remaining_us == 0U || remaining_us > MOTOR_DRIVE_MAX_LEASE_MS * 1000U)
+    {
+        return E_TMOUT;
+    }
+    return motor_drive_set(left_pct, right_pct, remaining_us / 1000U);
+}
+#endif
+
 void motor_pulse_stop(void)
 {
     assert(lock_depth == 1U);
@@ -227,8 +245,13 @@ static void test_button_and_driver_failure(void)
     test_owner_step(40U, BUTTONS_RELEASED, true, false, &status);
     test_owner_step(60U, 1U << 21U, true, false, &status);
     test_owner_step(100U, 1U << 21U, true, false, &status);
+#if AAI05_DISTANCE_RUN
+    assert(status.phase == MOTION_RUNNING && applied_left == -25);
+    assert(applied_right == 25);
+#else
     assert(status.phase == MOTION_RUNNING && applied_left == 50);
     assert(applied_right == 0);
+#endif
     test_owner_step(120U, 0U, true, true, &status);
     assert(status.phase == MOTION_STOPPED);
     assert(status.reason == MOTION_REASON_BUTTON && applied_lease == 0U);
@@ -244,6 +267,37 @@ static void test_button_and_driver_failure(void)
     assert(status.reason == MOTION_REASON_EXPIRED && applied_lease == 0U);
     driver_error = 0;
 }
+
+#if AAI05_DISTANCE_RUN
+static void test_distance_run_has_fixed_deadline(void)
+{
+    motion_status_t status;
+    /* The 32-bit hardware clock wraps during this run. */
+    const uint32_t start_ms = UINT32_MAX / 1000U - 500U;
+    test_now = start_ms - 100U;
+    assert(motion_runtime_init() == E_OK);
+    test_owner_step(start_ms - 100U, BUTTONS_RELEASED, true, false, &status);
+    test_owner_step(start_ms - 60U, BUTTONS_RELEASED, true, false, &status);
+    test_owner_step(start_ms - 40U, 1U << 21U, true, false, &status);
+    assert(applied_lease == 0U);
+    test_owner_step(start_ms, 1U << 21U, true, false, &status);
+    assert(applied_left == -25 && applied_right == 25 && applied_lease == 100U);
+
+    for (uint32_t elapsed_ms = 10U; elapsed_ms < 2000U; elapsed_ms += 10U)
+    {
+        uint32_t remaining_ms = 2000U - elapsed_ms;
+        test_owner_step(start_ms + elapsed_ms, BUTTONS_RELEASED, true, true, &status);
+        assert(status.phase == MOTION_RUNNING);
+        assert(applied_lease == (remaining_ms < 100U ? remaining_ms : 100U));
+    }
+    test_owner_step(start_ms + 2000U, BUTTONS_RELEASED, true, true, &status);
+    assert(status.phase == MOTION_STOPPED);
+    assert(status.reason == MOTION_REASON_EXPIRED && applied_lease == 0U);
+    test_owner_step(start_ms + 2020U, 1U << 21U, true, false, &status);
+    test_owner_step(start_ms + 2060U, 1U << 21U, true, false, &status);
+    assert(status.phase == MOTION_STOPPED && applied_lease == 0U);
+}
+#endif
 
 static void *test_concurrent_producer(void *p_unused)
 {
@@ -347,6 +401,9 @@ int main(void)
     test_chassis_submission_uses_existing_guards();
     test_chassis_wrapped_expiry();
     test_button_and_driver_failure();
+#if AAI05_DISTANCE_RUN
+    test_distance_run_has_fixed_deadline();
+#endif
     test_concurrent_stop_and_commands();
     test_newer_submission_precedes_old_owner_sample();
 #if AAI05_REMOTE_APP

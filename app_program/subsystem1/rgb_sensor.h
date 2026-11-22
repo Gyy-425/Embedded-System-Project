@@ -14,8 +14,9 @@
 #define RGB_SATURATION_COUNT 21504U
 #define RGB_FRESH_MS 200U
 #define RGB_RETRY_MS 1000U
-#define RGB_OSCILLATOR_WAIT_MS 13U /* 3ms minimum + 10ms clock quantum margin. */
-#define RGB_CONVERSION_WAIT_MS 67U /* ceil(22 * 2.56ms) + 10ms clock margin. */
+#define RGB_CLOCK_QUANTUM_MS 10U /* Maximum tick quantum of now_ms. */
+#define RGB_OSCILLATOR_WAIT_MS (3U + RGB_CLOCK_QUANTUM_MS)
+#define RGB_CONVERSION_WAIT_MS (57U + RGB_CLOCK_QUANTUM_MS) /* ceil(22 * 2.56ms). */
 
 #define RGB_OK 0U
 #define RGB_STARTING 1U
@@ -41,6 +42,8 @@ typedef struct
 typedef struct
 {
     uint32_t sampled_ms;
+    uint32_t window_start_ms; /* Conservative lower bound, before AEN. */
+    uint32_t window_end_ms;   /* Conservative upper bound, including tick quantum. */
     uint32_t sequence; /* Modulo 2^32; has_sample is independent of sequence. */
     uint32_t errors;   /* Saturating, counts failed acquisition/configuration. */
     uint16_t clear;
@@ -59,6 +62,7 @@ typedef struct
 {
     rgb_snapshot_t latest;
     uint32_t phase_started_ms;
+    uint32_t conversion_window_start_ms;
     uint8_t phase;
 } rgb_sensor_t;
 

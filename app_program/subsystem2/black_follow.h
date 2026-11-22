@@ -20,6 +20,8 @@
 #define FOLLOW_CORNER_NOT_SEEN 9U
 #define FOLLOW_CORNER_TIMEOUT 10U
 #define FOLLOW_LEASE_REFRESH 11U /* Diagnostic label for the command TTL. */
+#define FOLLOW_REMOTE_STOP 12U
+#define FOLLOW_REMOTE_TIMEOUT 13U
 #define FOLLOW_CORNER_SEEK 0U
 #define FOLLOW_CORNER_TURN 1U
 #define FOLLOW_CORNER_EXIT 2U
@@ -108,6 +110,10 @@ typedef struct
     bool hardware_ready;
     bool start_pressed;
     bool stop_pressed;
+#if AAI05_FOLLOW_MQTT
+    bool remote_start;
+    bool straight_mode;
+#endif
 } black_follow_input_t;
 
 #if FOLLOW_STOP_TRACE
@@ -242,6 +248,9 @@ typedef struct
 {
     black_follow_status_t status;
     uint32_t run_started_ms;
+#if AAI05_FOLLOW_MQTT
+    bool straight_mode;
+#endif
     uint32_t button_changed_ms;
     uint32_t corner_stage_started_ms;
     uint32_t corner_ir_since_ms;

@@ -147,6 +147,8 @@ int main(void)
     assert(f.registers[0] == 1U); /* Stop the cycle before publishing it. */
     assert(f.commands[f.calls] == 0xB4U);
     uint32_t sampled = d.latest.sampled_ms;
+    assert(d.latest.window_start_ms == f.aen_ms - 1U);
+    assert(d.latest.window_end_ms == f.pon_ms + RGB_CLOCK_QUANTUM_MS);
     assert(rgb_sensor_snapshot(&d, sampled + RGB_FRESH_MS, &s) && s.valid);
     assert(rgb_sensor_snapshot(&d, sampled + RGB_FRESH_MS + 1U, &s) && !s.valid);
     rgb_sensor_step(&d, &io); /* Arm a NEW integration. */
@@ -173,12 +175,14 @@ int main(void)
         memcpy(&f.registers[0x14], bytes, 8U);
         sample(&f, &d);
         uint32_t stamp = d.latest.sampled_ms;
+        uint32_t start = d.latest.window_start_ms, end = d.latest.window_end_ms;
         rgb_sensor_step(&d, &io);
         f.fail_call = f.calls + offset;
         f.failure = RGB_IO_ERROR;
         sample(&f, &d);
         assert(!d.latest.valid && !d.latest.ready && d.latest.errors == 1U);
         assert(d.latest.sequence == 1U && d.latest.sampled_ms == stamp);
+        assert(d.latest.window_start_ms == start && d.latest.window_end_ms == end);
         assert(d.latest.clear == 0x1234U && d.latest.status == RGB_IO_ERROR);
         calls = f.calls;
         f.now = d.phase_started_ms + RGB_RETRY_MS - 1U;
@@ -260,6 +264,7 @@ int main(void)
     f.now = 90U;
     rgb_sensor_step(&d, &io);
     assert(d.latest.has_sample);
+    assert(d.latest.window_start_ms == 20U && d.latest.window_end_ms == 100U);
     rgb_sensor_step(&d, NULL);
     assert(d.latest.status == RGB_BAD_CONFIG && !d.latest.valid);
     puts("RGB core: register/timing/data/fault/retry/wrap checks PASS");

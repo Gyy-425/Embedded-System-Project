@@ -116,7 +116,16 @@ drive_result_t drive_control_receive(drive_control_t *p_control,
     {
         return DRIVE_STALE_GRANT;
     }
+#if AAI05_FOLLOW_MQTT
+    bool is_start = (p_command->opcode == DRIVE_OP_FOLLOW) ||
+                    (p_command->opcode == DRIVE_OP_STRAIGHT);
+    if (!is_start && p_command->opcode != DRIVE_OP_KEEPALIVE)
+    {
+        return DRIVE_BAD_VALUE;
+    }
+#else
     bool is_start = p_command->opcode == DRIVE_OP_START;
+#endif
     bool is_keep = p_command->opcode == DRIVE_OP_KEEPALIVE;
     if ((is_keep && (p_control->phase != DRIVE_RUNNING)) ||
         (is_start && (p_control->phase != DRIVE_IDLE) &&
@@ -133,6 +142,9 @@ drive_result_t drive_control_receive(drive_control_t *p_control,
         p_control->is_arm_queued = false;
         p_control->renewed_ms = now_ms;
         p_action->kind = DRIVE_ACTION_ARM;
+#if AAI05_FOLLOW_MQTT
+        p_action->straight = (p_command->opcode == DRIVE_OP_STRAIGHT);
+#endif
     }
     else if (is_keep)
     {

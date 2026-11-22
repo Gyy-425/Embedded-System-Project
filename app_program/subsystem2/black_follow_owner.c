@@ -4,6 +4,9 @@
 #include "../subsystem1/rgb_diag.h"
 #include "../subsystem1/rgb_classifier.h"
 #include "../../config/follow_config.h"
+#if AAI05_FOLLOW_MQTT
+#include "follow_remote.h"
+#endif
 
 static void owner_stop(black_follow_owner_t *p_owner, uint8_t reason)
 {
@@ -350,7 +353,18 @@ void black_follow_owner_step(black_follow_owner_t *p_owner, uint32_t buttons,
     {
         ++p_owner->rgb_busy;
     }
+#if AAI05_FOLLOW_MQTT
+    follow_remote_permission_t remote = follow_remote_take();
+#endif
     uint32_t now = app_now_ms(); /* After copies, never before newer samples. */
+#if AAI05_FOLLOW_MQTT
+    bool lease_valid = follow_remote_remaining(remote, now) != 0U;
+    if (!lease_valid && p_owner->policy.status.phase == FOLLOW_RUNNING &&
+        (buttons & (1U << 21U)) != 0U)
+    {
+        owner_stop(p_owner, remote.armed ? FOLLOW_REMOTE_TIMEOUT : FOLLOW_REMOTE_STOP);
+    }
+#endif
     rgb_classification_t colour = rgb_classify(rgb_default_calibration(),
         &p_owner->rgb, now, RGB_GAIN, RGB_INTEGRATION_US);
     uint8_t reason = rgb_classification_reason(colour);
@@ -578,7 +592,12 @@ void black_follow_owner_step(black_follow_owner_t *p_owner, uint32_t buttons,
         .yellow_lead_cue=yellow_cue && (colour == RGB_CLASS_YELLOW),
 #endif
         .hardware_ready=hardware_ready,
+#if AAI05_FOLLOW_MQTT
+        .remote_start=lease_valid && remote.start,
+        .straight_mode=remote.straight,
+#else
         .start_pressed=(buttons & (1U << 20U)) == 0U,
+#endif
         .stop_pressed=(buttons & (1U << 21U)) == 0U
     };
 #if FOLLOW_MOTOR_HALF_PCT
@@ -749,6 +768,11 @@ void black_follow_owner_step(black_follow_owner_t *p_owner, uint32_t buttons,
 #endif
                 if (remaining > output.lease_ms)
                 {remaining = output.lease_ms; deadline_reason = FOLLOW_DRIVER;}
+#if AAI05_FOLLOW_MQTT
+                uint32_t remote_remaining = follow_remote_remaining(remote, apply_now);
+                if (remaining > remote_remaining)
+                {remaining = remote_remaining; deadline_reason = FOLLOW_REMOTE_TIMEOUT;}
+#endif
 #if FOLLOW_RED_SECOND_PIVOT
                 bool timed_red_pivot = request.pivot;
 #if FOLLOW_RED_OUTSIDE_RECOVERY
@@ -893,5 +917,17 @@ void black_follow_owner_step(black_follow_owner_t *p_owner, uint32_t buttons,
         .right_pct=output.right_pct, .lease_ms=output.lease_ms,
         .phase=p_owner->motion.phase, .reason=p_owner->motion.reason,
         .has_sequence=p_owner->motion.has_sequence};
+#if AAI05_FOLLOW_MQTT
+    p_motion->epoch = remote.epoch;
+    if (remote.armed && !remote.fed)
+    {
+        /* Acknowledge readiness before the network owner issues the first feed. */
+        p_motion->phase = p_follow->ready ? MOTION_READY : MOTION_FAULT;
+    }
+    else if (p_follow->phase != FOLLOW_RUNNING)
+    {
+        p_motion->phase = MOTION_STOPPED;
+    }
+#endif
 }
 #endif

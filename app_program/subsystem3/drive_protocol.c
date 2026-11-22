@@ -53,7 +53,7 @@ drive_result_t drive_protocol_decode(const uint8_t *p_data, uint16_t length,
         .target = (uint8_t)((control >> 14U) & 7U),
         .left_pct = drive_protocol_signed_seven(control >> 7U),
         .right_pct = drive_protocol_signed_seven(control)};
-    if (((control >> 20U) != 2U) || (command.opcode > DRIVE_OP_STOP))
+    if (((control >> 20U) != 2U) || (command.opcode > DRIVE_OP_MAX))
     {
         return DRIVE_BAD_FRAME;
     }
@@ -82,7 +82,7 @@ uint16_t drive_protocol_encode(uint8_t *p_output,
                                 bool is_telemetry)
 {
     if ((p_output == NULL) || (p_status == NULL) ||
-        (p_status->opcode > DRIVE_OP_STOP) ||
+        (p_status->opcode > DRIVE_OP_MAX) ||
         (p_status->result > DRIVE_BUSY) || (p_status->target > DRIVE_UNKNOWN) ||
         (p_status->phase > DRIVE_FAULT) || (p_status->motion_phase > 3U) ||
         (p_status->motion_reason > 4U) || (p_status->flags > 0x1FU) ||

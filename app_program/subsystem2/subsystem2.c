@@ -3,6 +3,9 @@
 #if AAI05_FOLLOW_APP
 #include "black_follow_owner.h"
 #include "follow_snapshot.h"
+#if AAI05_FOLLOW_MQTT
+#include "../subsystem1/rgb_classifier.h"
+#endif
 #else
 
 static ID snapshot_mutex;
@@ -29,6 +32,10 @@ static void motion_task(INT start_code, void *extra)
     encoder_capture_t capture = {.pio_block = UINT8_MAX};
 #if AAI05_FOLLOW_APP
     black_follow_owner_t follower;
+#if AAI05_FOLLOW_MQTT
+    route_motion_sample_t last_route_sample = {0};
+    bool was_following = false;
+#endif
 #elif !AAI05_MOTION_APP
     motor_test_t test;
 #endif
@@ -47,19 +54,28 @@ static void motion_task(INT start_code, void *extra)
     motor_test_init(&test, app_now_ms());
 #endif
     for (;;) {
+#if AAI05_FOLLOW_MQTT
+        uint32_t capture_started_ms = app_now_ms();
+#endif
         if (next.capture_ready)
         {
             encoder_capture_read(&capture);
             next.capture_error = capture.error;
         }
+#if AAI05_FOLLOW_MQTT
+        uint32_t capture_finished_ms = app_now_ms();
+#endif
         motor_pulse_read(&motor);
         uint32_t now = app_now_ms();
         UW buttons = in_w(GPIO_IN);
-#if AAI05_REMOTE_APP || AAI05_FOLLOW_APP
+#if AAI05_REMOTE_APP || AAI05_FOLLOW_APP || AAI05_DISTANCE_RUN
         bool healthy = next.capture_ready && (next.capture_error == E_OK) && motor.ready &&
             ((motor.error == E_OK) || (motor.error == E_TMOUT)) &&
             (buttons_error == E_OK) && (motor_error == E_OK) &&
             !capture.left.count_saturated && !capture.right.count_saturated;
+#if AAI05_DISTANCE_RUN || AAI05_FOLLOW_MQTT
+        healthy = healthy && (capture.pio_invalid_flags == 0U);
+#endif
 #else
         bool healthy = motor_test_inputs_ready(&capture, &motor,
                             next.capture_ready, buttons_error, motor_error);
@@ -67,6 +83,44 @@ static void motion_task(INT start_code, void *extra)
 #if AAI05_FOLLOW_APP
         black_follow_owner_step(&follower, (uint32_t)buttons, healthy, &motor,
                                   &next.follow, &next.motion);
+#if AAI05_FOLLOW_MQTT
+        bool following = next.follow.phase == FOLLOW_RUNNING;
+        bool started = following && !was_following;
+        if (started)
+        {
+            next.route_epoch = next.motion.epoch;
+        }
+        bool valid = next.capture_ready && capture.error == E_OK &&
+            !capture.left.count_saturated && !capture.right.count_saturated &&
+            capture.pio_invalid_flags == 0U;
+        const route_motion_sample_t *p_route_sample = NULL;
+        if (!valid || capture_started_ms == capture_finished_ms)
+        {
+            last_route_sample = (route_motion_sample_t){
+                .sampled_ms = capture_started_ms, .epoch = 1U,
+                .left_count = capture.left.count, .right_count = capture.right.count,
+                .valid = valid
+            };
+            p_route_sample = &last_route_sample;
+        }
+        else if (started && last_route_sample.valid &&
+                 capture_started_ms - last_route_sample.sampled_ms <= 60U)
+        {
+            /* Last coherent, stationary reading when a tick spanned this capture. */
+            p_route_sample = &last_route_sample;
+        }
+        rgb_classification_t classified = rgb_classify(rgb_default_calibration(),
+            &follower.rgb, app_now_ms(), RGB_GAIN, RGB_INTEGRATION_US);
+        uint8_t colour = rgb_classification_reason(classified) == RGB_CLASS_MATCH ?
+                         rgb_classification_class(classified) : RGB_CLASS_UNKNOWN;
+        follow_route_step(following, next.route_epoch, p_route_sample,
+                          &follower.rgb, colour, &next.route);
+        if (next.route.status == UINT8_MAX)
+        {
+            next.route.colour = colour;
+        }
+        was_following = following;
+#endif
 #elif AAI05_MOTION_APP
         motion_runtime_step(now, (uint32_t)buttons, healthy, motor.active,
                               &next.motion);

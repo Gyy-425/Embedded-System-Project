@@ -77,7 +77,9 @@ EXPORT INT usermain(void)
 #endif
 #if AAI05_FOLLOW_APP
 #if FOLLOW_CLIPPED_LOOP
-#if FOLLOW_TWO_TURN
+#if AAI05_FOLLOW_MQTT
+    tm_printf((UB *)"\n=== AAI05 MQTT FOLLOW v1: v0.87 steering, %ums, join_max=%ums ===\n",
+#elif FOLLOW_TWO_TURN
     tm_printf((UB *)"\n=== AAI05 " FOLLOW_TRACK_NAME " v0.28: LOCAL %ums, join_max=%ums ===\n",
 #elif FOLLOW_RED_SPIN_HOLD
     tm_printf((UB *)"\n=== AAI05 " FOLLOW_TRACK_NAME " v0.87: LOCAL %ums, join_max=%ums ===\n",
@@ -229,8 +231,13 @@ EXPORT INT usermain(void)
 #else
     tm_printf((UB *)"\n=== AAI05 BLACK FOLLOW v0.13.3: LOCAL 1000ms EXERCISE ===\n");
 #endif
+#if AAI05_FOLLOW_MQTT
+    tm_printf((UB *)"Output inhibit=%u; MQTT FOLLOW starts; GP21 STOP.\n",
+                      (UINT)MOTOR_TEST_PROBE);
+#else
     tm_printf((UB *)"Output inhibit=%u; no network commands. "
                        "GP20 fresh press starts; GP21 STOP.\n", (UINT)MOTOR_TEST_PROBE);
+#endif
     tm_printf((UB *)"Wheel duty limit=%u" FOLLOW_DUTY_DISPLAY_SUFFIX "%%; nominal steering bounded%u%%; "
                        "fresh IR and RGB " FOLLOW_TARGET_NAME " required. No automatic search.\n",
                        (UINT)FOLLOW_DUTY_LIMIT_PCT, (UINT)FOLLOW_TURN_PEAK_PCT);
@@ -240,6 +247,8 @@ EXPORT INT usermain(void)
     tm_printf((UB *)"\n=== AAI05 MQTT MOTION v0.9: PIO ENCODER CAPTURE ===\n");
 #elif AAI05_REMOTE_APP
     tm_printf((UB *)"\n=== AAI05 MQTT MOTION v0.8: EXPLICIT REMOTE START ===\n");
+#elif AAI05_DISTANCE_RUN
+    tm_printf((UB *)"\n=== AAI05 DISTANCE RUN R2: 2S STRAIGHT D25 ===\n");
 #elif AAI05_MOTION_APP
     tm_printf((UB *)"\n=== AAI05 MOTION v0.7: LOCAL OPEN-LOOP EXERCISE ===\n");
 #elif AAI05_COMMS_APP
@@ -261,7 +270,9 @@ EXPORT INT usermain(void)
     tm_printf((UB *)"Encoder IRQ capture: core 0; counts are edges, not distance.\n");
 #endif
 #if TM_NET_LWIP
-#if AAI05_REMOTE_APP
+#if AAI05_FOLLOW_MQTT
+    tm_printf((UB *)"MQTT FOLLOW/STRAIGHT/KEEPALIVE/STOP and encoder distance; 340 mm calibration.\n");
+#elif AAI05_REMOTE_APP
     tm_printf((UB *)"v2 MQTT START/KEEPALIVE/STOP;750 ms remote lease, "
                        "100 ms internal lease. No auto-start on reconnect.\n");
     tm_printf((UB *)"Raw IR/target storage; detected colours remain unknown.\n");
@@ -279,7 +290,9 @@ EXPORT INT usermain(void)
     tm_printf((UB *)"Motor image: USB diagnostics; MQTT disabled in this build.\n");
 #endif
 #endif
-#if AAI05_FOLLOW_APP
+#if AAI05_FOLLOW_MQTT
+    tm_printf((UB *)"No drive on boot or reconnect. Fresh MQTT FOLLOW is required.\n");
+#elif AAI05_FOLLOW_APP
     tm_printf((UB *)"No drive on boot. Each run stops at nominal1000ms, "
                        "sensor loss or GP21; fresh release/press needed to restart.\n");
 #elif AAI05_RGB_DIAG
@@ -290,6 +303,11 @@ EXPORT INT usermain(void)
                        "START can rearm after GP21 is released.\n");
     tm_printf((UB *)"Open-loop electrical duties only; no calibrated speed "
                        "or physical-forward convention.\n");
+#elif AAI05_DISTANCE_RUN
+    tm_printf((UB *)"GP20: one 2 s run at 25%% forward duty per wheel. "
+                       "GP21 STOP; reset to run again.\n");
+    tm_printf((UB *)"Record ENC before GP20 and after the wheels stop. "
+                       "PIO_BAD must stay 0/0.\n");
 #elif AAI05_MOTION_APP
     tm_printf((UB *)"GP20: one fresh press renews left D1/50%% commands "
                        "for 2 seconds; right wheel coasts.\n");

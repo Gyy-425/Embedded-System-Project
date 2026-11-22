@@ -1,6 +1,10 @@
 #include "drive_service.h"
 #include "../subsystem2/motion_runtime.h"
 #include "colour_service.h"
+#if AAI05_FOLLOW_MQTT
+#include "comm_protocol.h"
+#include "../subsystem2/follow_remote.h"
+#endif
 
 #if AAI05_REMOTE_APP
 static drive_control_t g_drive_service_control;
@@ -44,7 +48,9 @@ void mqtt_app_link_changed(bool is_ready)
     }
     drive_control_reset(&g_drive_service_control, session, grant, now_ms,
                           is_ready);
+#if !AAI05_FOLLOW_MQTT
     colour_service_link(session);
+#endif
     g_drive_service_telemetry_sequence = 0U;
     g_drive_service_published_ms = now_ms - DRIVE_TELEMETRY_MS;
     g_drive_service_tx_drop = false;
@@ -56,7 +62,11 @@ static drive_result_t drive_service_apply(const drive_action_t *p_action,
     if (p_action->kind == DRIVE_ACTION_ARM)
     {
         uint16_t epoch = 0U;
+#if AAI05_FOLLOW_MQTT
+        motion_result_t result = subsystem2_follow_arm(&epoch, p_action->straight);
+#else
         motion_result_t result = subsystem2_motion_arm(&epoch);
+#endif
         drive_result_t remote_result = drive_control_arm_result(
             &g_drive_service_control, result, epoch, now_ms);
         if (remote_result != DRIVE_OK)
@@ -118,6 +128,48 @@ static void drive_service_step(uint32_t now_ms, const drive_input_t *p_input)
     (void)drive_service_apply(&action, now_ms);
 }
 
+#if AAI05_FOLLOW_MQTT
+static void route_write_word(uint8_t *p_output, uint32_t value)
+{
+    p_output[0] = (uint8_t)(value >> 24U);
+    p_output[1] = (uint8_t)(value >> 16U);
+    p_output[2] = (uint8_t)(value >> 8U);
+    p_output[3] = (uint8_t)value;
+}
+
+static void drive_publish_route(const drive_input_t *p_input)
+{
+    const follow_route_report_t *p_route = &p_input->route;
+    uint8_t payload[22U + 6U * ROUTE_QUEUE_SIZE];
+    if (p_route->count > ROUTE_QUEUE_SIZE)
+    {
+        return;
+    }
+    payload[0] = 0xD0U;
+    payload[1] = p_input->follow_phase;
+    payload[2] = p_input->follow_reason;
+    payload[3] = p_route->colour;
+    payload[4] = p_route->status;
+    payload[5] = p_route->finished ? 1U : 0U;
+    route_write_word(&payload[6], g_drive_service_control.session);
+    payload[10] = (uint8_t)(p_input->route_epoch >> 8U);
+    payload[11] = (uint8_t)p_input->route_epoch;
+    route_write_word(&payload[12], p_route->path_um);
+    route_write_word(&payload[16], p_route->unassigned_um);
+    payload[20] = p_route->count;
+    uint16_t offset = 21U;
+    for (uint8_t i = 0U; i < p_route->count; ++i)
+    {
+        payload[offset] = p_route->sections[i].colour;
+        payload[offset + 1U] = p_route->sections[i].flags;
+        route_write_word(&payload[offset + 2U], p_route->sections[i].length_um);
+        offset += 6U;
+    }
+    payload[offset] = comm_protocol_crc(payload, offset);
+    (void)drive_io_publish(DRIVE_TOPIC_ROUTE, payload, (uint16_t)(offset + 1U), false);
+}
+#endif
+
 void mqtt_drive_receive(const uint8_t *p_data, uint16_t length,
                          bool is_retained)
 {
@@ -132,8 +184,15 @@ void mqtt_drive_receive(const uint8_t *p_data, uint16_t length,
     drive_io_snapshot(&input, now_ms);
     if (result == DRIVE_OK)
     {
+#if AAI05_FOLLOW_MQTT
+        if (((command.opcode == DRIVE_OP_FOLLOW) || (command.opcode == DRIVE_OP_STRAIGHT)) &&
+            ((g_drive_service_control.phase == DRIVE_IDLE) ||
+             (g_drive_service_control.phase == DRIVE_STOPPED)) &&
+            (!input.is_wifi_up || !input.can_follow))
+#else
         if ((command.opcode == DRIVE_OP_START) &&
             (!input.is_wifi_up || !input.motion.is_available))
+#endif
         {
             result = DRIVE_NOT_READY;
         }
@@ -168,7 +227,9 @@ void mqtt_app_poll(void)
     drive_io_snapshot(&input, now_ms);
     drive_service_step(now_ms, &input);
     /* Optional reporting follows motion STOP/lease work on the same owner. */
+#if !AAI05_FOLLOW_MQTT
     colour_service_poll();
+#endif
     if (!g_drive_service_control.is_ready ||
         ((uint32_t)(now_ms - g_drive_service_published_ms) <
          DRIVE_TELEMETRY_MS))
@@ -184,6 +245,9 @@ void mqtt_app_poll(void)
     if (!g_drive_service_tx_drop)
     {
         ++g_drive_service_telemetry_sequence;
+#if AAI05_FOLLOW_MQTT
+        drive_publish_route(&input);
+#endif
     }
 }
 #endif

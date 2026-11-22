@@ -1,0 +1,292 @@
+from dataclasses import replace
+from io import BytesIO, StringIO
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
+import sys
+import unittest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools/mqtt"))
+from drive_cli import FollowMenu, MenuCommands, run_follow_menu
+from drive_codec import (DriveAck, OP_FOLLOW, OP_KEEPALIVE, OP_STATUS, OP_STOP,
+                         OP_STRAIGHT, decode_drive_packet, encode_drive_command,
+                         format_drive_packet)
+from robot_cli import Bridge
+from robot_codec import crc8
+from route_codec import decode_route_packet, format_route_report
+from testing.host.test_drive_cli import Clock, Peer, operations
+from testing.host.test_drive_codec import ACK
+
+
+def with_crc(body):
+    return body + bytes([crc8(body)])
+
+
+ROUTE = with_crc(bytes.fromhex(
+    "d0020c050c010000007b00010007a120000186a002"
+    "0403000493e00504000186a0"))
+
+
+class FollowPeer(Peer):
+    def __init__(self, clock, *, lose_follow=False, change_session=False):
+        super().__init__(clock, change_session=change_session)
+        self.route = decode_route_packet(ROUTE)
+        self.lose_follow = lose_follow
+
+    def latest_route(self):
+        return None if self.route is None else (self.route, self.clock())
+
+    def publish(self, payload, timeout):
+        opcode = (payload[0] >> 1) & 7
+        if opcode not in (OP_FOLLOW, OP_STRAIGHT):
+            return super().publish(payload, timeout)
+        self.sent.append(payload)
+        sequence = int.from_bytes(payload[3:5], "big")
+        self.status = replace(self.status, opcode=opcode, sequence=sequence,
+                              mutation_sequence=sequence, remote_phase=2,
+                              motion_phase=1, reason=0, active=True,
+                              left_pct=30, right_pct=30, lease_ms=750)
+        if not self.lose_follow:
+            self.queue.append(self.status)
+
+
+class FollowCliChecks(unittest.TestCase):
+    def test_route_report_uses_wire_order_distances_and_stop_reason(self):
+        route = decode_route_packet(ROUTE)
+        self.assertEqual((route.session, route.epoch, route.colour), (123, 1, 5))
+        self.assertEqual([item.colour for item in route.sections], [4, 5])
+        report = format_route_report(route)
+        self.assertIn("0.500 m", report)
+        self.assertIn("MQTT_STOP", report)
+        self.assertIn("red", report)
+        self.assertIn("blue", report)
+        self.assertLess(report.index("red"), report.index("blue"))
+        self.assertIn("partial start", report)
+        self.assertIn("uncertain", report)
+        self.assertIn("0.100 m unassigned", report)
+
+    def test_route_rejects_bad_crc_and_wrong_count(self):
+        bad_count = bytearray(ROUTE[:-1])
+        bad_count[20] = 1
+        for payload in (ROUTE[:-1], ROUTE[:-1] + bytes([ROUTE[-1] ^ 1]),
+                        with_crc(bytes(bad_count))):
+            with self.subTest(payload=payload), self.assertRaises(ValueError):
+                decode_route_packet(payload)
+
+    def test_follow_ack_decodes_without_changing_existing_ack(self):
+        follow = with_crc(bytes([0xAC]) + ACK[1:-1])
+        packet = decode_drive_packet(follow)
+        self.assertIs(type(packet), DriveAck)
+        self.assertEqual(packet.opcode, OP_FOLLOW)
+        self.assertEqual(decode_drive_packet(ACK).opcode, 3)
+
+    def test_straight_command_and_ack_use_opcode_seven(self):
+        frame = encode_drive_command(OP_STRAIGHT, sequence=42, session=123, grant=100)
+        self.assertEqual(frame, with_crc(bytes.fromhex("2fc000002a0000007b00000064")))
+        for invalid in ({"left": 1}, {"right": -1}, {"target": 4}):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                encode_drive_command(OP_STRAIGHT, session=123, grant=100, **invalid)
+        straight = with_crc(bytes([0xAE]) + ACK[1:-1])
+        packet = decode_drive_packet(straight)
+        self.assertEqual(packet.opcode, OP_STRAIGHT)
+        self.assertIn("ACK STRAIGHT", format_drive_packet(packet))
+
+    def test_route_traffic_is_cached_without_entering_the_drive_queue(self):
+        args = SimpleNamespace(device="test", host="offline", port=1883,
+                               tools_dir=None)
+        with patch("robot_cli.executable", side_effect=lambda name, _: name):
+            bridge = Bridge(args, version=2, decoder=decode_drive_packet,
+                            ack_type=DriveAck, route_decoder=decode_route_packet)
+        bridge._read(StringIO(f"{bridge.base}/route {ROUTE.hex()}\n"
+                              f"{bridge.base}/ack {ACK.hex()}\n"), False)
+        self.assertEqual(bridge.latest_route()[0].session, 123)
+        self.assertEqual(bridge.receive(0).session, 0x01020304)
+        self.assertTrue(bridge.messages.empty())
+
+    def menu(self, peer, clock, commands=None):
+        return FollowMenu(peer, 1.0, commands or MenuCommands(),
+                          clock=clock, output=lambda _: None)
+
+    def test_explicit_follow_uses_zero_duty_and_renews_then_fresh_stop(self):
+        clock = Clock()
+        peer = FollowPeer(clock)
+        menu = self.menu(peer, clock)
+        menu.step()
+        self.assertEqual(peer.sent, [])
+        menu.start()
+        follow = peer.sent[operations(peer).index(OP_FOLLOW)]
+        self.assertEqual(int.from_bytes(follow[:3], "big") & 0x3fff, 0)
+        self.assertEqual((int.from_bytes(follow[:3], "big") >> 14) & 7, 7)
+        for _ in range(10):
+            menu.step()
+        self.assertIn(OP_KEEPALIVE, operations(peer))
+        self.assertTrue(menu.stop())
+        stop_index = operations(peer).index(OP_STOP)
+        self.assertIn(OP_STATUS, operations(peer)[stop_index + 1:])
+        count = len(peer.sent)
+        for _ in range(10):
+            menu.step()
+        self.assertEqual(len(peer.sent), count)
+
+    def test_line_key_starts_straight_measurement_and_quits_with_verified_stop(self):
+        clock = Clock()
+        commands = MenuCommands()
+        output = []
+
+        class LinePeer(FollowPeer):
+            def publish(self, payload, timeout):
+                super().publish(payload, timeout)
+                if (payload[0] >> 1) & 7 == OP_KEEPALIVE:
+                    commands.add("q")
+
+            def receive(self, timeout):
+                if clock() > 3.0 and not self.stopping:
+                    commands.add("q")
+                return super().receive(timeout)
+
+        peer = LinePeer(clock)
+        commands.add("l")
+        self.assertEqual(run_follow_menu(peer, 1.0, commands=commands, clock=clock,
+                                         output=output.append), 0)
+        self.assertEqual(operations(peer),
+                         [OP_STATUS, OP_STRAIGHT, OP_STATUS, OP_KEEPALIVE, OP_STOP, OP_STATUS])
+        self.assertIn("l Straight track", output[0])
+        self.assertTrue(any(line.startswith("Straight track started") for line in output))
+
+    def test_straight_stale_grant_is_retried_with_same_sequence(self):
+        clock = Clock()
+
+        class StraightGrantPeer(FollowPeer):
+            rejected = False
+
+            def publish(self, payload, timeout):
+                if (payload[0] >> 1) & 7 == OP_STRAIGHT and not self.rejected:
+                    self.rejected = True
+                    self.sent.append(payload)
+                    self.status = replace(self.status, grant=101)
+                    self.queue.append(replace(
+                        self.status, opcode=OP_STRAIGHT, result=8,
+                        sequence=int.from_bytes(payload[3:5], "big")))
+                else:
+                    super().publish(payload, timeout)
+
+        peer = StraightGrantPeer(clock)
+        menu = self.menu(peer, clock)
+        menu.start(OP_STRAIGHT)
+        straight = [frame for frame, opcode in zip(peer.sent, operations(peer))
+                    if opcode == OP_STRAIGHT]
+        self.assertEqual(len(straight), 2)
+        self.assertEqual(straight[0][:9], straight[1][:9])
+        self.assertEqual([int.from_bytes(frame[9:13], "big") for frame in straight],
+                         [100, 101])
+        self.assertTrue(menu.stop())
+
+    def test_lost_follow_ack_stops_without_renewing_or_restarting(self):
+        clock = Clock()
+        peer = FollowPeer(clock, lose_follow=True)
+        menu = self.menu(peer, clock)
+        menu.start()
+        self.assertIn(OP_STOP, operations(peer))
+        self.assertNotIn(OP_KEEPALIVE, operations(peer))
+        sent = len(peer.sent)
+        for _ in range(10):
+            menu.step()
+        self.assertEqual(len(peer.sent), sent)
+
+    def test_session_change_suppresses_old_report_and_renewal(self):
+        clock = Clock()
+        peer = FollowPeer(clock, change_session=True)
+        menu = self.menu(peer, clock)
+        menu.start()
+        menu.commands.add("l")
+        menu.commands.add("f")
+        for _ in range(12):
+            menu.step()
+        self.assertEqual(operations(peer).count(OP_FOLLOW), 1)
+        self.assertEqual(operations(peer).count(OP_KEEPALIVE), 1)
+        self.assertIsNone(menu.current_route())
+        self.assertIsNone(menu.commands.take())
+
+    def test_menu_requires_integrated_telemetry_before_sending_follow(self):
+        clock = Clock()
+        peer = FollowPeer(clock)
+        peer.route = None
+        menu = self.menu(peer, clock)
+        menu.start()
+        self.assertEqual(operations(peer), [OP_STATUS])
+
+    def test_fresh_stopped_status_can_confirm_when_stop_ack_is_lost(self):
+        class LostStopAckPeer(FollowPeer):
+            def publish(self, payload, timeout):
+                super().publish(payload, timeout)
+                if (payload[0] >> 1) & 7 == OP_STOP:
+                    self.queue.clear()
+
+        clock = Clock()
+        peer = LostStopAckPeer(clock)
+        menu = self.menu(peer, clock)
+        menu.start()
+        self.assertTrue(menu.stop())
+        self.assertEqual(operations(peer)[-1], OP_STATUS)
+
+    def test_stop_preempts_lost_straight_ack_and_discards_prior_starts(self):
+        clock = Clock()
+        commands = MenuCommands()
+
+        class PreemptedPeer(FollowPeer):
+            def publish(self, payload, timeout):
+                super().publish(payload, timeout)
+                if (payload[0] >> 1) & 7 == OP_STRAIGHT:
+                    commands.add("f")
+                    commands.add("l")
+                    commands.add("s")
+
+        peer = PreemptedPeer(clock, lose_follow=True)
+        menu = self.menu(peer, clock, commands)
+        menu.start(OP_STRAIGHT)
+        self.assertEqual(operations(peer).count(OP_STRAIGHT), 1)
+        self.assertEqual(commands.take(), "s")
+        self.assertIsNone(commands.take())
+        self.assertTrue(menu.stop())
+        self.assertLess(clock(), 0.6)
+        self.assertNotIn(OP_KEEPALIVE, operations(peer))
+
+    def test_quit_sends_stop_and_verifies_fresh_status(self):
+        clock = Clock()
+        peer = FollowPeer(clock)
+        commands = MenuCommands()
+        commands.add("q")
+        run_follow_menu(peer, 1.0, commands=commands, clock=clock,
+                        output=lambda _: None)
+        self.assertIn(OP_STOP, operations(peer))
+        self.assertEqual(operations(peer)[-1], OP_STATUS)
+
+    def test_eof_discards_pending_start_and_requests_quit(self):
+        commands = MenuCommands()
+        with patch("sys.stdin", SimpleNamespace(fileno=lambda: 0)), \
+                patch("builtins.open", return_value=BytesIO(b"f\n")):
+            commands.read_stdin()
+        self.assertEqual(commands.take(), "q")
+        self.assertIsNone(commands.take())
+
+    def test_ctrl_c_stops_and_returns_off_confirmation(self):
+        class InterruptedPeer(FollowPeer):
+            interrupted = False
+
+            def receive(self, timeout):
+                if not self.interrupted:
+                    self.interrupted = True
+                    raise KeyboardInterrupt
+                return super().receive(timeout)
+
+        clock = Clock()
+        peer = InterruptedPeer(clock)
+        result = run_follow_menu(peer, 1.0, commands=MenuCommands(), clock=clock,
+                                 output=lambda _: None)
+        self.assertEqual(result, 0)
+        self.assertIn(OP_STOP, operations(peer))
+        self.assertEqual(operations(peer)[-1], OP_STATUS)
+
+
+if __name__ == "__main__":
+    unittest.main()

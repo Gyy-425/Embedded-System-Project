@@ -152,7 +152,11 @@ static void test_local_producer_is_finite_and_requires_release(void)
     assert(!motion_button_update(&button, base + 140U, false, true, &command));
     assert(!motion_button_update(&button, base + 160U, true, true, &command));
     assert(motion_button_update(&button, base + 200U, true, true, &command));
+#if AAI05_DISTANCE_RUN
+    assert(command.left_pct == -25 && command.right_pct == 25);
+#else
     assert(command.left_pct == 50 && command.right_pct == 0);
+#endif
     assert(command.sequence == 1U && command.issued_ms == base + 200U);
     assert(motion_button_update(&button, base + 2199U, false, true, &command));
     assert(command.sequence == 2U && command.issued_ms == base + 2199U);

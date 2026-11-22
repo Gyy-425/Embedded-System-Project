@@ -175,7 +175,8 @@ static int32_t wifi_try_join(void)
 {
     int32_t err;
 
-    tm_printf((UB*)"wifi: joining \"%s\" ...\n", WIFI_SSID);
+    tm_printf((UB*)"wifi: joining \"%s\" (auth=0x%x) ...\n",
+              WIFI_SSID, (unsigned)WIFI_AUTH_MODE);
 
     err = cyw43_wifi_join(&cyw43_state,
                           strlen(WIFI_SSID), (const uint8_t*)WIFI_SSID,

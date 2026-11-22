@@ -51,6 +51,11 @@ bool motion_button_update(motion_button_t *p_button, uint32_t now_ms,
         return false;
     }
     ++p_button->sequence;
+#if AAI05_DISTANCE_RUN
+    /* Same physical-forward motor polarity as motion_chassis_convert. */
+    *p_command = (motion_command_t){now_ms, p_button->sequence, -25, 25};
+#else
     *p_command = (motion_command_t){now_ms, p_button->sequence, 50, 0};
+#endif
     return true;
 }

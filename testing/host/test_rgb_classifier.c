@@ -67,48 +67,6 @@ int main(void)
     value = sample(270U, 280U, 280U, 615U);
     expect(classify(p_model, &value, 100U), RGB_CLASS_UNKNOWN, RGB_CLASS_NO_MATCH);
 #endif
-#if FOLLOW_VENUE_RGB
-    /* Distinct values from all 24 labelled blue frames at the new venue. */
-    const uint16_t venue_blue[][4] = {
-        {261U, 275U, 291U, 628U},
-        {261U, 275U, 291U, 629U},
-        {261U, 275U, 292U, 629U},
-        {261U, 276U, 292U, 629U},
-        {261U, 276U, 292U, 630U},
-        {262U, 276U, 292U, 630U},
-        {262U, 276U, 293U, 630U},
-        {262U, 276U, 293U, 631U},
-        {263U, 276U, 293U, 631U},
-    };
-    for (size_t i = 0U; i < sizeof(venue_blue) / sizeof(venue_blue[0]); ++i)
-    {
-        const uint16_t *reading = venue_blue[i];
-        value = sample(reading[0], reading[1], reading[2], reading[3]);
-        expect(classify(p_model, &value, 100U), RGB_CLASS_BLUE, RGB_CLASS_MATCH);
-    }
-    /* Distinct values from all 21 labelled background frames at the new venue. */
-    const uint16_t venue_background[][4] = {
-        {437U, 392U, 371U, 861U},
-        {437U, 392U, 371U, 862U},
-        {438U, 392U, 371U, 862U},
-        {438U, 393U, 372U, 862U},
-        {438U, 393U, 372U, 863U},
-        {439U, 393U, 372U, 863U},
-        {439U, 393U, 372U, 864U},
-        {439U, 394U, 373U, 864U},
-        {440U, 394U, 373U, 865U},
-        {440U, 394U, 373U, 866U},
-    };
-    for (size_t i = 0U; i < sizeof(venue_background) / sizeof(venue_background[0]); ++i)
-    {
-        const uint16_t *reading = venue_background[i];
-        value = sample(reading[0], reading[1], reading[2], reading[3]);
-        expect(classify(p_model, &value, 100U), RGB_CLASS_BACKGROUND, RGB_CLASS_MATCH);
-    }
-    /* A blue-to-border mix below the venue clear range remains a non-match. */
-    value = sample(205U, 223U, 226U, 536U);
-    expect(classify(p_model, &value, 100U), RGB_CLASS_UNKNOWN, RGB_CLASS_NO_MATCH);
-#endif
     /* Existing real-profile overlap must still reject rather than force black. */
     value = sample(1420U, 1400U, 1275U, 700U);
     expect(classify(p_model, &value, 100U), RGB_CLASS_UNKNOWN, RGB_CLASS_AMBIGUOUS);

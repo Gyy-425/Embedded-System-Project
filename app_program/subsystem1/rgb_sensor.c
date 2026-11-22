@@ -127,6 +127,7 @@ void rgb_sensor_step(rgb_sensor_t *p_sensor, const rgb_bus_t *p_bus)
     if ((p_sensor->phase == RGB_PHASE_WARM) ||
         (p_sensor->phase == RGB_PHASE_ARM))
     {
+        p_sensor->conversion_window_start_ms = p_bus->now_ms(p_bus->p_context);
         rgb_status_t result = write_register(p_bus, 0U, 3U);
         if (result != RGB_OK)
         {
@@ -189,6 +190,8 @@ void rgb_sensor_step(rgb_sensor_t *p_sensor, const rgb_bus_t *p_bus)
     p_sensor->latest.status = p_sensor->latest.saturated ? RGB_SATURATED : RGB_OK;
     /* Timestamp the freeze, not a potentially delayed retrieval of old data. */
     p_sensor->latest.sampled_ms = frozen_ms;
+    p_sensor->latest.window_start_ms = p_sensor->conversion_window_start_ms;
+    p_sensor->latest.window_end_ms = frozen_ms + RGB_CLOCK_QUANTUM_MS;
     ++p_sensor->latest.sequence;
     p_sensor->phase = RGB_PHASE_ARM;
 }

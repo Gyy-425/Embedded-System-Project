@@ -19,6 +19,9 @@ typedef struct
 {
     motion_command_t command;
     uint8_t kind;
+#if AAI05_FOLLOW_MQTT
+    bool straight;
+#endif
 } drive_action_t;
 
 typedef struct

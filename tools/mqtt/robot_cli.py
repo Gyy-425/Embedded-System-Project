@@ -35,10 +35,12 @@ class Bridge:
     """Own only the subscriber child process created for this invocation."""
 
     def __init__(self, args: argparse.Namespace, *, version: int = 1,
-                 decoder=decode_packet, ack_type=Ack):
+                 decoder=decode_packet, ack_type=Ack, route_decoder=None):
         self.base = f"aai05/v{version}/{args.device}"
         self.decoder = decoder
         self.ack_type = ack_type
+        self.route_decoder = route_decoder
+        self._latest_route = None
         self.common = ["-h", args.host, "-p", str(args.port), "-V", "mqttv311"]
         self.publisher = executable("mosquitto_pub", args.tools_dir)
         self.subscriber = executable("mosquitto_sub", args.tools_dir)
@@ -50,6 +52,8 @@ class Bridge:
         command = [self.subscriber, *self.common, "-q", "1", "-R",
                    "-t", self.base + "/ack", "-t", self.base + "/telemetry",
                    "-F", "%t %x"]
+        if self.route_decoder is not None:
+            command.extend(("-t", self.base + "/route"))
         # Keep the response subscriber alive while the parent handles Ctrl+C
         # and sends/receives its final STOP. __exit__ still owns termination.
         process_options = ({"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
@@ -81,11 +85,25 @@ class Bridge:
                 if clean:
                     print(f"broker: {clean}", file=sys.stderr)
                 continue
+            line = line.strip()
+            if self.route_decoder is not None:
+                topic, _, encoded = line.partition(" ")
+                if topic == self.base + "/route":
+                    try:
+                        packet = self.route_decoder(bytes.fromhex(encoded))
+                        self._latest_route = packet, time.monotonic()
+                    except ValueError as error:
+                        print(f"ignored route response: {error}", file=sys.stderr)
+                    continue
             try:
-                self.messages.put_nowait(line.strip())
+                self.messages.put_nowait(line)
             except queue.Full:
                 # Bounded memory; a missing ACK causes retry/timeout, not success.
                 continue
+
+    def latest_route(self):
+        """Return the latest decoded route report and its monotonic receipt time."""
+        return self._latest_route
 
     def publish(self, payload: bytes, timeout: float = 3.0):
         command = [self.publisher, *self.common, "-q", "1", "-t",

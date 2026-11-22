@@ -2,7 +2,8 @@
 from dataclasses import dataclass
 from robot_codec import crc8, target_name
 
-OP_STATUS, OP_TARGET, OP_CLEAR, OP_START, OP_KEEPALIVE, OP_STOP = range(6)
+(OP_STATUS, OP_TARGET, OP_CLEAR, OP_START, OP_KEEPALIVE, OP_STOP,
+ OP_FOLLOW, OP_STRAIGHT) = range(8)
 UNKNOWN = 7
 RESULTS = ("OK", "DUPLICATE", "BAD_FRAME", "BAD_VALUE", "SESSION",
            "STALE_SEQUENCE", "CONFLICT", "NOT_READY", "STALE_GRANT",
@@ -10,7 +11,8 @@ RESULTS = ("OK", "DUPLICATE", "BAD_FRAME", "BAD_VALUE", "SESSION",
 REMOTE_PHASES = ("IDLE", "ARMING", "RUNNING", "STOPPED", "FAULT")
 MOTION_PHASES = ("READY", "RUNNING", "STOPPED", "FAULT")
 REASONS = ("NONE", "REQUEST", "GP21", "EXPIRED", "HARDWARE")
-OPERATIONS = ("STATUS", "TARGET", "CLEAR", "START", "KEEPALIVE", "STOP")
+OPERATIONS = ("STATUS", "TARGET", "CLEAR", "START", "KEEPALIVE", "STOP", "FOLLOW",
+              "STRAIGHT")
 
 
 @dataclass(frozen=True)
@@ -48,7 +50,7 @@ def encode_drive_command(opcode: int, target: int = UNKNOWN,
     fields = (opcode, target, sequence, session, grant, left, right)
     if any(type(value) is not int for value in fields):
         raise ValueError("Command fields must be integers")
-    if not 0 <= opcode <= OP_STOP or not 0 <= target <= 7:
+    if not 0 <= opcode <= OP_STRAIGHT or not 0 <= target <= 7:
         raise ValueError("Unsupported opcode/target")
     if not 0 <= sequence <= 0xFFFF or not 0 <= session <= 0xFFFFFFFF:
         raise ValueError("Sequence/session outside wire range")
@@ -83,8 +85,8 @@ def decode_drive_packet(payload: bytes) -> DriveAck | DriveTelemetry:
     opcode = (payload[0] >> 1) & 7
     result = ((payload[0] & 1) << 3) | (payload[1] >> 5)
     if ((is_telemetry and (payload[0] != 0xC0 or result)) or
-            (not is_telemetry and (kind != 0xA or opcode > OP_STOP or result > 12))):
-        raise ValueError("Unexpected v2 packet kind/opcode/result")
+            (not is_telemetry and (kind != 0xA or result > 12))):
+        raise ValueError("Unexpected v2 packet kind/result")
     phase = payload[2] & 7
     motion_phase = (payload[2] >> 3) & 3
     reason = payload[2] >> 5

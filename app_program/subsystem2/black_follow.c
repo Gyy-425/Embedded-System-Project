@@ -81,6 +81,12 @@ uint32_t black_follow_remaining_ms(const black_follow_t *p_state, uint32_t now_m
     };
 #endif
 #if FOLLOW_TWO_TURN || FOLLOW_CORNER_DIRECTION != 0
+#if AAI05_FOLLOW_MQTT
+    if (p_state->straight_mode)
+    {
+        return remaining;
+    }
+#endif
     uint8_t phase = p_state->status.corner_phase;
     uint32_t stage_elapsed = now_ms - p_state->corner_stage_started_ms;
     uint32_t stage_left = stage_elapsed < stage_limits[phase] ?
@@ -814,6 +820,11 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
 {
     black_follow_output_t output = {0};
     bool pressed = fresh_press(p_state, p_input);
+    bool straight_mode = false;
+#if AAI05_FOLLOW_MQTT
+    pressed = p_input->remote_start;
+    straight_mode = p_input->straight_mode;
+#endif
     bool ir_ok = p_input->has_ir && p_input->ir_valid &&
         (p_input->left_raw <= 4095U) && (p_input->right_raw <= 4095U) &&
         ((uint32_t)(p_input->now_ms - p_input->ir_ms) <= FOLLOW_IR_FRESH_MS);
@@ -848,16 +859,16 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
     bool corner_turning = false;
     bool allow_corner_cue = false;
 #if FOLLOW_CORNER_DIRECTION != 0
-    corner_turning = p_state->status.corner_phase == FOLLOW_CORNER_TURN;
-    allow_corner_cue = (p_state->status.phase != FOLLOW_RUNNING) ||
-                       (p_state->status.corner_phase != FOLLOW_CORNER_EXIT);
+    corner_turning = !straight_mode && p_state->status.corner_phase == FOLLOW_CORNER_TURN;
+    allow_corner_cue = !straight_mode && ((p_state->status.phase != FOLLOW_RUNNING) ||
+                       (p_state->status.corner_phase != FOLLOW_CORNER_EXIT));
 #endif
     bool ambiguous_stop = ambiguous && !allow_corner_cue;
     p_state->status.ready = ir_ok && p_input->rgb_target_matched &&
                            p_input->hardware_ready && !ambiguous_stop &&
                            !p_input->stop_pressed;
 #if FOLLOW_TWO_TURN
-    if (p_state->status.phase != FOLLOW_RUNNING)
+    if (!straight_mode && p_state->status.phase != FOLLOW_RUNNING)
     {
         p_state->status.ready = p_state->status.ready && bend_centred(p_state);
     }
@@ -894,6 +905,9 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
         p_state->status.reason = FOLLOW_NONE;
         p_state->status.elapsed_ms = 0U;
         p_state->run_started_ms = p_input->now_ms;
+#if AAI05_FOLLOW_MQTT
+        p_state->straight_mode = straight_mode;
+#endif
 #if FOLLOW_BLUE_STEER_RAMP
         p_state->blue_edge_direction = 0;
 #endif
@@ -995,8 +1009,11 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
     if (p_state->status.phase == FOLLOW_RUNNING)
     {
 #if FOLLOW_TWO_TURN
-        update_two_turn_bend(p_state, p_input);
-        if (bend_turning(p_state->status.corner_phase))
+        if (!straight_mode)
+        {
+            update_two_turn_bend(p_state, p_input);
+        }
+        if (!straight_mode && bend_turning(p_state->status.corner_phase))
         {
             p_state->blue_edge_direction = 0;
             p_state->status.turn_pct = 18;
@@ -1006,8 +1023,11 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
             return output;
         }
 #elif FOLLOW_CORNER_DIRECTION != 0
-        update_corner(p_state, p_input, ambiguous);
-        if (p_state->status.corner_phase == FOLLOW_CORNER_TURN)
+        if (!straight_mode)
+        {
+            update_corner(p_state, p_input, ambiguous);
+        }
+        if (!straight_mode && p_state->status.corner_phase == FOLLOW_CORNER_TURN)
         {
             p_state->status.turn_pct = 0;
             output.drive = true;
@@ -1039,7 +1059,7 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
         /* Keep gentle centring, then increase differential as one border
          * dominates. The chassis remains forward-only through the bends. */
         int32_t magnitude = steering_error < 0 ? -steering_error : steering_error;
-        if (magnitude > 600)
+        if (!straight_mode && magnitude > 600)
         {
             turn_limit += (magnitude - 600) *
                           (FOLLOW_TURN_PEAK_PCT - FOLLOW_TURN_LIMIT_PCT) / 400;
@@ -1051,6 +1071,12 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
                        steering_error * turn_limit / 1000;
         output.drive = true;
         output.forward_pct = (allow_corner_cue && ambiguous) ? 25 : 50;
+        if (straight_mode)
+        {
+            output.turn_pct = (int8_t)turn;
+            p_state->status.turn_pct = output.turn_pct;
+            return output;
+        }
 #if FOLLOW_EARLY_BEND
         /* The left border is outside on a clockwise lap. Reduce forward
          * drive as this edge dominates, while the colour is still confirmed. */
@@ -1403,7 +1429,8 @@ const char *black_follow_reason_name(uint8_t reason)
 {
     static const char *const names[] = {
         "NONE", "BUTTON", "IR", "RGB", "HARDWARE", "AMBIGUOUS", "COMPLETE", "DRIVER",
-        "JOIN_TIMEOUT", "CORNER_NOT_SEEN", "CORNER_TIMEOUT", "REFRESH"
+        "JOIN_TIMEOUT", "CORNER_NOT_SEEN", "CORNER_TIMEOUT", "REFRESH",
+        "MQTT_STOP", "MQTT_TIMEOUT"
     };
     return reason < sizeof(names) / sizeof(names[0]) ? names[reason] : "INVALID";
 }

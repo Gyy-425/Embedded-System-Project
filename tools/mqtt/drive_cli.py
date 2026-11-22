@@ -1,29 +1,39 @@
 """Bounded MQTT Motion CLI. Import does not connect or actuate."""
 import argparse
+from collections import deque
 import math
 from pathlib import Path
 import re
 import secrets
 import subprocess
 import sys
+import threading
 import time
 from drive_codec import (DriveAck, DriveTelemetry, OP_STATUS, OP_TARGET,
-                         OP_CLEAR, OP_START, OP_KEEPALIVE, OP_STOP, UNKNOWN,
+                         OP_CLEAR, OP_START, OP_KEEPALIVE, OP_STOP, OP_FOLLOW,
+                         OP_STRAIGHT, UNKNOWN,
                          decode_drive_packet, encode_drive_command,
                          format_drive_packet)
 from robot_cli import Bridge
 from robot_codec import parse_colour
 from chassis import chassis_duties
+from route_codec import (decode_route_packet, format_route_report,
+                         format_route_status)
+
+MENU_START_OPCODES = {"f": OP_FOLLOW, "l": OP_STRAIGHT}
 
 
-def synchronise(bridge, timeout=4.0, *, clock=time.monotonic):
+def synchronise(bridge, timeout=4.0, *, clock=time.monotonic, check=None):
     identifier = secrets.randbits(16)
     frame = encode_drive_command(OP_STATUS, sequence=identifier)
     deadline = clock() + timeout
     next_send = clock()
     while clock() < deadline:
+        if check is not None:
+            check()
         if clock() >= next_send:
-            bridge.publish(frame, max(0.001, min(0.5, deadline - clock())))
+            bridge.publish(frame, max(0.001, min(0.2 if check else 0.5,
+                                                 deadline - clock())))
             next_send = clock() + 0.5
         packet = bridge.receive(max(0.001, min(0.1, deadline - clock())))
         if (type(packet) is DriveAck and packet.opcode == OP_STATUS and
@@ -35,7 +45,7 @@ def synchronise(bridge, timeout=4.0, *, clock=time.monotonic):
 
 
 def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
-            timeout=0.6, clock=time.monotonic):
+            timeout=0.6, clock=time.monotonic, check=None):
     if opcode != OP_STOP and not status.ready:
         raise RuntimeError("Device Motion status is unavailable/not ready")
     sequence = (status.mutation_sequence + 1) & 0xFFFF
@@ -46,8 +56,11 @@ def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
     deadline = clock() + timeout
     next_send = clock()
     while clock() < deadline:
+        if check is not None:
+            check()
         if clock() >= next_send:
-            bridge.publish(frame, max(0.001, min(0.5, deadline - clock())))
+            bridge.publish(frame, max(0.001, min(0.2 if check else 0.5,
+                                                 deadline - clock())))
             next_send = clock() + 0.2
         packet = bridge.receive(max(0.001, min(0.1, deadline - clock())))
         if packet is None:
@@ -61,7 +74,7 @@ def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
         # explicit rejection proves this idle request was not accepted. Use
         # its new grant once, without changing intent/sequence or the deadline.
         if (packet.result == 8 and not grant_refreshed and
-                opcode in (OP_START, OP_TARGET, OP_CLEAR) and
+                opcode in (OP_START, OP_FOLLOW, OP_STRAIGHT, OP_TARGET, OP_CLEAR) and
                 packet.ready and not packet.active and not status.active and
                 packet.remote_phase in (0, 3) and
                 packet.remote_phase == status.remote_phase and
@@ -90,10 +103,11 @@ def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
 
 
 def confirm_motion(bridge, status, is_active, timeout=4.0,
-                   *, clock=time.monotonic):
+                   *, clock=time.monotonic, check=None):
     deadline = clock() + timeout
     while clock() < deadline:
-        packet = synchronise(bridge, min(0.5, deadline - clock()), clock=clock)
+        packet = synchronise(bridge, min(0.5, deadline - clock()), clock=clock,
+                             check=check)
         if packet.session != status.session:
             raise RuntimeError("Device session changed during confirmation")
         delta = (packet.mutation_sequence - status.mutation_sequence) & 0xFFFF
@@ -101,12 +115,16 @@ def confirm_motion(bridge, status, is_active, timeout=4.0,
             continue
         if is_active and (packet.remote_phase >= 3 or packet.motion_phase == 3):
             raise RuntimeError("Start did not become active: " + format_drive_packet(packet))
-        if (packet.ready and packet.active == is_active and
-                packet.motion_phase == (1 if is_active else 2) and
-                packet.remote_phase == (2 if is_active else 3)):
+        if motion_confirmed(packet, is_active):
             return packet
     raise RuntimeError("Fresh device status did not confirm " +
                        ("active output" if is_active else "output off"))
+
+
+def motion_confirmed(packet, is_active):
+    return (packet.ready and packet.active == is_active and
+            packet.motion_phase == (1 if is_active else 2) and
+            packet.remote_phase == (2 if is_active else 3))
 
 
 def renewal_delay(status):
@@ -170,6 +188,249 @@ def run_drive(bridge, status, left, right, seconds, timeout=4.0,
     return stopped
 
 
+class StopPending(Exception):
+    """The terminal requested STOP while a motion command was pending."""
+
+
+class MenuCommands:
+    def __init__(self):
+        self._commands = deque()
+        self._lock = threading.Lock()
+
+    def add(self, command):
+        with self._lock:
+            if command in ("s", "q"):
+                # Discard queued starts typed before this STOP.
+                self._commands.clear()
+            self._commands.append(command)
+
+    def take(self):
+        with self._lock:
+            return self._commands.popleft() if self._commands else None
+
+    def discard_starts(self):
+        with self._lock:
+            self._commands = deque(command for command in self._commands
+                                   if command not in MENU_START_OPCODES)
+
+    def check_stop(self):
+        with self._lock:
+            if self._commands and self._commands[0] in ("s", "q"):
+                raise StopPending
+
+    def read_stdin(self):
+        try:
+            # The daemon may be waiting for a line when the main thread handles
+            # Ctrl+C. Use unbuffered input so it holds no Python stdio lock.
+            with open(sys.stdin.fileno(), "rb", buffering=0, closefd=False) as stream:
+                for line in stream:
+                    command = line.decode("ascii", errors="replace").strip().lower()
+                    if command in ("q", "\x1a"):
+                        return
+                    if command:
+                        self.add(command)
+        finally:
+            self.add("q")  # Includes EOF.
+
+
+class FollowMenu:
+    _transport_errors = (OSError, RuntimeError, subprocess.TimeoutExpired)
+
+    def __init__(self, bridge, timeout, commands, *, clock=time.monotonic,
+                 output=print):
+        self.bridge = bridge
+        self.timeout = timeout
+        self.commands = commands
+        self.clock = clock
+        self.output = output
+        self.status = None
+        self.seen = float("-inf")
+        self.renew_at = None
+        self.next_update = 0.0
+        self.last_route_state = None
+
+    def _remember(self, status):
+        self.status = status
+        self.seen = self.clock()
+
+    def current_route(self, *, fresh=True):
+        latest = self.bridge.latest_route()
+        if latest is None or self.status is None:
+            return None
+        if self.clock() - self.seen > self.timeout:
+            return None
+        route, received = latest
+        if route.session == self.status.session and (
+                not fresh or self.clock() - received <= 1.0):
+            return route
+        return None
+
+    def show_status(self):
+        if self.status is None or self.clock() - self.seen > self.timeout:
+            self.output("Robot disconnected or awaiting device status.")
+            return
+        route = self.current_route()
+        detail = format_route_status(route) if route else "Awaiting fresh colour and distance."
+        self.output(f"Robot connected | DRIVE {'ON' if self.status.active else 'OFF'} | {detail}")
+
+    def show_report(self):
+        route = self.current_route(fresh=False)
+        self.output(format_route_report(route) if route else
+                    "No route report for the current device session.")
+
+    def start(self, opcode=OP_FOLLOW):
+        mode = "Straight track" if opcode == OP_STRAIGHT else "Follow"
+        if self.renew_at is not None:
+            self.output("A run is already active.")
+            return
+        attempted = False
+        try:
+            check = self.commands.check_stop
+            self._remember(synchronise(self.bridge, self.timeout, clock=self.clock,
+                                       check=check))
+            if (not self.status.ready or self.status.active or
+                    self.status.remote_phase not in (0, 3)):
+                raise RuntimeError("Device must be ready and stopped before starting")
+            # A legacy device reports valid v2 Motion status as well. Require
+            # fresh integrated telemetry from the same session before arming.
+            deadline = self.clock() + min(self.timeout, 0.7)
+            while self.current_route() is None and self.clock() < deadline:
+                check()
+                packet = self.bridge.receive(min(0.1, deadline - self.clock()))
+                if isinstance(packet, DriveTelemetry) and packet.session != self.status.session:
+                    self._remember(packet)
+                    raise RuntimeError("Device session changed. Use f or l to start a new run.")
+            if self.current_route() is None:
+                raise RuntimeError("No fresh integrated route telemetry for this session")
+            check()
+            attempted = True
+            self._remember(request(self.bridge, self.status, opcode,
+                                   clock=self.clock, check=check))
+            running = confirm_motion(self.bridge, self.status, True,
+                                     min(self.timeout, 0.5), clock=self.clock, check=check)
+            self._remember(running)
+            self.renew_at = self.clock() + renewal_delay(running)
+            self.next_update = self.clock()
+            self.output(f"{mode} started (DRIVE ON confirmed by fresh device status).")
+        except StopPending:
+            return
+        except self._transport_errors as error:
+            self.commands.discard_starts()
+            self.output(f"{mode} start unconfirmed: {error}")
+            if attempted:
+                self.stop()
+
+    def stop(self):
+        self.renew_at = None
+        deadline = self.clock() + self.timeout
+        try:
+            if self.status is None:
+                self._remember(synchronise(self.bridge, self.timeout, clock=self.clock))
+            initial_session = self.status.session
+            confirmed = None
+            try:
+                stopped = request(self.bridge, self.status, OP_STOP,
+                                  timeout=min(0.6, deadline - self.clock()),
+                                  clock=self.clock)
+            except self._transport_errors:
+                # An ACK can be lost after STOP applies. A fresh status read
+                # can prove output is off on the same session.
+                self._remember(synchronise(self.bridge, deadline - self.clock(),
+                                           clock=self.clock))
+                if self.status.session == initial_session and motion_confirmed(self.status, False):
+                    confirmed = self.status
+                else:
+                    stopped = request(self.bridge, self.status, OP_STOP,
+                                      timeout=min(0.6, deadline - self.clock()),
+                                      clock=self.clock)
+            if confirmed is None:
+                confirmed = confirm_motion(self.bridge, stopped, False,
+                                           deadline - self.clock(), clock=self.clock)
+            self._remember(confirmed)
+            self.output("DRIVE OFF confirmed by fresh device status.")
+            return True
+        except self._transport_errors as error:
+            self.output(f"DRIVE OFF unconfirmed: {error}")
+            return False
+
+    def step(self):
+        wait = 0.1
+        if self.renew_at is not None:
+            wait = max(0.001, min(wait, self.renew_at - self.clock()))
+        packet = self.bridge.receive(wait)
+        if isinstance(packet, DriveTelemetry):
+            if self.status is not None and packet.session == self.status.session:
+                delta = (packet.mutation_sequence - self.status.mutation_sequence) & 0xFFFF
+                if delta >= 0x8000:
+                    packet = None
+            if packet is not None:
+                if self.renew_at is not None:
+                    if packet.session != self.status.session:
+                        self.commands.discard_starts()
+                        self.output("Device session changed. Use f or l to start a new run.")
+                        self.renew_at = None
+                    elif packet.remote_phase >= 3 or packet.motion_phase == 3:
+                        self.renew_at = None
+                    else:
+                        self.renew_at = min(self.renew_at,
+                                            self.clock() + renewal_delay(packet))
+                self._remember(packet)
+        if self.renew_at is not None and self.clock() >= self.renew_at:
+            try:
+                check = self.commands.check_stop
+                if self.current_route() is None:
+                    raise RuntimeError("No fresh route telemetry")
+                self._remember(request(self.bridge, self.status, OP_KEEPALIVE,
+                                       timeout=0.5, clock=self.clock, check=check))
+                if not motion_confirmed(self.status, True):
+                    raise RuntimeError(format_drive_packet(self.status))
+                self.renew_at = self.clock() + renewal_delay(self.status)
+            except StopPending:
+                return
+            except self._transport_errors as error:
+                self.commands.discard_starts()
+                self.output(f"Run renewal ended: {error}")
+                self.stop()
+        route = self.current_route()
+        if route is not None:
+            state = (route.session, route.epoch, route.phase, route.reason)
+            if state != self.last_route_state or (
+                    route.phase == 1 and self.clock() >= self.next_update):
+                self.output(format_route_status(route))
+                self.last_route_state = state
+                self.next_update = self.clock() + 1.0
+
+
+def run_follow_menu(bridge, timeout, *, commands=None, clock=time.monotonic,
+                    output=print):
+    if commands is None:
+        commands = MenuCommands()
+        threading.Thread(target=commands.read_stdin, daemon=True).start()
+    menu = FollowMenu(bridge, timeout, commands, clock=clock, output=output)
+    actions = {"s": menu.stop, "?": menu.show_status, "r": menu.show_report}
+    help_line = ("Press a key then Enter   f Follow   l Straight track   "
+                 "s Stop   ? Status   r Run report   q Stop and quit")
+    try:
+        output(help_line)
+        while True:
+            command = commands.take()
+            if command == "q":
+                break
+            if command in MENU_START_OPCODES:
+                menu.start(MENU_START_OPCODES[command])
+            elif command in actions:
+                actions[command]()
+            elif command is not None:
+                output(help_line)
+            else:
+                menu.step()
+    except KeyboardInterrupt:
+        output("Interrupted. Sending STOP.")
+    finally:
+        stopped = menu.stop()
+    return 0 if stopped else 1
+
+
 def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", required=True, help="Laptop broker LAN IP")
@@ -180,6 +441,7 @@ def arguments():
     actions = parser.add_subparsers(dest="action", required=True)
     for name in ("status", "watch", "clear", "stop"):
         actions.add_parser(name)
+    actions.add_parser("menu", help="Interactive follow and straight-track measurement")
     actions.add_parser("target").add_argument("colour")
     run = actions.add_parser("drive", help="Bounded electrical duties; no calibrated speed")
     run.add_argument("--left", type=int, default=50)
@@ -218,7 +480,11 @@ def arguments():
 def main():
     args = arguments()
     with Bridge(args, version=2, decoder=decode_drive_packet,
-                ack_type=DriveAck) as bridge:
+                ack_type=DriveAck,
+                route_decoder=decode_route_packet if args.action == "menu" else None) as bridge:
+        if args.action == "menu":
+            return run_follow_menu(bridge, args.timeout,
+                                   output=lambda message: print(message, flush=True))
         status = synchronise(bridge, args.timeout)
         print(format_drive_packet(status), flush=True)
         if args.action in ("drive", "move"):

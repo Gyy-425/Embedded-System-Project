@@ -17,6 +17,8 @@ static uint16_t g_arm_epoch;
 static motion_result_t g_arm_result;
 static motion_result_t g_submit_result;
 static int32_t g_publish_error;
+static uint32_t g_ack_publishes;
+static uint32_t g_telemetry_publishes;
 static motion_command_t g_applied;
 #if AAI05_FOLLOW_MQTT
 #include "follow_remote.h"
@@ -25,6 +27,7 @@ static motion_command_t g_applied;
 static uint8_t g_route[118];
 static uint16_t g_route_length;
 static bool g_straight;
+static uint8_t g_target;
 #else
 #define TEST_START DRIVE_OP_START
 #define TEST_DUTY 50
@@ -50,6 +53,7 @@ int32_t drive_io_publish(const char *p_topic, const uint8_t *p_data,
     {
         assert(is_reliable && length == DRIVE_ACK_SIZE);
         memcpy(g_ack, p_data, length);
+        ++g_ack_publishes;
     }
 #if AAI05_FOLLOW_MQTT
     else if (strcmp(p_topic, DRIVE_TOPIC_ROUTE) == 0)
@@ -64,13 +68,15 @@ int32_t drive_io_publish(const char *p_topic, const uint8_t *p_data,
         assert(strcmp(p_topic, DRIVE_TOPIC_TELEMETRY) == 0);
         assert(!is_reliable && length == DRIVE_TELEMETRY_SIZE);
         memcpy(g_telemetry, p_data, length);
+        ++g_telemetry_publishes;
     }
     return g_publish_error;
 }
 #if AAI05_FOLLOW_MQTT
-motion_result_t subsystem2_follow_arm(uint16_t *p_epoch, bool straight)
+motion_result_t subsystem2_follow_arm(uint16_t *p_epoch, bool straight, uint8_t target)
 {
     g_straight = straight;
+    g_target = target;
 #else
 motion_result_t subsystem2_motion_arm(uint16_t *p_epoch)
 {
@@ -100,12 +106,13 @@ static uint8_t test_result(void)
 {
     return (uint8_t)(((g_ack[0] & 1U) << 3U) | (g_ack[1] >> 5U));
 }
-static void test_send(uint8_t opcode, uint16_t sequence, uint32_t session,
-                        uint32_t grant, int8_t left, bool is_retained)
+static void test_send_target(uint8_t opcode, uint16_t sequence, uint32_t session,
+                             uint32_t grant, int8_t left, bool is_retained,
+                             uint8_t target)
 {
     uint8_t frame[14] = {0};
     uint32_t packed = UINT32_C(2) << 20U | (uint32_t)opcode << 17U |
-                      UINT32_C(7) << 14U |
+                      (uint32_t)target << 14U |
                       ((uint32_t)(uint8_t)left & 127U) << 7U;
     frame[0] = (uint8_t)(packed >> 16U);
     frame[1] = (uint8_t)(packed >> 8U);
@@ -119,6 +126,11 @@ static void test_send(uint8_t opcode, uint16_t sequence, uint32_t session,
     }
     frame[13] = comm_protocol_crc(frame, 13U);
     mqtt_drive_receive(frame, 14U, is_retained);
+}
+static void test_send(uint8_t opcode, uint16_t sequence, uint32_t session,
+                        uint32_t grant, int8_t left, bool is_retained)
+{
+    test_send_target(opcode, sequence, session, grant, left, is_retained, DRIVE_UNKNOWN);
 }
 
 static void test_reset(void)
@@ -293,16 +305,86 @@ static void test_straight_authorizes_only_the_straight_policy(void)
     test_send(DRIVE_OP_FOLLOW, 2U, session, test_word(&g_ack[11]), 0, false);
     assert(test_result() == DRIVE_BAD_STATE && g_arm_calls == 1U && g_straight);
 }
+
+/* FOLLOW may select one supported lane; the ACK reports the selection. */
+static void test_follow_selects_one_supported_lane(void)
+{
+    test_reset();
+    uint32_t session = test_word(&g_ack[7]);
+    uint32_t grant = test_word(&g_ack[11]);
+    const uint8_t unsupported[] = {0U, 1U, 3U, 6U};
+    for (uint32_t index = 0U; index < sizeof(unsupported); ++index)
+    {
+        test_send_target(DRIVE_OP_FOLLOW, 1U, session, grant, 0, false, unsupported[index]);
+        assert(test_result() == DRIVE_BAD_VALUE && g_arm_calls == 0U);
+    }
+    test_send_target(DRIVE_OP_STRAIGHT, 1U, session, grant, 0, false, DRIVE_TARGET_BLUE);
+    assert(test_result() == DRIVE_BAD_VALUE && g_arm_calls == 0U);
+    test_send_target(DRIVE_OP_FOLLOW, 1U, session, grant, 0, false, DRIVE_TARGET_BLUE);
+    assert(test_result() == DRIVE_OK && g_arm_calls == 1U && !g_straight);
+    assert(g_target == DRIVE_TARGET_BLUE && (g_ack[19] >> 5U) == DRIVE_TARGET_BLUE);
+    test_send(DRIVE_OP_STOP, 2U, session, 0U, 0, false);
+    test_send(DRIVE_OP_STATUS, 0U, 0U, 0U, 0, false);
+    test_send(DRIVE_OP_FOLLOW, 3U, session, test_word(&g_ack[11]), 0, false);
+    assert(test_result() == DRIVE_OK && g_arm_calls == 2U && g_target == DRIVE_UNKNOWN);
+    assert((g_ack[19] >> 5U) == DRIVE_UNKNOWN);
+}
 #endif
+
+/* lwIP may refuse a publish (ERR_MEM) when its MQTT queue is full. The ACK
+ * is kept and retried before telemetry, so the laptop is not left waiting. */
+static void test_refused_ack_is_retried_before_telemetry(void)
+{
+    drive_publish_counters_t before;
+    drive_publish_counters_t after;
+    test_reset();
+    drive_service_counters(&before);
+    uint32_t acks = g_ack_publishes;
+    uint32_t telemetry = g_telemetry_publishes;
+    g_publish_error = -1;
+    test_send(DRIVE_OP_STATUS, 0U, 0U, 0U, 0, false);
+    assert(g_ack_publishes == acks + 1U);
+    uint8_t refused[DRIVE_ACK_SIZE];
+    memcpy(refused, g_ack, sizeof(refused));
+    g_now += DRIVE_TELEMETRY_MS;
+    mqtt_app_poll();
+    assert(g_ack_publishes == acks + 2U && g_telemetry_publishes == telemetry);
+    g_publish_error = 0;
+    mqtt_app_poll();
+    assert(g_ack_publishes == acks + 3U && memcmp(g_ack, refused, sizeof(refused)) == 0);
+    assert(g_telemetry_publishes == telemetry + 1U);
+    mqtt_app_poll();
+    assert(g_ack_publishes == acks + 3U);
+    drive_service_counters(&after);
+    assert(after.ack_failed == before.ack_failed + 1U);
+    assert(after.ack_retried == before.ack_retried + 1U);
+    assert(after.ack_abandoned == before.ack_abandoned);
+
+    /* A newer ACK replaces a kept one; only the newest is retried. */
+    g_publish_error = -1;
+    test_send(DRIVE_OP_STATUS, 0U, 0U, 0U, 0, false);
+    test_send(DRIVE_OP_STATUS, 0U, 0U, 0U, 0, false);
+    memcpy(refused, g_ack, sizeof(refused));
+    g_publish_error = 0;
+    g_now += DRIVE_TELEMETRY_MS;
+    mqtt_app_poll();
+    assert(memcmp(g_ack, refused, sizeof(refused)) == 0);
+    drive_service_counters(&after);
+    assert(after.ack_failed == before.ack_failed + 3U);
+    assert(after.ack_abandoned == before.ack_abandoned + 1U);
+    assert(after.ack_retried == before.ack_retried + 2U);
+}
 
 int main(void)
 {
     test_retained_lost_ack_and_owner_acknowledgement();
     test_expiry_link_loss_and_no_automatic_restart();
     test_stale_view_cannot_override_motion_stop();
+    test_refused_ack_is_retried_before_telemetry();
 #if AAI05_FOLLOW_MQTT
     test_follow_only_and_route_reporting();
     test_straight_authorizes_only_the_straight_policy();
+    test_follow_selects_one_supported_lane();
 #endif
     puts("PASS: actual MQTT service hooks, owner ACK, retained/duplicate, "
          "expiry, failed ARM and reconnect without restart");

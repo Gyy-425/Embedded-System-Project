@@ -21,6 +21,7 @@ typedef struct
     uint8_t kind;
 #if AAI05_FOLLOW_MQTT
     bool straight;
+    uint8_t target; /* DRIVE_UNKNOWN: whole route; else one lane colour. */
 #endif
 } drive_action_t;
 

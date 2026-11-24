@@ -9,6 +9,9 @@
 #if TM_WIFI_CYW43
 #include "cyw43_utk.h"
 #endif
+#if AAI05_FOLLOW_MQTT && AAI05_REMOTE_APP
+#include "drive_service.h"
+#endif
 
 #if !AAI05_FOLLOW_APP
 static const char *motor_phase_name(uint8_t phase)
@@ -144,7 +147,8 @@ static void report_task(INT start_code, void *extra)
 #endif
     (void)start_code;
     (void)extra;
-    for (;;) {
+    for (;;)
+    {
         motion_error = subsystem2_get_snapshot(&motion);
 #if FOLLOW_BEND_TRACE
         if (motion_error == E_OK && motion.follow.phase == FOLLOW_RUNNING)
@@ -367,8 +371,18 @@ static void report_task(INT start_code, void *extra)
         {
             tm_printf((UB *)"FOLLOW[read=0 err=%d]\n", (INT)motion_error);
         }
+#if AAI05_FOLLOW_MQTT && AAI05_REMOTE_APP
+        drive_publish_counters_t publish;
+        drive_service_counters(&publish);
+        tm_printf((UB *)"NET[ack_fail=%u ack_retry_ok=%u ack_abandoned=%u "
+                  "telemetry_fail=%u route_fail=%u]\n",
+                  (UINT)publish.ack_failed, (UINT)publish.ack_retried,
+                  (UINT)publish.ack_abandoned, (UINT)publish.telemetry_failed,
+                  (UINT)publish.route_failed);
+#endif
 #else
-        if ((ir_error == E_OK) && (motion_error == E_OK)) {
+        if ((ir_error == E_OK) && (motion_error == E_OK))
+        {
             colour_report_t colour = {0};
             bool colour_available = subsystem1_colour_latest(&colour);
             now = app_now_ms();
@@ -465,7 +479,9 @@ static void report_task(INT start_code, void *extra)
                       (UINT)((radio.ip_addr >> 24U) & 0xFFU)
 #endif
                       );
-        } else {
+        }
+        else
+        {
             tm_printf((UB *)
 #if MOTOR_TEST_PROBE
                       "MOTOR_MODE=PROBE DRIVE=OFF "

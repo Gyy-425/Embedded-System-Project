@@ -18,10 +18,12 @@ static ER read_channel(INT channel, uint16_t *sample)
     UW raw = 0U;
     SZ actual_size = 0;
     ER error = tk_srea_dev(adc_descriptor, channel, &raw, 1, &actual_size);
-    if (error < E_OK) {
+    if (error < E_OK)
+    {
         return error;
     }
-    if ((actual_size != 1) || (raw > 4095U)) {
+    if ((actual_size != 1) || (raw > 4095U))
+    {
         return E_IO;
     }
     *sample = (uint16_t)raw;
@@ -31,11 +33,13 @@ static ER read_channel(INT channel, uint16_t *sample)
 ER drv_ir_read(uint16_t *left, uint16_t *right)
 {
     ER error;
-    if (adc_descriptor < E_OK) {
+    if (adc_descriptor < E_OK)
+    {
         return E_NOEXS;
     }
     error = read_channel(0, left);
-    if (error < E_OK) {
+    if (error < E_OK)
+    {
         return error;
     }
     return read_channel(1, right);

@@ -7,14 +7,14 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools/mqtt"))
-from drive_cli import FollowMenu, MenuCommands, run_follow_menu
-from drive_codec import (DriveAck, OP_FOLLOW, OP_KEEPALIVE, OP_STATUS, OP_STOP,
+from drive_cli import MENU_START_OPCODES, FollowMenu, MenuCommands, run_follow_menu
+from drive_codec import (DriveAck, DriveTelemetry, OP_FOLLOW, OP_KEEPALIVE, OP_STATUS, OP_STOP,
                          OP_STRAIGHT, decode_drive_packet, encode_drive_command,
                          format_drive_packet)
 from mqtt_publisher import MqttPublisher
 from robot_cli import Bridge
 from robot_codec import crc8
-from route_codec import decode_route_packet, format_route_report
+from route_codec import decode_route_packet, format_route_report, format_route_status
 from testing.host.test_drive_cli import Clock, Peer, operations
 from testing.host.test_drive_codec import ACK
 
@@ -49,6 +49,38 @@ class FollowPeer(Peer):
                               left_pct=30, right_pct=30, lease_ms=750)
         if not self.lose_follow:
             self.queue.append(self.status)
+
+
+class LanePeer(FollowPeer):
+    """Echo the FOLLOW target lane like the firmware status does."""
+
+    def __init__(self, clock, *, echo_target=None):
+        super().__init__(clock)
+        self.echo_target = echo_target
+
+    def publish(self, payload, timeout):
+        opcode = (payload[0] >> 1) & 7
+        if opcode == OP_FOLLOW:
+            control = int.from_bytes(payload[:3], "big")
+            target = (control >> 14) & 7 if self.echo_target is None else self.echo_target
+            self.status = replace(self.status, target=target)
+        super().publish(payload, timeout)
+
+
+class TelemetryOnlyPeer(FollowPeer):
+    def __init__(self, clock, *, drop_opcode, changes=None):
+        super().__init__(clock)
+        self.drop_opcode = drop_opcode
+        self.changes = changes or {}
+
+    def publish(self, payload, timeout):
+        super().publish(payload, timeout)
+        opcode = (payload[0] >> 1) & 7
+        if self.status.active and opcode == self.drop_opcode:
+            ack = self.queue.pop()
+            changes = {"uptime_ms": int(self.clock() * 1000), **self.changes}
+            values = vars(replace(ack, **changes))
+            self.queue.append(DriveTelemetry(**values, left_raw=230, right_raw=260))
 
 
 class FollowCliChecks(unittest.TestCase):
@@ -153,6 +185,50 @@ class FollowCliChecks(unittest.TestCase):
         return FollowMenu(peer, 1.0, commands or MenuCommands(),
                           clock=clock, output=lambda _: None)
 
+    def test_lane_keys_map_to_follow_with_one_target_colour(self):
+        self.assertEqual(MENU_START_OPCODES["f"], (OP_FOLLOW, 7))
+        self.assertEqual(MENU_START_OPCODES["fb"], (OP_FOLLOW, 5))
+        self.assertEqual(MENU_START_OPCODES["fr"], (OP_FOLLOW, 4))
+        self.assertEqual(MENU_START_OPCODES["fy"], (OP_FOLLOW, 2))
+        self.assertEqual(MENU_START_OPCODES["l"], (OP_STRAIGHT, 7))
+
+    def test_follow_target_must_be_a_supported_lane(self):
+        for target in (2, 4, 5, 7):
+            frame = encode_drive_command(OP_FOLLOW, target, 1, 123, 100)
+            self.assertEqual((int.from_bytes(frame[:3], "big") >> 14) & 7, target)
+        for target in (0, 1, 3, 6):
+            with self.assertRaises(ValueError):
+                encode_drive_command(OP_FOLLOW, target, 1, 123, 100)
+        with self.assertRaises(ValueError):
+            encode_drive_command(OP_STRAIGHT, 5, 1, 123, 100)
+
+    def test_selected_lane_is_sent_and_confirmed_by_the_ack_target(self):
+        clock = Clock()
+        peer = LanePeer(clock)
+        menu = self.menu(peer, clock)
+        menu.start(OP_FOLLOW, 5)
+        follow = [frame for frame in peer.sent if (frame[0] >> 1) & 7 == OP_FOLLOW]
+        self.assertEqual(len(follow), 1)
+        self.assertEqual((int.from_bytes(follow[0][:3], "big") >> 14) & 7, 5)
+        self.assertIsNotNone(menu.renew_at)
+        self.assertTrue(menu.stop())
+
+    def test_ack_for_a_different_lane_is_not_success_and_stops(self):
+        clock = Clock()
+        peer = LanePeer(clock, echo_target=4)
+        menu = self.menu(peer, clock)
+        menu.start(OP_FOLLOW, 5)
+        self.assertIsNone(menu.renew_at)
+        self.assertIn(OP_STOP, operations(peer))
+
+    def test_route_report_names_lane_end_and_refused_start(self):
+        for code, name in ((14, "TARGET_END"), (15, "TARGET_MISMATCH")):
+            body = bytearray(ROUTE[:-1])
+            body[2] = code
+            report = decode_route_packet(with_crc(bytes(body)))
+            self.assertIn(name, format_route_status(report))
+            self.assertIn(name, format_route_report(report))
+
     def test_explicit_follow_uses_zero_duty_and_renews_then_fresh_stop(self):
         clock = Clock()
         peer = FollowPeer(clock)
@@ -173,6 +249,40 @@ class FollowCliChecks(unittest.TestCase):
         for _ in range(10):
             menu.step()
         self.assertEqual(len(peer.sent), count)
+
+    def test_menu_confirms_running_after_start_ack_with_telemetry(self):
+        clock = Clock()
+        peer = TelemetryOnlyPeer(clock, drop_opcode=OP_STATUS)
+        menu = self.menu(peer, clock)
+        menu.start()
+        self.assertIsNotNone(menu.renew_at)
+        self.assertEqual(operations(peer), [OP_STATUS, OP_FOLLOW, OP_STATUS])
+        self.assertTrue(menu.stop())
+
+    def test_menu_keeps_running_when_telemetry_proves_keepalive_was_accepted(self):
+        clock = Clock()
+        peer = TelemetryOnlyPeer(clock, drop_opcode=OP_KEEPALIVE)
+        menu = self.menu(peer, clock)
+        menu.start()
+        for _ in range(10):
+            menu.step()
+        self.assertGreater(operations(peer).count(OP_KEEPALIVE), 1)
+        self.assertNotIn(OP_STOP, operations(peer))
+        self.assertTrue(menu.stop())
+
+    def test_menu_stops_when_telemetry_cannot_confirm_keepalive(self):
+        for changes in ({"mutation_sequence": 1}, {"grant": 100}, {"session": 999},
+                        {"uptime_ms": 0xFFFFFFFF},
+                        {"lease_ms": 0}, {"remote_phase": 3, "active": False}):
+            with self.subTest(changes=changes):
+                clock = Clock()
+                peer = TelemetryOnlyPeer(clock, drop_opcode=OP_KEEPALIVE, changes=changes)
+                menu = self.menu(peer, clock)
+                menu.start()
+                for _ in range(10):
+                    menu.step()
+                self.assertIsNone(menu.renew_at)
+                self.assertIn(OP_STOP, operations(peer))
 
     def test_line_key_starts_straight_measurement_and_quits_with_verified_stop(self):
         clock = Clock()

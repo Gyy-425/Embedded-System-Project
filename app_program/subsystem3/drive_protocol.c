@@ -61,11 +61,18 @@ drive_result_t drive_protocol_decode(const uint8_t *p_data, uint16_t length,
     bool is_status = command.opcode == DRIVE_OP_STATUS;
     bool is_stop = command.opcode == DRIVE_OP_STOP;
     bool is_neutral = (command.left_pct == 0) && (command.right_pct == 0);
+    bool is_target_valid = (command.opcode == DRIVE_OP_TARGET) ?
+        (command.target < DRIVE_UNKNOWN) : (command.target == DRIVE_UNKNOWN);
+#if AAI05_FOLLOW_MQTT
+    if (command.opcode == DRIVE_OP_FOLLOW)
+    {
+        is_target_valid = drive_protocol_follow_target_valid(command.target);
+    }
+#endif
     if (!drive_protocol_valid_duty(command.left_pct) ||
         !drive_protocol_valid_duty(command.right_pct) ||
         (is_start && is_neutral) || (!is_start && !is_neutral) ||
-        ((command.opcode == DRIVE_OP_TARGET) ?
-         command.target >= DRIVE_UNKNOWN : command.target != DRIVE_UNKNOWN) ||
+        !is_target_valid ||
         (is_status && ((command.session != 0U) || (command.grant != 0U))) ||
         (!is_status && (command.session == 0U)) ||
         (is_stop && (command.grant != 0U)) ||

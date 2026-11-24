@@ -22,7 +22,8 @@ EXPORT ID app_start_task(FP entry, PRI priority, UW processor, const char *name)
     attributes.stksz = TASK_STACK_SIZE;
     attributes.tskatr = TA_HLNG | TA_RNG3;
 #if TK_SUPPORT_SMP
-    if (processor != 0U) {
+    if (processor != 0U)
+    {
         attributes.tskatr |= TA_ASSPRC;
         attributes.assprc = processor;
     }
@@ -30,11 +31,13 @@ EXPORT ID app_start_task(FP entry, PRI priority, UW processor, const char *name)
     (void)processor;
 #endif
     task = tk_cre_tsk(&attributes);
-    if (task < E_OK) {
+    if (task < E_OK)
+    {
         return task;
     }
     error = tk_sta_tsk(task, 0);
-    if (error < E_OK) {
+    if (error < E_OK)
+    {
         (void)tk_del_tsk(task);
         return error;
     }
@@ -43,10 +46,12 @@ EXPORT ID app_start_task(FP entry, PRI priority, UW processor, const char *name)
 
 static void halt_on_error(ER error, const char *stage)
 {
-    if (error < E_OK) {
+    if (error < E_OK)
+    {
         tm_printf((UB *)"AAI05 INIT FAILURE: %s error=%d; motor drive disabled\n",
                   stage, (INT)error);
-        for (;;) {
+        for (;;)
+        {
             (void)tk_dly_tsk(1000);
         }
     }
@@ -351,7 +356,8 @@ EXPORT INT usermain(void)
 #endif
 #endif
     halt_on_error(subsystem3_start(), "report start");
-    for (;;) {
+    for (;;)
+    {
         (void)tk_slp_tsk(TMO_FEVR);
     }
     return 0;

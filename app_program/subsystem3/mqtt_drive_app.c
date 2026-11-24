@@ -1,6 +1,7 @@
 #include "drive_service.h"
 #include "../subsystem2/motion_runtime.h"
 #include "colour_service.h"
+#include <string.h>
 #if AAI05_FOLLOW_MQTT
 #include "comm_protocol.h"
 #include "../subsystem2/follow_remote.h"
@@ -13,6 +14,27 @@ static uint32_t g_drive_service_previous_session;
 static uint32_t g_drive_service_published_ms;
 static uint16_t g_drive_service_telemetry_sequence;
 static bool g_drive_service_tx_drop;
+/* An ACK that lwIP refused (queue or buffer full) is kept and retried on
+ * the next poll; a lost ACK would otherwise make the laptop send STOP. */
+static uint8_t g_drive_service_pending_ack[DRIVE_ACK_SIZE];
+static bool g_drive_service_has_pending_ack;
+static drive_publish_counters_t g_drive_service_counters;
+
+static void drive_service_count(uint16_t *p_counter)
+{
+    if (*p_counter != UINT16_MAX)
+    {
+        ++*p_counter;
+    }
+}
+
+void drive_service_counters(drive_publish_counters_t *p_counters)
+{
+    if (p_counters != NULL)
+    {
+        *p_counters = g_drive_service_counters;
+    }
+}
 
 const char *mqtt_app_command_topic(void)
 {
@@ -54,6 +76,12 @@ void mqtt_app_link_changed(bool is_ready)
     g_drive_service_telemetry_sequence = 0U;
     g_drive_service_published_ms = now_ms - DRIVE_TELEMETRY_MS;
     g_drive_service_tx_drop = false;
+    if (g_drive_service_has_pending_ack)
+    {
+        /* A new session makes the kept ACK meaningless to the laptop. */
+        g_drive_service_has_pending_ack = false;
+        drive_service_count(&g_drive_service_counters.ack_abandoned);
+    }
 }
 
 static drive_result_t drive_service_apply(const drive_action_t *p_action,
@@ -63,7 +91,8 @@ static drive_result_t drive_service_apply(const drive_action_t *p_action,
     {
         uint16_t epoch = 0U;
 #if AAI05_FOLLOW_MQTT
-        motion_result_t result = subsystem2_follow_arm(&epoch, p_action->straight);
+        motion_result_t result = subsystem2_follow_arm(&epoch, p_action->straight,
+                                                         p_action->target);
 #else
         motion_result_t result = subsystem2_motion_arm(&epoch);
 #endif
@@ -166,7 +195,10 @@ static void drive_publish_route(const drive_input_t *p_input)
         offset += 6U;
     }
     payload[offset] = comm_protocol_crc(payload, offset);
-    (void)drive_io_publish(DRIVE_TOPIC_ROUTE, payload, (uint16_t)(offset + 1U), false);
+    if (drive_io_publish(DRIVE_TOPIC_ROUTE, payload, (uint16_t)(offset + 1U), false) != 0)
+    {
+        drive_service_count(&g_drive_service_counters.route_failed);
+    }
 }
 #endif
 
@@ -213,8 +245,21 @@ void mqtt_drive_receive(const uint8_t *p_data, uint16_t length,
     status.echo = command.sequence;
     status.result = result;
     uint16_t encoded = drive_protocol_encode(acknowledgement, &status, false);
-    g_drive_service_tx_drop = (encoded == 0U) ||
-        (drive_io_publish(DRIVE_TOPIC_ACK, acknowledgement, encoded, true) != 0);
+    bool published = (encoded == DRIVE_ACK_SIZE) &&
+        (drive_io_publish(DRIVE_TOPIC_ACK, acknowledgement, encoded, true) == 0);
+    g_drive_service_tx_drop = !published;
+    if (g_drive_service_has_pending_ack)
+    {
+        /* Only the newest ACK matters; the laptop resends older requests. */
+        g_drive_service_has_pending_ack = false;
+        drive_service_count(&g_drive_service_counters.ack_abandoned);
+    }
+    if (!published && (encoded == DRIVE_ACK_SIZE))
+    {
+        memcpy(g_drive_service_pending_ack, acknowledgement, DRIVE_ACK_SIZE);
+        g_drive_service_has_pending_ack = true;
+        drive_service_count(&g_drive_service_counters.ack_failed);
+    }
 }
 
 void mqtt_app_poll(void)
@@ -226,6 +271,17 @@ void mqtt_app_poll(void)
 
     drive_io_snapshot(&input, now_ms);
     drive_service_step(now_ms, &input);
+    if (g_drive_service_has_pending_ack)
+    {
+        if (drive_io_publish(DRIVE_TOPIC_ACK, g_drive_service_pending_ack,
+                             DRIVE_ACK_SIZE, true) != 0)
+        {
+            return; /* Leave the MQTT queue to the ACK; retry next poll. */
+        }
+        g_drive_service_has_pending_ack = false;
+        g_drive_service_tx_drop = false;
+        drive_service_count(&g_drive_service_counters.ack_retried);
+    }
     /* Optional reporting follows motion STOP/lease work on the same owner. */
 #if !AAI05_FOLLOW_MQTT
     colour_service_poll();
@@ -248,6 +304,10 @@ void mqtt_app_poll(void)
 #if AAI05_FOLLOW_MQTT
         drive_publish_route(&input);
 #endif
+    }
+    else
+    {
+        drive_service_count(&g_drive_service_counters.telemetry_failed);
     }
 }
 #endif

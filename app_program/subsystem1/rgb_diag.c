@@ -1,3 +1,5 @@
+/* TCS34725 RGB acquisition task and serial report. In FOLLOW builds this is
+ * the production RGB owner (not only a diagnostic); see APP_PRI_RGB. */
 #include "rgb_diag.h"
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-prototypes"

@@ -57,7 +57,8 @@ int32_t encoder_capture_start(void)
     if (tk_get_prc() != 1) return E_CTX;
 #endif
     /* Refuse another GPIO consumer; future users must join this dispatcher. */
-    for (UINT bank = 0U; bank < 4U; ++bank) {
+    for (UINT bank = 0U; bank < 4U; ++bank)
+    {
         /* Both cores share tk_def_int's vector/handler table in this port. */
         if ((in_w(ENCODER_PROC0_INTE(bank)) | in_w(ENCODER_PROC0_INTF(bank)) |
              in_w(ENCODER_PROC1_INTE(bank)) | in_w(ENCODER_PROC1_INTF(bank))) != 0U) return E_BUSY;
@@ -67,7 +68,8 @@ int32_t encoder_capture_start(void)
     if (error < E_OK) return error;
 #endif
     DisableInt(ENCODER_GPIO_IRQ);
-    for (UINT i = 0U; i < 4U; ++i) {
+    for (UINT i = 0U; i < 4U; ++i)
+    {
         error = gpio_set_pin(pins[i], GPIO_MODE_IN);
         if (error < E_OK) return error;
     }

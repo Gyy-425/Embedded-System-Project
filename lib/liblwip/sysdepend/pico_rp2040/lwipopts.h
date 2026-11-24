@@ -82,6 +82,12 @@
 #define LWIP_DNS                    1
 #define LWIP_TCP_KEEPALIVE          1
 
+/* MQTT client queue (lwIP defaults: 4 requests, 256-byte output buffer).
+ * Telemetry, route and QoS1 ACKs every 250 ms can exhaust the defaults on a
+ * slow link, so mqtt_publish() returns ERR_MEM and an ACK is lost. */
+#define MQTT_REQ_MAX_IN_FLIGHT      8
+#define MQTT_OUTPUT_RINGBUF_SIZE    768
+
 #define MEM_STATS                   0
 #define SYS_STATS                   0
 #define MEMP_STATS                  0

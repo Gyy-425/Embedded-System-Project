@@ -9,7 +9,8 @@ COLOURS = ("black", "white", "yellow", "background", "red", "blue",
 FOLLOW_PHASES = ("IDLE", "RUNNING", "STOPPED")
 FOLLOW_REASONS = ("NONE", "BUTTON", "IR", "RGB", "HARDWARE", "AMBIGUOUS",
                   "COMPLETE", "DRIVER", "JOIN_TIMEOUT", "CORNER_NOT_SEEN",
-                  "CORNER_TIMEOUT", "REFRESH", "MQTT_STOP", "MQTT_TIMEOUT")
+                  "CORNER_TIMEOUT", "REFRESH", "MQTT_STOP", "MQTT_TIMEOUT",
+                  "TARGET_END", "TARGET_MISMATCH")
 ROUTE_STATUSES = ("OK", "DUPLICATE", "CONFIG", "CAPTURE", "ORDER", "JUMP",
                   "REVERSE", "OVERFLOW", "STALE", "HISTORY", "UNKNOWN_TIMEOUT",
                   "QUEUE_FULL", "FINISHED")

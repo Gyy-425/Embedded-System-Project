@@ -3,7 +3,8 @@
 
 static void count_invalid(encoder_state_t *state)
 {
-    if (state->invalid_transitions < UINT32_MAX) {
+    if (state->invalid_transitions < UINT32_MAX)
+    {
         ++state->invalid_transitions;
     }
 }
@@ -26,12 +27,14 @@ void encoder_update(encoder_state_t *state, uint8_t ab)
     };
     int8_t step;
 
-    if ((ab > 3U) || (state->ab > 3U)) {
+    if ((ab > 3U) || (state->ab > 3U))
+    {
         count_invalid(state);
         state->ab = ab & 3U;
         return;
     }
-    if ((state->ab ^ ab) == 3U) {
+    if ((state->ab ^ ab) == 3U)
+    {
         count_invalid(state);
         state->ab = ab;
         return;

@@ -144,6 +144,8 @@ drive_result_t drive_control_receive(drive_control_t *p_control,
         p_action->kind = DRIVE_ACTION_ARM;
 #if AAI05_FOLLOW_MQTT
         p_action->straight = (p_command->opcode == DRIVE_OP_STRAIGHT);
+        p_action->target = p_command->target;
+        p_control->target = p_command->target;
 #endif
     }
     else if (is_keep)

@@ -7,6 +7,10 @@
 #define DRIVE_ACK_SIZE 23U
 #define DRIVE_TELEMETRY_SIZE 26U
 #define DRIVE_UNKNOWN 7U
+/* FOLLOW target lane IDs match the RGB class and route colour IDs. */
+#define DRIVE_TARGET_YELLOW 2U
+#define DRIVE_TARGET_RED 4U
+#define DRIVE_TARGET_BLUE 5U
 #define DRIVE_LEASE_MS 750U
 #define DRIVE_GRANT_MS 1000U
 #define DRIVE_FEED_MS 20U
@@ -84,6 +88,13 @@ typedef struct
     uint8_t motion_phase;
     uint8_t motion_reason;
 } drive_status_t;
+
+/* FOLLOW accepts unset (whole route) or one supported lane colour. */
+static inline bool drive_protocol_follow_target_valid(uint8_t target)
+{
+    return (target == DRIVE_UNKNOWN) || (target == DRIVE_TARGET_YELLOW) ||
+           (target == DRIVE_TARGET_RED) || (target == DRIVE_TARGET_BLUE);
+}
 
 drive_result_t drive_protocol_decode(const uint8_t *p_data, uint16_t length,
                                       drive_command_t *p_command);

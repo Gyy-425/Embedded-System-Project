@@ -30,6 +30,9 @@ int main(void)
             source_path.write_text(source)
             compiled = subprocess.run(["gcc", *HOST_FLAGS, str(source_path), "-o", str(binary)],
                                       capture_output=True, text=True, timeout=30)
+            if compiled.returncode and ("cannot find -lasan" in compiled.stderr or
+                                        "cannot find -lubsan" in compiled.stderr):
+                self.skipTest("Sanitizer runtime libraries unavailable (e.g. MinGW); run in WSL")
             self.assertEqual(compiled.returncode, 0, compiled.stderr)
             self.assertEqual(compiled.stderr, "")
             ran = subprocess.run([str(binary)], capture_output=True, text=True, timeout=10,

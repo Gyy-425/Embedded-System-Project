@@ -45,9 +45,9 @@ static uint32_t app_now_ms(void)
 int main(void)
 {
     uint16_t epoch = 0U;
-    assert(subsystem2_follow_arm(&epoch, false) == MOTION_UNAVAILABLE);
+    assert(subsystem2_follow_arm(&epoch, false, 7U) == MOTION_UNAVAILABLE);
     assert(motion_runtime_init() == E_OK);
-    assert(subsystem2_follow_arm(&epoch, false) == MOTION_ACCEPTED && epoch == 1U);
+    assert(subsystem2_follow_arm(&epoch, false, 7U) == MOTION_ACCEPTED && epoch == 1U);
     assert(!follow_remote_take().start);
     assert(subsystem2_motion_stop() == MOTION_ACCEPTED);
     motion_command_t feed = {0U, 1U, 0, 0};
@@ -55,8 +55,8 @@ int main(void)
     assert(!follow_remote_take().start);
 
     test_clock_ms = UINT32_MAX - 49U;
-    assert(subsystem2_follow_arm(&epoch, true) == MOTION_ACCEPTED && epoch == 2U);
-    assert(subsystem2_follow_arm(&epoch, false) == MOTION_LATCHED);
+    assert(subsystem2_follow_arm(&epoch, true, 7U) == MOTION_ACCEPTED && epoch == 2U);
+    assert(subsystem2_follow_arm(&epoch, false, 7U) == MOTION_LATCHED);
     feed.issued_ms = test_clock_ms;
     feed.left_pct = 25;
     assert(subsystem2_motion_submit(&feed) == MOTION_BAD_COMMAND);
@@ -64,6 +64,7 @@ int main(void)
     assert(subsystem2_motion_submit(&feed) == MOTION_ACCEPTED);
     follow_remote_permission_t initial = follow_remote_take();
     assert(initial.start && initial.epoch == epoch && initial.straight);
+    assert(initial.target == 7U);
     assert(follow_remote_remaining(initial, test_clock_ms) == 100U);
     follow_remote_permission_t renewed = follow_remote_take();
     assert(!renewed.start && renewed.straight);
@@ -77,7 +78,7 @@ int main(void)
     assert(subsystem2_motion_submit(&feed) == MOTION_LATCHED);
     assert(follow_remote_remaining(follow_remote_take(), test_clock_ms) == 0U);
     assert(subsystem2_motion_stop() == MOTION_ACCEPTED);
-    assert(subsystem2_follow_arm(&epoch, false) == MOTION_ACCEPTED && epoch == 3U);
+    assert(subsystem2_follow_arm(&epoch, false, 7U) == MOTION_ACCEPTED && epoch == 3U);
     assert(!follow_remote_take().start);
     puts("PASS: only fresh FOLLOW authorizes PWM, STOP wins, and expired feed cannot rearm");
     return 0;

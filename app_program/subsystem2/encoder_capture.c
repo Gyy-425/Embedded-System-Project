@@ -18,11 +18,14 @@ static void capture_wheel(encoder_state_t *state, uint32_t *overrun,
                           uint32_t edges, uint8_t ab, bool ambiguous)
 {
     if (edges == 0U) return;
-    if (ambiguous) {
+    if (ambiguous)
+    {
         /* Edge latches do not retain order or multiplicity. Never guess a delta. */
         increment_saturating(overrun);
         state->ab = ab;
-    } else {
+    }
+    else
+    {
         encoder_update(state, ab);
     }
 }
@@ -47,7 +50,8 @@ void encoder_capture_irq(void)
     uint32_t saved = encoder_io_lock();
     uint32_t left_edges = encoder_io_pending(ENCODER_LEFT_BANK) & ENCODER_LEFT_EDGES;
     uint32_t right_edges = encoder_io_pending(ENCODER_RIGHT_BANK) & ENCODER_RIGHT_EDGES;
-    if ((left_edges | right_edges) != 0U) {
+    if ((left_edges | right_edges) != 0U)
+    {
         uint32_t first_left = left_edges;
         uint32_t first_right = right_edges;
         /* Associate movement with levels sampled BEFORE acknowledgment. Recheck

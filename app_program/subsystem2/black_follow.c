@@ -1459,7 +1459,7 @@ const char *black_follow_reason_name(uint8_t reason)
     static const char *const names[] = {
         "NONE", "BUTTON", "IR", "RGB", "HARDWARE", "AMBIGUOUS", "COMPLETE", "DRIVER",
         "JOIN_TIMEOUT", "CORNER_NOT_SEEN", "CORNER_TIMEOUT", "REFRESH",
-        "MQTT_STOP", "MQTT_TIMEOUT"
+        "MQTT_STOP", "MQTT_TIMEOUT", "TARGET_END", "TARGET_MISMATCH"
     };
     return reason < sizeof(names) / sizeof(names[0]) ? names[reason] : "INVALID";
 }

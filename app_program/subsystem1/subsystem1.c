@@ -41,7 +41,8 @@ static void ir_task(INT start_code, void *extra)
     bool opened = false;
     (void)start_code;
     (void)extra;
-    for (;;) {
+    for (;;)
+    {
         ir_sample(&next, &opened);
         (void)tk_dly_tsk(opened ? 10 : 100);
     }
@@ -118,11 +119,13 @@ EXPORT ER subsystem1_start(void)
 EXPORT ER subsystem1_get_snapshot(ir_snapshot_t *snapshot)
 {
     ER error;
-    if (snapshot == NULL) {
+    if (snapshot == NULL)
+    {
         return E_PAR;
     }
     error = tk_loc_mtx(snapshot_mutex, TMO_POL);
-    if (error == E_OK) {
+    if (error == E_OK)
+    {
         *snapshot = latest;
         (void)tk_unl_mtx(snapshot_mutex);
     }

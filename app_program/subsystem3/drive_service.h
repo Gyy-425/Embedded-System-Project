@@ -31,6 +31,17 @@ typedef struct
 #endif
 } drive_input_t;
 
+/* Publish outcome counters. Written only by the network-owner task; each
+ * field is an aligned 16-bit word, so the report task reads it whole. */
+typedef struct
+{
+    uint16_t ack_failed;    /* ACK publish refused by lwIP (kept for retry). */
+    uint16_t ack_retried;   /* Kept ACK later published successfully. */
+    uint16_t ack_abandoned; /* Kept ACK replaced or dropped on link change. */
+    uint16_t telemetry_failed;
+    uint16_t route_failed;
+} drive_publish_counters_t;
+
 /* Platform boundary, called only by the existing network-owner task. */
 uint32_t drive_io_now(void);
 uint32_t drive_io_seed(void);
@@ -44,4 +55,5 @@ void mqtt_app_link_changed(bool is_ready);
 void mqtt_drive_receive(const uint8_t *p_data, uint16_t length,
                          bool is_retained);
 void mqtt_app_poll(void);
+void drive_service_counters(drive_publish_counters_t *p_counters);
 #endif

@@ -22,6 +22,13 @@
 #define FOLLOW_LEASE_REFRESH 11U /* Diagnostic label for the command TTL. */
 #define FOLLOW_REMOTE_STOP 12U
 #define FOLLOW_REMOTE_TIMEOUT 13U
+#define FOLLOW_TARGET_END 14U      /* Selected lane ended: a new lane was confirmed. */
+#define FOLLOW_TARGET_MISMATCH 15U /* Start refused: not on the selected lane. */
+#define FOLLOW_TARGET_ANY 7U       /* No lane selected: follow the whole route. */
+/* Minimum-bit representation (Change Requirement 1): every Boolean flag in
+ * the persistent follow state is a 1-bit field. The state is written only by
+ * the Motion task and is copied whole under the follow_snapshot lock, so no
+ * other task performs a read-modify-write on the packed storage. */
 #define FOLLOW_CORNER_SEEK 0U
 #define FOLLOW_CORNER_TURN 1U
 #define FOLLOW_CORNER_EXIT 2U
@@ -125,8 +132,8 @@ typedef struct
     uint16_t left_raw;
     uint16_t right_raw;
     uint8_t rgb_result;
-    bool join_active;
-    bool valid;
+    bool join_active : 1;
+    bool valid : 1;
 } follow_stop_trace_t;
 #endif
 
@@ -154,8 +161,8 @@ typedef struct
     int8_t turn_pct;
     uint8_t phase;
     uint8_t reason;
-    bool ready;
-    bool join_active;
+    bool ready : 1;
+    bool join_active : 1;
     uint8_t join_count;
     uint8_t corner_phase;
 #if FOLLOW_STOP_TRACE
@@ -165,70 +172,70 @@ typedef struct
     follow_bend_trace_t bend_trace;
 #endif
 #if FOLLOW_BLUE_EXIT_LEAD
-    bool blue_exit_lead_used;
+    bool blue_exit_lead_used : 1;
 #endif
 #if FOLLOW_BLUE_EXIT_AFTER_RECOVERY
-    bool blue_recovered_exit_used;
+    bool blue_recovered_exit_used : 1;
 #endif
 #if FOLLOW_RED_EXIT_LEAD
-    bool red_exit_lead_used;
+    bool red_exit_lead_used : 1;
 #endif
 #if FOLLOW_RED_SECOND_PIVOT
-    bool red_second_pivot_used;
+    bool red_second_pivot_used : 1;
 #endif
 #if FOLLOW_RED_SECOND_SLOW
-    bool red_second_slow_used;
+    bool red_second_slow_used : 1;
 #endif
 #if FOLLOW_RED_FIRST_BEND_BOOST
-    bool red_first_pivot_used;
+    bool red_first_pivot_used : 1;
 #endif
 #if FOLLOW_RED_HANDOFF_ALIGN
-    bool red_alignment_used;
+    bool red_alignment_used : 1;
 #endif
 #if FOLLOW_RED_EXIT_ALIGN
-    bool red_exit_alignment_used;
+    bool red_exit_alignment_used : 1;
 #endif
 #if FOLLOW_RED_BETWEEN_BENDS
-    bool red_clear_pivot_used;
+    bool red_clear_pivot_used : 1;
 #endif
 #if FOLLOW_RED_INSIDE_RELEASE
-    bool red_second_release_used;
+    bool red_second_release_used : 1;
 #endif
 #if FOLLOW_RED_EXIT_TURN
-    bool red_exit_turn_used;
+    bool red_exit_turn_used : 1;
 #endif
 #if FOLLOW_RED_BEND_AFTER_HANDOFF
-    bool red_handoff_armed;
+    bool red_handoff_armed : 1;
 #endif
 #if FOLLOW_BLUE_RED_CONFIRM_GRACE
-    bool red_approach_grace_used;
+    bool red_approach_grace_used : 1;
 #endif
 #if FOLLOW_RED_RETURN_GRACE
-    bool red_return_grace_used;
+    bool red_return_grace_used : 1;
 #endif
 #if FOLLOW_BLUE_RED_HANDOFF
-    bool blue_red_join_used;
+    bool blue_red_join_used : 1;
 #endif
 #if FOLLOW_BLUE_SECOND_BOOST
-    bool blue_second_used;
+    bool blue_second_used : 1;
 #endif
 #if FOLLOW_BLUE_OUTER_EDGE
-    bool blue_outer_used;
+    bool blue_outer_used : 1;
 #endif
 #if FOLLOW_BLUE_OUTER_RECOVERY
-    bool blue_outer_recovery_used;
+    bool blue_outer_recovery_used : 1;
 #endif
 #if FOLLOW_BLUE_BEND_SLOW
-    bool blue_bend_slow_used;
+    bool blue_bend_slow_used : 1;
 #endif
 #if FOLLOW_BLUE_CONFIRM_GRACE
-    bool blue_late_confirmed;
+    bool blue_late_confirmed : 1;
 #endif
 #if FOLLOW_YELLOW_LEAD_CUE
-    bool yellow_lead_used;
+    bool yellow_lead_used : 1;
 #endif
 #if FOLLOW_BLUE_REVERSAL_DAMPING
-    bool blue_reversal_damped;
+    bool blue_reversal_damped : 1;
 #endif
 #if FOLLOW_MOTOR_HALF_PCT
     int8_t left_half_pct;
@@ -237,10 +244,10 @@ typedef struct
 #if FOLLOW_CLIPPED_LOOP
     uint8_t lease_limit;
     uint8_t last_lease_ms;
-    bool lease_alarm;
+    bool lease_alarm : 1;
 #endif
 #if FOLLOW_RED_OUTSIDE_RECOVERY
-    bool red_outside_used;
+    bool red_outside_used : 1;
 #endif
 } black_follow_status_t;
 
@@ -249,7 +256,7 @@ typedef struct
     black_follow_status_t status;
     uint32_t run_started_ms;
 #if AAI05_FOLLOW_MQTT
-    bool straight_mode;
+    bool straight_mode : 1;
 #endif
     uint32_t button_changed_ms;
     uint32_t corner_stage_started_ms;
@@ -257,7 +264,7 @@ typedef struct
     uint32_t corner_rgb_sequence;
 #if FOLLOW_YELLOW_LEAD_CUE
     uint32_t yellow_lead_since_ms;
-    bool yellow_lead_seen;
+    bool yellow_lead_seen : 1;
 #endif
 #if FOLLOW_BLUE_STEER_RAMP
     uint32_t blue_edge_since_ms;
@@ -265,23 +272,23 @@ typedef struct
 #endif
 #if FOLLOW_BLUE_SECOND_BOOST
     uint32_t blue_reacquired_ms;
-    bool blue_second_armed;
+    bool blue_second_armed : 1;
 #endif
 #if FOLLOW_BLUE_OUTER_EDGE
     uint32_t blue_outer_since_ms;
-    bool blue_outer_seen;
+    bool blue_outer_seen : 1;
 #endif
 #if FOLLOW_BEND_CUE_REFINEMENT
     uint32_t blue_outside_sample_ms;
-    bool blue_outside_sample_seen;
+    bool blue_outside_sample_seen : 1;
 #endif
 #if FOLLOW_BLUE_BEND_SLOW
     uint32_t blue_outer_confirmed_ms;
-    bool blue_outer_confirmed;
+    bool blue_outer_confirmed : 1;
 #endif
 #if FOLLOW_BLUE_EXIT_LEAD
     uint32_t blue_exit_lead_ms;
-    bool blue_exit_lead_seen;
+    bool blue_exit_lead_seen : 1;
 #endif
 #if FOLLOW_RED_EXIT_LEAD
     uint32_t red_outer_since_ms;
@@ -302,33 +309,33 @@ typedef struct
 #if FOLLOW_RED_DIAGONAL_REACQUIRE
     uint32_t red_first_pivot_ms;
     uint32_t red_diagonal_inside_ms;
-    bool red_diagonal_inside_seen;
+    bool red_diagonal_inside_seen : 1;
 #endif
-    bool red_outer_seen;
-    bool red_outer_confirmed;
-    bool red_exit_lead_seen;
+    bool red_outer_seen : 1;
+    bool red_outer_confirmed : 1;
+    bool red_exit_lead_seen : 1;
 #endif
 #if FOLLOW_RED_SECOND_PIVOT
     uint32_t red_recovered_ms;
-    bool red_second_armed;
-    bool red_second_active;
+    bool red_second_armed : 1;
+    bool red_second_active : 1;
 #endif
 #if FOLLOW_RED_BEND_AFTER_HANDOFF
     uint32_t red_handoff_sequence;
-    bool red_second_from_handoff;
+    bool red_second_from_handoff : 1;
 #endif
 #if FOLLOW_RED_FIRST_BEND_BOOST
-    bool red_first_active;
+    bool red_first_active : 1;
 #endif
 #if FOLLOW_BLUE_REVERSAL_DAMPING
     uint32_t blue_last_edge_ms;
     int8_t blue_last_edge_direction;
-    bool blue_reversal_ramp;
+    bool blue_reversal_ramp : 1;
 #endif
     uint8_t corner_rgb_colour;
-    bool corner_signal_seen;
+    bool corner_signal_seen : 1;
 #if FOLLOW_LOOP_RECOVERY_DIRECTION != 0
-    bool bend_recovering;
+    bool bend_recovering : 1;
 #endif
 #if FOLLOW_RED_SPIN_HOLD
     uint32_t red_outside_seq;
@@ -336,12 +343,12 @@ typedef struct
 #if FOLLOW_RED_OUTSIDE_RECOVERY
     uint32_t red_left_edge_ms;
     uint32_t red_outside_since_ms;
-    bool red_left_edge_seen;
-    bool red_outside_active;
+    bool red_left_edge_seen : 1;
+    bool red_outside_active : 1;
 #endif
-    bool raw_pressed;
-    bool stable_pressed;
-    bool release_seen;
+    bool raw_pressed : 1;
+    bool stable_pressed : 1;
+    bool release_seen : 1;
 } black_follow_t;
 
 typedef struct

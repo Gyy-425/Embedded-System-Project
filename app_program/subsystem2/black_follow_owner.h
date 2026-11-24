@@ -49,6 +49,11 @@ typedef struct
     uint32_t last_lease_cutoff_count;
 #endif
     uint16_t sequence;
+#if AAI05_FOLLOW_MQTT && FOLLOW_MULTICOLOUR_CORRIDOR
+    uint32_t target_left_sequence; /* RGB sample that first left the lane. */
+    uint8_t target; /* Lane chosen over MQTT, latched at start. */
+    bool target_left;
+#endif
     bool has_ir;
     bool has_rgb;
 } black_follow_owner_t;

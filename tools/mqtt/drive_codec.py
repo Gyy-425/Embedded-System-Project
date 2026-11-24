@@ -5,6 +5,8 @@ from robot_codec import crc8, target_name
 (OP_STATUS, OP_TARGET, OP_CLEAR, OP_START, OP_KEEPALIVE, OP_STOP,
  OP_FOLLOW, OP_STRAIGHT) = range(8)
 UNKNOWN = 7
+# FOLLOW may select one lane; IDs match the RGB class and route colour IDs.
+FOLLOW_TARGETS = {"yellow": 2, "red": 4, "blue": 5}
 RESULTS = ("OK", "DUPLICATE", "BAD_FRAME", "BAD_VALUE", "SESSION",
            "STALE_SEQUENCE", "CONFLICT", "NOT_READY", "STALE_GRANT",
            "BAD_STATE", "RETAINED", "MOTION_FAILURE", "BUSY")
@@ -56,7 +58,10 @@ def encode_drive_command(opcode: int, target: int = UNKNOWN,
         raise ValueError("Sequence/session outside wire range")
     if not 0 <= grant <= 0xFFFFFFFF or not -50 <= left <= 50 or not -50 <= right <= 50:
         raise ValueError("Grant/duties outside wire range")
-    if (opcode == OP_TARGET and target == UNKNOWN) or (opcode != OP_TARGET and target != UNKNOWN):
+    if opcode == OP_FOLLOW:
+        if target != UNKNOWN and target not in FOLLOW_TARGETS.values():
+            raise ValueError("FOLLOW target must be unset7, yellow2, red4 or blue5")
+    elif (opcode == OP_TARGET and target == UNKNOWN) or (opcode != OP_TARGET and target != UNKNOWN):
         raise ValueError("TARGET requires0..6; other operations require unset7")
     if (opcode == OP_START) == (left == 0 and right == 0):
         raise ValueError("START needs nonzero duty; other operations need zero duties")

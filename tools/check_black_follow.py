@@ -952,6 +952,9 @@ def main():
                     # start; its STRAIGHT mode must bypass every bend manoeuvre.
                     ('straight-follow', ['testing/host/test_straight_follow.c', *core],
                      [*spin_hold_config, '-DAAI05_FOLLOW_MQTT=1']),
+                    # MQTT lane selection (fb/fr/fy) on the real owner with this steering.
+                    ('follow-target-owner', ['testing/host/test_follow_target.c', *owner_files[1:]],
+                     [*spin_hold_config, '-DAAI05_FOLLOW_MQTT=1']),
                 ])
             core_files = next(files for name,files,extra in cases if name=='core')
             cases.append(('core-turn20',core_files,['-DFOLLOW_TURN_LIMIT_PCT=20']))

@@ -11,7 +11,7 @@ import threading
 import time
 from drive_codec import (DriveAck, DriveTelemetry, OP_STATUS, OP_TARGET,
                          OP_CLEAR, OP_START, OP_KEEPALIVE, OP_STOP, OP_FOLLOW,
-                         OP_STRAIGHT, UNKNOWN,
+                         OP_STRAIGHT, UNKNOWN, FOLLOW_TARGETS,
                          decode_drive_packet, encode_drive_command,
                          format_drive_packet)
 from robot_cli import Bridge
@@ -20,10 +20,19 @@ from chassis import chassis_duties
 from route_codec import (decode_route_packet, format_route_report,
                          format_route_status)
 
-MENU_START_OPCODES = {"f": OP_FOLLOW, "l": OP_STRAIGHT}
+# Menu start commands: (opcode, target lane). Unset follows the whole route.
+MENU_START_OPCODES = {
+    "f": (OP_FOLLOW, UNKNOWN),
+    "fb": (OP_FOLLOW, FOLLOW_TARGETS["blue"]),
+    "fr": (OP_FOLLOW, FOLLOW_TARGETS["red"]),
+    "fy": (OP_FOLLOW, FOLLOW_TARGETS["yellow"]),
+    "l": (OP_STRAIGHT, UNKNOWN),
+}
+TARGET_LABELS = {value: name for name, value in FOLLOW_TARGETS.items()}
 
 
-def synchronise(bridge, timeout=4.0, *, clock=time.monotonic, check=None):
+def synchronise(bridge, timeout=4.0, *, clock=time.monotonic, check=None,
+                start_receipt=None):
     identifier = secrets.randbits(16)
     frame = encode_drive_command(OP_STATUS, sequence=identifier)
     deadline = clock() + timeout
@@ -34,8 +43,11 @@ def synchronise(bridge, timeout=4.0, *, clock=time.monotonic, check=None):
         if clock() >= next_send:
             bridge.publish(frame, max(0.001, min(0.2 if check else 0.5,
                                                  deadline - clock())))
-            next_send = clock() + 0.5
+            next_send = clock() + (0.15 if start_receipt is not None else 0.5)
         packet = bridge.receive(max(0.001, min(0.1, deadline - clock())))
+        if start_receipt is not None and matching_running_telemetry(
+                packet, start_receipt, start_receipt.mutation_sequence, start_receipt.grant):
+            return packet
         if (type(packet) is DriveAck and packet.opcode == OP_STATUS and
                 packet.sequence == identifier and packet.result == 0 and
                 packet.session and packet.grant):
@@ -45,7 +57,7 @@ def synchronise(bridge, timeout=4.0, *, clock=time.monotonic, check=None):
 
 
 def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
-            timeout=0.6, clock=time.monotonic, check=None):
+            timeout=0.6, clock=time.monotonic, check=None, confirm_renewal=False):
     if opcode != OP_STOP and not status.ready:
         raise RuntimeError("Device Motion status is unavailable/not ready")
     sequence = (status.mutation_sequence + 1) & 0xFFFF
@@ -67,6 +79,11 @@ def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
             continue
         if packet.session != status.session:
             raise RuntimeError("Device session changed; no automatic restart")
+        if confirm_renewal and opcode == OP_KEEPALIVE and matching_running_telemetry(
+                packet, status, sequence, ((status.grant + 1) & 0xFFFFFFFF) or 1):
+            # The Pico rotates the grant and advances the sequence only
+            # after accepting this renewal. Keep the same lease and deadline.
+            return packet
         if (type(packet) is not DriveAck or packet.opcode != opcode or
                 packet.sequence != sequence):
             continue
@@ -96,18 +113,19 @@ def request(bridge, status, opcode, *, target=UNKNOWN, left=0, right=0,
             raise RuntimeError(format_drive_packet(packet))
         if opcode != OP_STOP and packet.mutation_sequence != sequence:
             continue
-        if opcode in (OP_TARGET, OP_CLEAR) and packet.target != target:
+        if opcode in (OP_TARGET, OP_CLEAR, OP_FOLLOW) and packet.target != target:
             raise RuntimeError("Device acknowledgement target mismatch")
         return packet
     raise RuntimeError("No matching device ACK; command outcome unconfirmed")
 
 
 def confirm_motion(bridge, status, is_active, timeout=4.0,
-                   *, clock=time.monotonic, check=None):
+                   *, clock=time.monotonic, check=None, use_running_telemetry=False):
     deadline = clock() + timeout
     while clock() < deadline:
         packet = synchronise(bridge, min(0.5, deadline - clock()), clock=clock,
-                             check=check)
+                             check=check,
+                             start_receipt=status if use_running_telemetry else None)
         if packet.session != status.session:
             raise RuntimeError("Device session changed during confirmation")
         delta = (packet.mutation_sequence - status.mutation_sequence) & 0xFFFF
@@ -125,6 +143,13 @@ def motion_confirmed(packet, is_active):
     return (packet.ready and packet.active == is_active and
             packet.motion_phase == (1 if is_active else 2) and
             packet.remote_phase == (2 if is_active else 3))
+
+
+def matching_running_telemetry(packet, previous, sequence, grant):
+    return (isinstance(packet, DriveTelemetry) and packet.session == previous.session and
+            packet.mutation_sequence == sequence and packet.grant == grant and
+            ((packet.uptime_ms - previous.uptime_ms) & 0xFFFFFFFF) < 0x80000000 and
+            packet.lease_ms > 0 and motion_confirmed(packet, True))
 
 
 def renewal_delay(status):
@@ -278,8 +303,9 @@ class FollowMenu:
         self.output(format_route_report(route) if route else
                     "No route report for the current device session.")
 
-    def start(self, opcode=OP_FOLLOW):
-        mode = "Straight track" if opcode == OP_STRAIGHT else "Follow"
+    def start(self, opcode=OP_FOLLOW, target=UNKNOWN):
+        mode = ("Straight track" if opcode == OP_STRAIGHT else
+                f"Follow {TARGET_LABELS[target]} lane" if target != UNKNOWN else "Follow")
         if self.renew_at is not None:
             self.output("A run is already active.")
             return
@@ -304,12 +330,13 @@ class FollowMenu:
                 raise RuntimeError("No fresh integrated route telemetry for this session")
             check()
             attempted = True
-            self._remember(request(self.bridge, self.status, opcode,
+            self._remember(request(self.bridge, self.status, opcode, target=target,
                                    clock=self.clock, check=check))
             running = confirm_motion(self.bridge, self.status, True,
-                                     min(self.timeout, 0.5), clock=self.clock, check=check)
+                                     min(self.timeout, 0.5), clock=self.clock, check=check,
+                                     use_running_telemetry=True)
             self._remember(running)
-            self.renew_at = self.clock() + renewal_delay(running)
+            self.renew_at = self.clock()
             self.next_update = self.clock()
             self.output(f"{mode} started (DRIVE ON confirmed by fresh device status).")
         except StopPending:
@@ -381,7 +408,8 @@ class FollowMenu:
                 if self.current_route() is None:
                     raise RuntimeError("No fresh route telemetry")
                 self._remember(request(self.bridge, self.status, OP_KEEPALIVE,
-                                       timeout=0.5, clock=self.clock, check=check))
+                                       timeout=0.5, clock=self.clock, check=check,
+                                       confirm_renewal=True))
                 if not motion_confirmed(self.status, True):
                     raise RuntimeError(format_drive_packet(self.status))
                 self.renew_at = self.clock() + renewal_delay(self.status)
@@ -408,8 +436,8 @@ def run_follow_menu(bridge, timeout, *, commands=None, clock=time.monotonic,
         threading.Thread(target=commands.read_stdin, daemon=True).start()
     menu = FollowMenu(bridge, timeout, commands, clock=clock, output=output)
     actions = {"s": menu.stop, "?": menu.show_status, "r": menu.show_report}
-    help_line = ("Press a key then Enter   f Follow   l Straight track   "
-                 "s Stop   ? Status   r Run report   q Stop and quit")
+    help_line = ("Press a key then Enter   f Follow route   fb/fr/fy Follow blue/red/yellow lane   "
+                 "l Straight track   s Stop   ? Status   r Run report   q Stop and quit")
     try:
         output(help_line)
         while True:
@@ -417,7 +445,7 @@ def run_follow_menu(bridge, timeout, *, commands=None, clock=time.monotonic,
             if command == "q":
                 break
             if command in MENU_START_OPCODES:
-                menu.start(MENU_START_OPCODES[command])
+                menu.start(*MENU_START_OPCODES[command])
             elif command in actions:
                 actions[command]()
             elif command is not None:

@@ -10,9 +10,10 @@ typedef struct
     bool fed;
     bool start;
     bool straight;
+    uint8_t target; /* DRIVE_UNKNOWN (7): whole route; else one lane. */
 } follow_remote_permission_t;
 
-motion_result_t subsystem2_follow_arm(uint16_t *p_epoch, bool straight);
+motion_result_t subsystem2_follow_arm(uint16_t *p_epoch, bool straight, uint8_t target);
 /* Motion alone consumes the one-shot start and retains PWM ownership. */
 follow_remote_permission_t follow_remote_take(void);
 

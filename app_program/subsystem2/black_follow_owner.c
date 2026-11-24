@@ -323,6 +323,9 @@ static uint8_t update_join(follow_join_t *p_join, const rgb_snapshot_t *p_rgb,
 void black_follow_owner_init(black_follow_owner_t *p_owner)
 {
     *p_owner = (black_follow_owner_t){0};
+#if AAI05_FOLLOW_MQTT && FOLLOW_MULTICOLOUR_CORRIDOR
+    p_owner->target = FOLLOW_TARGET_ANY;
+#endif
     black_follow_init(&p_owner->policy, app_now_ms());
     motion_control_init(&p_owner->motion);
 }
@@ -360,7 +363,7 @@ void black_follow_owner_step(black_follow_owner_t *p_owner, uint32_t buttons,
 #if AAI05_FOLLOW_MQTT
     bool lease_valid = follow_remote_remaining(remote, now) != 0U;
     if (!lease_valid && p_owner->policy.status.phase == FOLLOW_RUNNING &&
-        (buttons & (1U << 21U)) != 0U)
+        (buttons & (1U << MOTOR_STOP_PIN)) != 0U)
     {
         owner_stop(p_owner, remote.armed ? FOLLOW_REMOTE_TIMEOUT : FOLLOW_REMOTE_STOP);
     }
@@ -518,6 +521,28 @@ void black_follow_owner_step(black_follow_owner_t *p_owner, uint32_t buttons,
     const uint16_t recovered_blue_clear_max = FOLLOW_BLUE_RED_BEND_CUES ? 590U :
         (FOLLOW_BLUE_RED_BEND_TRIAL ? 564U : 560U);
 #endif
+#if AAI05_FOLLOW_MQTT && FOLLOW_MULTICOLOUR_CORRIDOR
+    /* A selected lane ends once another lane colour holds for two RGB
+     * samples. Fades and gaps on bends keep the lane and do not end it. */
+    if ((p_owner->target != FOLLOW_TARGET_ANY) &&
+        (p_owner->policy.status.phase == FOLLOW_RUNNING) &&
+        (p_owner->join.lane != p_owner->target))
+    {
+        if (!p_owner->target_left)
+        {
+            p_owner->target_left = true;
+            p_owner->target_left_sequence = p_owner->rgb.sequence;
+        }
+        else if (p_owner->rgb.sequence != p_owner->target_left_sequence)
+        {
+            owner_stop(p_owner, FOLLOW_TARGET_END);
+        }
+    }
+    else
+    {
+        p_owner->target_left = false;
+    }
+#endif
     black_follow_input_t input = {
         .now_ms=now, .ir_ms=p_owner->ir.sampled_ms,
         .left_raw=p_owner->ir.left_raw, .right_raw=p_owner->ir.right_raw,
@@ -596,9 +621,9 @@ void black_follow_owner_step(black_follow_owner_t *p_owner, uint32_t buttons,
         .remote_start=lease_valid && remote.start,
         .straight_mode=remote.straight,
 #else
-        .start_pressed=(buttons & (1U << 20U)) == 0U,
+        .start_pressed=(buttons & (1U << MOTOR_NEXT_PIN)) == 0U,
 #endif
-        .stop_pressed=(buttons & (1U << 21U)) == 0U
+        .stop_pressed=(buttons & (1U << MOTOR_STOP_PIN)) == 0U
     };
 #if FOLLOW_MOTOR_HALF_PCT
     p_owner->policy.status.left_half_pct = 0;
@@ -624,7 +649,19 @@ void black_follow_owner_step(black_follow_owner_t *p_owner, uint32_t buttons,
         p_owner->policy.status.lease_limit = FOLLOW_NONE;
         p_owner->policy.status.last_lease_ms = 0U;
 #endif
-        if (motor_drive_rearm() != 0)
+        bool target_refused = false;
+#if AAI05_FOLLOW_MQTT && FOLLOW_MULTICOLOUR_CORRIDOR
+        p_owner->target = remote.target;
+        target_refused = (p_owner->target != FOLLOW_TARGET_ANY) &&
+            ((rgb_classification_reason(colour) != RGB_CLASS_MATCH) ||
+             (rgb_classification_class(colour) != p_owner->target));
+#endif
+        if (target_refused)
+        {
+            owner_stop(p_owner, FOLLOW_TARGET_MISMATCH);
+            request.drive = false;
+        }
+        else if (motor_drive_rearm() != 0)
         {
             owner_stop(p_owner, FOLLOW_DRIVER);
             request.drive = false;

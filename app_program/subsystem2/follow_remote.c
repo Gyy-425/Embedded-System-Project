@@ -11,6 +11,8 @@ static T_SPLOCK remote_lock;
 static follow_remote_permission_t permission;
 static bool initialized;
 
+/* MQTT follow builds replace motion_runtime.c with this remote permission
+ * module, so the shared Motion start-up hook is defined here instead. */
 int32_t motion_runtime_init(void)
 {
     ER error = InitSpinLock(&remote_lock);
@@ -18,7 +20,7 @@ int32_t motion_runtime_init(void)
     return error;
 }
 
-motion_result_t subsystem2_follow_arm(uint16_t *p_epoch, bool straight)
+motion_result_t subsystem2_follow_arm(uint16_t *p_epoch, bool straight, uint8_t target)
 {
     if (p_epoch == NULL)
     {
@@ -37,7 +39,8 @@ motion_result_t subsystem2_follow_arm(uint16_t *p_epoch, bool straight)
             .epoch = (uint16_t)(permission.epoch + 1U),
             .armed = true,
             .start = true,
-            .straight = straight
+            .straight = straight,
+            .target = target
         };
         *p_epoch = permission.epoch;
         result = MOTION_ACCEPTED;

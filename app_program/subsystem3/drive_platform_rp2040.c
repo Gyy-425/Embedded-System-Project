@@ -4,6 +4,9 @@
 #pragma GCC diagnostic pop
 #include "drive_service.h"
 
+/* Snapshot age limit; matches FOLLOW_IR_FRESH_MS and MOTION_COMMAND_TTL_MS. */
+#define DRIVE_SNAPSHOT_FRESH_MS 100U
+
 #if AAI05_REMOTE_APP
 #include "cyw43_utk.h"
 #include "mqtt_utk.h"
@@ -41,7 +44,7 @@ void drive_io_snapshot(drive_input_t *p_input, uint32_t now_ms)
     p_input->motion.status = p_motion->motion;
     p_input->motion.is_active = p_motion->motor.active;
     p_input->motion.is_available = g_drive_platform_has_motion &&
-        ((uint32_t)(now_ms - p_motion->sampled_ms) <= 100U) &&
+        ((uint32_t)(now_ms - p_motion->sampled_ms) <= DRIVE_SNAPSHOT_FRESH_MS) &&
         p_motion->capture_ready && (p_motion->capture_error == E_OK) &&
         p_motion->motor.ready &&
         !p_motion->count_saturated &&
@@ -61,7 +64,7 @@ void drive_io_snapshot(drive_input_t *p_input, uint32_t now_ms)
         (p_motion->route.status == UINT8_MAX || p_motion->route.finished);
 #endif
     p_input->is_ir_stale = !g_drive_platform_has_ir ||
-        ((uint32_t)(now_ms - p_ir->sampled_ms) > 100U);
+        ((uint32_t)(now_ms - p_ir->sampled_ms) > DRIVE_SNAPSHOT_FRESH_MS);
     p_input->is_ir_valid = !p_input->is_ir_stale && p_ir->valid &&
                            (p_ir->error == E_OK);
     p_input->left_raw = g_drive_platform_has_ir ? p_ir->left_raw : 0U;

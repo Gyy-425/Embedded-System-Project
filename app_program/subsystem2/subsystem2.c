@@ -15,9 +15,11 @@ static motion_snapshot_t latest;
 static ER configure_test_buttons(void)
 {
     const UINT pins[] = {MOTOR_NEXT_PIN, MOTOR_STOP_PIN};
-    for (UINT i = 0U; i < 2U; ++i) {
+    for (UINT i = 0U; i < 2U; ++i)
+    {
         ER error = gpio_set_pin(pins[i], GPIO_MODE_IN);
-        if (error < E_OK) {
+        if (error < E_OK)
+        {
             return error;
         }
         clr_w(GPIO(pins[i]), GPIO_PDE);
@@ -53,7 +55,8 @@ static void motion_task(INT start_code, void *extra)
 #elif !AAI05_MOTION_APP
     motor_test_init(&test, app_now_ms());
 #endif
-    for (;;) {
+    for (;;)
+    {
 #if AAI05_FOLLOW_MQTT
         uint32_t capture_started_ms = app_now_ms();
 #endif
@@ -129,20 +132,25 @@ static void motion_task(INT start_code, void *extra)
                             (buttons & (1U << MOTOR_NEXT_PIN)) == 0U,
                             (buttons & (1U << MOTOR_STOP_PIN)) == 0U,
                             healthy, motor.active);
-        if (action == MOTOR_TEST_START) {
+        if (action == MOTOR_TEST_START)
+        {
             uint8_t wheel = test.step < 2U ? 1U : 2U;
             uint8_t direction = (uint8_t)((test.step % 2U) + 1U);
             ER error = (ER)motor_pulse_start(wheel, direction, MOTOR_PULSE_MAX_DUTY, MOTOR_PULSE_MS);
-            if (error < E_OK) {
+            if (error < E_OK)
+            {
                 motor_test_abort(&test, MOTOR_STOP_DRIVER);
                 motor_pulse_stop();
             }
-        } else if (action == MOTOR_TEST_STOP) {
+        }
+        else if (action == MOTOR_TEST_STOP)
+        {
             motor_pulse_stop();
         }
 #endif
         motor_pulse_read(&next.motor);
-        if (buttons_error < E_OK || motor_error < E_OK) {
+        if (buttons_error < E_OK || motor_error < E_OK)
+        {
             next.motor.error = buttons_error < E_OK ? buttons_error : motor_error;
         }
 #if !AAI05_MOTION_APP && !AAI05_FOLLOW_APP
@@ -168,7 +176,8 @@ static void motion_task(INT start_code, void *extra)
         next.sampled_ms = app_now_ms();
         follow_snapshot_publish(&next);
 #else
-        if (tk_loc_mtx(snapshot_mutex, TMO_FEVR) == E_OK) {
+        if (tk_loc_mtx(snapshot_mutex, TMO_FEVR) == E_OK)
+        {
             latest = next;
             (void)tk_unl_mtx(snapshot_mutex);
         }
@@ -185,11 +194,13 @@ EXPORT ER subsystem2_init(void)
 #endif
     drv_motor_coast_init();
     ER timer_error = (ER)motor_timebase_init();
-    if (timer_error < E_OK) {
+    if (timer_error < E_OK)
+    {
         return timer_error;
     }
     ER runtime_error = (ER)motion_runtime_init();
-    if (runtime_error < E_OK) {
+    if (runtime_error < E_OK)
+    {
         return runtime_error;
     }
 #if AAI05_FOLLOW_APP
@@ -203,7 +214,7 @@ EXPORT ER subsystem2_init(void)
 
 EXPORT ER subsystem2_start(void)
 {
-    ID task = app_start_task((FP)motion_task, APP_PRI_MOTION, 1U, "motion diagnostics");
+    ID task = app_start_task((FP)motion_task, APP_PRI_MOTION, 1U, "motion");
     return (task < E_OK) ? task : E_OK;
 }
 
@@ -213,11 +224,13 @@ EXPORT ER subsystem2_get_snapshot(motion_snapshot_t *snapshot)
     return (ER)follow_snapshot_read(snapshot);
 #else
     ER error;
-    if (snapshot == NULL) {
+    if (snapshot == NULL)
+    {
         return E_PAR;
     }
     error = tk_loc_mtx(snapshot_mutex, TMO_POL);
-    if (error == E_OK) {
+    if (error == E_OK)
+    {
         *snapshot = latest;
         (void)tk_unl_mtx(snapshot_mutex);
     }

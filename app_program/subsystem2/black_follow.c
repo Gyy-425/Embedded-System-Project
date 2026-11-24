@@ -1,13 +1,33 @@
 #include "black_follow.h"
 
+/* IR sensor model. Raw values are 12-bit ADC counts; normalised values run
+ * 0..IR_NORM_FULL between a surface centre and the border full-scale. */
+#define IR_RAW_MAX              (4095U) /* 12-bit ADC ceiling. */
+#define IR_NORM_FULL            (1000U) /* Normalised full scale. */
+#define IR_NORM_CLEAR           (80U)   /* At or below: sensor sees lane only. */
+#define IR_BORDER_FULL_RAW      (500U)  /* Black border reaches full scale. */
+#define IR_AMBIGUOUS_RAW        (500U)  /* Both sensors on black: stop. */
+#define IR_BLUE_EDGE_RAW        (700U)  /* Blue lane: full edge / stop level. */
+#define IR_HOME_BLUE_LEFT_CTR   (339U)  /* Home track, blue lane centres. */
+#define IR_HOME_BLUE_RIGHT_CTR  (313U)
+#define IR_HOME_YELLOW_RIGHT_CTR (278U) /* Home track, yellow right centre. */
+#define IR_BLUE_LEFT_CTR        (331U)  /* Blue corridor (non-home) centres. */
+#define IR_BLUE_RIGHT_CTR       (315U)
+#define IR_LANE_LEFT_CTR        (255U)  /* Red/yellow/black lane centres. */
+#define IR_LANE_RIGHT_CTR       (236U)
+#define IR_LINE_LEFT_CTR        (268U)  /* Single black-line profile. */
+#define IR_LINE_RIGHT_CTR       (304U)
+#define IR_LINE_LEFT_SPAN       (1100U)
+#define IR_LINE_RIGHT_SPAN      (1140U)
+
 static uint16_t normalize(uint16_t raw, uint16_t baseline, uint16_t span)
 {
     if (raw <= baseline)
     {
         return 0U;
     }
-    uint32_t value = ((uint32_t)raw - baseline) * 1000U / span;
-    return (uint16_t)(value > 1000U ? 1000U : value);
+    uint32_t value = ((uint32_t)raw - baseline) * IR_NORM_FULL / span;
+    return (uint16_t)(value > IR_NORM_FULL ? IR_NORM_FULL : value);
 }
 
 void black_follow_init(black_follow_t *p_state, uint32_t now_ms)
@@ -171,7 +191,7 @@ static void update_two_turn_bend(black_follow_t *p_state, const black_follow_inp
     bool turning = bend_turning(phase);
     bool on_lane = p_input->rgb_target_matched && !p_input->rgb_join_active;
     /* On the clockwise approach, the left sensor is on the outside. */
-    bool outside_edge = (p_state->status.left_norm == 1000U) &&
+    bool outside_edge = (p_state->status.left_norm == IR_NORM_FULL) &&
                         (p_state->status.right_norm <= 150U);
     bool turn_old_enough = (p_input->now_ms - p_state->corner_stage_started_ms) >= 100U;
     bool cue = on_lane && (turning ? (turn_old_enough && bend_centred(p_state)) : outside_edge);
@@ -320,7 +340,7 @@ static bool blue_exit_lead(black_follow_t *p_state, const black_follow_input_t *
     /* Keep a started exit turn through the black border while outside IR
      * remains clear. The owner's join timeout still applies. */
     if (p_input->blue_exit_on_black && p_input->rgb_join_active &&
-        p_state->status.left_norm <= 80U)
+        p_state->status.left_norm <= IR_NORM_CLEAR)
     {
         hold_ms = 450U;
     }
@@ -332,7 +352,7 @@ static bool blue_exit_lead(black_follow_t *p_state, const black_follow_input_t *
      * edge to the inside edge while RGB still matches fading blue. */
     bool crossed_inside = p_input->blue_inner_fade && p_state->blue_outside_sample_seen &&
         p_input->ir_ms - p_state->blue_outside_sample_ms <= 180U &&
-        p_state->status.left_norm <= 80U && p_input->right_raw >= 850U;
+        p_state->status.left_norm <= IR_NORM_CLEAR && p_input->right_raw >= 850U;
     outside_border_cue = outside_border_cue || crossed_inside;
     fading = fading || (p_input->blue_inner_fade && (crossed_inside || p_state->blue_exit_lead_seen));
 #endif
@@ -348,7 +368,7 @@ static bool blue_exit_lead(black_follow_t *p_state, const black_follow_input_t *
      * Wait for the left edge to clear and the right IR to rise. */
     bool crossed_to_right = p_state->blue_outside_sample_seen &&
         p_input->ir_ms - p_state->blue_outside_sample_ms <= 180U &&
-        p_state->status.left_norm <= 80U && p_state->status.right_norm >= 240U;
+        p_state->status.left_norm <= IR_NORM_CLEAR && p_state->status.right_norm >= 240U;
     fading = fading || (p_input->blue_inner_fade && crossed_to_right);
     bend_ready = crossed_to_right && fading && p_input->rgb_target_matched;
 #endif
@@ -385,7 +405,7 @@ static bool red_handoff_aligning(const black_follow_t *p_state,
     bool near_red = p_input->rgb_join_active ? p_input->red_handoff_mix : p_input->rgb_target_matched;
     return p_input->red_surface && p_state->red_second_armed && p_state->red_second_from_handoff &&
         p_input->now_ms - p_state->red_recovered_ms < 180U &&
-        p_state->status.right_norm <= 80U && near_red;
+        p_state->status.right_norm <= IR_NORM_CLEAR && near_red;
 }
 #endif
 
@@ -434,7 +454,7 @@ bool black_follow_red_final_hold_ok(uint16_t left_norm, bool right_clear,
 
 static bool red_late_exit_turn(black_follow_t *p_state, const black_follow_input_t *p_input)
 {
-    bool right_clear = p_state->status.right_norm <= 80U;
+    bool right_clear = p_state->status.right_norm <= IR_NORM_CLEAR;
     bool outside_edge = FOLLOW_RED_EXIT_TURN_STRONG && right_clear && p_state->status.left_norm >= 600U;
     bool exit_ready = p_state->status.red_exit_alignment_used || outside_edge ||
         (FOLLOW_RED_EXIT_TURN_STRONG && p_state->status.red_exit_turn_used);
@@ -494,7 +514,7 @@ static bool red_between_bends_fade(black_follow_t *p_state, const black_follow_i
     const uint16_t min_clear = FOLLOW_RED_INSIDE_RELEASE ? 654U : 655U;
     if (p_input->rgb_target_matched && !p_input->rgb_join_active &&
         first_turn_age >= FOLLOW_RED_SECOND_PIVOT_MS && first_turn_age <= 400U &&
-        p_state->status.left_norm <= 80U && p_state->status.right_norm <= 80U &&
+        p_state->status.left_norm <= IR_NORM_CLEAR && p_state->status.right_norm <= IR_NORM_CLEAR &&
         p_input->red_rgb_clear >= min_clear && p_input->red_rgb_clear > p_state->red_between_bends_peak_clear)
     {
         p_state->red_between_bends_peak_clear = p_input->red_rgb_clear;
@@ -505,7 +525,7 @@ static bool red_between_bends_fade(black_follow_t *p_state, const black_follow_i
     /* Solid red clears the first turn command. Retain the diagonal cue,
      * but require a recent inside-edge reading before using it again. */
     if (first_turn_age >= red_exit_hold_ms && first_turn_age <= 750U &&
-        p_state->status.left_norm <= 80U && p_state->status.right_norm >= 600U)
+        p_state->status.left_norm <= IR_NORM_CLEAR && p_state->status.right_norm >= 600U)
     {
         p_state->red_diagonal_inside_seen = true;
         p_state->red_diagonal_inside_ms = p_input->ir_ms;
@@ -521,7 +541,7 @@ static bool red_between_bends_fade(black_follow_t *p_state, const black_follow_i
 #endif
     return fading && first_turn_age >= red_exit_hold_ms && first_turn_age <= 750U &&
         p_input->red_rgb_clear + 12U <= p_state->red_between_bends_peak_clear &&
-        p_state->status.left_norm <= 320U && p_state->status.right_norm <= 80U;
+        p_state->status.left_norm <= 320U && p_state->status.right_norm <= IR_NORM_CLEAR;
 }
 #endif
 
@@ -537,7 +557,7 @@ bool black_follow_red_inside_release_due(const black_follow_t *p_state,
     return p_input->red_surface && p_state->red_second_active && clear_pivot_ok &&
         p_state->status.red_second_pivot_used && !p_state->status.red_second_release_used &&
         second_turn_age >= 60U && second_turn_age < red_exit_hold_ms &&
-        p_state->status.left_norm <= 80U && p_input->right_raw >= 600U;
+        p_state->status.left_norm <= IR_NORM_CLEAR && p_input->right_raw >= 600U;
 }
 #endif
 
@@ -599,7 +619,7 @@ bool black_follow_red_outside_update(black_follow_t *p_state,
     }
     if (!pivot_active && p_state->red_left_edge_seen &&
         (now - p_state->red_left_edge_ms <= red_outside_pair_ms) &&
-        (p_state->status.left_norm <= 80U) && (p_state->status.right_norm >= 500U))
+        (p_state->status.left_norm <= IR_NORM_CLEAR) && (p_state->status.right_norm >= 500U))
     {
         p_state->red_outside_active = true;
         p_state->red_outside_since_ms = now;
@@ -642,7 +662,7 @@ bool black_follow_red_right_edge_outside(const black_follow_t *p_state,
     bool in_corner = p_state->status.red_alignment_used;
 #endif
     return p_input->red_surface && in_corner && !final_arc_done &&
-        (p_state->status.right_norm >= 400U) && (p_state->status.left_norm <= 80U);
+        (p_state->status.right_norm >= 400U) && (p_state->status.left_norm <= IR_NORM_CLEAR);
 }
 #endif
 
@@ -663,7 +683,7 @@ static bool red_exit_lead(black_follow_t *p_state, const black_follow_input_t *p
         p_state->red_outer_seen = false;
         p_state->red_outer_confirmed = false;
     }
-    else if (p_state->status.left_norm == 1000U && p_state->status.right_norm <= 80U)
+    else if (p_state->status.left_norm == IR_NORM_FULL && p_state->status.right_norm <= IR_NORM_CLEAR)
     {
         if (!p_state->red_outer_seen)
         {
@@ -757,7 +777,7 @@ static bool red_exit_lead(black_follow_t *p_state, const black_follow_input_t *p
         (!p_input->rgb_join_active || mix_after_handoff) &&
         p_input->now_ms - p_state->red_recovered_ms < 400U &&
         (p_state->status.left_norm <= second_left_max || outside_edge_after_handoff) &&
-        p_state->status.right_norm <= 80U;
+        p_state->status.right_norm <= IR_NORM_CLEAR;
     fading = fading || (second_ready && mix_after_handoff);
 #if FOLLOW_RED_BETWEEN_BENDS
 #if FOLLOW_RED_DIAGONAL_REACQUIRE
@@ -804,7 +824,7 @@ static bool red_exit_lead(black_follow_t *p_state, const black_follow_input_t *p
          * Confirm it with a matched fade and clear inside IR. */
         if (!p_state->status.red_handoff_armed && !p_state->status.red_exit_lead_used &&
             outside_red_fade && p_input->rgb_target_matched && !p_input->rgb_join_active &&
-            p_state->status.right_norm <= 80U)
+            p_state->status.right_norm <= IR_NORM_CLEAR)
         {
             p_state->red_first_active = true;
         }
@@ -826,7 +846,7 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
     straight_mode = p_input->straight_mode;
 #endif
     bool ir_ok = p_input->has_ir && p_input->ir_valid &&
-        (p_input->left_raw <= 4095U) && (p_input->right_raw <= 4095U) &&
+        (p_input->left_raw <= IR_RAW_MAX) && (p_input->right_raw <= IR_RAW_MAX) &&
         ((uint32_t)(p_input->now_ms - p_input->ir_ms) <= FOLLOW_IR_FRESH_MS);
 #if FOLLOW_BORDERED_CORRIDOR
     /* Each black border reaches full scale at 500. Use interior readings
@@ -834,34 +854,34 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
     bool blue_surface = FOLLOW_BLUE_CORRIDOR ||
                         (FOLLOW_MULTICOLOUR_CORRIDOR && p_input->blue_surface);
 #if FOLLOW_HOME_TRACK
-    uint16_t left_centre = blue_surface ? 339U : 255U;
-    uint16_t right_centre = blue_surface ? 313U : 236U;
+    uint16_t left_centre = blue_surface ? IR_HOME_BLUE_LEFT_CTR : IR_LANE_LEFT_CTR;
+    uint16_t right_centre = blue_surface ? IR_HOME_BLUE_RIGHT_CTR : IR_LANE_RIGHT_CTR;
     if (p_input->yellow_surface)
     {
-        right_centre = 278U;
+        right_centre = IR_HOME_YELLOW_RIGHT_CTR;
     }
 #else
-    uint16_t left_centre = blue_surface ? 331U : 255U;
-    uint16_t right_centre = blue_surface ? 315U : 236U;
+    uint16_t left_centre = blue_surface ? IR_BLUE_LEFT_CTR : IR_LANE_LEFT_CTR;
+    uint16_t right_centre = blue_surface ? IR_BLUE_RIGHT_CTR : IR_LANE_RIGHT_CTR;
 #endif
     p_state->status.left_norm = ir_ok ?
-        normalize(p_input->left_raw, left_centre, (uint16_t)(500U - left_centre)) : 0U;
+        normalize(p_input->left_raw, left_centre, (uint16_t)(IR_BORDER_FULL_RAW - left_centre)) : 0U;
     p_state->status.right_norm = ir_ok ?
-        normalize(p_input->right_raw, right_centre, (uint16_t)(500U - right_centre)) : 0U;
-    uint16_t ambiguity_threshold = 500U;
+        normalize(p_input->right_raw, right_centre, (uint16_t)(IR_BORDER_FULL_RAW - right_centre)) : 0U;
+    uint16_t ambiguity_threshold = IR_AMBIGUOUS_RAW;
 #if AAI05_FOLLOW_MQTT
     if (blue_surface && p_input->rgb_target_matched && !p_input->rgb_join_active)
     {
         /* Blue can reach the 600s on small offsets. Keep the original
          * normalization for bend cues and use raw IR for the stop guard. */
-        ambiguity_threshold = 700U;
+        ambiguity_threshold = IR_BLUE_EDGE_RAW;
     }
 #endif
     bool ambiguous = ir_ok && (p_input->left_raw >= ambiguity_threshold) &&
                      (p_input->right_raw >= ambiguity_threshold);
 #else
-    p_state->status.left_norm = ir_ok ? normalize(p_input->left_raw, 268U, 1100U) : 0U;
-    p_state->status.right_norm = ir_ok ? normalize(p_input->right_raw, 304U, 1140U) : 0U;
+    p_state->status.left_norm = ir_ok ? normalize(p_input->left_raw, IR_LINE_LEFT_CTR, IR_LINE_LEFT_SPAN) : 0U;
+    p_state->status.right_norm = ir_ok ? normalize(p_input->right_raw, IR_LINE_RIGHT_CTR, IR_LINE_RIGHT_SPAN) : 0U;
     bool ambiguous = (p_state->status.left_norm >= 600U) &&
                      (p_state->status.right_norm >= 600U);
 #endif
@@ -1055,7 +1075,7 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
         {
             /* Reserve full blue steering for 700. Bend cues still use the
              * separate normalization that reaches its maximum at 500. */
-            const uint16_t blue_steer_high = 700U;
+            const uint16_t blue_steer_high = IR_BLUE_EDGE_RAW;
             uint16_t left_steer = normalize(p_input->left_raw, left_centre,
                                             (uint16_t)(blue_steer_high - left_centre));
             uint16_t right_steer = normalize(p_input->right_raw, right_centre,
@@ -1165,7 +1185,7 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
 #if FOLLOW_BLUE_OUTER_RECOVERY
         else if (blue_surface && p_state->bend_recovering &&
                  !p_input->rgb_target_matched && !p_input->blue_red_blend &&
-                 p_input->left_raw >= 700U && p_state->status.right_norm == 0U)
+                 p_input->left_raw >= IR_BLUE_EDGE_RAW && p_state->status.right_norm == 0U)
         {
             /* The outside edge is back, but blue has not returned. Keep
              * the left wheel at its cap and let the right roll slowly. */
@@ -1235,7 +1255,7 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
 #if FOLLOW_BLUE_SECOND_BOOST
         if (p_state->blue_second_armed &&
             p_input->now_ms - p_state->blue_reacquired_ms < 500U &&
-            p_input->left_raw >= 700U && p_input->right_raw <= right_centre &&
+            p_input->left_raw >= IR_BLUE_EDGE_RAW && p_input->right_raw <= right_centre &&
             turn < 12)
         {
             turn = 12;
@@ -1256,7 +1276,7 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
 #if FOLLOW_BLUE_SECOND_LEFT_BOOST
             /* The second bend crosses from the left edge to the right while blue fades. */
             output.blue_second_left_boost = output.blue_exit_pivot && p_input->blue_inner_fade &&
-                p_state->status.left_norm <= 80U && p_state->status.right_norm >= 240U &&
+                p_state->status.left_norm <= IR_NORM_CLEAR && p_state->status.right_norm >= 240U &&
                 p_state->blue_outside_sample_seen && p_input->ir_ms - p_state->blue_outside_sample_ms <= 180U;
 #endif
 #endif

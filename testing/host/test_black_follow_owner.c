@@ -266,94 +266,79 @@ static void begin(black_follow_owner_t *p_owner, uint32_t base,
 #endif
 }
 
-int main(void)
+/* Shared RGB and duty fixtures, hoisted unchanged from main(). */
+#if (FOLLOW_RED_SECOND_SLOW) && (FOLLOW_RED_BEND_AFTER_HANDOFF)
+static const rgb_reading_t blue_fade = {211U,232U,243U,552U};
+#endif
+#if (FOLLOW_RED_SECOND_SLOW) && (FOLLOW_RED_BEND_AFTER_HANDOFF)
+static const rgb_reading_t blue_loss = {219U,236U,243U,553U};
+#endif
+#if (FOLLOW_RED_SECOND_SLOW) && (FOLLOW_BLUE_RED_JOIN_REFINEMENT)
+static const rgb_reading_t blue_near_edge = {214U,241U,257U,561U};
+#endif
+#if (FOLLOW_RED_SECOND_SLOW) && (FOLLOW_BLUE_RED_JOIN_REFINEMENT) && (FOLLOW_BLUE_EXIT_PIVOT)
+static const int8_t expected_pivot_left = FOLLOW_BLUE_EXIT_LEFT_BOOST ? -60 : -50;
+#endif
+#if (FOLLOW_RED_SECOND_SLOW)
+static const rgb_reading_t fading_red = {325U,248U,247U,635U};
+#endif
+#if (FOLLOW_RED_SECOND_SLOW)
+static const int8_t first_left = FOLLOW_RED_FIRST_LEFT_BOOST ? -60 : -50;
+#endif
+#if (FOLLOW_RED_SECOND_SLOW)
+static const rgb_reading_t red_return = {355U,269U,269U,668U};
+#endif
+#if (FOLLOW_RED_SECOND_SLOW)
+static const rgb_reading_t red_second_fade = {350U,270U,270U,660U};
+#endif
+#if (FOLLOW_RED_SECOND_SLOW)
+static const int8_t second_reverse = FOLLOW_RED_SECOND_EXIT_REFINEMENT ? -35 : -25;
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_BLUE_EXIT_TURN == 22)
+static const rgb_reading_t before_exit = {210U,233U,246U,548U};
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_LOOP_RECOVERY_DIRECTION != 0)
+static const rgb_reading_t blue_loss = {269U, 279U, 281U, 605U};
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_BLUE_EXIT_LEAD)
+static const int8_t expected_blue_lead = FOLLOW_BLUE_RED_BEND_CUES ? 25 : FOLLOW_BLUE_EXIT_TURN;
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_RED_EXIT_LEAD)
+static const int8_t expected_red_lead = FOLLOW_BLUE_RED_BEND_TRIAL ? 25 : 22;
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_RED_EXIT_LEAD)
+static const rgb_reading_t fading_red = {331U,256U,255U,636U};
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_BLUE_EXIT_TURN == 22)
+static const rgb_reading_t off_blue = {219U,236U,243U,553U};
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_RED_EXIT_LEAD)
+static const rgb_reading_t red_background = {276U,258U,248U,602U};
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_BLUE_RED_HANDOFF)
+static const rgb_reading_t seam[] = {
+    {244U, 263U, 279U, 586U}, {260U, 264U, 276U, 596U},
+    {291U, 268U, 278U, 623U}, {333U, 273U, 278U, 656U},
+    {252U, 269U, 286U, 599U}, {278U, 276U, 290U, 621U},
+    {312U, 275U, 284U, 647U},
+};
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_RED_EXIT_LEAD)
+static const rgb_reading_t solid_red = {320U,242U,240U,627U};
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_LOOP_RECOVERY_DIRECTION != 0)
+static const int8_t turn_direction = FOLLOW_LOOP_RECOVERY_DIRECTION;
+#endif
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && (FOLLOW_LOOP_RECOVERY_DIRECTION != 0)
+static const rgb_reading_t yellow_loss = {315U, 300U, 284U, 688U};
+#endif
+
+#if (FOLLOW_RED_SECOND_SLOW) && FOLLOW_RED_BEND_AFTER_HANDOFF
+/* Sustained left edge is new evidence on the same fading red frame. */
+static void check_red_bend_after_handoff(void)
 {
     black_follow_owner_t owner;
     black_follow_status_t follow;
-#if FOLLOW_RED_SECOND_SLOW
-    begin(&owner,1000U,&follow);
-    assert(follow.left_half_pct==-50 && follow.right_half_pct==50);
-
-    const rgb_reading_t solid_red = {334U,253U,252U,647U};
-    const rgb_reading_t fading_red = {325U,248U,247U,635U};
-    const rgb_reading_t red_return = {355U,269U,269U,668U};
-    const rgb_reading_t red_second_fade = {350U,270U,270U,660U};
-    const int8_t first_left = FOLLOW_RED_FIRST_LEFT_BOOST ? -60 : -50;
-    const int8_t second_reverse = FOLLOW_RED_SECOND_EXIT_REFINEMENT ? -35 : -25;
-    g_lane_colour=RGB_CLASS_RED;
-    g_left=702U; g_right=212U;
-    g_join_reading=&solid_red; ++g_rgb_sequence;
-    cycle(&owner,1110U,false,false,&follow);
-    cycle(&owner,1150U,false,false,&follow);
-    assert(g_active && follow.right_half_pct>0);
-    g_left=270U; g_right=228U;
-    g_join_reading=&fading_red; ++g_rgb_sequence;
-    cycle(&owner,1190U,false,false,&follow);
-    assert(g_active && follow.left_half_pct==first_left);
-    assert(g_applied_left==first_left/2);
-#if FOLLOW_RED_FIRST_BEND_TIGHTER
-    assert(follow.right_half_pct==-40 && follow.red_first_pivot_used);
-    assert(!follow.red_handoff_armed && !follow.red_second_pivot_used);
-#else
-    assert(follow.right_half_pct==0);
-    assert(!follow.red_second_slow_used && !follow.red_second_pivot_used);
-#endif
-    cycle(&owner,1230U,false,false,&follow);
-    g_left=229U; g_right=222U;
-    g_join_reading=&red_return; ++g_rgb_sequence;
-    cycle(&owner,1290U,false,false,&follow);
-    assert(g_active && follow.left_half_pct==-40 && follow.right_half_pct==40);
-    assert(follow.red_second_slow_used && !follow.red_second_pivot_used);
-
-    g_join_reading=&red_second_fade; ++g_rgb_sequence;
-    cycle(&owner,1330U,false,false,&follow);
-    assert(g_active && follow.left_half_pct==-45 && follow.right_half_pct==second_reverse);
-    assert(follow.red_second_pivot_used);
-    cycle(&owner,1390U,false,false,&follow);
-    cycle(&owner,1450U,false,false,&follow);
-    cycle(&owner,1500U,false,false,&follow);
-    assert(g_active && follow.right_half_pct==second_reverse && g_lease==20U);
-    cycle(&owner,1510U,false,false,&follow);
-#if FOLLOW_RED_SECOND_ARC_BOOST
-    assert(g_active && follow.left_half_pct==-60 && follow.right_half_pct==0);
-    assert(g_applied_left==-30 && g_applied_right==0);
-
-    /* v0.74 Test 3 entered the forward arc with red briefly lost. */
-    const rgb_reading_t second_arc_background = {319U,302U,287U,676U};
-    g_join_reading=&second_arc_background; ++g_rgb_sequence;
-    g_left=188U; g_right=276U;
-    cycle(&owner,1520U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.left_half_pct==-60 && follow.right_half_pct==0);
-
-    /* A strong right edge like v0.74 Test 2 must not get the extra drive. */
-    g_right=533U;
-    cycle(&owner,1530U,false,false,&follow);
-#if FOLLOW_RED_CORNER_REFINE
-    /* v0.86: after the first red pivot a right edge spins right instead. */
-    assert(g_active && follow.turn_pct==25 && follow.right_half_pct<0);
-#else
-    assert(g_active && follow.left_half_pct==-40 && follow.right_half_pct==0);
-#endif
-    g_right=222U;
-#else
-    assert(g_active && follow.left_half_pct==-40 && follow.right_half_pct==0);
-#endif
-
-    g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-    cycle(&owner,1550U,false,false,&follow);
-    assert(g_active && follow.left_half_pct==-50 && follow.right_half_pct==50);
-
-    begin(&owner,2000U,&follow);
-    g_left=224U; g_right=220U;
-    g_join_reading=&g_trial_join; ++g_rgb_sequence;
-    cycle(&owner,2110U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.left_half_pct==-50 && follow.right_half_pct==0);
-    g_join_reading=&g_dark_black; ++g_rgb_sequence;
-    cycle(&owner,2150U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_RGB);
-#if FOLLOW_RED_BEND_AFTER_HANDOFF
-    const rgb_reading_t blue_fade = {211U,232U,243U,552U};
-    const rgb_reading_t blue_loss = {219U,236U,243U,553U};
     const rgb_reading_t towards_red = {325U,284U,281U,642U};
     const rgb_reading_t red_first = {335U,263U,261U,646U};
     const rgb_reading_t red_confirmed = {325U,253U,252U,636U};
@@ -858,10 +843,16 @@ int main(void)
         cycle(&owner,yellow_ms+alignment_delay,false,false,&follow);
         assert(g_active && follow.right_half_pct>=0);
     }
+}
 #endif
-#if FOLLOW_BLUE_RED_JOIN_REFINEMENT
+
+#if (FOLLOW_RED_SECOND_SLOW) && FOLLOW_BLUE_RED_JOIN_REFINEMENT
+/* Blue1's matched fade came after slowing for the confirmed outside edge. */
+static void check_blue_red_join_refinement(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
     /* Blue1's matched fade came after slowing for the confirmed outside edge. */
-    const rgb_reading_t blue_near_edge = {214U,241U,257U,561U};
     const rgb_reading_t late_blue_fade = {242U,264U,275U,582U};
     const rgb_reading_t bright_blue_fade = {250U,272U,283U,593U};
     const rgb_reading_t lost_blue = {245U,261U,265U,579U};
@@ -897,7 +888,6 @@ int main(void)
     cycle(&owner,5530U,false,false,&follow);
 #endif
 #if FOLLOW_BLUE_EXIT_PIVOT
-    const int8_t expected_pivot_left = FOLLOW_BLUE_EXIT_LEFT_BOOST ? -60 : -50;
     assert(g_active && follow.blue_exit_lead_used &&
            follow.left_half_pct==expected_pivot_left && follow.right_half_pct==-10);
     assert(g_applied_left==expected_pivot_left/2 && g_applied_right==-5);
@@ -918,8 +908,14 @@ int main(void)
         (FOLLOW_BLUE_EXIT_PIVOT ? 5670U : 5570U);
     cycle(&owner,loss_ms,false,false,&follow);
     assert(g_active && follow.join_active && follow.turn_pct==25);
+}
 #endif
-#if FOLLOW_BEND_CUE_REFINEMENT
+
+#if (FOLLOW_RED_SECOND_SLOW) && FOLLOW_BEND_CUE_REFINEMENT
+static void check_bend_cue_refinement(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
     const rgb_reading_t weak_blue_fades[] = {
         {201U,225U,236U,539U}, {198U,222U,232U,535U}, {205U,230U,242U,546U},
 #if FOLLOW_BLUE_DIAGONAL_EXIT
@@ -980,8 +976,15 @@ int main(void)
         assert(g_active && follow.join_active && follow.turn_pct<0);
 #endif
     }
+}
 #endif
-#if FOLLOW_BLUE_RED_LATE_CONFIRM
+
+#if (FOLLOW_RED_SECOND_SLOW) && FOLLOW_BLUE_RED_LATE_CONFIRM
+/* Each v0.69 capture reached its first red frame 400 ms into the join. */
+static void check_blue_red_late_confirm(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
     /* Each v0.69 capture reached its first red frame 400 ms into the join. */
     const rgb_reading_t last_blend[] = {
         {313U,266U,271U,638U}, {276U,261U,271U,610U}, {290U,277U,284U,621U}
@@ -1050,8 +1053,15 @@ int main(void)
             assert(!g_active && follow.reason==FOLLOW_JOIN_TIMEOUT);
         }
     }
+}
 #endif
-#if FOLLOW_BLUE_RED_BLEND_GRACE
+
+#if (FOLLOW_RED_SECOND_SLOW) && FOLLOW_BLUE_RED_BLEND_GRACE
+/* These powered runs saw red at or just after the cutoff. */
+static void check_blue_red_blend_grace(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
     /* These powered runs saw red at or just after the cutoff. */
     const rgb_reading_t near_red[] = {
         {323U,266U,270U,648U}, {331U,262U,265U,651U}, /* v0.70 Tests 2 and 4 */
@@ -1122,9 +1132,115 @@ int main(void)
         assert(g_active && !follow.join_active && owner.join.lane==RGB_CLASS_RED);
         assert(follow.red_handoff_armed);
     }
+}
+#endif
+
+#if (FOLLOW_RED_SECOND_SLOW)
+/* Track profile: home track. */
+static void check_home_track_profile(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    begin(&owner,1000U,&follow);
+    assert(follow.left_half_pct==-50 && follow.right_half_pct==50);
+
+    const rgb_reading_t solid_red = {334U,253U,252U,647U};
+    g_lane_colour=RGB_CLASS_RED;
+    g_left=702U; g_right=212U;
+    g_join_reading=&solid_red; ++g_rgb_sequence;
+    cycle(&owner,1110U,false,false,&follow);
+    cycle(&owner,1150U,false,false,&follow);
+    assert(g_active && follow.right_half_pct>0);
+    g_left=270U; g_right=228U;
+    g_join_reading=&fading_red; ++g_rgb_sequence;
+    cycle(&owner,1190U,false,false,&follow);
+    assert(g_active && follow.left_half_pct==first_left);
+    assert(g_applied_left==first_left/2);
+#if FOLLOW_RED_FIRST_BEND_TIGHTER
+    assert(follow.right_half_pct==-40 && follow.red_first_pivot_used);
+    assert(!follow.red_handoff_armed && !follow.red_second_pivot_used);
+#else
+    assert(follow.right_half_pct==0);
+    assert(!follow.red_second_slow_used && !follow.red_second_pivot_used);
+#endif
+    cycle(&owner,1230U,false,false,&follow);
+    g_left=229U; g_right=222U;
+    g_join_reading=&red_return; ++g_rgb_sequence;
+    cycle(&owner,1290U,false,false,&follow);
+    assert(g_active && follow.left_half_pct==-40 && follow.right_half_pct==40);
+    assert(follow.red_second_slow_used && !follow.red_second_pivot_used);
+
+    g_join_reading=&red_second_fade; ++g_rgb_sequence;
+    cycle(&owner,1330U,false,false,&follow);
+    assert(g_active && follow.left_half_pct==-45 && follow.right_half_pct==second_reverse);
+    assert(follow.red_second_pivot_used);
+    cycle(&owner,1390U,false,false,&follow);
+    cycle(&owner,1450U,false,false,&follow);
+    cycle(&owner,1500U,false,false,&follow);
+    assert(g_active && follow.right_half_pct==second_reverse && g_lease==20U);
+    cycle(&owner,1510U,false,false,&follow);
+#if FOLLOW_RED_SECOND_ARC_BOOST
+    assert(g_active && follow.left_half_pct==-60 && follow.right_half_pct==0);
+    assert(g_applied_left==-30 && g_applied_right==0);
+
+    /* v0.74 Test 3 entered the forward arc with red briefly lost. */
+    const rgb_reading_t second_arc_background = {319U,302U,287U,676U};
+    g_join_reading=&second_arc_background; ++g_rgb_sequence;
+    g_left=188U; g_right=276U;
+    cycle(&owner,1520U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.left_half_pct==-60 && follow.right_half_pct==0);
+
+    /* A strong right edge like v0.74 Test 2 must not get the extra drive. */
+    g_right=533U;
+    cycle(&owner,1530U,false,false,&follow);
+#if FOLLOW_RED_CORNER_REFINE
+    /* v0.86: after the first red pivot a right edge spins right instead. */
+    assert(g_active && follow.turn_pct==25 && follow.right_half_pct<0);
+#else
+    assert(g_active && follow.left_half_pct==-40 && follow.right_half_pct==0);
+#endif
+    g_right=222U;
+#else
+    assert(g_active && follow.left_half_pct==-40 && follow.right_half_pct==0);
+#endif
+
+    g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+    cycle(&owner,1550U,false,false,&follow);
+    assert(g_active && follow.left_half_pct==-50 && follow.right_half_pct==50);
+
+    begin(&owner,2000U,&follow);
+    g_left=224U; g_right=220U;
+    g_join_reading=&g_trial_join; ++g_rgb_sequence;
+    cycle(&owner,2110U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.left_half_pct==-50 && follow.right_half_pct==0);
+    g_join_reading=&g_dark_black; ++g_rgb_sequence;
+    cycle(&owner,2150U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_RGB);
+#if FOLLOW_RED_BEND_AFTER_HANDOFF
+    check_red_bend_after_handoff();
+#endif
+#if FOLLOW_BLUE_RED_JOIN_REFINEMENT
+    check_blue_red_join_refinement();
+#endif
+#if FOLLOW_BEND_CUE_REFINEMENT
+    check_bend_cue_refinement();
+#endif
+#if FOLLOW_BLUE_RED_LATE_CONFIRM
+    check_blue_red_late_confirm();
+#endif
+#if FOLLOW_BLUE_RED_BLEND_GRACE
+    check_blue_red_blend_grace();
 #endif
     puts("25 percent drive and slowed red second bend PASS");
-#elif FOLLOW_TWO_TURN
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && (FOLLOW_TWO_TURN)
+/* Track profile: two turn. */
+static void check_two_turn_profile(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
     begin(&owner,1000U,&follow);
     assert(strcmp(black_follow_corner_name(follow.corner_phase),"SEEK")==0);
     g_right=650U;  /* Inside edge alone is ordinary correction. */
@@ -1175,7 +1291,910 @@ int main(void)
     cycle(&owner,4130U,false,false,&follow);
     assert(!g_active && follow.reason==FOLLOW_RGB);
     puts("30% clipped bend: independent turn cues, two RGB confirmations, exit and cutoff PASS");
-#elif FOLLOW_CLIPPED_LOOP
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_BEND_RIGHT
+/* v0.21 run 2 drove straight on this blue-bend sample. */
+static void check_blue_bend_right(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    /* v0.21 run 2 drove straight on this blue-bend sample. */
+    const rgb_reading_t bend_exit = {242U, 262U, 274U, 580U};
+    begin(&owner,1300U,&follow);
+    g_left=217U; g_right=237U;
+    cycle(&owner,1410U,false,false,&follow);
+    assert(g_applied_left==-25 && g_applied_right==25);
+    g_join_reading=&bend_exit; ++g_rgb_sequence;
+    cycle(&owner,1430U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==25);
+    assert(g_applied_left==-25 && g_applied_right==0);
+    g_join_reading=NULL; ++g_rgb_sequence;
+    cycle(&owner,1450U,false,false,&follow);
+    assert(g_active && follow.join_active && g_applied_left==-25 && g_applied_right==25);
+    ++g_rgb_sequence;
+    cycle(&owner,1470U,false,false,&follow);
+    assert(g_active && !follow.join_active && follow.join_count==0U);
+
+    g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+    cycle(&owner,1490U,false,false,&follow);
+    g_join_reading=&bend_exit; ++g_rgb_sequence;
+    cycle(&owner,1510U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==0);
+    assert(g_applied_left==-25 && g_applied_right==25);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_EARLY_BEND
+/* Blue run 2 saw the outside edge while RGB still matched blue. */
+static void check_early_bend(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    begin(&owner,1900U,&follow);
+    /* Blue run 2 saw the outside edge while RGB still matched blue. */
+    g_left=1059U; g_right=233U;
+    cycle(&owner,2010U,false,false,&follow);
+    assert(g_active && follow.ready && !follow.join_active);
+#if FOLLOW_BLUE_STEER_RAMP && FOLLOW_BLUE_RAMP_START == 5
+    assert(follow.turn_pct==5 && g_applied_left==-EXPECT_CLIPPED_DUTY(35) &&
+           g_applied_right==EXPECT_CLIPPED_DUTY(25));
+#elif FOLLOW_BLUE_STEER_RAMP
+    assert(follow.turn_pct==8 && g_applied_left==-19 && g_applied_right==11);
+#endif
+    cycle(&owner,2030U,false,false,&follow);
+#if FOLLOW_BLUE_STEER_RAMP && FOLLOW_BLUE_RAMP_START == 5
+    assert(follow.turn_pct==6);
+#elif FOLLOW_BLUE_STEER_RAMP
+    assert(follow.turn_pct==9);
+#endif
+    for (uint32_t t=2050U; t<=2130U; t+=20U)
+    {
+        cycle(&owner,t,false,false,&follow);
+    }
+    assert(follow.turn_pct==14);
+    assert(g_applied_left==-EXPECT_CLIPPED_DUTY(44) && g_applied_right==EXPECT_CLIPPED_DUTY(16));
+
+    /* Yellow run 1 saw the same cue before the later loss of yellow. */
+    g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+    g_left=720U; g_right=217U;
+    cycle(&owner,2150U,false,false,&follow);
+    assert(g_active && follow.ready && !follow.join_active && follow.turn_pct==14);
+    assert(g_applied_left==-EXPECT_CLIPPED_DUTY(44) && g_applied_right==EXPECT_CLIPPED_DUTY(16));
+    g_left=255U; g_right=236U;
+    cycle(&owner,2170U,false,false,&follow);
+    assert(follow.turn_pct==0 && g_applied_left==-EXPECT_STRAIGHT &&
+           g_applied_right==EXPECT_STRAIGHT);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_HOME_TRACK
+static void check_home_track_lane_centres(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t new_blue_straight = {197U, 225U, 243U, 543U};
+    begin(&owner,2100U,&follow);
+    g_left=339U; g_right=313U; g_join_reading=&new_blue_straight;
+    for (uint32_t t=2210U; t<=2810U; t+=20U)
+    {
+        g_rgb_age_ms=(t-2210U)%100U;
+        if (g_rgb_age_ms==0U) {++g_rgb_sequence;}
+        cycle(&owner,t,false,false,&follow);
+        assert(g_active && follow.ready && !follow.join_active);
+        assert(follow.turn_pct==0 && g_applied_left==-EXPECT_STRAIGHT &&
+               g_applied_right==EXPECT_STRAIGHT);
+    }
+    g_rgb_age_ms=0U;
+    g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+    g_left=245U; g_right=278U;
+    cycle(&owner,2830U,false,false,&follow);
+    assert(g_active && follow.ready && follow.right_norm==0U && follow.turn_pct==0);
+    g_right=632U;
+    cycle(&owner,2850U,false,false,&follow);
+    assert(g_active && follow.turn_pct==-14 && g_applied_left==-EXPECT_CLIPPED_DUTY(28) &&
+           g_applied_right==EXPECT_STRAIGHT);
+    g_lane_colour=RGB_CLASS_RED; ++g_rgb_sequence;
+    g_right=278U;
+    cycle(&owner,2870U,false,false,&follow);
+    assert(g_active && follow.right_norm==159U && follow.turn_pct==-1);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_YELLOW_EXIT_CUE
+static void check_yellow_exit_cue(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t straight_join = {320U, 310U, 266U, 777U};
+    const rgb_reading_t yellow_exit[] = {
+        {345U, 327U, 283U, 724U}, {347U, 328U, 282U, 730U},
+        {360U, 338U, 289U, 752U},
+    };
+    for (size_t i=0U; i<sizeof(yellow_exit)/sizeof(yellow_exit[0]); ++i)
+    {
+        begin(&owner,12000U,&follow);
+        g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+        g_left=245U; g_right=278U;
+        cycle(&owner,12110U,false,false,&follow);
+        g_join_reading=&straight_join; ++g_rgb_sequence;
+        cycle(&owner,12130U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==0);
+        g_join_reading=&yellow_exit[i]; ++g_rgb_sequence;
+        g_right=650U;
+        cycle(&owner,12150U,false,false,&follow);
+        assert(g_active && follow.turn_pct==-14);
+        g_right=278U;
+        cycle(&owner,12170U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==14);
+        assert(follow.left_half_pct==-53 && follow.right_half_pct==23);
+        g_join_reading=&yellow_loss; ++g_rgb_sequence;
+        cycle(&owner,12190U,false,false,&follow);
+        assert(g_active && follow.turn_pct==25);
+        assert(follow.left_half_pct==-55 && follow.right_half_pct==0);
+    }
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_YELLOW_LEAD_CUE
+static void check_yellow_lead_cue(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t late_yellow = {368U, 336U, 274U, 781U};
+    const rgb_reading_t first_unknown = {361U, 334U, 281U, 755U};
+    const rgb_reading_t join_yellow = {460U, 408U, 310U, 994U};
+    begin(&owner,13000U,&follow);
+    g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+    g_left=242U; g_right=219U; g_join_reading=&join_yellow;
+    cycle(&owner,13110U,false,false,&follow);
+    assert(g_active && follow.ready && follow.turn_pct==0);
+    g_join_reading=&late_yellow; ++g_rgb_sequence;
+    cycle(&owner,13130U,false,false,&follow);
+    assert(g_active && follow.ready && !follow.join_active && follow.turn_pct==10);
+    assert(follow.yellow_lead_used);
+    assert(follow.left_half_pct==-49 && follow.right_half_pct==27);
+    for (uint32_t t=13150U; t<=13330U; t+=20U) {cycle(&owner,t,false,false,&follow);}
+    assert(g_active && follow.turn_pct==0 && follow.yellow_lead_used);
+    g_join_reading=&first_unknown; ++g_rgb_sequence;
+    cycle(&owner,13350U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==14);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_REVERSAL_DAMPING
+static void check_blue_reversal_damping(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    begin(&owner,14000U,&follow);
+    g_left=753U; g_right=294U;
+    for (uint32_t t=14110U; t<=14230U; t+=20U) {cycle(&owner,t,false,false,&follow);}
+    assert(g_active && follow.turn_pct==14);
+    g_left=CENTRE_LEFT; g_right=CENTRE_RIGHT;
+    cycle(&owner,14250U,false,false,&follow);
+    assert(follow.turn_pct==0);
+    g_left=250U; g_right=1302U;
+    cycle(&owner,14270U,false,false,&follow);
+    assert(follow.turn_pct==-5);
+    assert(follow.blue_reversal_damped);
+    for (uint32_t t=14290U; t<=14390U; t+=20U) {cycle(&owner,t,false,false,&follow);}
+    assert(g_active && follow.ready && follow.turn_pct==-7);
+    for (uint32_t t=14410U; t<=14670U; t+=20U) {cycle(&owner,t,false,false,&follow);}
+    assert(g_active && follow.turn_pct==-14);
+    g_left=217U; g_right=217U; g_join_reading=&blue_loss; ++g_rgb_sequence;
+    cycle(&owner,14690U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==25);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_STEER_WIDE_RANGE
+static void check_blue_steer_wide_range(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    begin(&owner,15000U,&follow);
+    g_left=525U; g_right=281U;
+    for (uint32_t t=15110U; t<=15530U; t+=20U) {cycle(&owner,t,false,false,&follow);}
+    assert(g_active && follow.ready && follow.left_norm==1000U && follow.turn_pct==4);
+    assert(follow.left_half_pct==-37 && follow.right_half_pct==28);
+    g_left=234U; g_right=557U;
+    for (uint32_t t=15550U; t<=15970U; t+=20U) {cycle(&owner,t,false,false,&follow);}
+    assert(g_active && follow.ready && follow.right_norm==1000U && follow.turn_pct==-5);
+    g_left=525U;
+    cycle(&owner,15990U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_AMBIGUOUS);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_STOP_TRACE
+static void check_stop_trace(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    begin(&owner,16000U,&follow);
+    g_left=216U; g_right=222U; g_join_reading=&g_trial_join;
+    ++g_rgb_sequence;
+    for (uint32_t t=16110U; t<=16590U; t+=20U) {cycle(&owner,t,false,false,&follow);}
+    g_join_reading=NULL; ++g_rgb_sequence;
+    g_left=230U; g_right=401U;
+    cycle(&owner,16610U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_JOIN_TIMEOUT);
+    assert(follow.stop_trace.valid && follow.stop_trace.captured_ms==16610U);
+    assert(follow.stop_trace.rgb_result==RGB_CLASS_BLUE && follow.stop_trace.rgb_ms==16610U);
+    assert(follow.stop_trace.join_active && follow.stop_trace.join_age_ms==500U);
+    assert(follow.stop_trace.left_raw==230U && follow.stop_trace.right_raw==401U);
+    g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+    g_left=255U; g_right=278U;
+    cycle(&owner,16630U,false,false,&follow);
+    assert(follow.stop_trace.rgb_result==RGB_CLASS_BLUE && follow.stop_trace.right_raw==401U);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_RED_HANDOFF
+/* UNKNOWN RGB observations from the two hand-guided blue/red joins. */
+static void check_blue_red_handoff(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    /* UNKNOWN RGB observations from the two hand-guided blue/red joins. */
+    begin(&owner,17000U,&follow);
+    g_left=230U; g_right=220U;
+    for (size_t i = 0U; i < sizeof(seam) / sizeof(seam[0]); ++i)
+    {
+        g_join_reading = &seam[i];
+        ++g_rgb_sequence;
+        cycle(&owner,17110U+(uint32_t)i*40U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==0);
+        assert(follow.left_half_pct==-55 && follow.right_half_pct==55);
+        assert(follow.blue_red_join_used);
+    }
+    g_join_reading=NULL; g_lane_colour=RGB_CLASS_RED; ++g_rgb_sequence;
+    cycle(&owner,17390U,false,false,&follow);
+    assert(g_active && follow.join_active);
+    ++g_rgb_sequence;
+    cycle(&owner,17410U,false,false,&follow);
+    assert(g_active && !follow.join_active && follow.join_count==1U && follow.blue_red_join_used);
+
+    /* Keep the turn response to the two previously missing blue readings. */
+    const rgb_reading_t missed_bend[] = {{253U, 271U, 281U, 588U}, {261U, 271U, 274U, 595U}};
+    begin(&owner,18000U,&follow);
+    assert(!follow.blue_red_join_used);
+    g_left=214U; g_right=240U;
+    for (size_t i = 0U; i < sizeof(missed_bend) / sizeof(missed_bend[0]); ++i)
+    {
+        g_join_reading = &missed_bend[i];
+        ++g_rgb_sequence;
+        cycle(&owner,18110U+(uint32_t)i*20U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==25);
+    }
+    g_join_reading=&seam[0]; ++g_rgb_sequence;
+    g_left=700U;
+    cycle(&owner,18150U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==14 && !follow.blue_red_join_used);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_SECOND_BOOST
+/* Normal blue tracking still uses the ramp on a strong outside edge. */
+static void check_blue_second_boost(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    /* Normal blue tracking still uses the ramp on a strong outside edge. */
+    begin(&owner,19000U,&follow);
+    g_left=724U; g_right=226U;
+    cycle(&owner,19110U,false,false,&follow);
+    assert(g_active && follow.turn_pct==5 && !follow.blue_second_used);
+
+    /* Blue1 lost blue, began rightward recovery, and then reacquired blue.
+     * Use the recorded strong outside edge from Blue2 for the next cue. */
+    const rgb_reading_t first_blue_loss = {246U, 265U, 276U, 583U};
+    g_left=209U; g_right=223U;
+    g_join_reading=&first_blue_loss; ++g_rgb_sequence;
+    cycle(&owner,19200U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==25);
+    const rgb_reading_t first_blue_reacquired = {214U, 237U, 252U, 554U};
+    g_join_reading=&first_blue_reacquired; ++g_rgb_sequence;
+    cycle(&owner,19240U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==8);
+    ++g_rgb_sequence;
+    cycle(&owner,19280U,false,false,&follow);
+    assert(g_active && !follow.join_active && follow.turn_pct==0);
+    g_left=724U; g_right=226U;
+    cycle(&owner,19340U,false,false,&follow);
+    assert(g_active && follow.turn_pct==12 && follow.blue_second_used);
+    assert(follow.left_half_pct==-46 && follow.right_half_pct==19);
+    g_left=213U; g_right=662U;
+    cycle(&owner,19380U,false,false,&follow);
+    assert(g_active && follow.turn_pct<0);
+    g_left=CENTRE_LEFT; g_right=CENTRE_RIGHT;
+    for (uint32_t now = 19420U; now < 19780U; now += 40U)
+    {
+        cycle(&owner,now,false,false,&follow);
+        assert(g_active && follow.turn_pct==0);
+    }
+    g_left=724U; g_right=226U;
+    cycle(&owner,19780U,false,false,&follow);
+    assert(g_active && follow.turn_pct==5 && follow.blue_second_used);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_OUTER_EDGE
+/* Blue still matched when the outside IR rose in both powered runs. */
+static void check_blue_outer_edge(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    /* Blue still matched when the outside IR rose in both powered runs. */
+    const rgb_reading_t outer_blue[] = {{202U, 227U, 242U, 540U}, {209U, 234U, 250U, 552U}};
+    const uint16_t outside_ir[] = {565U, 1189U};
+    const uint16_t inside_ir[] = {277U, 248U};
+    for (size_t run = 0U; run < sizeof(outside_ir) / sizeof(outside_ir[0]); ++run)
+    {
+        begin(&owner,20000U,&follow);
+        g_join_reading=&outer_blue[run]; ++g_rgb_sequence;
+        g_left=outside_ir[run]; g_right=inside_ir[run];
+        cycle(&owner,20110U,false,false,&follow);
+        assert(g_active && follow.turn_pct<9 && !follow.blue_outer_used);
+        cycle(&owner,20130U,false,false,&follow);
+        assert(g_active && follow.turn_pct<9 && !follow.blue_outer_used);
+        cycle(&owner,20150U,false,false,&follow);
+        assert(g_active && follow.turn_pct==9);
+        assert(follow.blue_outer_used);
+        assert(follow.left_half_pct==-42 && follow.right_half_pct==23);
+
+        g_left=241U; g_right=840U;
+        cycle(&owner,20170U,false,false,&follow);
+        assert(g_active && follow.turn_pct<0);
+        g_left=outside_ir[run]; g_right=inside_ir[run];
+        cycle(&owner,20190U,false,false,&follow);
+        assert(g_active && follow.turn_pct<9);
+    }
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_OUTER_RECOVERY
+/* Blue2: the outside edge returned after a rightward recovery began. */
+static void check_blue_outer_recovery(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    /* Blue2: the outside edge returned after a rightward recovery began. */
+    const rgb_reading_t blue2_loss = {241U, 261U, 272U, 575U};
+    const rgb_reading_t blue2_outside = {228U, 248U, 257U, 558U};
+    begin(&owner,21000U,&follow);
+    g_left=211U; g_right=233U;
+    g_join_reading=&blue2_loss; ++g_rgb_sequence;
+    cycle(&owner,21110U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==25);
+    g_left=1082U; g_right=259U;
+    g_join_reading=&blue2_outside; ++g_rgb_sequence;
+    cycle(&owner,21150U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==18);
+    assert(follow.left_half_pct==-55 && follow.right_half_pct==17);
+    assert(follow.blue_outer_recovery_used);
+    g_join_reading=NULL; ++g_rgb_sequence;
+    cycle(&owner,21190U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==14);
+    ++g_rgb_sequence;
+    cycle(&owner,21230U,false,false,&follow);
+    assert(g_active && !follow.join_active && follow.turn_pct<14);
+    assert(follow.blue_outer_recovery_used);
+
+    /* A strong edge on the first lost sample, alone, is normal IR steering. */
+    begin(&owner,22000U,&follow);
+    g_left=1082U; g_right=259U;
+    g_join_reading=&blue2_outside; ++g_rgb_sequence;
+    cycle(&owner,22110U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==14);
+    assert(!follow.blue_outer_recovery_used);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_BEND_SLOW
+/* A measured blue/red blend still crosses at the ordinary duty. */
+static void check_blue_bend_slow(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t blue1_at_edge = {208U, 233U, 249U, 549U};
+    begin(&owner,23000U,&follow);
+    g_join_reading=&blue1_at_edge; ++g_rgb_sequence;
+    g_left=1086U; g_right=249U;
+    cycle(&owner,23110U,false,false,&follow);
+    cycle(&owner,23130U,false,false,&follow);
+    cycle(&owner,23150U,false,false,&follow);
+    assert(g_active && follow.turn_pct==9 && !follow.blue_bend_slow_used);
+    g_left=250U; g_right=246U;
+    for (uint32_t now = 23170U; now < 23450U; now += 40U)
+    {
+        cycle(&owner,now,false,false,&follow);
+        assert(g_active && !follow.join_active && follow.turn_pct==0);
+        assert(follow.left_half_pct==-44 && follow.right_half_pct==44);
+        assert(follow.blue_bend_slow_used);
+    }
+    cycle(&owner,23450U,false,false,&follow);
+    assert(g_active && follow.left_half_pct==-55 && follow.right_half_pct==55);
+
+    /* A measured blue/red blend still crosses at the ordinary duty. */
+    g_left=1086U; g_right=249U;
+    cycle(&owner,23470U,false,false,&follow);
+    cycle(&owner,23510U,false,false,&follow);
+    g_left=230U; g_right=220U;
+    g_join_reading=&seam[0]; ++g_rgb_sequence;
+    cycle(&owner,23530U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==0);
+    assert(follow.left_half_pct==-55 && follow.right_half_pct==55);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_CONFIRM_GRACE
+static void check_blue_confirm_grace(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t blue3_loss = {270U, 277U, 277U, 607U};
+    const rgb_reading_t blue3_return = {206U, 231U, 246U, 544U};
+    for (unsigned int run = 0U; run < 2U; ++run)
+    {
+        begin(&owner,24000U,&follow);
+        g_left=250U; g_right=219U;
+        g_join_reading=&blue3_loss;
+        for (uint32_t now = 24110U; now < 24510U; now += 40U)
+        {
+            g_rgb_age_ms=(now-24100U)%100U; ++g_rgb_sequence;
+            cycle(&owner,now,false,false,&follow);
+            assert(g_active && follow.join_active);
+        }
+        g_join_reading=&blue3_return; ++g_rgb_sequence;
+        for (uint32_t now = 24510U; now <= 24600U; now += 30U)
+        {
+            g_rgb_age_ms=now-24500U;
+            cycle(&owner,now,false,false,&follow);
+            assert(g_active && follow.join_active && !follow.blue_late_confirmed);
+        }
+        follow_join_t pending = owner.join;
+        rgb_snapshot_t too_late = owner.rgb;
+        too_late.sampled_ms=24720U; ++too_late.sequence;
+        assert(update_join(&pending, &too_late, 24720U, RGB_CLASS_BLUE, true)==FOLLOW_JOIN_TIMEOUT);
+        g_rgb_age_ms=10U; ++g_rgb_sequence;
+        if (run == 1U)
+        {
+            g_join_reading=&blue3_loss;
+        }
+        cycle(&owner,24610U,false,false,&follow);
+        if (run == 0U)
+        {
+            assert(g_active && !follow.join_active && follow.join_count==0U && follow.blue_late_confirmed);
+        }
+        else
+        {
+            assert(!g_active && follow.reason==FOLLOW_JOIN_TIMEOUT && !follow.blue_late_confirmed);
+        }
+    }
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BEND_TRACE
+static void check_bend_trace(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t approaching_bend = {211U, 237U, 252U, 556U};
+    begin(&owner,25000U,&follow);
+    g_left=760U; g_right=213U;
+    g_join_reading=&approaching_bend; ++g_rgb_sequence;
+    g_rgb_age_ms=40U;
+    cycle(&owner,25110U,false,false,&follow);
+    assert(g_active && follow.turn_pct==5);
+    assert(follow.bend_trace.captured_ms==25110U && follow.bend_trace.ir_ms==25110U);
+    assert(follow.bend_trace.rgb_ms==25070U && follow.bend_trace.rgb_result==RGB_CLASS_BLUE);
+    assert(follow.bend_trace.left_raw==760U && follow.bend_trace.right_raw==213U);
+    assert(follow.bend_trace.red==211U && follow.bend_trace.green==237U);
+    assert(follow.bend_trace.blue==252U && follow.bend_trace.clear==556U);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_EXIT_LEAD
+/* Fresh outside-border confirmation precedes the recorded fading blue. */
+static void check_blue_exit_lead(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const struct {
+        rgb_reading_t reading;
+        uint16_t left;
+        uint16_t right;
+    } blue_exit[] = {
+        {{205U,228U,241U,540U}, 241U, 430U},
+        {{202U,223U,232U,532U}, 224U, 1102U},
+        {{208U,231U,243U,545U}, 270U, 268U},
+        {{203U,224U,234U,536U}, 242U, 855U},
+    };
+    const rgb_reading_t after_blue_exit = {213U,231U,239U,544U};
+    for (size_t run = 0U; run < sizeof(blue_exit)/sizeof(blue_exit[0]); ++run)
+    {
+        begin(&owner,26000U,&follow);
+        g_left=blue_exit[run].left; g_right=blue_exit[run].right;
+        g_join_reading=&blue_exit[run].reading; ++g_rgb_sequence;
+        cycle(&owner,26110U,false,false,&follow);
+        assert(g_active && follow.turn_pct<=0 && !follow.blue_exit_lead_used);
+
+        /* Fresh outside-border confirmation precedes the recorded fading blue. */
+        g_left=1113U; g_right=256U;
+        g_join_reading=NULL; ++g_rgb_sequence;
+        cycle(&owner,26150U,false,false,&follow);
+        cycle(&owner,26190U,false,false,&follow);
+        assert(g_active && follow.turn_pct==9);
+        g_left=blue_exit[run].left; g_right=blue_exit[run].right;
+        g_join_reading=&blue_exit[run].reading; ++g_rgb_sequence;
+        cycle(&owner,26230U,false,false,&follow);
+        assert(g_active && !follow.join_active && follow.turn_pct==expected_blue_lead &&
+               follow.blue_exit_lead_used);
+#if FOLLOW_BLUE_RED_BEND_CUES
+        assert(follow.left_half_pct==-55 && follow.right_half_pct==0);
+#elif FOLLOW_BLUE_EXIT_TURN == 22
+        assert(follow.left_half_pct==-55 && follow.right_half_pct==12);
+#elif FOLLOW_BLUE_EXIT_TURN == 18
+        assert(follow.left_half_pct==-55 && follow.right_half_pct==17);
+#else
+        assert(follow.left_half_pct==-51 && follow.right_half_pct==25);
+#endif
+
+        g_left=197U; g_right=832U;
+        g_join_reading=&after_blue_exit; ++g_rgb_sequence;
+        cycle(&owner,26290U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==expected_blue_lead);
+
+        if (run == 0U)
+        {
+            /* The measured blue/red seam cancels the bend cue immediately. */
+            g_left=230U; g_right=220U;
+            g_join_reading=&seam[0]; ++g_rgb_sequence;
+            cycle(&owner,26330U,false,false,&follow);
+            assert(g_active && follow.join_active && follow.turn_pct==0 && follow.blue_red_join_used);
+        }
+        else
+        {
+            cycle(&owner,26330U,false,false,&follow);
+            assert(g_active && follow.turn_pct==expected_blue_lead);
+            cycle(&owner,26380U,false,false,&follow);
+#if FOLLOW_BLUE_EXIT_TURN == 22
+            assert(g_active && follow.join_active && follow.turn_pct==expected_blue_lead);
+#else
+            assert(g_active && follow.join_active && follow.turn_pct==-14);
+#endif
+        }
+    }
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_RED_CONFIRM_GRACE
+static void check_blue_red_confirm_grace(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t red_approach[] = {{281U,266U,258U,619U}, {301U,278U,274U,629U}};
+    const rgb_reading_t red_found[] = {{351U,280U,279U,665U}, {346U,258U,257U,658U}};
+    for (size_t run = 0U; run < sizeof(red_approach)/sizeof(red_approach[0]); ++run)
+    {
+        begin(&owner,28000U,&follow);
+        g_left=1023U; g_right=260U;
+        g_join_reading=&before_exit; ++g_rgb_sequence;
+        for (uint32_t now = 28110U; now <= 28230U; now += 40U)
+        {
+            cycle(&owner,now,false,false,&follow);
+        }
+        assert(g_active && follow.blue_exit_lead_used);
+
+        g_left=224U; g_right=207U;
+        g_join_reading=&off_blue;
+        for (uint32_t now = 28270U; now < 28670U; now += 40U)
+        {
+            ++g_rgb_sequence;
+            cycle(&owner,now,false,false,&follow);
+            assert(g_active && follow.join_active);
+        }
+        g_join_reading=&red_approach[run]; ++g_rgb_sequence;
+        cycle(&owner,28670U,false,false,&follow);
+        cycle(&owner,28730U,false,false,&follow);
+        cycle(&owner,28770U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==10 && follow.red_approach_grace_used);
+        assert(follow.left_half_pct==-44 && follow.right_half_pct==22);
+
+        follow_join_t pending_red = owner.join;
+        rgb_snapshot_t late_rgb = owner.rgb;
+        late_rgb.sampled_ms=28770U;
+        assert(update_join(&pending_red, &late_rgb, 28770U, RGB_CLASS_BACKGROUND, false)==FOLLOW_JOIN_TIMEOUT);
+        late_rgb.sampled_ms=29190U;
+        assert(update_join(&pending_red, &late_rgb, 29190U, RGB_CLASS_RED, true)==FOLLOW_JOIN_TIMEOUT);
+
+        g_join_reading=&red_found[run]; ++g_rgb_sequence;
+        cycle(&owner,28830U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==0);
+        assert(follow.left_half_pct==-33 && follow.right_half_pct==33);
+        cycle(&owner,28890U,false,false,&follow);
+        assert(g_active && follow.join_active);
+        ++g_rgb_sequence;
+        cycle(&owner,28930U,false,false,&follow);
+        assert(g_active && !follow.join_active && follow.join_count==1U);
+    }
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_EXIT_AFTER_RECOVERY
+static void check_blue_exit_after_recovery(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const struct {
+        rgb_reading_t reading;
+        uint16_t left;
+        uint16_t right;
+    } fading_after_recovery[] = {
+        {{218U,237U,246U,555U}, 218U, 1014U},
+        {{211U,234U,246U,549U}, 233U, 253U},
+        {{217U,239U,251U,556U}, 223U, 892U},
+    };
+    for (size_t run = 0U; run < sizeof(fading_after_recovery)/sizeof(fading_after_recovery[0]); ++run)
+    {
+        begin(&owner,29000U,&follow);
+        g_left=fading_after_recovery[run].left; g_right=fading_after_recovery[run].right;
+        g_join_reading=&fading_after_recovery[run].reading; ++g_rgb_sequence;
+        cycle(&owner,29110U,false,false,&follow);
+        assert(g_active && follow.turn_pct<=0 && !follow.blue_exit_lead_used);
+
+        g_left=224U; g_right=220U;
+        g_join_reading=&off_blue; ++g_rgb_sequence;
+        cycle(&owner,29150U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==25);
+        g_join_reading=NULL; ++g_rgb_sequence;
+        cycle(&owner,29190U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==8);
+        ++g_rgb_sequence;
+        cycle(&owner,29230U,false,false,&follow);
+        assert(g_active && !follow.join_active);
+
+        g_left=fading_after_recovery[run].left; g_right=fading_after_recovery[run].right;
+        g_join_reading=&fading_after_recovery[run].reading; ++g_rgb_sequence;
+        cycle(&owner,29250U,false,false,&follow);
+        assert(g_active && follow.turn_pct<=0 && !follow.blue_exit_lead_used);
+        cycle(&owner,29270U,false,false,&follow);
+        assert(g_active && !follow.join_active && follow.turn_pct==expected_blue_lead && follow.blue_exit_lead_used);
+        assert(follow.blue_recovered_exit_used);
+        assert(follow.left_half_pct==-55 && follow.right_half_pct==(FOLLOW_BLUE_RED_BEND_CUES ? 0 : 12));
+    }
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_RED_EXIT_LEAD
+static void check_red_exit_lead(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const int8_t expected_red_inside_duty = FOLLOW_BLUE_RED_BEND_TRIAL ? 0 : 12;
+    const rgb_reading_t red_on_border = {304U,242U,239U,607U};
+    begin(&owner,30000U,&follow);
+    g_lane_colour=RGB_CLASS_RED;
+    g_join_reading=&fading_red; ++g_rgb_sequence;
+    g_left=373U; g_right=220U;
+    cycle(&owner,30110U,false,false,&follow);
+    assert(g_active && follow.turn_pct==3 && !follow.red_exit_lead_used);
+
+    g_join_reading=&solid_red; ++g_rgb_sequence;
+    g_left=700U; g_right=232U;
+    cycle(&owner,30150U,false,false,&follow);
+    g_left=762U; g_right=220U;
+    cycle(&owner,30190U,false,false,&follow);
+    assert(g_active && follow.turn_pct==14);
+
+    g_left=236U; g_right=202U;
+    cycle(&owner,30230U,false,false,&follow);
+    assert(g_active && follow.turn_pct==0);
+    g_left=373U; g_right=220U;
+    g_join_reading=&fading_red; ++g_rgb_sequence;
+    cycle(&owner,30290U,false,false,&follow);
+    assert(g_active && follow.turn_pct==expected_red_lead && follow.red_exit_lead_used);
+    assert(follow.left_half_pct==-55 && follow.right_half_pct==expected_red_inside_duty);
+    g_left=203U; g_right=729U;
+    g_join_reading=&red_on_border; ++g_rgb_sequence;
+    cycle(&owner,30350U,false,false,&follow);
+    assert(g_active && follow.turn_pct==expected_red_lead);
+    g_left=206U; g_right=206U;
+    g_join_reading=&red_background; ++g_rgb_sequence;
+    cycle(&owner,30410U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==25);
+    g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+    cycle(&owner,30450U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==0);
+    ++g_rgb_sequence;
+    cycle(&owner,30490U,false,false,&follow);
+    assert(g_active && !follow.join_active && follow.join_count==1U);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_RED_EXIT_EARLY
+static void check_red_exit_early(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t early_red[] = {{324U,249U,248U,632U}, {337U,259U,258U,647U}};
+    const rgb_reading_t stronger_red = {314U,241U,239U,622U};
+    for (size_t run = 0U; run < sizeof(early_red)/sizeof(early_red[0]); ++run)
+    {
+        begin(&owner,31000U,&follow);
+        g_lane_colour=RGB_CLASS_RED;
+        g_join_reading=&early_red[run]; ++g_rgb_sequence;
+        g_left=284U; g_right=238U;
+        cycle(&owner,31110U,false,false,&follow);
+        assert(g_active && !follow.red_exit_lead_used);
+        g_left=754U; g_right=214U;
+        g_join_reading=&solid_red; ++g_rgb_sequence;
+        cycle(&owner,31150U,false,false,&follow);
+        cycle(&owner,31190U,false,false,&follow);
+        assert(g_active && follow.turn_pct==14);
+        g_left=265U; g_right=245U;
+        g_join_reading=FOLLOW_BLUE_RED_BEND_CUES ? &solid_red : &stronger_red; ++g_rgb_sequence;
+        cycle(&owner,31230U,false,false,&follow);
+        assert(g_active && !follow.red_exit_lead_used);
+        g_left=284U; g_right=238U;
+        g_join_reading=&early_red[run]; ++g_rgb_sequence;
+        cycle(&owner,31290U,false,false,&follow);
+        assert(g_active && follow.turn_pct==expected_red_lead && follow.red_exit_lead_used);
+        g_left=201U; g_right=921U;
+        g_join_reading=&red_background; ++g_rgb_sequence;
+        for (uint32_t now = 31330U; now < 31650U; now += 40U)
+        {
+            cycle(&owner,now,false,false,&follow);
+            assert(g_active && follow.join_active && follow.turn_pct==expected_red_lead);
+        }
+        cycle(&owner,31650U,false,false,&follow);
+        assert(g_active && follow.join_active && follow.turn_pct==-14);
+    }
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_RED_BEND_TRIAL
+static void check_blue_red_bend_trial(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t faded_blue_outside = {211U,232U,243U,552U};
+    const rgb_reading_t faded_blue_recovered = FOLLOW_BLUE_RED_BEND_CUES ?
+        (rgb_reading_t){235U,257U,273U,584U} : (rgb_reading_t){217U,240U,254U,562U};
+    begin(&owner,32000U,&follow);
+    g_left=1058U; g_right=251U;
+    cycle(&owner,32110U,false,false,&follow);
+    cycle(&owner,32150U,false,false,&follow);
+    g_left=310U; g_right=298U;
+    g_join_reading=&faded_blue_outside; ++g_rgb_sequence;
+    cycle(&owner,32190U,false,false,&follow);
+    assert(g_active && follow.turn_pct==expected_blue_lead && follow.blue_exit_lead_used);
+    assert(!follow.blue_recovered_exit_used);
+
+    begin(&owner,33000U,&follow);
+    g_left=224U; g_right=220U;
+    g_join_reading=&off_blue; ++g_rgb_sequence;
+    cycle(&owner,33110U,false,false,&follow);
+    assert(g_active && follow.join_active && follow.turn_pct==25);
+    g_join_reading=NULL; ++g_rgb_sequence;
+    cycle(&owner,33150U,false,false,&follow);
+    ++g_rgb_sequence;
+    cycle(&owner,33190U,false,false,&follow);
+    assert(g_active && !follow.join_active);
+    g_left=362U; g_right=229U;
+    g_join_reading=&faded_blue_recovered; ++g_rgb_sequence;
+    cycle(&owner,33230U,false,false,&follow);
+    assert(g_active && follow.turn_pct==expected_blue_lead && follow.blue_recovered_exit_used);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_BLUE_RED_BEND_CUES
+static void check_blue_red_bend_cues(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t brighter_blue_exit[] = {{221U,244U,258U,567U}, {215U,236U,248U,556U}};
+    const uint16_t falling_left[] = {334U, 441U};
+    for (size_t run = 0U; run < sizeof(falling_left)/sizeof(falling_left[0]); ++run)
+    {
+        begin(&owner,34000U,&follow);
+        g_left=1026U; g_right=257U;
+        cycle(&owner,34110U,false,false,&follow);
+        cycle(&owner,34150U,false,false,&follow);
+        g_left=falling_left[run]; g_right=274U;
+        g_join_reading=&brighter_blue_exit[run]; ++g_rgb_sequence;
+        cycle(&owner,34190U,false,false,&follow);
+        assert(g_active && follow.turn_pct==25 && follow.blue_exit_lead_used);
+        assert(follow.left_half_pct==-55 && follow.right_half_pct==0);
+    }
+
+    const rgb_reading_t red_fade_before_edge = {351U,267U,266U,665U};
+    const rgb_reading_t red_fade_on_edge = {336U,256U,255U,649U};
+    begin(&owner,35000U,&follow);
+    g_lane_colour=RGB_CLASS_RED;
+    g_join_reading=&red_fade_before_edge; ++g_rgb_sequence;
+    g_left=248U; g_right=211U;
+    cycle(&owner,35110U,false,false,&follow);
+    assert(g_active && !follow.red_exit_lead_used);
+    g_left=569U; g_right=222U;
+    g_join_reading=&red_fade_on_edge; ++g_rgb_sequence;
+    cycle(&owner,35150U,false,false,&follow);
+    assert(g_active && !follow.red_exit_lead_used);
+    g_left=817U; g_right=196U;
+    cycle(&owner,35190U,false,false,&follow);
+    assert(g_active && follow.turn_pct==25 && follow.red_exit_lead_used);
+    assert(follow.left_half_pct==-55 && follow.right_half_pct==0);
+    g_left=248U; g_right=211U;
+    g_join_reading=&solid_red; ++g_rgb_sequence;
+    cycle(&owner,35230U,false,false,&follow);
+    assert(g_active && follow.turn_pct==0);
+    g_join_reading=&red_fade_before_edge; ++g_rgb_sequence;
+    cycle(&owner,35270U,false,false,&follow);
+    assert(g_active && follow.turn_pct==25);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP) && FOLLOW_RED_SECOND_PIVOT
+static void check_red_second_pivot(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    const rgb_reading_t red_return[] = {{355U,269U,269U,668U}, {329U,249U,248U,641U}};
+    const rgb_reading_t red_second_fade[] = {{350U,270U,270U,660U}, {352U,277U,277U,662U}};
+    for (size_t run = 0U; run < sizeof(red_return)/sizeof(red_return[0]); ++run)
+    {
+        begin(&owner,36000U,&follow);
+        g_lane_colour=RGB_CLASS_RED;
+        g_left=702U; g_right=212U;
+        g_join_reading=&solid_red; ++g_rgb_sequence;
+        cycle(&owner,36110U,false,false,&follow);
+        cycle(&owner,36150U,false,false,&follow);
+        g_left=270U; g_right=228U;
+        g_join_reading=&fading_red; ++g_rgb_sequence;
+        cycle(&owner,36190U,false,false,&follow);
+        assert(g_active && follow.left_half_pct==-55 && follow.right_half_pct==0);
+        cycle(&owner,36230U,false,false,&follow);
+        g_left=229U; g_right=222U;
+        g_join_reading=&red_return[run]; ++g_rgb_sequence;
+        cycle(&owner,36290U,false,false,&follow);
+        assert(g_active && follow.turn_pct==0);
+
+        g_left=242U; g_right=196U;
+        g_join_reading=&red_second_fade[run]; ++g_rgb_sequence;
+        cycle(&owner,36330U,false,false,&follow);
+        assert(g_active && follow.left_half_pct==-55 && follow.right_half_pct==-22 &&
+               follow.red_second_pivot_used);
+        cycle(&owner,36390U,false,false,&follow);
+        if (run == 1U)
+        {
+            g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+            cycle(&owner,36420U,false,false,&follow);
+            assert(g_active && follow.right_half_pct==55);
+            continue;
+        }
+        cycle(&owner,36450U,false,false,&follow);
+        assert(g_active && follow.right_half_pct==-22 && g_lease==50U);
+        cycle(&owner,36480U,false,false,&follow);
+        assert(g_active && follow.right_half_pct==-22 && g_lease==20U);
+        cycle(&owner,36490U,false,false,&follow);
+        assert(g_active && follow.left_half_pct==-55 && follow.right_half_pct==0);
+
+        g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
+        cycle(&owner,36530U,false,false,&follow);
+        assert(g_active && follow.right_half_pct==55);
+    }
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && (FOLLOW_CLIPPED_LOOP)
+/* Track profile: clipped loop. */
+static void check_clipped_loop_profile(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
     begin(&owner,1000U,&follow);
     unsigned int armed = g_arm_calls;
     g_left=FOLLOW_HOME_TRACK ? 406U : 400U;
@@ -1236,39 +2255,15 @@ int main(void)
     assert(!g_active && follow.reason==FOLLOW_AMBIGUOUS);
 
 #if FOLLOW_BLUE_BEND_RIGHT
-    /* v0.21 run 2 drove straight on this blue-bend sample. */
-    const rgb_reading_t bend_exit = {242U, 262U, 274U, 580U};
-    begin(&owner,1300U,&follow);
-    g_left=217U; g_right=237U;
-    cycle(&owner,1410U,false,false,&follow);
-    assert(g_applied_left==-25 && g_applied_right==25);
-    g_join_reading=&bend_exit; ++g_rgb_sequence;
-    cycle(&owner,1430U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==25);
-    assert(g_applied_left==-25 && g_applied_right==0);
-    g_join_reading=NULL; ++g_rgb_sequence;
-    cycle(&owner,1450U,false,false,&follow);
-    assert(g_active && follow.join_active && g_applied_left==-25 && g_applied_right==25);
-    ++g_rgb_sequence;
-    cycle(&owner,1470U,false,false,&follow);
-    assert(g_active && !follow.join_active && follow.join_count==0U);
-
-    g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-    cycle(&owner,1490U,false,false,&follow);
-    g_join_reading=&bend_exit; ++g_rgb_sequence;
-    cycle(&owner,1510U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==0);
-    assert(g_applied_left==-25 && g_applied_right==25);
+    check_blue_bend_right();
 #endif
 
 #if FOLLOW_LOOP_RECOVERY_DIRECTION != 0
-    const int8_t turn_direction = FOLLOW_LOOP_RECOVERY_DIRECTION;
     const int8_t tight_left = turn_direction > 0 ? -EXPECT_STRAIGHT : 0;
     const int8_t tight_right = turn_direction > 0 ? 0 : EXPECT_STRAIGHT;
     const int8_t gentle_left = -EXPECT_CLIPPED_DUTY(turn_direction > 0 ? 38 : 22);
     const int8_t gentle_right = EXPECT_CLIPPED_DUTY(turn_direction > 0 ? 22 : 38);
     /* The first blue run lost the lane, saw blue once, then lost it again. */
-    const rgb_reading_t blue_loss = {269U, 279U, 281U, 605U};
     const rgb_reading_t blue_again = {208U, 233U, 247U, 546U};
     begin(&owner,1600U,&follow);
     g_left=188U; g_right=237U; g_join_reading=&blue_loss; ++g_rgb_sequence;
@@ -1289,7 +2284,6 @@ int main(void)
     /* A straight black seam should not start recovery. The measured yellow
      * bend's background reading should, with the same low IR signals. */
     const rgb_reading_t black_seam = {323U, 326U, 313U, 781U};
-    const rgb_reading_t yellow_loss = {315U, 300U, 284U, 688U};
     g_lane_colour=RGB_CLASS_YELLOW; g_join_reading=NULL; ++g_rgb_sequence;
     g_left=232U; g_right=216U;
     cycle(&owner,1790U,false,false,&follow);
@@ -1319,68 +2313,11 @@ int main(void)
 #endif
 
 #if FOLLOW_EARLY_BEND
-    begin(&owner,1900U,&follow);
-    /* Blue run 2 saw the outside edge while RGB still matched blue. */
-    g_left=1059U; g_right=233U;
-    cycle(&owner,2010U,false,false,&follow);
-    assert(g_active && follow.ready && !follow.join_active);
-#if FOLLOW_BLUE_STEER_RAMP && FOLLOW_BLUE_RAMP_START == 5
-    assert(follow.turn_pct==5 && g_applied_left==-EXPECT_CLIPPED_DUTY(35) &&
-           g_applied_right==EXPECT_CLIPPED_DUTY(25));
-#elif FOLLOW_BLUE_STEER_RAMP
-    assert(follow.turn_pct==8 && g_applied_left==-19 && g_applied_right==11);
-#endif
-    cycle(&owner,2030U,false,false,&follow);
-#if FOLLOW_BLUE_STEER_RAMP && FOLLOW_BLUE_RAMP_START == 5
-    assert(follow.turn_pct==6);
-#elif FOLLOW_BLUE_STEER_RAMP
-    assert(follow.turn_pct==9);
-#endif
-    for (uint32_t t=2050U; t<=2130U; t+=20U)
-    {
-        cycle(&owner,t,false,false,&follow);
-    }
-    assert(follow.turn_pct==14);
-    assert(g_applied_left==-EXPECT_CLIPPED_DUTY(44) && g_applied_right==EXPECT_CLIPPED_DUTY(16));
-
-    /* Yellow run 1 saw the same cue before the later loss of yellow. */
-    g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-    g_left=720U; g_right=217U;
-    cycle(&owner,2150U,false,false,&follow);
-    assert(g_active && follow.ready && !follow.join_active && follow.turn_pct==14);
-    assert(g_applied_left==-EXPECT_CLIPPED_DUTY(44) && g_applied_right==EXPECT_CLIPPED_DUTY(16));
-    g_left=255U; g_right=236U;
-    cycle(&owner,2170U,false,false,&follow);
-    assert(follow.turn_pct==0 && g_applied_left==-EXPECT_STRAIGHT &&
-           g_applied_right==EXPECT_STRAIGHT);
+    check_early_bend();
 #endif
 
 #if FOLLOW_HOME_TRACK
-    const rgb_reading_t new_blue_straight = {197U, 225U, 243U, 543U};
-    begin(&owner,2100U,&follow);
-    g_left=339U; g_right=313U; g_join_reading=&new_blue_straight;
-    for (uint32_t t=2210U; t<=2810U; t+=20U)
-    {
-        g_rgb_age_ms=(t-2210U)%100U;
-        if (g_rgb_age_ms==0U) {++g_rgb_sequence;}
-        cycle(&owner,t,false,false,&follow);
-        assert(g_active && follow.ready && !follow.join_active);
-        assert(follow.turn_pct==0 && g_applied_left==-EXPECT_STRAIGHT &&
-               g_applied_right==EXPECT_STRAIGHT);
-    }
-    g_rgb_age_ms=0U;
-    g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-    g_left=245U; g_right=278U;
-    cycle(&owner,2830U,false,false,&follow);
-    assert(g_active && follow.ready && follow.right_norm==0U && follow.turn_pct==0);
-    g_right=632U;
-    cycle(&owner,2850U,false,false,&follow);
-    assert(g_active && follow.turn_pct==-14 && g_applied_left==-EXPECT_CLIPPED_DUTY(28) &&
-           g_applied_right==EXPECT_STRAIGHT);
-    g_lane_colour=RGB_CLASS_RED; ++g_rgb_sequence;
-    g_right=278U;
-    cycle(&owner,2870U,false,false,&follow);
-    assert(g_active && follow.right_norm==159U && follow.turn_pct==-1);
+    check_home_track_lane_centres();
 #endif
 
     begin(&owner,2000U,&follow);
@@ -1459,273 +2396,34 @@ int main(void)
     assert(g_applied_left==-29 && g_applied_right==24);
 #endif
 #if FOLLOW_YELLOW_EXIT_CUE
-    const rgb_reading_t straight_join = {320U, 310U, 266U, 777U};
-    const rgb_reading_t yellow_exit[] = {
-        {345U, 327U, 283U, 724U}, {347U, 328U, 282U, 730U},
-        {360U, 338U, 289U, 752U},
-    };
-    for (size_t i=0U; i<sizeof(yellow_exit)/sizeof(yellow_exit[0]); ++i)
-    {
-        begin(&owner,12000U,&follow);
-        g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-        g_left=245U; g_right=278U;
-        cycle(&owner,12110U,false,false,&follow);
-        g_join_reading=&straight_join; ++g_rgb_sequence;
-        cycle(&owner,12130U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==0);
-        g_join_reading=&yellow_exit[i]; ++g_rgb_sequence;
-        g_right=650U;
-        cycle(&owner,12150U,false,false,&follow);
-        assert(g_active && follow.turn_pct==-14);
-        g_right=278U;
-        cycle(&owner,12170U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==14);
-        assert(follow.left_half_pct==-53 && follow.right_half_pct==23);
-        g_join_reading=&yellow_loss; ++g_rgb_sequence;
-        cycle(&owner,12190U,false,false,&follow);
-        assert(g_active && follow.turn_pct==25);
-        assert(follow.left_half_pct==-55 && follow.right_half_pct==0);
-    }
+    check_yellow_exit_cue();
 #endif
 #if FOLLOW_YELLOW_LEAD_CUE
-    const rgb_reading_t late_yellow = {368U, 336U, 274U, 781U};
-    const rgb_reading_t first_unknown = {361U, 334U, 281U, 755U};
-    const rgb_reading_t join_yellow = {460U, 408U, 310U, 994U};
-    begin(&owner,13000U,&follow);
-    g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-    g_left=242U; g_right=219U; g_join_reading=&join_yellow;
-    cycle(&owner,13110U,false,false,&follow);
-    assert(g_active && follow.ready && follow.turn_pct==0);
-    g_join_reading=&late_yellow; ++g_rgb_sequence;
-    cycle(&owner,13130U,false,false,&follow);
-    assert(g_active && follow.ready && !follow.join_active && follow.turn_pct==10);
-    assert(follow.yellow_lead_used);
-    assert(follow.left_half_pct==-49 && follow.right_half_pct==27);
-    for (uint32_t t=13150U; t<=13330U; t+=20U) {cycle(&owner,t,false,false,&follow);}
-    assert(g_active && follow.turn_pct==0 && follow.yellow_lead_used);
-    g_join_reading=&first_unknown; ++g_rgb_sequence;
-    cycle(&owner,13350U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==14);
+    check_yellow_lead_cue();
 #endif
 #if FOLLOW_BLUE_REVERSAL_DAMPING
-    begin(&owner,14000U,&follow);
-    g_left=753U; g_right=294U;
-    for (uint32_t t=14110U; t<=14230U; t+=20U) {cycle(&owner,t,false,false,&follow);}
-    assert(g_active && follow.turn_pct==14);
-    g_left=CENTRE_LEFT; g_right=CENTRE_RIGHT;
-    cycle(&owner,14250U,false,false,&follow);
-    assert(follow.turn_pct==0);
-    g_left=250U; g_right=1302U;
-    cycle(&owner,14270U,false,false,&follow);
-    assert(follow.turn_pct==-5);
-    assert(follow.blue_reversal_damped);
-    for (uint32_t t=14290U; t<=14390U; t+=20U) {cycle(&owner,t,false,false,&follow);}
-    assert(g_active && follow.ready && follow.turn_pct==-7);
-    for (uint32_t t=14410U; t<=14670U; t+=20U) {cycle(&owner,t,false,false,&follow);}
-    assert(g_active && follow.turn_pct==-14);
-    g_left=217U; g_right=217U; g_join_reading=&blue_loss; ++g_rgb_sequence;
-    cycle(&owner,14690U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==25);
+    check_blue_reversal_damping();
 #endif
 #if FOLLOW_BLUE_STEER_WIDE_RANGE
-    begin(&owner,15000U,&follow);
-    g_left=525U; g_right=281U;
-    for (uint32_t t=15110U; t<=15530U; t+=20U) {cycle(&owner,t,false,false,&follow);}
-    assert(g_active && follow.ready && follow.left_norm==1000U && follow.turn_pct==4);
-    assert(follow.left_half_pct==-37 && follow.right_half_pct==28);
-    g_left=234U; g_right=557U;
-    for (uint32_t t=15550U; t<=15970U; t+=20U) {cycle(&owner,t,false,false,&follow);}
-    assert(g_active && follow.ready && follow.right_norm==1000U && follow.turn_pct==-5);
-    g_left=525U;
-    cycle(&owner,15990U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_AMBIGUOUS);
+    check_blue_steer_wide_range();
 #endif
 #if FOLLOW_STOP_TRACE
-    begin(&owner,16000U,&follow);
-    g_left=216U; g_right=222U; g_join_reading=&g_trial_join;
-    ++g_rgb_sequence;
-    for (uint32_t t=16110U; t<=16590U; t+=20U) {cycle(&owner,t,false,false,&follow);}
-    g_join_reading=NULL; ++g_rgb_sequence;
-    g_left=230U; g_right=401U;
-    cycle(&owner,16610U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_JOIN_TIMEOUT);
-    assert(follow.stop_trace.valid && follow.stop_trace.captured_ms==16610U);
-    assert(follow.stop_trace.rgb_result==RGB_CLASS_BLUE && follow.stop_trace.rgb_ms==16610U);
-    assert(follow.stop_trace.join_active && follow.stop_trace.join_age_ms==500U);
-    assert(follow.stop_trace.left_raw==230U && follow.stop_trace.right_raw==401U);
-    g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-    g_left=255U; g_right=278U;
-    cycle(&owner,16630U,false,false,&follow);
-    assert(follow.stop_trace.rgb_result==RGB_CLASS_BLUE && follow.stop_trace.right_raw==401U);
+    check_stop_trace();
 #endif
 #if FOLLOW_BLUE_RED_HANDOFF
-    /* UNKNOWN RGB observations from the two hand-guided blue/red joins. */
-    const rgb_reading_t seam[] = {
-        {244U, 263U, 279U, 586U}, {260U, 264U, 276U, 596U},
-        {291U, 268U, 278U, 623U}, {333U, 273U, 278U, 656U},
-        {252U, 269U, 286U, 599U}, {278U, 276U, 290U, 621U},
-        {312U, 275U, 284U, 647U},
-    };
-    begin(&owner,17000U,&follow);
-    g_left=230U; g_right=220U;
-    for (size_t i = 0U; i < sizeof(seam) / sizeof(seam[0]); ++i)
-    {
-        g_join_reading = &seam[i];
-        ++g_rgb_sequence;
-        cycle(&owner,17110U+(uint32_t)i*40U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==0);
-        assert(follow.left_half_pct==-55 && follow.right_half_pct==55);
-        assert(follow.blue_red_join_used);
-    }
-    g_join_reading=NULL; g_lane_colour=RGB_CLASS_RED; ++g_rgb_sequence;
-    cycle(&owner,17390U,false,false,&follow);
-    assert(g_active && follow.join_active);
-    ++g_rgb_sequence;
-    cycle(&owner,17410U,false,false,&follow);
-    assert(g_active && !follow.join_active && follow.join_count==1U && follow.blue_red_join_used);
-
-    /* Keep the turn response to the two previously missing blue readings. */
-    const rgb_reading_t missed_bend[] = {{253U, 271U, 281U, 588U}, {261U, 271U, 274U, 595U}};
-    begin(&owner,18000U,&follow);
-    assert(!follow.blue_red_join_used);
-    g_left=214U; g_right=240U;
-    for (size_t i = 0U; i < sizeof(missed_bend) / sizeof(missed_bend[0]); ++i)
-    {
-        g_join_reading = &missed_bend[i];
-        ++g_rgb_sequence;
-        cycle(&owner,18110U+(uint32_t)i*20U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==25);
-    }
-    g_join_reading=&seam[0]; ++g_rgb_sequence;
-    g_left=700U;
-    cycle(&owner,18150U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==14 && !follow.blue_red_join_used);
+    check_blue_red_handoff();
 #endif
 #if FOLLOW_BLUE_SECOND_BOOST
-    /* Normal blue tracking still uses the ramp on a strong outside edge. */
-    begin(&owner,19000U,&follow);
-    g_left=724U; g_right=226U;
-    cycle(&owner,19110U,false,false,&follow);
-    assert(g_active && follow.turn_pct==5 && !follow.blue_second_used);
-
-    /* Blue1 lost blue, began rightward recovery, and then reacquired blue.
-     * Use the recorded strong outside edge from Blue2 for the next cue. */
-    const rgb_reading_t first_blue_loss = {246U, 265U, 276U, 583U};
-    g_left=209U; g_right=223U;
-    g_join_reading=&first_blue_loss; ++g_rgb_sequence;
-    cycle(&owner,19200U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==25);
-    const rgb_reading_t first_blue_reacquired = {214U, 237U, 252U, 554U};
-    g_join_reading=&first_blue_reacquired; ++g_rgb_sequence;
-    cycle(&owner,19240U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==8);
-    ++g_rgb_sequence;
-    cycle(&owner,19280U,false,false,&follow);
-    assert(g_active && !follow.join_active && follow.turn_pct==0);
-    g_left=724U; g_right=226U;
-    cycle(&owner,19340U,false,false,&follow);
-    assert(g_active && follow.turn_pct==12 && follow.blue_second_used);
-    assert(follow.left_half_pct==-46 && follow.right_half_pct==19);
-    g_left=213U; g_right=662U;
-    cycle(&owner,19380U,false,false,&follow);
-    assert(g_active && follow.turn_pct<0);
-    g_left=CENTRE_LEFT; g_right=CENTRE_RIGHT;
-    for (uint32_t now = 19420U; now < 19780U; now += 40U)
-    {
-        cycle(&owner,now,false,false,&follow);
-        assert(g_active && follow.turn_pct==0);
-    }
-    g_left=724U; g_right=226U;
-    cycle(&owner,19780U,false,false,&follow);
-    assert(g_active && follow.turn_pct==5 && follow.blue_second_used);
+    check_blue_second_boost();
 #endif
 #if FOLLOW_BLUE_OUTER_EDGE
-    /* Blue still matched when the outside IR rose in both powered runs. */
-    const rgb_reading_t outer_blue[] = {{202U, 227U, 242U, 540U}, {209U, 234U, 250U, 552U}};
-    const uint16_t outside_ir[] = {565U, 1189U};
-    const uint16_t inside_ir[] = {277U, 248U};
-    for (size_t run = 0U; run < sizeof(outside_ir) / sizeof(outside_ir[0]); ++run)
-    {
-        begin(&owner,20000U,&follow);
-        g_join_reading=&outer_blue[run]; ++g_rgb_sequence;
-        g_left=outside_ir[run]; g_right=inside_ir[run];
-        cycle(&owner,20110U,false,false,&follow);
-        assert(g_active && follow.turn_pct<9 && !follow.blue_outer_used);
-        cycle(&owner,20130U,false,false,&follow);
-        assert(g_active && follow.turn_pct<9 && !follow.blue_outer_used);
-        cycle(&owner,20150U,false,false,&follow);
-        assert(g_active && follow.turn_pct==9);
-        assert(follow.blue_outer_used);
-        assert(follow.left_half_pct==-42 && follow.right_half_pct==23);
-
-        g_left=241U; g_right=840U;
-        cycle(&owner,20170U,false,false,&follow);
-        assert(g_active && follow.turn_pct<0);
-        g_left=outside_ir[run]; g_right=inside_ir[run];
-        cycle(&owner,20190U,false,false,&follow);
-        assert(g_active && follow.turn_pct<9);
-    }
+    check_blue_outer_edge();
 #endif
 #if FOLLOW_BLUE_OUTER_RECOVERY
-    /* Blue2: the outside edge returned after a rightward recovery began. */
-    const rgb_reading_t blue2_loss = {241U, 261U, 272U, 575U};
-    const rgb_reading_t blue2_outside = {228U, 248U, 257U, 558U};
-    begin(&owner,21000U,&follow);
-    g_left=211U; g_right=233U;
-    g_join_reading=&blue2_loss; ++g_rgb_sequence;
-    cycle(&owner,21110U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==25);
-    g_left=1082U; g_right=259U;
-    g_join_reading=&blue2_outside; ++g_rgb_sequence;
-    cycle(&owner,21150U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==18);
-    assert(follow.left_half_pct==-55 && follow.right_half_pct==17);
-    assert(follow.blue_outer_recovery_used);
-    g_join_reading=NULL; ++g_rgb_sequence;
-    cycle(&owner,21190U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==14);
-    ++g_rgb_sequence;
-    cycle(&owner,21230U,false,false,&follow);
-    assert(g_active && !follow.join_active && follow.turn_pct<14);
-    assert(follow.blue_outer_recovery_used);
-
-    /* A strong edge on the first lost sample, alone, is normal IR steering. */
-    begin(&owner,22000U,&follow);
-    g_left=1082U; g_right=259U;
-    g_join_reading=&blue2_outside; ++g_rgb_sequence;
-    cycle(&owner,22110U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==14);
-    assert(!follow.blue_outer_recovery_used);
+    check_blue_outer_recovery();
 #endif
 #if FOLLOW_BLUE_BEND_SLOW
-    const rgb_reading_t blue1_at_edge = {208U, 233U, 249U, 549U};
-    begin(&owner,23000U,&follow);
-    g_join_reading=&blue1_at_edge; ++g_rgb_sequence;
-    g_left=1086U; g_right=249U;
-    cycle(&owner,23110U,false,false,&follow);
-    cycle(&owner,23130U,false,false,&follow);
-    cycle(&owner,23150U,false,false,&follow);
-    assert(g_active && follow.turn_pct==9 && !follow.blue_bend_slow_used);
-    g_left=250U; g_right=246U;
-    for (uint32_t now = 23170U; now < 23450U; now += 40U)
-    {
-        cycle(&owner,now,false,false,&follow);
-        assert(g_active && !follow.join_active && follow.turn_pct==0);
-        assert(follow.left_half_pct==-44 && follow.right_half_pct==44);
-        assert(follow.blue_bend_slow_used);
-    }
-    cycle(&owner,23450U,false,false,&follow);
-    assert(g_active && follow.left_half_pct==-55 && follow.right_half_pct==55);
-
-    /* A measured blue/red blend still crosses at the ordinary duty. */
-    g_left=1086U; g_right=249U;
-    cycle(&owner,23470U,false,false,&follow);
-    cycle(&owner,23510U,false,false,&follow);
-    g_left=230U; g_right=220U;
-    g_join_reading=&seam[0]; ++g_rgb_sequence;
-    cycle(&owner,23530U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==0);
-    assert(follow.left_half_pct==-55 && follow.right_half_pct==55);
+    check_blue_bend_slow();
 #endif
 #if FOLLOW_BLUE_RED_JOIN_EXTEND
     {
@@ -1975,132 +2673,16 @@ int main(void)
     }
 #endif
 #if FOLLOW_BLUE_CONFIRM_GRACE
-    const rgb_reading_t blue3_loss = {270U, 277U, 277U, 607U};
-    const rgb_reading_t blue3_return = {206U, 231U, 246U, 544U};
-    for (unsigned int run = 0U; run < 2U; ++run)
-    {
-        begin(&owner,24000U,&follow);
-        g_left=250U; g_right=219U;
-        g_join_reading=&blue3_loss;
-        for (uint32_t now = 24110U; now < 24510U; now += 40U)
-        {
-            g_rgb_age_ms=(now-24100U)%100U; ++g_rgb_sequence;
-            cycle(&owner,now,false,false,&follow);
-            assert(g_active && follow.join_active);
-        }
-        g_join_reading=&blue3_return; ++g_rgb_sequence;
-        for (uint32_t now = 24510U; now <= 24600U; now += 30U)
-        {
-            g_rgb_age_ms=now-24500U;
-            cycle(&owner,now,false,false,&follow);
-            assert(g_active && follow.join_active && !follow.blue_late_confirmed);
-        }
-        follow_join_t pending = owner.join;
-        rgb_snapshot_t too_late = owner.rgb;
-        too_late.sampled_ms=24720U; ++too_late.sequence;
-        assert(update_join(&pending, &too_late, 24720U, RGB_CLASS_BLUE, true)==FOLLOW_JOIN_TIMEOUT);
-        g_rgb_age_ms=10U; ++g_rgb_sequence;
-        if (run == 1U)
-        {
-            g_join_reading=&blue3_loss;
-        }
-        cycle(&owner,24610U,false,false,&follow);
-        if (run == 0U)
-        {
-            assert(g_active && !follow.join_active && follow.join_count==0U && follow.blue_late_confirmed);
-        }
-        else
-        {
-            assert(!g_active && follow.reason==FOLLOW_JOIN_TIMEOUT && !follow.blue_late_confirmed);
-        }
-    }
+    check_blue_confirm_grace();
 #endif
 #if FOLLOW_BEND_TRACE
-    const rgb_reading_t approaching_bend = {211U, 237U, 252U, 556U};
-    begin(&owner,25000U,&follow);
-    g_left=760U; g_right=213U;
-    g_join_reading=&approaching_bend; ++g_rgb_sequence;
-    g_rgb_age_ms=40U;
-    cycle(&owner,25110U,false,false,&follow);
-    assert(g_active && follow.turn_pct==5);
-    assert(follow.bend_trace.captured_ms==25110U && follow.bend_trace.ir_ms==25110U);
-    assert(follow.bend_trace.rgb_ms==25070U && follow.bend_trace.rgb_result==RGB_CLASS_BLUE);
-    assert(follow.bend_trace.left_raw==760U && follow.bend_trace.right_raw==213U);
-    assert(follow.bend_trace.red==211U && follow.bend_trace.green==237U);
-    assert(follow.bend_trace.blue==252U && follow.bend_trace.clear==556U);
+    check_bend_trace();
 #endif
 #if FOLLOW_BLUE_EXIT_LEAD
-    const int8_t expected_blue_lead = FOLLOW_BLUE_RED_BEND_CUES ? 25 : FOLLOW_BLUE_EXIT_TURN;
-    const struct {
-        rgb_reading_t reading;
-        uint16_t left;
-        uint16_t right;
-    } blue_exit[] = {
-        {{205U,228U,241U,540U}, 241U, 430U},
-        {{202U,223U,232U,532U}, 224U, 1102U},
-        {{208U,231U,243U,545U}, 270U, 268U},
-        {{203U,224U,234U,536U}, 242U, 855U},
-    };
-    const rgb_reading_t after_blue_exit = {213U,231U,239U,544U};
-    for (size_t run = 0U; run < sizeof(blue_exit)/sizeof(blue_exit[0]); ++run)
-    {
-        begin(&owner,26000U,&follow);
-        g_left=blue_exit[run].left; g_right=blue_exit[run].right;
-        g_join_reading=&blue_exit[run].reading; ++g_rgb_sequence;
-        cycle(&owner,26110U,false,false,&follow);
-        assert(g_active && follow.turn_pct<=0 && !follow.blue_exit_lead_used);
-
-        /* Fresh outside-border confirmation precedes the recorded fading blue. */
-        g_left=1113U; g_right=256U;
-        g_join_reading=NULL; ++g_rgb_sequence;
-        cycle(&owner,26150U,false,false,&follow);
-        cycle(&owner,26190U,false,false,&follow);
-        assert(g_active && follow.turn_pct==9);
-        g_left=blue_exit[run].left; g_right=blue_exit[run].right;
-        g_join_reading=&blue_exit[run].reading; ++g_rgb_sequence;
-        cycle(&owner,26230U,false,false,&follow);
-        assert(g_active && !follow.join_active && follow.turn_pct==expected_blue_lead &&
-               follow.blue_exit_lead_used);
-#if FOLLOW_BLUE_RED_BEND_CUES
-        assert(follow.left_half_pct==-55 && follow.right_half_pct==0);
-#elif FOLLOW_BLUE_EXIT_TURN == 22
-        assert(follow.left_half_pct==-55 && follow.right_half_pct==12);
-#elif FOLLOW_BLUE_EXIT_TURN == 18
-        assert(follow.left_half_pct==-55 && follow.right_half_pct==17);
-#else
-        assert(follow.left_half_pct==-51 && follow.right_half_pct==25);
-#endif
-
-        g_left=197U; g_right=832U;
-        g_join_reading=&after_blue_exit; ++g_rgb_sequence;
-        cycle(&owner,26290U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==expected_blue_lead);
-
-        if (run == 0U)
-        {
-            /* The measured blue/red seam cancels the bend cue immediately. */
-            g_left=230U; g_right=220U;
-            g_join_reading=&seam[0]; ++g_rgb_sequence;
-            cycle(&owner,26330U,false,false,&follow);
-            assert(g_active && follow.join_active && follow.turn_pct==0 && follow.blue_red_join_used);
-        }
-        else
-        {
-            cycle(&owner,26330U,false,false,&follow);
-            assert(g_active && follow.turn_pct==expected_blue_lead);
-            cycle(&owner,26380U,false,false,&follow);
-#if FOLLOW_BLUE_EXIT_TURN == 22
-            assert(g_active && follow.join_active && follow.turn_pct==expected_blue_lead);
-#else
-            assert(g_active && follow.join_active && follow.turn_pct==-14);
-#endif
-        }
-    }
+    check_blue_exit_lead();
 #endif
 #if FOLLOW_BLUE_EXIT_TURN == 22
     /* v0.42: fading blue appears while the outside edge is still strong. */
-    const rgb_reading_t before_exit = {210U,233U,246U,548U};
-    const rgb_reading_t off_blue = {219U,236U,243U,553U};
     begin(&owner,27000U,&follow);
     g_left=1023U; g_right=260U;
     g_join_reading=&before_exit; ++g_rgb_sequence;
@@ -2124,287 +2706,36 @@ int main(void)
     assert(g_active && follow.join_active && follow.turn_pct==-14);
 #endif
 #if FOLLOW_BLUE_RED_CONFIRM_GRACE
-    const rgb_reading_t red_approach[] = {{281U,266U,258U,619U}, {301U,278U,274U,629U}};
-    const rgb_reading_t red_found[] = {{351U,280U,279U,665U}, {346U,258U,257U,658U}};
-    for (size_t run = 0U; run < sizeof(red_approach)/sizeof(red_approach[0]); ++run)
-    {
-        begin(&owner,28000U,&follow);
-        g_left=1023U; g_right=260U;
-        g_join_reading=&before_exit; ++g_rgb_sequence;
-        for (uint32_t now = 28110U; now <= 28230U; now += 40U)
-        {
-            cycle(&owner,now,false,false,&follow);
-        }
-        assert(g_active && follow.blue_exit_lead_used);
-
-        g_left=224U; g_right=207U;
-        g_join_reading=&off_blue;
-        for (uint32_t now = 28270U; now < 28670U; now += 40U)
-        {
-            ++g_rgb_sequence;
-            cycle(&owner,now,false,false,&follow);
-            assert(g_active && follow.join_active);
-        }
-        g_join_reading=&red_approach[run]; ++g_rgb_sequence;
-        cycle(&owner,28670U,false,false,&follow);
-        cycle(&owner,28730U,false,false,&follow);
-        cycle(&owner,28770U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==10 && follow.red_approach_grace_used);
-        assert(follow.left_half_pct==-44 && follow.right_half_pct==22);
-
-        follow_join_t pending_red = owner.join;
-        rgb_snapshot_t late_rgb = owner.rgb;
-        late_rgb.sampled_ms=28770U;
-        assert(update_join(&pending_red, &late_rgb, 28770U, RGB_CLASS_BACKGROUND, false)==FOLLOW_JOIN_TIMEOUT);
-        late_rgb.sampled_ms=29190U;
-        assert(update_join(&pending_red, &late_rgb, 29190U, RGB_CLASS_RED, true)==FOLLOW_JOIN_TIMEOUT);
-
-        g_join_reading=&red_found[run]; ++g_rgb_sequence;
-        cycle(&owner,28830U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==0);
-        assert(follow.left_half_pct==-33 && follow.right_half_pct==33);
-        cycle(&owner,28890U,false,false,&follow);
-        assert(g_active && follow.join_active);
-        ++g_rgb_sequence;
-        cycle(&owner,28930U,false,false,&follow);
-        assert(g_active && !follow.join_active && follow.join_count==1U);
-    }
+    check_blue_red_confirm_grace();
 #endif
 #if FOLLOW_BLUE_EXIT_AFTER_RECOVERY
-    const struct {
-        rgb_reading_t reading;
-        uint16_t left;
-        uint16_t right;
-    } fading_after_recovery[] = {
-        {{218U,237U,246U,555U}, 218U, 1014U},
-        {{211U,234U,246U,549U}, 233U, 253U},
-        {{217U,239U,251U,556U}, 223U, 892U},
-    };
-    for (size_t run = 0U; run < sizeof(fading_after_recovery)/sizeof(fading_after_recovery[0]); ++run)
-    {
-        begin(&owner,29000U,&follow);
-        g_left=fading_after_recovery[run].left; g_right=fading_after_recovery[run].right;
-        g_join_reading=&fading_after_recovery[run].reading; ++g_rgb_sequence;
-        cycle(&owner,29110U,false,false,&follow);
-        assert(g_active && follow.turn_pct<=0 && !follow.blue_exit_lead_used);
-
-        g_left=224U; g_right=220U;
-        g_join_reading=&off_blue; ++g_rgb_sequence;
-        cycle(&owner,29150U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==25);
-        g_join_reading=NULL; ++g_rgb_sequence;
-        cycle(&owner,29190U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==8);
-        ++g_rgb_sequence;
-        cycle(&owner,29230U,false,false,&follow);
-        assert(g_active && !follow.join_active);
-
-        g_left=fading_after_recovery[run].left; g_right=fading_after_recovery[run].right;
-        g_join_reading=&fading_after_recovery[run].reading; ++g_rgb_sequence;
-        cycle(&owner,29250U,false,false,&follow);
-        assert(g_active && follow.turn_pct<=0 && !follow.blue_exit_lead_used);
-        cycle(&owner,29270U,false,false,&follow);
-        assert(g_active && !follow.join_active && follow.turn_pct==expected_blue_lead && follow.blue_exit_lead_used);
-        assert(follow.blue_recovered_exit_used);
-        assert(follow.left_half_pct==-55 && follow.right_half_pct==(FOLLOW_BLUE_RED_BEND_CUES ? 0 : 12));
-    }
+    check_blue_exit_after_recovery();
 #endif
 #if FOLLOW_RED_EXIT_LEAD
-    const int8_t expected_red_lead = FOLLOW_BLUE_RED_BEND_TRIAL ? 25 : 22;
-    const int8_t expected_red_inside_duty = FOLLOW_BLUE_RED_BEND_TRIAL ? 0 : 12;
-    const rgb_reading_t solid_red = {320U,242U,240U,627U};
-    const rgb_reading_t fading_red = {331U,256U,255U,636U};
-    const rgb_reading_t red_on_border = {304U,242U,239U,607U};
-    const rgb_reading_t red_background = {276U,258U,248U,602U};
-    begin(&owner,30000U,&follow);
-    g_lane_colour=RGB_CLASS_RED;
-    g_join_reading=&fading_red; ++g_rgb_sequence;
-    g_left=373U; g_right=220U;
-    cycle(&owner,30110U,false,false,&follow);
-    assert(g_active && follow.turn_pct==3 && !follow.red_exit_lead_used);
-
-    g_join_reading=&solid_red; ++g_rgb_sequence;
-    g_left=700U; g_right=232U;
-    cycle(&owner,30150U,false,false,&follow);
-    g_left=762U; g_right=220U;
-    cycle(&owner,30190U,false,false,&follow);
-    assert(g_active && follow.turn_pct==14);
-
-    g_left=236U; g_right=202U;
-    cycle(&owner,30230U,false,false,&follow);
-    assert(g_active && follow.turn_pct==0);
-    g_left=373U; g_right=220U;
-    g_join_reading=&fading_red; ++g_rgb_sequence;
-    cycle(&owner,30290U,false,false,&follow);
-    assert(g_active && follow.turn_pct==expected_red_lead && follow.red_exit_lead_used);
-    assert(follow.left_half_pct==-55 && follow.right_half_pct==expected_red_inside_duty);
-    g_left=203U; g_right=729U;
-    g_join_reading=&red_on_border; ++g_rgb_sequence;
-    cycle(&owner,30350U,false,false,&follow);
-    assert(g_active && follow.turn_pct==expected_red_lead);
-    g_left=206U; g_right=206U;
-    g_join_reading=&red_background; ++g_rgb_sequence;
-    cycle(&owner,30410U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==25);
-    g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-    cycle(&owner,30450U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==0);
-    ++g_rgb_sequence;
-    cycle(&owner,30490U,false,false,&follow);
-    assert(g_active && !follow.join_active && follow.join_count==1U);
+    check_red_exit_lead();
 #endif
 #if FOLLOW_RED_EXIT_EARLY
-    const rgb_reading_t early_red[] = {{324U,249U,248U,632U}, {337U,259U,258U,647U}};
-    const rgb_reading_t stronger_red = {314U,241U,239U,622U};
-    for (size_t run = 0U; run < sizeof(early_red)/sizeof(early_red[0]); ++run)
-    {
-        begin(&owner,31000U,&follow);
-        g_lane_colour=RGB_CLASS_RED;
-        g_join_reading=&early_red[run]; ++g_rgb_sequence;
-        g_left=284U; g_right=238U;
-        cycle(&owner,31110U,false,false,&follow);
-        assert(g_active && !follow.red_exit_lead_used);
-        g_left=754U; g_right=214U;
-        g_join_reading=&solid_red; ++g_rgb_sequence;
-        cycle(&owner,31150U,false,false,&follow);
-        cycle(&owner,31190U,false,false,&follow);
-        assert(g_active && follow.turn_pct==14);
-        g_left=265U; g_right=245U;
-        g_join_reading=FOLLOW_BLUE_RED_BEND_CUES ? &solid_red : &stronger_red; ++g_rgb_sequence;
-        cycle(&owner,31230U,false,false,&follow);
-        assert(g_active && !follow.red_exit_lead_used);
-        g_left=284U; g_right=238U;
-        g_join_reading=&early_red[run]; ++g_rgb_sequence;
-        cycle(&owner,31290U,false,false,&follow);
-        assert(g_active && follow.turn_pct==expected_red_lead && follow.red_exit_lead_used);
-        g_left=201U; g_right=921U;
-        g_join_reading=&red_background; ++g_rgb_sequence;
-        for (uint32_t now = 31330U; now < 31650U; now += 40U)
-        {
-            cycle(&owner,now,false,false,&follow);
-            assert(g_active && follow.join_active && follow.turn_pct==expected_red_lead);
-        }
-        cycle(&owner,31650U,false,false,&follow);
-        assert(g_active && follow.join_active && follow.turn_pct==-14);
-    }
+    check_red_exit_early();
 #endif
 #if FOLLOW_BLUE_RED_BEND_TRIAL
-    const rgb_reading_t faded_blue_outside = {211U,232U,243U,552U};
-    const rgb_reading_t faded_blue_recovered = FOLLOW_BLUE_RED_BEND_CUES ?
-        (rgb_reading_t){235U,257U,273U,584U} : (rgb_reading_t){217U,240U,254U,562U};
-    begin(&owner,32000U,&follow);
-    g_left=1058U; g_right=251U;
-    cycle(&owner,32110U,false,false,&follow);
-    cycle(&owner,32150U,false,false,&follow);
-    g_left=310U; g_right=298U;
-    g_join_reading=&faded_blue_outside; ++g_rgb_sequence;
-    cycle(&owner,32190U,false,false,&follow);
-    assert(g_active && follow.turn_pct==expected_blue_lead && follow.blue_exit_lead_used);
-    assert(!follow.blue_recovered_exit_used);
-
-    begin(&owner,33000U,&follow);
-    g_left=224U; g_right=220U;
-    g_join_reading=&off_blue; ++g_rgb_sequence;
-    cycle(&owner,33110U,false,false,&follow);
-    assert(g_active && follow.join_active && follow.turn_pct==25);
-    g_join_reading=NULL; ++g_rgb_sequence;
-    cycle(&owner,33150U,false,false,&follow);
-    ++g_rgb_sequence;
-    cycle(&owner,33190U,false,false,&follow);
-    assert(g_active && !follow.join_active);
-    g_left=362U; g_right=229U;
-    g_join_reading=&faded_blue_recovered; ++g_rgb_sequence;
-    cycle(&owner,33230U,false,false,&follow);
-    assert(g_active && follow.turn_pct==expected_blue_lead && follow.blue_recovered_exit_used);
+    check_blue_red_bend_trial();
 #endif
 #if FOLLOW_BLUE_RED_BEND_CUES
-    const rgb_reading_t brighter_blue_exit[] = {{221U,244U,258U,567U}, {215U,236U,248U,556U}};
-    const uint16_t falling_left[] = {334U, 441U};
-    for (size_t run = 0U; run < sizeof(falling_left)/sizeof(falling_left[0]); ++run)
-    {
-        begin(&owner,34000U,&follow);
-        g_left=1026U; g_right=257U;
-        cycle(&owner,34110U,false,false,&follow);
-        cycle(&owner,34150U,false,false,&follow);
-        g_left=falling_left[run]; g_right=274U;
-        g_join_reading=&brighter_blue_exit[run]; ++g_rgb_sequence;
-        cycle(&owner,34190U,false,false,&follow);
-        assert(g_active && follow.turn_pct==25 && follow.blue_exit_lead_used);
-        assert(follow.left_half_pct==-55 && follow.right_half_pct==0);
-    }
-
-    const rgb_reading_t red_fade_before_edge = {351U,267U,266U,665U};
-    const rgb_reading_t red_fade_on_edge = {336U,256U,255U,649U};
-    begin(&owner,35000U,&follow);
-    g_lane_colour=RGB_CLASS_RED;
-    g_join_reading=&red_fade_before_edge; ++g_rgb_sequence;
-    g_left=248U; g_right=211U;
-    cycle(&owner,35110U,false,false,&follow);
-    assert(g_active && !follow.red_exit_lead_used);
-    g_left=569U; g_right=222U;
-    g_join_reading=&red_fade_on_edge; ++g_rgb_sequence;
-    cycle(&owner,35150U,false,false,&follow);
-    assert(g_active && !follow.red_exit_lead_used);
-    g_left=817U; g_right=196U;
-    cycle(&owner,35190U,false,false,&follow);
-    assert(g_active && follow.turn_pct==25 && follow.red_exit_lead_used);
-    assert(follow.left_half_pct==-55 && follow.right_half_pct==0);
-    g_left=248U; g_right=211U;
-    g_join_reading=&solid_red; ++g_rgb_sequence;
-    cycle(&owner,35230U,false,false,&follow);
-    assert(g_active && follow.turn_pct==0);
-    g_join_reading=&red_fade_before_edge; ++g_rgb_sequence;
-    cycle(&owner,35270U,false,false,&follow);
-    assert(g_active && follow.turn_pct==25);
+    check_blue_red_bend_cues();
 #endif
 #if FOLLOW_RED_SECOND_PIVOT
-    const rgb_reading_t red_return[] = {{355U,269U,269U,668U}, {329U,249U,248U,641U}};
-    const rgb_reading_t red_second_fade[] = {{350U,270U,270U,660U}, {352U,277U,277U,662U}};
-    for (size_t run = 0U; run < sizeof(red_return)/sizeof(red_return[0]); ++run)
-    {
-        begin(&owner,36000U,&follow);
-        g_lane_colour=RGB_CLASS_RED;
-        g_left=702U; g_right=212U;
-        g_join_reading=&solid_red; ++g_rgb_sequence;
-        cycle(&owner,36110U,false,false,&follow);
-        cycle(&owner,36150U,false,false,&follow);
-        g_left=270U; g_right=228U;
-        g_join_reading=&fading_red; ++g_rgb_sequence;
-        cycle(&owner,36190U,false,false,&follow);
-        assert(g_active && follow.left_half_pct==-55 && follow.right_half_pct==0);
-        cycle(&owner,36230U,false,false,&follow);
-        g_left=229U; g_right=222U;
-        g_join_reading=&red_return[run]; ++g_rgb_sequence;
-        cycle(&owner,36290U,false,false,&follow);
-        assert(g_active && follow.turn_pct==0);
-
-        g_left=242U; g_right=196U;
-        g_join_reading=&red_second_fade[run]; ++g_rgb_sequence;
-        cycle(&owner,36330U,false,false,&follow);
-        assert(g_active && follow.left_half_pct==-55 && follow.right_half_pct==-22 &&
-               follow.red_second_pivot_used);
-        cycle(&owner,36390U,false,false,&follow);
-        if (run == 1U)
-        {
-            g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-            cycle(&owner,36420U,false,false,&follow);
-            assert(g_active && follow.right_half_pct==55);
-            continue;
-        }
-        cycle(&owner,36450U,false,false,&follow);
-        assert(g_active && follow.right_half_pct==-22 && g_lease==50U);
-        cycle(&owner,36480U,false,false,&follow);
-        assert(g_active && follow.right_half_pct==-22 && g_lease==20U);
-        cycle(&owner,36490U,false,false,&follow);
-        assert(g_active && follow.left_half_pct==-55 && follow.right_half_pct==0);
-
-        g_join_reading=NULL; g_lane_colour=RGB_CLASS_YELLOW; ++g_rgb_sequence;
-        cycle(&owner,36530U,false,false,&follow);
-        assert(g_active && follow.right_half_pct==55);
-    }
+    check_red_second_pivot();
 #endif
     puts("Clipped loop: T14 steering, joins, guards, cutoff and alarm attribution PASS");
-#elif FOLLOW_CORNER_DIRECTION != 0
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && !(FOLLOW_CLIPPED_LOOP) && (FOLLOW_CORNER_DIRECTION != 0)
+/* Track profile: corner direction. */
+static void check_corner_direction_profile(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
     const int8_t pivot = FOLLOW_CORNER_DIRECTION == 1 ? -25 : 25;
     begin(&owner,1000U,&follow);
     unsigned int armed = g_arm_calls;
@@ -2471,80 +2802,15 @@ int main(void)
     cycle(&owner,6160U,false,false,&follow);
     assert(!g_active && follow.reason==FOLLOW_RGB);
     puts("Corner owner: cue, signed pivot, reacquisition, deadlines and STOP PASS");
-#else
-    begin(&owner,100U,&follow);
-#if FOLLOW_BORDERED_CORRIDOR
-    g_left=500U;
-#else
-    g_right=1444U;
+}
 #endif
-    cycle(&owner,200U,false,false,&follow);
-    assert(g_applied_left==-EXPECT_STRAIGHT && g_applied_right==EXPECT_INNER);
-#if FOLLOW_BORDERED_CORRIDOR
-    g_left=CENTRE_LEFT; g_right=500U;
-#else
-    g_right=CENTRE_RIGHT; g_left=1368U;
-#endif
-    cycle(&owner,220U,false,false,&follow);
-    assert(g_applied_left==-EXPECT_INNER && g_applied_right==EXPECT_STRAIGHT);
-    cycle(&owner,240U,false,true,&follow);
-    assert(!g_active && follow.reason==FOLLOW_BUTTON);
-    begin(&owner,1000U,&follow);
-    g_ir_busy=true; cycle(&owner,1150U,false,false,&follow);
-    assert(g_active); /* Last successful snapshot retains its original age. */
-    assert(g_lease==30U); /* IR remainder40 less10ms clock-quantization guard. */
-    cycle(&owner,1191U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_IR);
-    begin(&owner,2000U,&follow);
-    g_rgb_busy=true;
-    for (uint32_t t=2110U; t<=2270U; t+=20U)
-    {cycle(&owner,t,false,false,&follow);}
-    assert(g_active);
-    assert(g_lease==10U); /* RGB remainder20 less10ms clock guard. */
-    cycle(&owner,2291U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_RGB);
-    begin(&owner,3000U,&follow);
-    g_rgb_valid=false; cycle(&owner,3100U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_RGB);
-    begin(&owner,4000U,&follow);
-    g_active=false; /* Independent cutoff; never silently resume. */
-    unsigned int calls=g_drive_calls;
-    cycle(&owner,4100U,false,false,&follow);
-    assert(!g_active && g_drive_calls==calls && follow.reason==FOLLOW_DRIVER);
-    begin(&owner,5000U,&follow);
-    for (uint32_t t=5110U; t<=6050U; t+=20U)
-    {cycle(&owner,t,false,false,&follow);}
-    cycle(&owner,6070U,false,false,&follow);
-    assert(g_active && g_lease==10U); /* Conservative run deadline guard. */
-    cycle(&owner,6090U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_COMPLETE);
-    begin(&owner,7000U,&follow);
-    g_drive_error=-50; cycle(&owner,7100U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_DRIVER);
-    begin(&owner,8000U,&follow);
-    g_apply_delay_ms=150U;
-    cycle(&owner,8100U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_DRIVER); /* Delayed renewal rejected. */
-    g_now=9000U; g_apply_delay_ms=0U; g_active=false;
-    black_follow_owner_init(&owner);
-    cycle(&owner,9000U,false,false,&follow);
-    cycle(&owner,9040U,false,false,&follow);
-    cycle(&owner,9050U,true,false,&follow);
-    g_apply_delay_ms=150U;
-    cycle(&owner,9090U,true,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_DRIVER); /* Delayed first apply. */
-    begin(&owner,10000U,&follow);
-    g_wrong_target=true; cycle(&owner,10100U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_RGB);
-    g_wrong_target=false; cycle(&owner,10120U,false,false,&follow);
-    assert(!g_active); /* Valid target recovery must not restart. */
-#if FOLLOW_BLUE_CORRIDOR || FOLLOW_MULTICOLOUR_CORRIDOR
-    begin(&owner,11000U,&follow);
-    g_left=500U; g_right=500U;
-    cycle(&owner,11100U,false,false,&follow);
-    assert(!g_active && follow.reason==FOLLOW_AMBIGUOUS);
-#endif
-#if FOLLOW_MULTICOLOUR_CORRIDOR
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && !(FOLLOW_CLIPPED_LOOP) && !(FOLLOW_CORNER_DIRECTION != 0) && FOLLOW_MULTICOLOUR_CORRIDOR
+/* Check both the normalized IR and the resulting wheel output. */
+static void check_multicolour_corridor(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
     begin(&owner,12000U,&follow);
     unsigned int armed=g_arm_calls;
     g_lane_colour=RGB_CLASS_YELLOW;
@@ -2664,9 +2930,107 @@ int main(void)
     cycle(&owner,21160U,true,false,&follow);
     cycle(&owner,21200U,true,false,&follow);
     assert(!g_active && !follow.ready && follow.phase==FOLLOW_STOPPED);
+}
+#endif
+
+#if !(FOLLOW_RED_SECOND_SLOW) && !(FOLLOW_TWO_TURN) && !(FOLLOW_CLIPPED_LOOP) && !(FOLLOW_CORNER_DIRECTION != 0)
+/* Track profile: single line. */
+static void check_single_line_profile(void)
+{
+    black_follow_owner_t owner;
+    black_follow_status_t follow;
+    begin(&owner,100U,&follow);
+#if FOLLOW_BORDERED_CORRIDOR
+    g_left=500U;
+#else
+    g_right=1444U;
+#endif
+    cycle(&owner,200U,false,false,&follow);
+    assert(g_applied_left==-EXPECT_STRAIGHT && g_applied_right==EXPECT_INNER);
+#if FOLLOW_BORDERED_CORRIDOR
+    g_left=CENTRE_LEFT; g_right=500U;
+#else
+    g_right=CENTRE_RIGHT; g_left=1368U;
+#endif
+    cycle(&owner,220U,false,false,&follow);
+    assert(g_applied_left==-EXPECT_INNER && g_applied_right==EXPECT_STRAIGHT);
+    cycle(&owner,240U,false,true,&follow);
+    assert(!g_active && follow.reason==FOLLOW_BUTTON);
+    begin(&owner,1000U,&follow);
+    g_ir_busy=true; cycle(&owner,1150U,false,false,&follow);
+    assert(g_active); /* Last successful snapshot retains its original age. */
+    assert(g_lease==30U); /* IR remainder40 less10ms clock-quantization guard. */
+    cycle(&owner,1191U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_IR);
+    begin(&owner,2000U,&follow);
+    g_rgb_busy=true;
+    for (uint32_t t=2110U; t<=2270U; t+=20U)
+    {cycle(&owner,t,false,false,&follow);}
+    assert(g_active);
+    assert(g_lease==10U); /* RGB remainder20 less10ms clock guard. */
+    cycle(&owner,2291U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_RGB);
+    begin(&owner,3000U,&follow);
+    g_rgb_valid=false; cycle(&owner,3100U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_RGB);
+    begin(&owner,4000U,&follow);
+    g_active=false; /* Independent cutoff; never silently resume. */
+    unsigned int calls=g_drive_calls;
+    cycle(&owner,4100U,false,false,&follow);
+    assert(!g_active && g_drive_calls==calls && follow.reason==FOLLOW_DRIVER);
+    begin(&owner,5000U,&follow);
+    for (uint32_t t=5110U; t<=6050U; t+=20U)
+    {cycle(&owner,t,false,false,&follow);}
+    cycle(&owner,6070U,false,false,&follow);
+    assert(g_active && g_lease==10U); /* Conservative run deadline guard. */
+    cycle(&owner,6090U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_COMPLETE);
+    begin(&owner,7000U,&follow);
+    g_drive_error=-50; cycle(&owner,7100U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_DRIVER);
+    begin(&owner,8000U,&follow);
+    g_apply_delay_ms=150U;
+    cycle(&owner,8100U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_DRIVER); /* Delayed renewal rejected. */
+    g_now=9000U; g_apply_delay_ms=0U; g_active=false;
+    black_follow_owner_init(&owner);
+    cycle(&owner,9000U,false,false,&follow);
+    cycle(&owner,9040U,false,false,&follow);
+    cycle(&owner,9050U,true,false,&follow);
+    g_apply_delay_ms=150U;
+    cycle(&owner,9090U,true,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_DRIVER); /* Delayed first apply. */
+    begin(&owner,10000U,&follow);
+    g_wrong_target=true; cycle(&owner,10100U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_RGB);
+    g_wrong_target=false; cycle(&owner,10120U,false,false,&follow);
+    assert(!g_active); /* Valid target recovery must not restart. */
+#if FOLLOW_BLUE_CORRIDOR || FOLLOW_MULTICOLOUR_CORRIDOR
+    begin(&owner,11000U,&follow);
+    g_left=500U; g_right=500U;
+    cycle(&owner,11100U,false,false,&follow);
+    assert(!g_active && follow.reason==FOLLOW_AMBIGUOUS);
+#endif
+#if FOLLOW_MULTICOLOUR_CORRIDOR
+    check_multicolour_corridor();
 #endif
     assert(g_arm_calls>0U);
     puts("Follow owner: real steering/polarity, cached freshness, cutoff/deadline PASS");
+}
+#endif
+
+int main(void)
+{
+#if FOLLOW_RED_SECOND_SLOW
+    check_home_track_profile();
+#elif FOLLOW_TWO_TURN
+    check_two_turn_profile();
+#elif FOLLOW_CLIPPED_LOOP
+    check_clipped_loop_profile();
+#elif FOLLOW_CORNER_DIRECTION != 0
+    check_corner_direction_profile();
+#else
+    check_single_line_profile();
 #endif
     return 0;
 }

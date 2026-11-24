@@ -481,6 +481,7 @@ def main():
     args = arguments()
     with Bridge(args, version=2, decoder=decode_drive_packet,
                 ack_type=DriveAck,
+                persistent_publish=args.action == "menu",
                 route_decoder=decode_route_packet if args.action == "menu" else None) as bridge:
         if args.action == "menu":
             return run_follow_menu(bridge, args.timeout,

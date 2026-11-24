@@ -1,0 +1,15 @@
+{
+  "schema": "AAI05_DISTANCE_CALIBRATION_V1",
+  "units": "um/count",
+  "status": "USER_INPUTS_NOT_PHYSICALLY_VALIDATED",
+  "left": {
+    "reference_um": 340000,
+    "reference_counts": 4455,
+    "forward_sign": -1
+  },
+  "right": {
+    "reference_um": 340000,
+    "reference_counts": 4280,
+    "forward_sign": 1
+  }
+}

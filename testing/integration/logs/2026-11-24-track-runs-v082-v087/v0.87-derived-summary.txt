@@ -1,0 +1,263 @@
+===== test1: lines 1-122  t=4680..11160
+  STOP stop_t=0 reason=NONE elapsed=0 rgb=NONE/NONE ir=0/0 join_ms=0
+       flags: 
+  STOP stop_t=9590 reason=JOIN_TIMEOUT elapsed=3200 rgb=BACKGROUND/MATCH ir=233/225 join_ms=490
+       flags: blue_exit red_slow red_align red_handoff
+  BEND lines: 62
+   el=  100 ir=  288/290 rgb=BLUE/MATCH         rgbc=205/232/248/553  turn=  0 duty=  -50/50 join=0 enc=-83/87       
+   el=  140 ir=  298/268 rgb=BLUE/MATCH         rgbc=204/231/246/549  turn=  0 duty=  -50/50 join=0 enc=-146/152     
+   el=  200 ir=  279/272 rgb=BLUE/MATCH         rgbc=204/231/246/549  turn=  0 duty=  -50/50 join=0 enc=-262/261     
+   el=  240 ir=  250/289 rgb=BLUE/MATCH         rgbc=203/231/246/548  turn=  0 duty=  -50/50 join=0 enc=-344/340     
+   el=  300 ir=  269/438 rgb=BLUE/MATCH         rgbc=203/231/246/548  turn= -2 duty=  -46/50 join=0 enc=-469/457     
+   el=  340 ir=  248/534 rgb=BLUE/MATCH         rgbc=202/229/245/548  turn= -4 duty=  -42/50 join=0 enc=-553/535     
+   el=  400 ir=  251/816 rgb=BLUE/MATCH         rgbc=202/229/245/548  turn= -8 duty=  -36/50 join=0 enc=-666/652     
+   el=  440 ir=  253/658 rgb=BLUE/MATCH         rgbc=199/225/239/540  turn=-10 duty=  -33/50 join=0 enc=-735/727     
+   el=  500 ir=  312/333 rgb=BLUE/MATCH         rgbc=199/225/239/540  turn=  0 duty=  -50/50 join=0 enc=-833/837     
+   el=  540 ir=  334/308 rgb=BLUE/MATCH         rgbc=196/222/235/534  turn=  0 duty=  -50/50 join=0 enc=-906/909     
+   el=  600 ir=  257/657 rgb=BLUE/MATCH         rgbc=196/222/235/534  turn= -5 duty=  -40/50 join=0 enc=-1026/1016   
+   el=  640 ir=  233/948 rgb=BLUE/MATCH         rgbc=197/223/237/536  turn= -8 duty=  -36/50 join=0 enc=-1105/1087   
+   el=  700 ir= 261/1034 rgb=BLUE/MATCH         rgbc=197/223/237/536  turn=-12 duty=  -30/50 join=0 enc=-1211/1196   
+   el=  740 ir=  276/578 rgb=BLUE/MATCH         rgbc=197/223/237/537  turn= -6 duty=  -39/50 join=0 enc=-1270/1271   
+   el=  800 ir=  882/226 rgb=BLUE/MATCH         rgbc=197/223/237/537  turn=  5 duty=  -35/25 join=0 enc=-1360/1382   
+   el=  840 ir= 1149/245 rgb=BLUE/MATCH         rgbc=199/226/240/540  turn=  9 duty=  -39/21 join=0 enc=-1422/1439   
+   el=  900 ir= 1064/216 rgb=BLUE/MATCH         rgbc=199/226/240/540  turn=  9 duty=  -39/21 join=0 enc=-1513/1501   
+   el=  940 ir=  913/212 rgb=BLUE/MATCH         rgbc=207/234/249/551  turn=  9 duty=  -39/21 join=0 enc=-1573/1537   
+   el= 1000 ir=  765/238 rgb=BLUE/MATCH         rgbc=207/234/249/551  turn=  9 duty=  -39/21 join=0 enc=-1664/1589   
+   el= 1040 ir=  914/227 rgb=BLUE/MATCH         rgbc=208/236/251/555  turn= 10 duty=  -40/20 join=0 enc=-1724/1624   
+   el= 1100 ir=  751/228 rgb=BLUE/MATCH         rgbc=208/236/251/555  turn= 12 duty=  -42/18 join=0 enc=-1809/1674   
+   el= 1140 ir=  590/221 rgb=BLUE/MATCH         rgbc=208/234/249/550  turn=  9 duty=  -39/21 join=0 enc=-1869/1705   
+   el= 1200 ir=  405/254 rgb=BLUE/MATCH         rgbc=208/234/249/550  turn=  1 duty=  -41/39 join=0 enc=-1957/1760   
+   el= 1240 ir=  587/230 rgb=BLUE/MATCH         rgbc=208/235/250/551  turn=  5 duty=  -35/25 join=0 enc=-2016/1810   
+   el= 1300 ir= 1146/246 rgb=BLUE/MATCH         rgbc=208/235/250/551  turn=  9 duty=  -39/21 join=0 enc=-2102/1883   
+   el= 1340 ir= 1133/219 rgb=BLUE/MATCH         rgbc=207/234/249/550  turn=  9 duty=  -39/21 join=0 enc=-2158/1922   
+   el= 1400 ir= 1203/246 rgb=BLUE/MATCH         rgbc=207/234/249/550  turn=  9 duty=  -39/21 join=0 enc=-2246/1975   
+   el= 1440 ir= 1005/224 rgb=BLUE/MATCH         rgbc=205/232/246/547  turn=  9 duty=  -39/21 join=0 enc=-2308/2008   
+   el= 1500 ir=  746/230 rgb=BLUE/MATCH         rgbc=205/232/246/547  turn= 10 duty=  -40/20 join=0 enc=-2398/2057   
+   el= 1540 ir=  329/244 rgb=BLUE/MATCH         rgbc=202/229/244/544  turn=  0 duty=  -40/40 join=0 enc=-2455/2092   
+   el= 1600 ir=  512/224 rgb=BLUE/MATCH         rgbc=202/229/244/544  turn=  3 duty=  -33/27 join=0 enc=-2540/2167   
+   el= 1640 ir=  899/212 rgb=BLUE/MATCH         rgbc=202/229/244/544  turn=  5 duty=  -35/25 join=0 enc=-2596/2221   
+   el= 1700 ir= 1151/228 rgb=BLUE/MATCH         rgbc=202/229/244/544  turn=  9 duty=  -39/21 join=0 enc=-2678/2285   
+   el= 1740 ir=  972/221 rgb=BLUE/MATCH         rgbc=203/230/244/544  turn=  9 duty=  -39/21 join=0 enc=-2736/2321   
+   el= 1800 ir=  580/221 rgb=BLUE/MATCH         rgbc=203/230/244/544  turn=  9 duty=  -39/21 join=0 enc=-2823/2368   
+   el= 1840 ir=  498/246 rgb=BLUE/MATCH         rgbc=203/229/243/543  turn=  3 duty=  -34/28 join=0 enc=-2881/2401   
+   el= 1900 ir=  989/251 rgb=BLUE/MATCH         rgbc=203/229/243/543  turn=  9 duty=  -39/21 join=0 enc=-2962/2459   
+   el= 1940 ir=  310/275 rgb=BLUE/MATCH         rgbc=199/224/236/536  turn=  0 duty=  -40/40 join=0 enc=-3019/2495   
+   el= 2000 ir=  207/848 rgb=BLUE/MATCH         rgbc=199/224/236/536  turn= 25 duty= -70/-10 join=0 enc=-3113/2551   blue_exit
+   el= 2040 ir= 218/1051 rgb=BLUE/MATCH         rgbc=206/227/234/538  turn= 25 duty= -70/-10 join=0 enc=-3199/2553   blue_exit
+   el= 2100 ir=  213/622 rgb=BLUE/MATCH         rgbc=206/227/234/538  turn= 25 duty=   -50/0 join=0 enc=-3349/2548   blue_exit
+   el= 2140 ir=  220/293 rgb=UNKNOWN/NO_MATCH   rgbc=224/238/240/555  turn= 25 duty=   -50/0 join=1 enc=-3442/2549   blue_exit
+   el= 2200 ir=  190/202 rgb=UNKNOWN/NO_MATCH   rgbc=224/238/240/555  turn= 25 duty=   -50/0 join=1 enc=-3571/2549   blue_exit
+   el= 2240 ir=  230/188 rgb=UNKNOWN/NO_MATCH   rgbc=235/251/256/567  turn= 25 duty=   -50/0 join=1 enc=-3653/2549   blue_exit
+   el= 2300 ir=  235/186 rgb=UNKNOWN/NO_MATCH   rgbc=235/251/256/567  turn= 25 duty=   -50/0 join=1 enc=-3772/2549   blue_exit
+   el= 2340 ir=  256/196 rgb=UNKNOWN/NO_MATCH   rgbc=274/274/281/606  turn= 10 duty=  -40/20 join=1 enc=-3846/2551   blue_exit
+   el= 2400 ir=  666/202 rgb=UNKNOWN/NO_MATCH   rgbc=274/274/281/606  turn= 14 duty=  -50/28 join=1 enc=-3943/2588   blue_exit
+   el= 2440 ir=  539/186 rgb=UNKNOWN/NO_MATCH   rgbc=317/256/257/635  turn= 14 duty=  -50/28 join=1 enc=-4012/2623   blue_exit
+   el= 2500 ir=  270/191 rgb=UNKNOWN/NO_MATCH   rgbc=317/256/257/635  turn= 10 duty=  -40/20 join=1 enc=-4117/2697   blue_exit
+   el= 2540 ir=  255/188 rgb=RED/MATCH          rgbc=328/252/250/637  turn=  0 duty=  -50/50 join=1 enc=-4183/2746   blue_exit
+   el= 2600 ir=  206/199 rgb=RED/MATCH          rgbc=328/252/250/637  turn=  0 duty=  -50/50 join=1 enc=-4290/2852   blue_exit
+   el= 2640 ir=  190/189 rgb=RED/MATCH          rgbc=340/267/265/652  turn=  5 duty=  -40/30 join=0 enc=-4362/2927   blue_exit red_slow red_align red_handoff
+   el= 2700 ir=  193/226 rgb=RED/MATCH          rgbc=340/267/265/652  turn=  5 duty=  -40/30 join=0 enc=-4464/3025   blue_exit red_slow red_align red_handoff
+   el= 2740 ir=  187/225 rgb=UNKNOWN/NO_MATCH   rgbc=315/274/268/625  turn=  0 duty=  -50/50 join=1 enc=-4529/3086   blue_exit red_slow red_align red_handoff
+   el= 2800 ir=  212/262 rgb=UNKNOWN/NO_MATCH   rgbc=315/274/268/625  turn=  0 duty=  -50/50 join=1 enc=-4640/3199   blue_exit red_slow red_align red_handoff
+   el= 2840 ir= 214/1098 rgb=UNKNOWN/NO_MATCH   rgbc=290/267/258/612  turn=-14 duty=  -28/50 join=1 enc=-4717/3281   blue_exit red_slow red_align red_handoff
+   el= 2900 ir=  218/236 rgb=UNKNOWN/NO_MATCH   rgbc=290/267/258/612  turn=  0 duty=  -50/50 join=1 enc=-4815/3411   blue_exit red_slow red_align red_handoff
+   el= 2940 ir=  201/198 rgb=BACKGROUND/MATCH   rgbc=291/276/262/642  turn= 25 duty=   -50/0 join=1 enc=-4884/3496   blue_exit red_slow red_align red_handoff
+   el= 3000 ir=  204/214 rgb=BACKGROUND/MATCH   rgbc=291/276/262/642  turn= 25 duty=   -50/0 join=1 enc=-4997/3598   blue_exit red_slow red_align red_handoff
+   el= 3040 ir=  178/198 rgb=BACKGROUND/MATCH   rgbc=346/327/310/738  turn= 25 duty=   -50/0 join=1 enc=-5076/3648   blue_exit red_slow red_align red_handoff
+   el= 3100 ir=  193/203 rgb=BACKGROUND/MATCH   rgbc=346/327/310/738  turn= 25 duty=   -50/0 join=1 enc=-5194/3703   blue_exit red_slow red_align red_handoff
+   el= 3140 ir=  203/194 rgb=BACKGROUND/MATCH   rgbc=353/333/316/740  turn= 25 duty=   -50/0 join=1 enc=-5274/3728   blue_exit red_slow red_align red_handoff
+===== test2: lines 123-272  t=43400..51280
+  STOP stop_t=9590 reason=JOIN_TIMEOUT elapsed=3200 rgb=BACKGROUND/MATCH ir=233/225 join_ms=490
+       flags: blue_exit red_slow red_align red_handoff
+  STOP stop_t=48900 reason=JOIN_TIMEOUT elapsed=4720 rgb=UNKNOWN/NO_MATCH ir=307/237 join_ms=500
+       flags: blue_exit red_exit red_pivot red_slow red_first
+  BEND lines: 90
+   el=  240 ir=  232/973 rgb=BLUE/MATCH         rgbc=203/230/246/549  turn= -5 duty=  -35/45 join=0 enc=-5805/3925   
+   el=  300 ir= 234/1336 rgb=BLUE/MATCH         rgbc=203/230/246/549  turn= -6 duty=  -34/46 join=0 enc=-5893/4013   
+   el=  340 ir= 235/1169 rgb=BLUE/MATCH         rgbc=201/228/242/544  turn= -7 duty=  -33/47 join=0 enc=-5949/4082   
+   el=  400 ir=  252/945 rgb=BLUE/MATCH         rgbc=201/228/242/544  turn= -8 duty=  -32/48 join=0 enc=-6030/4190   
+   el=  440 ir=  308/336 rgb=BLUE/MATCH         rgbc=198/224/238/538  turn=  0 duty=  -40/40 join=0 enc=-6084/4264   
+   el=  500 ir=  795/252 rgb=BLUE/MATCH         rgbc=198/224/238/538  turn=  5 duty=  -35/25 join=0 enc=-6170/4357   
+   el=  540 ir=  646/264 rgb=BLUE/MATCH         rgbc=197/223/236/534  turn=  9 duty=  -39/21 join=0 enc=-6228/4403   
+   el=  600 ir=  320/338 rgb=BLUE/MATCH         rgbc=197/223/236/534  turn=  0 duty=  -40/40 join=0 enc=-6312/4459   
+   el=  640 ir=  235/923 rgb=BLUE/MATCH         rgbc=197/223/237/537  turn= -5 duty=  -35/45 join=0 enc=-6370/4507   
+   el=  700 ir= 255/1220 rgb=BLUE/MATCH         rgbc=197/223/237/537  turn= -6 duty=  -34/46 join=0 enc=-6458/4595   
+   el=  740 ir= 229/1113 rgb=BLUE/MATCH         rgbc=197/223/237/537  turn= -7 duty=  -33/47 join=0 enc=-6515/4660   
+   el=  800 ir=  242/809 rgb=BLUE/MATCH         rgbc=197/223/237/537  turn= -8 duty=  -32/48 join=0 enc=-6598/4762   
+   el=  840 ir=  457/292 rgb=BLUE/MATCH         rgbc=196/223/236/536  turn=  2 duty=  -41/37 join=0 enc=-6656/4833   
+   el=  900 ir=  869/230 rgb=BLUE/MATCH         rgbc=196/223/236/536  turn=  5 duty=  -35/25 join=0 enc=-6749/4922   
+   el=  940 ir=  806/218 rgb=BLUE/MATCH         rgbc=202/229/243/544  turn=  9 duty=  -39/21 join=0 enc=-6809/4963   
+   el= 1000 ir=  417/239 rgb=BLUE/MATCH         rgbc=202/229/243/544  turn=  1 duty=  -41/39 join=0 enc=-6900/5015   
+   el= 1040 ir=  269/250 rgb=BLUE/MATCH         rgbc=207/235/250/553  turn=  0 duty=  -40/40 join=0 enc=-6965/5060   
+   el= 1100 ir=  342/214 rgb=BLUE/MATCH         rgbc=207/235/250/553  turn=  0 duty=  -40/40 join=0 enc=-7062/5139   
+   el= 1140 ir= 1013/240 rgb=BLUE/MATCH         rgbc=208/235/250/553  turn=  5 duty=  -35/25 join=0 enc=-7126/5194   
+   el= 1200 ir= 1025/239 rgb=BLUE/MATCH         rgbc=208/235/250/553  turn=  9 duty=  -39/21 join=0 enc=-7216/5256   
+   el= 1240 ir=  973/212 rgb=BLUE/MATCH         rgbc=209/235/250/551  turn=  9 duty=  -39/21 join=0 enc=-7277/5288   
+   el= 1300 ir= 1108/238 rgb=BLUE/MATCH         rgbc=209/235/250/551  turn=  9 duty=  -39/21 join=0 enc=-7370/5330   
+   el= 1340 ir=  799/215 rgb=BLUE/MATCH         rgbc=208/234/249/550  turn=  9 duty=  -39/21 join=0 enc=-7432/5359   
+   el= 1400 ir=  524/230 rgb=BLUE/MATCH         rgbc=208/234/249/550  turn=  4 duty=  -34/26 join=0 enc=-7522/5402   
+   el= 1440 ir=  292/249 rgb=BLUE/MATCH         rgbc=204/230/245/545  turn=  0 duty=  -40/40 join=0 enc=-7581/5436   
+   el= 1500 ir=  253/270 rgb=BLUE/MATCH         rgbc=204/230/245/545  turn=  0 duty=  -40/40 join=0 enc=-7673/5507   
+   el= 1540 ir=  321/244 rgb=BLUE/MATCH         rgbc=202/229/244/546  turn=  0 duty=  -40/40 join=0 enc=-7737/5564   
+   el= 1600 ir=  630/229 rgb=BLUE/MATCH         rgbc=202/229/244/546  turn=  5 duty=  -35/25 join=0 enc=-7829/5647   
+   el= 1640 ir=  947/223 rgb=BLUE/MATCH         rgbc=202/228/243/543  turn=  9 duty=  -39/21 join=0 enc=-7886/5693   
+   el= 1700 ir=  877/228 rgb=BLUE/MATCH         rgbc=202/228/243/543  turn=  9 duty=  -39/21 join=0 enc=-7973/5747   
+   el= 1740 ir=  421/250 rgb=BLUE/MATCH         rgbc=204/230/246/546  turn=  1 duty=  -41/39 join=0 enc=-8032/5777   
+   el= 1800 ir=  284/219 rgb=BLUE/MATCH         rgbc=204/230/246/546  turn=  0 duty=  -40/40 join=0 enc=-8124/5836   
+   el= 1840 ir=  266/218 rgb=BLUE/MATCH         rgbc=207/234/249/549  turn=  0 duty=  -40/40 join=0 enc=-8188/5886   
+   el= 1900 ir=  494/252 rgb=BLUE/MATCH         rgbc=207/234/249/549  turn=  3 duty=  -35/29 join=0 enc=-8283/5968   
+   el= 1940 ir=  706/282 rgb=BLUE/MATCH         rgbc=201/226/238/539  turn=  5 duty=  -35/25 join=0 enc=-8345/6013   
+   el= 2000 ir=  235/473 rgb=BLUE/MATCH         rgbc=201/226/238/539  turn= 25 duty= -70/-10 join=0 enc=-8441/6065   blue_exit
+   el= 2040 ir= 197/1074 rgb=BLUE/MATCH         rgbc=206/226/232/538  turn= 25 duty= -70/-10 join=0 enc=-8529/6068   blue_exit
+   el= 2100 ir=  193/844 rgb=BLUE/MATCH         rgbc=206/226/232/538  turn= 25 duty=   -50/0 join=0 enc=-8684/6067   blue_exit
+   el= 2140 ir=  201/271 rgb=UNKNOWN/NO_MATCH   rgbc=222/238/241/554  turn= 25 duty=   -50/0 join=1 enc=-8781/6067   blue_exit
+   el= 2200 ir=  218/252 rgb=UNKNOWN/NO_MATCH   rgbc=222/238/241/554  turn= 25 duty=   -50/0 join=1 enc=-8913/6067   blue_exit
+   el= 2240 ir=  207/189 rgb=UNKNOWN/NO_MATCH   rgbc=238/254/260/570  turn= 25 duty=   -50/0 join=1 enc=-8997/6067   blue_exit
+   el= 2300 ir=  218/216 rgb=UNKNOWN/NO_MATCH   rgbc=238/254/260/570  turn= 25 duty=   -50/0 join=1 enc=-9118/6067   blue_exit
+   el= 2340 ir=  269/203 rgb=UNKNOWN/NO_MATCH   rgbc=277/271/278/609  turn= 10 duty=  -40/20 join=1 enc=-9196/6067   blue_exit
+   el= 2400 ir=  616/210 rgb=UNKNOWN/NO_MATCH   rgbc=277/271/278/609  turn= 14 duty=  -50/28 join=1 enc=-9300/6089   blue_exit
+   el= 2440 ir=  578/189 rgb=RED/MATCH          rgbc=320/252/253/635  turn= 14 duty=  -50/28 join=1 enc=-9370/6119   blue_exit
+   el= 2500 ir=  519/199 rgb=RED/MATCH          rgbc=320/252/253/635  turn= 14 duty=  -50/28 join=1 enc=-9480/6181   blue_exit
+   el= 2540 ir=  628/193 rgb=RED/MATCH          rgbc=329/250/248/638  turn= 14 duty=  -44/16 join=0 enc=-9554/6230   blue_exit
+   el= 2600 ir=  707/221 rgb=RED/MATCH          rgbc=329/250/248/638  turn= 14 duty=  -44/16 join=0 enc=-9660/6289   blue_exit
+   el= 2640 ir=  664/192 rgb=RED/MATCH          rgbc=330/251/249/641  turn= 14 duty=  -44/16 join=0 enc=-9727/6323   blue_exit
+   el= 2700 ir=  704/195 rgb=RED/MATCH          rgbc=330/251/249/641  turn= 14 duty=  -44/16 join=0 enc=-9825/6369   blue_exit
+   el= 2740 ir=  379/200 rgb=RED/MATCH          rgbc=324/246/244/633  turn=  4 duty=  -50/42 join=0 enc=-9890/6399   blue_exit
+   el= 2800 ir=  285/197 rgb=RED/MATCH          rgbc=324/246/244/633  turn=  0 duty=  -50/50 join=0 enc=-9994/6478   blue_exit
+   el= 2840 ir=  682/215 rgb=RED/MATCH          rgbc=327/248/247/638  turn= 14 duty=  -44/16 join=0 enc=-10066/6550  blue_exit
+   el= 2900 ir=  709/222 rgb=RED/MATCH          rgbc=327/248/247/638  turn= 14 duty=  -44/16 join=0 enc=-10176/6630  blue_exit
+   el= 2940 ir=  316/220 rgb=RED/MATCH          rgbc=311/240/237/620  turn= 25 duty= -60/-40 join=0 enc=-10243/6677  blue_exit red_exit red_slow red_first
+   el= 3000 ir=  473/283 rgb=RED/MATCH          rgbc=311/240/237/620  turn= 25 duty= -60/-40 join=0 enc=-10355/6678  blue_exit red_exit red_slow red_first
+   el= 3040 ir=  259/317 rgb=RED/MATCH          rgbc=277/220/215/583  turn= -2 duty=  -38/42 join=0 enc=-10437/6652  blue_exit red_exit red_slow red_first
+   el= 3100 ir=  259/228 rgb=RED/MATCH          rgbc=277/220/215/583  turn=  0 duty=  -40/40 join=0 enc=-10546/6675  blue_exit red_exit red_slow red_first
+   el= 3140 ir=  199/346 rgb=RED/MATCH          rgbc=291/233/228/599  turn= 25 duty= -45/-35 join=0 enc=-10610/6726  blue_exit red_exit red_slow red_first
+   el= 3200 ir=  220/651 rgb=RED/MATCH          rgbc=291/233/228/599  turn= 25 duty= -45/-35 join=0 enc=-10704/6727  blue_exit red_exit red_slow red_first
+   el= 3240 ir=  220/726 rgb=UNKNOWN/NO_MATCH   rgbc=271/245/237/588  turn= 25 duty= -45/-35 join=1 enc=-10758/6708  blue_exit red_exit red_slow red_first
+   el= 3300 ir=  196/478 rgb=UNKNOWN/NO_MATCH   rgbc=271/245/237/588  turn= 25 duty= -45/-35 join=1 enc=-10844/6667  blue_exit red_exit red_slow red_first
+   el= 3340 ir=  216/211 rgb=UNKNOWN/NO_MATCH   rgbc=276/244/237/588  turn= 25 duty= -45/-35 join=1 enc=-10902/6637  blue_exit red_exit red_slow red_first
+   el= 3400 ir=  226/226 rgb=UNKNOWN/NO_MATCH   rgbc=276/244/237/588  turn= 25 duty= -45/-35 join=1 enc=-10989/6592  blue_exit red_exit red_slow red_first
+   el= 3440 ir=  313/201 rgb=UNKNOWN/NO_MATCH   rgbc=316/256/253/624  turn= 25 duty= -45/-35 join=1 enc=-11045/6563  blue_exit red_exit red_slow red_first
+   el= 3500 ir=  538/205 rgb=UNKNOWN/NO_MATCH   rgbc=316/256/253/624  turn= 14 duty=  -50/28 join=1 enc=-11130/6537  blue_exit red_exit red_slow red_first
+   el= 3540 ir=  229/225 rgb=RED/MATCH          rgbc=327/249/247/635  turn=  0 duty=  -50/50 join=1 enc=-11191/6558  blue_exit red_exit red_slow red_first
+   el= 3600 ir=  268/212 rgb=RED/MATCH          rgbc=327/249/247/635  turn=  0 duty=  -50/50 join=1 enc=-11286/6652  blue_exit red_exit red_slow red_first
+   el= 3640 ir=  597/194 rgb=RED/MATCH          rgbc=327/251/249/633  turn= 14 duty=  -44/16 join=0 enc=-11355/6734  blue_exit red_exit red_slow red_first
+   el= 3700 ir=  243/206 rgb=RED/MATCH          rgbc=327/251/249/633  turn= 25 duty= -45/-35 join=0 enc=-11456/6786  blue_exit red_exit red_pivot red_slow red_first
+   el= 3740 ir=  224/283 rgb=UNKNOWN/NO_MATCH   rgbc=299/246/242/608  turn= 25 duty= -45/-35 join=1 enc=-11516/6781  blue_exit red_exit red_pivot red_slow red_first
+   el= 3800 ir=  202/228 rgb=UNKNOWN/NO_MATCH   rgbc=299/246/242/608  turn= 25 duty= -45/-35 join=1 enc=-11600/6758  blue_exit red_exit red_pivot red_slow red_first
+   el= 3840 ir=  206/213 rgb=UNKNOWN/NO_MATCH   rgbc=293/245/240/600  turn= 25 duty=   -60/0 join=1 enc=-11657/6733  blue_exit red_exit red_pivot red_slow red_first
+   el= 3900 ir=  227/189 rgb=UNKNOWN/NO_MATCH   rgbc=293/245/240/600  turn= 25 duty=   -60/0 join=1 enc=-11752/6728  blue_exit red_exit red_pivot red_slow red_first
+   el= 3940 ir=  249/215 rgb=RED/MATCH          rgbc=320/257/254/628  turn= 25 duty=   -60/0 join=1 enc=-11826/6728  blue_exit red_exit red_pivot red_slow red_first
+   el= 4000 ir=  266/187 rgb=RED/MATCH          rgbc=320/257/254/628  turn= 25 duty=   -60/0 join=1 enc=-11942/6728  blue_exit red_exit red_pivot red_slow red_first
+   el= 4040 ir=  270/205 rgb=RED/MATCH          rgbc=332/260/258/641  turn=  0 duty=  -50/50 join=0 enc=-12018/6738  blue_exit red_exit red_pivot red_slow red_first
+   el= 4100 ir=  317/216 rgb=RED/MATCH          rgbc=332/260/258/641  turn=  2 duty=  -50/46 join=0 enc=-12121/6829  blue_exit red_exit red_pivot red_slow red_first
+   el= 4140 ir=  204/219 rgb=RED/MATCH          rgbc=329/256/254/637  turn=  0 duty=  -50/50 join=0 enc=-12193/6909  blue_exit red_exit red_pivot red_slow red_first
+   el= 4200 ir=  221/202 rgb=RED/MATCH          rgbc=329/256/254/637  turn=  0 duty=  -50/50 join=0 enc=-12298/7042  blue_exit red_exit red_pivot red_slow red_first
+   el= 4240 ir=  212/822 rgb=UNKNOWN/NO_MATCH   rgbc=297/264/257/609  turn= 25 duty= -45/-35 join=1 enc=-12371/7135  blue_exit red_exit red_pivot red_slow red_first
+   el= 4300 ir=  184/234 rgb=UNKNOWN/NO_MATCH   rgbc=297/264/257/609  turn= 25 duty= -45/-35 join=1 enc=-12473/7158  blue_exit red_exit red_pivot red_slow red_first
+   el= 4340 ir=  181/232 rgb=BACKGROUND/MATCH   rgbc=317/299/284/678  turn= 25 duty= -45/-35 join=1 enc=-12533/7140  blue_exit red_exit red_pivot red_slow red_first
+   el= 4400 ir=  201/248 rgb=BACKGROUND/MATCH   rgbc=317/299/284/678  turn= 25 duty= -45/-35 join=1 enc=-12614/7111  blue_exit red_exit red_pivot red_slow red_first
+   el= 4440 ir=  192/629 rgb=BACKGROUND/MATCH   rgbc=304/287/272/660  turn= 25 duty= -45/-35 join=1 enc=-12666/7085  blue_exit red_exit red_pivot red_slow red_first
+   el= 4500 ir=  216/232 rgb=BACKGROUND/MATCH   rgbc=304/287/272/660  turn= 25 duty= -45/-35 join=1 enc=-12739/7046  blue_exit red_exit red_pivot red_slow red_first
+   el= 4540 ir=  210/206 rgb=UNKNOWN/NO_MATCH   rgbc=298/273/264/621  turn= 25 duty= -45/-35 join=1 enc=-12786/7022  blue_exit red_exit red_pivot red_slow red_first
+   el= 4600 ir=  218/214 rgb=UNKNOWN/NO_MATCH   rgbc=298/273/264/621  turn= 25 duty=   -50/0 join=1 enc=-12858/6986  blue_exit red_exit red_pivot red_slow red_first
+   el= 4640 ir=  260/221 rgb=UNKNOWN/NO_MATCH   rgbc=329/269/265/634  turn= 25 duty=   -50/0 join=1 enc=-12908/6978  blue_exit red_exit red_pivot red_slow red_first
+   el= 4700 ir=  662/193 rgb=UNKNOWN/NO_MATCH   rgbc=329/269/265/634  turn= 14 duty=  -50/28 join=1 enc=-12991/6996  blue_exit red_exit red_pivot red_slow red_first
+===== test3: lines 273-412  t=141710..148960
+  STOP stop_t=131000 reason=JOIN_TIMEOUT elapsed=3100 rgb=BACKGROUND/MATCH ir=222/216 join_ms=500
+       flags: blue_exit
+  STOP stop_t=147390 reason=JOIN_TIMEOUT elapsed=4700 rgb=BACKGROUND/MATCH ir=185/182 join_ms=490
+       flags: blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+  BEND lines: 93
+   el=   40 ir= 1125/224 rgb=BLUE/MATCH         rgbc=206/233/248/552  turn=  9 duty=  -39/21 join=0 enc=-24943/12799 
+   el=  100 ir=  530/251 rgb=BLUE/MATCH         rgbc=206/233/248/552  turn=  4 duty=  -34/26 join=0 enc=-25000/12825 
+   el=  140 ir=  293/356 rgb=BLUE/MATCH         rgbc=204/231/246/550  turn=  0 duty=  -40/40 join=0 enc=-25047/12858 
+   el=  200 ir=  241/793 rgb=BLUE/MATCH         rgbc=204/231/246/550  turn= -5 duty=  -35/45 join=0 enc=-25129/12936 
+   el=  240 ir=  259/704 rgb=BLUE/MATCH         rgbc=197/224/238/537  turn= -6 duty=  -34/46 join=0 enc=-25184/12999 
+   el=  300 ir=  307/297 rgb=BLUE/MATCH         rgbc=197/224/238/537  turn=  0 duty=  -40/40 join=0 enc=-25266/13099 
+   el=  340 ir=  432/301 rgb=BLUE/MATCH         rgbc=196/223/236/535  turn=  2 duty=  -42/38 join=0 enc=-25325/13164 
+   el=  400 ir=  511/274 rgb=BLUE/MATCH         rgbc=196/223/236/535  turn=  3 duty=  -33/27 join=0 enc=-25413/13250 
+   el=  440 ir=  305/350 rgb=BLUE/MATCH         rgbc=198/225/238/538  turn=  0 duty=  -50/50 join=0 enc=-25469/13301 
+   el=  500 ir=  250/666 rgb=BLUE/MATCH         rgbc=198/225/238/538  turn= -5 duty=  -40/50 join=0 enc=-25569/13395 
+   el=  540 ir=  249/729 rgb=BLUE/MATCH         rgbc=197/223/237/536  turn= -5 duty=  -40/50 join=0 enc=-25637/13466 
+   el=  600 ir=  282/317 rgb=BLUE/MATCH         rgbc=197/223/237/536  turn=  0 duty=  -50/50 join=0 enc=-25738/13575 
+   el=  640 ir=  289/263 rgb=BLUE/MATCH         rgbc=197/223/238/538  turn=  0 duty=  -50/50 join=0 enc=-25810/13648 
+   el=  700 ir=  482/219 rgb=BLUE/MATCH         rgbc=197/223/238/538  turn=  3 duty=  -37/31 join=0 enc=-25932/13758 
+   el=  740 ir=  873/210 rgb=BLUE/MATCH         rgbc=207/234/250/553  turn=  5 duty=  -35/25 join=0 enc=-26009/13825 
+   el=  800 ir= 1083/211 rgb=BLUE/MATCH         rgbc=207/234/250/553  turn=  9 duty=  -39/21 join=0 enc=-26113/13889 
+   el=  840 ir=  949/212 rgb=BLUE/MATCH         rgbc=208/235/251/553  turn=  9 duty=  -39/21 join=0 enc=-26177/13923 
+   el=  900 ir=  648/246 rgb=BLUE/MATCH         rgbc=208/235/251/553  turn=  9 duty=  -39/21 join=0 enc=-26267/13969 
+   el=  940 ir=  371/242 rgb=BLUE/MATCH         rgbc=208/235/250/551  turn=  0 duty=  -40/40 join=0 enc=-26328/14002 
+   el= 1000 ir=  440/246 rgb=BLUE/MATCH         rgbc=208/235/250/551  turn=  2 duty=  -42/38 join=0 enc=-26421/14074 
+   el= 1040 ir=  870/221 rgb=BLUE/MATCH         rgbc=207/234/249/551  turn=  5 duty=  -35/25 join=0 enc=-26483/14130 
+   el= 1100 ir= 1256/219 rgb=BLUE/MATCH         rgbc=207/234/249/551  turn=  9 duty=  -39/21 join=0 enc=-26570/14197 
+   el= 1140 ir= 1020/243 rgb=BLUE/MATCH         rgbc=205/231/247/547  turn=  9 duty=  -39/21 join=0 enc=-26629/14233 
+   el= 1200 ir=  651/256 rgb=BLUE/MATCH         rgbc=205/231/247/547  turn=  9 duty=  -39/21 join=0 enc=-26719/14284 
+   el= 1240 ir=  379/238 rgb=BLUE/MATCH         rgbc=204/231/246/547  turn=  0 duty=  -40/40 join=0 enc=-26779/14317 
+   el= 1300 ir=  305/254 rgb=BLUE/MATCH         rgbc=204/231/246/547  turn=  0 duty=  -40/40 join=0 enc=-26871/14389 
+   el= 1340 ir=  558/236 rgb=BLUE/MATCH         rgbc=201/227/242/542  turn=  4 duty=  -34/26 join=0 enc=-26933/14449 
+   el= 1400 ir= 1100/222 rgb=BLUE/MATCH         rgbc=201/227/242/542  turn=  9 duty=  -39/21 join=0 enc=-27020/14530 
+   el= 1440 ir= 1105/248 rgb=BLUE/MATCH         rgbc=203/230/245/545  turn=  9 duty=  -39/21 join=0 enc=-27078/14571 
+   el= 1500 ir=  787/222 rgb=BLUE/MATCH         rgbc=203/230/245/545  turn=  9 duty=  -39/21 join=0 enc=-27165/14625 
+   el= 1540 ir=  589/235 rgb=BLUE/MATCH         rgbc=201/227/241/539  turn=  9 duty=  -39/21 join=0 enc=-27224/14658 
+   el= 1600 ir=  928/234 rgb=BLUE/MATCH         rgbc=201/227/241/539  turn= 10 duty=  -40/20 join=0 enc=-27309/14710 
+   el= 1640 ir=  613/266 rgb=BLUE/MATCH         rgbc=200/225/237/537  turn=  9 duty=  -39/21 join=0 enc=-27368/14742 
+   el= 1700 ir=  241/320 rgb=BLUE/MATCH         rgbc=200/225/237/537  turn=  0 duty=  -40/40 join=0 enc=-27458/14803 
+   el= 1740 ir= 232/1114 rgb=BLUE/MATCH         rgbc=203/226/234/536  turn= 25 duty= -70/-10 join=0 enc=-27523/14848 blue_exit
+   el= 1800 ir=  213/965 rgb=BLUE/MATCH         rgbc=203/226/234/536  turn= 25 duty= -70/-10 join=0 enc=-27658/14852 blue_exit
+   el= 1840 ir= 208/1071 rgb=UNKNOWN/NO_MATCH   rgbc=230/241/241/561  turn= 25 duty=   -50/0 join=1 enc=-27757/14850 blue_exit
+   el= 1900 ir=  221/289 rgb=UNKNOWN/NO_MATCH   rgbc=230/241/241/561  turn= 25 duty=   -50/0 join=1 enc=-27892/14850 blue_exit
+   el= 1940 ir=  197/208 rgb=UNKNOWN/NO_MATCH   rgbc=228/240/240/557  turn= 25 duty=   -50/0 join=1 enc=-27973/14850 blue_exit
+   el= 2000 ir=  189/192 rgb=UNKNOWN/NO_MATCH   rgbc=228/240/240/557  turn= 25 duty=   -50/0 join=1 enc=-28092/14850 blue_exit
+   el= 2040 ir=  198/187 rgb=UNKNOWN/NO_MATCH   rgbc=260/270/275/592  turn= 25 duty=   -50/0 join=1 enc=-28169/14850 blue_exit
+   el= 2100 ir=  263/187 rgb=UNKNOWN/NO_MATCH   rgbc=260/270/275/592  turn= 25 duty=   -50/0 join=1 enc=-28281/14850 blue_exit
+   el= 2140 ir=  716/188 rgb=UNKNOWN/NO_MATCH   rgbc=304/268/271/630  turn= 14 duty=  -50/28 join=1 enc=-28352/14860 blue_exit
+   el= 2200 ir=  398/204 rgb=UNKNOWN/NO_MATCH   rgbc=304/268/271/630  turn=  2 duty=  -50/46 join=1 enc=-28462/14916 blue_exit
+   el= 2240 ir=  640/214 rgb=RED/MATCH          rgbc=328/250/249/637  turn= 14 duty=  -50/28 join=1 enc=-28536/14973 blue_exit
+   el= 2300 ir=  315/209 rgb=RED/MATCH          rgbc=328/250/249/637  turn=  0 duty=  -50/50 join=1 enc=-28649/15064 blue_exit
+   el= 2340 ir=  242/208 rgb=RED/MATCH          rgbc=334/253/251/645  turn=  5 duty=  -40/30 join=0 enc=-28720/15130 blue_exit red_slow red_align red_handoff
+   el= 2400 ir=  217/216 rgb=RED/MATCH          rgbc=334/253/251/645  turn=  5 duty=  -40/30 join=0 enc=-28818/15217 blue_exit red_slow red_align red_handoff
+   el= 2440 ir=  230/200 rgb=RED/MATCH          rgbc=328/259/256/636  turn=  5 duty=  -40/30 join=0 enc=-28881/15272 blue_exit red_slow red_align red_handoff
+   el= 2500 ir=  227/194 rgb=RED/MATCH          rgbc=328/259/256/636  turn= 25 duty= -60/-40 join=0 enc=-28974/15352 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2540 ir=  197/223 rgb=UNKNOWN/NO_MATCH   rgbc=322/267/263/629  turn= 25 duty= -60/-40 join=1 enc=-29047/15354 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2600 ir=  244/221 rgb=UNKNOWN/NO_MATCH   rgbc=322/267/263/629  turn= 25 duty= -60/-40 join=1 enc=-29165/15314 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2640 ir=  278/195 rgb=UNKNOWN/NO_MATCH   rgbc=312/258/254/619  turn= 25 duty= -60/-40 join=1 enc=-29246/15281 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2700 ir=  211/224 rgb=UNKNOWN/NO_MATCH   rgbc=312/258/254/619  turn= 20 duty=   -40/0 join=1 enc=-29372/15225 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2740 ir=  200/204 rgb=RED/MATCH          rgbc=345/264/263/654  turn= 20 duty=   -40/0 join=1 enc=-29443/15213 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2800 ir=  206/196 rgb=RED/MATCH          rgbc=345/264/263/654  turn= 20 duty=   -40/0 join=1 enc=-29533/15212 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2840 ir=  212/192 rgb=RED/MATCH          rgbc=354/273/273/662  turn= 20 duty=   -40/0 join=0 enc=-29590/15212 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2900 ir=  218/195 rgb=RED/MATCH          rgbc=354/273/273/662  turn=  0 duty=  -50/50 join=0 enc=-29672/15241 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 2940 ir=  230/197 rgb=RED/MATCH          rgbc=356/276/275/663  turn=  0 duty=  -50/50 join=0 enc=-29735/15297 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 3000 ir=  505/222 rgb=RED/MATCH          rgbc=356/276/275/663  turn= 14 duty=  -44/16 join=0 enc=-29840/15413 blue_exit red_exit red_slow red_align red_first red_handoff
+   el= 3040 ir=  253/199 rgb=RED/MATCH          rgbc=336/256/255/643  turn= 25 duty= -45/-35 join=0 enc=-29912/15467 blue_exit red_exit red_pivot red_slow red_clear_pivot red_align red_first red_handoff
+   el= 3100 ir=  220/203 rgb=RED/MATCH          rgbc=336/256/255/643  turn= 25 duty= -45/-35 join=0 enc=-30010/15447 blue_exit red_exit red_pivot red_slow red_clear_pivot red_align red_first red_handoff
+   el= 3140 ir=  209/219 rgb=UNKNOWN/NO_MATCH   rgbc=310/254/251/618  turn= 25 duty= -45/-35 join=1 enc=-30066/15427 blue_exit red_exit red_pivot red_slow red_clear_pivot red_align red_first red_handoff
+   el= 3200 ir=  301/222 rgb=UNKNOWN/NO_MATCH   rgbc=310/254/251/618  turn= 25 duty=   -60/0 join=1 enc=-30148/15388 blue_exit red_exit red_pivot red_slow red_clear_pivot red_align red_first red_handoff
+   el= 3240 ir=  474/209 rgb=RED/MATCH          rgbc=314/251/248/621  turn= 25 duty=   -60/0 join=1 enc=-30208/15376 blue_exit red_exit red_pivot red_slow red_clear_pivot red_align red_first red_handoff
+   el= 3300 ir=  239/219 rgb=RED/MATCH          rgbc=314/251/248/621  turn= 25 duty=   -60/0 join=1 enc=-30318/15375 blue_exit red_exit red_pivot red_slow red_clear_pivot red_align red_first red_handoff
+   el= 3340 ir=  206/221 rgb=RED/MATCH          rgbc=322/247/245/628  turn= 25 duty=   -60/0 join=0 enc=-30397/15375 blue_exit red_exit red_pivot red_slow red_clear_pivot red_align red_first red_handoff
+   el= 3400 ir=  198/220 rgb=RED/MATCH          rgbc=322/247/245/628  turn= 20 duty=  -70/10 join=0 enc=-30515/15380 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3440 ir=  205/213 rgb=RED/MATCH          rgbc=352/268/267/659  turn= 20 duty=  -70/10 join=0 enc=-30598/15399 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3500 ir=  212/192 rgb=RED/MATCH          rgbc=352/268/267/659  turn= 20 duty=  -70/10 join=0 enc=-30737/15432 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3540 ir=  224/213 rgb=RED/MATCH          rgbc=354/268/267/662  turn= 20 duty=  -70/10 join=0 enc=-30835/15455 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3600 ir=  261/193 rgb=RED/MATCH          rgbc=354/268/267/662  turn= 20 duty=  -70/10 join=0 enc=-30983/15492 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3640 ir=  227/205 rgb=RED/MATCH          rgbc=350/265/264/660  turn= 20 duty=  -70/10 join=0 enc=-31082/15517 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3700 ir=  216/222 rgb=RED/MATCH          rgbc=350/265/264/660  turn= 20 duty=  -80/10 join=0 enc=-31233/15553 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3740 ir=  218/204 rgb=RED/MATCH          rgbc=343/260/259/650  turn= 20 duty=  -80/10 join=0 enc=-31340/15577 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3800 ir=  184/281 rgb=RED/MATCH          rgbc=343/260/259/650  turn= -1 duty=  -48/50 join=0 enc=-31504/15622 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3840 ir=  198/683 rgb=RED/MATCH          rgbc=341/262/261/649  turn= 25 duty= -45/-35 join=0 enc=-31594/15673 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3900 ir=  205/878 rgb=RED/MATCH          rgbc=341/262/261/649  turn=-14 duty=  -28/50 join=0 enc=-31697/15653 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 3940 ir=  187/917 rgb=RED/MATCH          rgbc=324/252/249/633  turn=-14 duty=  -28/50 join=0 enc=-31744/15681 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4000 ir=  205/302 rgb=RED/MATCH          rgbc=324/252/249/633  turn= -2 duty=  -46/50 join=0 enc=-31798/15780 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4040 ir=  227/227 rgb=RED/MATCH          rgbc=313/246/243/619  turn=  0 duty=  -50/50 join=0 enc=-31843/15868 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4100 ir=  265/220 rgb=RED/MATCH          rgbc=313/246/243/619  turn=  0 duty=  -50/50 join=0 enc=-31936/15995 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4140 ir=  201/192 rgb=RED/MATCH          rgbc=333/251/249/643  turn=  0 duty=  -50/50 join=0 enc=-32005/16074 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4200 ir=  192/199 rgb=RED/MATCH          rgbc=333/251/249/643  turn=  0 duty=  -50/50 join=0 enc=-32113/16199 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4240 ir=  193/207 rgb=UNKNOWN/NO_MATCH   rgbc=329/272/268/637  turn=  0 duty=  -50/50 join=1 enc=-32188/16285 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4300 ir=  210/264 rgb=UNKNOWN/NO_MATCH   rgbc=329/272/268/637  turn=  0 duty=  -50/50 join=1 enc=-32304/16417 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4340 ir=  216/797 rgb=UNKNOWN/NO_MATCH   rgbc=295/272/263/619  turn=-14 duty=  -28/50 join=1 enc=-32381/16505 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4400 ir=  219/238 rgb=UNKNOWN/NO_MATCH   rgbc=295/272/263/619  turn=  0 duty=  -50/50 join=1 enc=-32475/16636 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4440 ir=  209/208 rgb=BACKGROUND/MATCH   rgbc=294/278/263/648  turn= 25 duty=   -50/0 join=1 enc=-32539/16721 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4500 ir=  201/229 rgb=BACKGROUND/MATCH   rgbc=294/278/263/648  turn= 25 duty=   -50/0 join=1 enc=-32647/16825 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4540 ir=  198/194 rgb=BACKGROUND/MATCH   rgbc=325/307/290/693  turn= 25 duty=   -50/0 join=1 enc=-32722/16881 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4600 ir=  186/198 rgb=BACKGROUND/MATCH   rgbc=325/307/290/693  turn= 25 duty=   -50/0 join=1 enc=-32839/16944 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff
+   el= 4640 ir=  192/190 rgb=BACKGROUND/MATCH   rgbc=346/325/307/729  turn= 25 duty=   -50/0 join=1 enc=-32918/16974 blue_exit red_exit red_pivot red_slow red_exit_turn red_clear_pivot red_exit_align red_align red_first red_handoff

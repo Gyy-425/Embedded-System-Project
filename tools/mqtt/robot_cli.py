@@ -17,6 +17,7 @@ import time
 from robot_codec import (Ack, Telemetry, OP_CLEAR, OP_STATUS, OP_TARGET,
                          UNKNOWN, decode_packet, encode_command,
                          format_packet, parse_colour)
+from mqtt_publisher import MqttPublisher
 
 
 def executable(name: str, directory: Path | None) -> str:
@@ -32,17 +33,20 @@ def executable(name: str, directory: Path | None) -> str:
 
 
 class Bridge:
-    """Own only the subscriber child process created for this invocation."""
+    """Own the subscription and any persistent publisher for this invocation."""
 
     def __init__(self, args: argparse.Namespace, *, version: int = 1,
-                 decoder=decode_packet, ack_type=Ack, route_decoder=None):
+                 decoder=decode_packet, ack_type=Ack, route_decoder=None,
+                 persistent_publish=False):
         self.base = f"aai05/v{version}/{args.device}"
         self.decoder = decoder
         self.ack_type = ack_type
         self.route_decoder = route_decoder
         self._latest_route = None
         self.common = ["-h", args.host, "-p", str(args.port), "-V", "mqttv311"]
-        self.publisher = executable("mosquitto_pub", args.tools_dir)
+        self._publisher = (MqttPublisher(args.host, args.port, self.base + "/command")
+                           if persistent_publish else None)
+        self.publisher = None if persistent_publish else executable("mosquitto_pub", args.tools_dir)
         self.subscriber = executable("mosquitto_sub", args.tools_dir)
         self.messages = queue.Queue(maxsize=128)
         self.process = None
@@ -106,6 +110,9 @@ class Bridge:
         return self._latest_route
 
     def publish(self, payload: bytes, timeout: float = 3.0):
+        if self._publisher is not None:
+            self._publisher.publish(payload, timeout)
+            return
         command = [self.publisher, *self.common, "-q", "1", "-t",
                    self.base + "/command", "-s"]
         result = subprocess.run(command, input=payload, stdout=subprocess.PIPE,
@@ -135,6 +142,8 @@ class Bridge:
             return None
 
     def __exit__(self, *_):
+        if self._publisher is not None:
+            self._publisher.close()
         if self.process is not None:
             if self.process.poll() is None:
                 self.process.terminate()

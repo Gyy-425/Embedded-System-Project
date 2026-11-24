@@ -848,8 +848,17 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
         normalize(p_input->left_raw, left_centre, (uint16_t)(500U - left_centre)) : 0U;
     p_state->status.right_norm = ir_ok ?
         normalize(p_input->right_raw, right_centre, (uint16_t)(500U - right_centre)) : 0U;
-    bool ambiguous = (p_state->status.left_norm >= 1000U) &&
-                     (p_state->status.right_norm >= 1000U);
+    uint16_t ambiguity_threshold = 500U;
+#if AAI05_FOLLOW_MQTT
+    if (blue_surface && p_input->rgb_target_matched && !p_input->rgb_join_active)
+    {
+        /* Blue can reach the 600s on small offsets. Keep the original
+         * normalization for bend cues and use raw IR for the stop guard. */
+        ambiguity_threshold = 700U;
+    }
+#endif
+    bool ambiguous = ir_ok && (p_input->left_raw >= ambiguity_threshold) &&
+                     (p_input->right_raw >= ambiguity_threshold);
 #else
     p_state->status.left_norm = ir_ok ? normalize(p_input->left_raw, 268U, 1100U) : 0U;
     p_state->status.right_norm = ir_ok ? normalize(p_input->right_raw, 304U, 1140U) : 0U;
@@ -1044,8 +1053,8 @@ black_follow_output_t black_follow_step(black_follow_t *p_state,
 #if FOLLOW_BLUE_STEER_WIDE_RANGE
         if (blue_surface && p_input->rgb_target_matched && !p_input->rgb_join_active)
         {
-            /* The measured blue edges reached the mid-600s. Keep the 500
-             * guard/approach threshold, but reserve full steering for 700. */
+            /* Reserve full blue steering for 700. Bend cues still use the
+             * separate normalization that reaches its maximum at 500. */
             const uint16_t blue_steer_high = 700U;
             uint16_t left_steer = normalize(p_input->left_raw, left_centre,
                                             (uint16_t)(blue_steer_high - left_centre));

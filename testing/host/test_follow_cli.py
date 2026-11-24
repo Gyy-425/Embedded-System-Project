@@ -2,7 +2,7 @@ from dataclasses import replace
 from io import BytesIO, StringIO
 from pathlib import Path
 from types import SimpleNamespace
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 import sys
 import unittest
 
@@ -11,6 +11,7 @@ from drive_cli import FollowMenu, MenuCommands, run_follow_menu
 from drive_codec import (DriveAck, OP_FOLLOW, OP_KEEPALIVE, OP_STATUS, OP_STOP,
                          OP_STRAIGHT, decode_drive_packet, encode_drive_command,
                          format_drive_packet)
+from mqtt_publisher import MqttPublisher
 from robot_cli import Bridge
 from robot_codec import crc8
 from route_codec import decode_route_packet, format_route_report
@@ -102,6 +103,51 @@ class FollowCliChecks(unittest.TestCase):
         self.assertEqual(bridge.latest_route()[0].session, 123)
         self.assertEqual(bridge.receive(0).session, 0x01020304)
         self.assertTrue(bridge.messages.empty())
+
+    def test_menu_publishes_binary_payloads_over_one_broker_connection(self):
+        args = SimpleNamespace(device="test", host="offline", port=1883,
+                               tools_dir=None)
+        responses = BytesIO(bytes.fromhex("200200004002000140020002"))
+        peer = Mock()
+        peer.recv.side_effect = responses.read
+        with patch("robot_cli.executable", return_value="unused"), \
+             patch("socket.create_connection", return_value=peer) as connect, \
+             patch("robot_cli.subprocess.run") as run:
+            bridge = Bridge(args, version=2, persistent_publish=True)
+            try:
+                bridge.publish(b"\x00\n\xff", 0.2)
+                bridge.publish(b"\x0a\x00", 0.2)
+            finally:
+                bridge.__exit__(None, None, None)
+        connect.assert_called_once()
+        run.assert_not_called()
+        connect_frame, first, second = [call.args[0] for call in peer.sendall.call_args_list]
+        self.assertEqual(connect_frame[0], 0x10)
+        topic = b"aai05/v2/test/command"
+        self.assertEqual(first, bytes([0x32, len(topic) + 7, 0, len(topic)]) +
+                         topic + b"\x00\x01\x00\n\xff")
+        self.assertEqual(second, bytes([0x32, len(topic) + 6, 0, len(topic)]) +
+                         topic + b"\x00\x02\x0a\x00")
+        peer.close.assert_called_once()
+
+    def test_missing_broker_puback_closes_connection_without_replaying_command(self):
+        connack = bytes.fromhex("20020000")
+        lost_peer = Mock()
+        lost_peer.recv.side_effect = [connack, TimeoutError()]
+        new_peer = Mock()
+        new_peer.recv.side_effect = [connack, bytes.fromhex("40020002")]
+        publisher = MqttPublisher("offline", 1883, "test/command")
+        self.addCleanup(publisher.close)
+        with patch("socket.create_connection", side_effect=[lost_peer, new_peer]) as connect:
+            with self.assertRaisesRegex(TimeoutError, "broker publish acknowledgement"):
+                publisher.publish(b"start", 0.2)
+            connect.assert_called_once()
+            lost_peer.close.assert_called_once()
+            publisher.publish(b"stop", 0.2)
+        self.assertEqual(connect.call_count, 2)
+        sent = new_peer.sendall.call_args_list
+        self.assertEqual(len(sent), 2)
+        self.assertTrue(sent[1].args[0].endswith(b"\x00\x02stop"))
 
     def menu(self, peer, clock, commands=None):
         return FollowMenu(peer, 1.0, commands or MenuCommands(),

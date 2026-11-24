@@ -1,5 +1,42 @@
 # AAI05 robot firmware
 
+## Current release: MQTT colour follow with distance per colour
+
+The demonstrated system is the integrated **MQTT follow image**:
+
+- an RGB sensor (TCS34725) recognises the lane colour;
+- two IR sensors steer between black borders;
+- MQTT starts and stops the run and selects a target lane;
+- PIO wheel encoders measure the distance travelled in each colour.
+
+| What | Where |
+|---|---|
+| Build command, broker, client, menu keys | [MQTT follow run guide](docs/MQTT_FOLLOW_RUN_GUIDE.md) |
+| Build script and the exact feature flags of the release | `tools/build_follow_mqtt.py` (`STEERING`, `PROFILE`) |
+| Laptop client | `tools/mqtt/drive_cli.py ... menu` |
+| Requirements → tests → results | [System test log](testing/system/TEST_LOG.md) |
+| Data representation (Change Requirement 1) | [Data representation](docs/DATA_REPRESENTATION.md) |
+| Coding standard conformance and deviations | [BARR-C deviations](docs/BARR_C_DEVIATIONS.md) |
+| Track-run evidence (v0.82–v0.87) | [Run summaries](testing/integration/logs/2026-11-24-track-runs-v082-v087/README.md) |
+| Demo failure analysis | [Missing ACK → MQTT_STOP](testing/integration/logs/2026-11-24-demo-mqtt-stop-analysis.md) |
+| Distance calibration | [340 mm calibration](testing/calibration/2026-11-22-distance-straight-findings.md) |
+
+**Code layout:**
+- `app_program/subsystem1`: IR and RGB sensing, colour classification.
+- `app_program/subsystem2`: follow policy and owner, motion, encoders, route distance.
+- `app_program/subsystem3`: MQTT drive protocol and reporting.
+- `testing/host`: host tests.
+- `lib/`, `kernel/`: course template and third-party code. The team-modified files there are the lwIP/MQTT glue in `lib/liblwip/sysdepend/pico_rp2040`.
+
+**Status (24 Nov 2026):**
+- **Host tests and the firmware build pass.** On the car, the v0.87 steering joins blue→red, but the red corner is still unreliable.
+- **Target-lane following (`fb`/`fr`/`fy`) and the ACK retry are host-tested only.** They have not been run on the car yet.
+- **Distance calibration is not yet physically validated.**
+
+The milestone history below is kept as a record of earlier work.
+
+---
+
 New software component: **per-colour route distance measurement**. Standalone
 C functions convert calibrated encoder counts, match timestamped colour windows,
 and produce section estimates/ranges and per-colour totals. No actual section

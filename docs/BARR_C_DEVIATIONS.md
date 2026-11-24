@@ -6,19 +6,19 @@ The application C under `app_program/` and the host tests under `testing/host/` 
 
 | Rule | Practice in this code |
 | --- | --- |
-| 1.3 Braces | Every `if`/`else`/loop body is braced, with braces on their own lines. |
+| 1.3 Braces | Every `if`/`else`/loop body is braced, with braces on their own lines. The remaining same-line braces in `app_program/` (49, mostly in template-derived files) were moved onto their own lines on 24 Nov 2026. The change is whitespace only: the token streams are identical to the previous commit. |
 | 5.2 Fixed-width integers | Fixed-width types (`uint16_t`, `int8_t`, `uint32_t`) throughout; unsigned literals carry `U`. |
 | 6.2d–e | Each public function has a prototype in its module header; private functions are `static`. |
 | 7.1h–l | Lower-case names with underscores; pointers start `p_`, globals start `g_`. |
 | 8.1a | No comma operator in declarations. |
-| No magic numbers (8.4a) | IR sensor-model values in `black_follow.c` (`IR_RAW_MAX`, `IR_NORM_FULL`, `IR_NORM_CLEAR`, `IR_BORDER_FULL_RAW`, `IR_AMBIGUOUS_RAW`, `IR_BLUE_EDGE_RAW` and the lane centres) are named constants. Timing and tolerances come from `config/follow_config.h` (`FOLLOW_IR_FRESH_MS`, `FOLLOW_JOIN_MAX_MS`, …). |
+| No magic numbers (8.4a) | IR sensor-model values in `black_follow.c` (`IR_RAW_MAX`, `IR_NORM_FULL`, `IR_NORM_CLEAR`, `IR_BORDER_FULL_RAW`, `IR_AMBIGUOUS_RAW`, `IR_BLUE_EDGE_RAW` and the lane centres) are named constants. GP20/GP21 use `MOTOR_NEXT_PIN`/`MOTOR_STOP_PIN`, and the network snapshot age uses `DRIVE_SNAPSHOT_FRESH_MS`. Timing and tolerances come from `config/follow_config.h` (`FOLLOW_IR_FRESH_MS`, `FOLLOW_JOIN_MAX_MS`, …). |
 | Compiler warnings | Host tests build with `-std=c11 -Wall -Wextra -Werror -Wconversion -Wshadow -Wstrict-prototypes`, and the firmware builds with 0 warnings. |
 
 ## Deviations
 
 ### D1 — Rule 7.1m: Boolean names do not start with `b_`
 
-- **Scope:** all `bool` variables and fields in `app_program/` (448 declarations at review time).
+- **Scope:** all `bool` variables and fields in `app_program/` (454 declarations on 24 Nov 2026).
 - **Reason:** the project consistently uses C99 `bool` names phrased as states (`ambiguous`, `ir_ok`, `rgb_target_matched`). The status fields are also field names in the serial and MQTT telemetry and the host decoders (`tools/mqtt/`, `tools/check_*.py`). Renaming would change the reported field names and touch every module just before the demo.
 - **Mitigation:** the type is always `bool` (never an integer flag), so `-Wconversion` catches integer/boolean mixing. New code should use `b_` names once the demo is over.
 
